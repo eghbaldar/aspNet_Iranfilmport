@@ -1,0 +1,254 @@
+﻿<%@ Master Language="VB" CodeFile="MasterDashboard.master.vb" Inherits="dashboard_MasterDashboard" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>داشبورد درگاه فیلم ایران</title>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="shortcut icon" href="<%= ResolveUrl("~/files/images/icons/icon.png")%>" />
+    <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <![endif]-->
+    <!-- BOOTSTRAP CORE STYLE  -->
+    <link href="<%= ResolveUrl("~/dashboard/assets/css/bootstrap.css")%>" rel="stylesheet" />
+    <!-- CUSTOM STYLE  -->
+    <link href="<%= ResolveUrl("~/dashboard/assets/css/style.css")%>" rel="stylesheet" />
+    <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-118348858-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-118348858-1');
+    </script>
+    <style>
+        li
+        {
+            font-family: Samim;
+            font-size: 12px;
+        }
+        @media (max-width: 767px)
+        {
+            .navbar-brand
+            {
+                display: none;
+            }
+            .left-div
+            {
+                display: none;
+            }
+        }
+        @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px)
+        {
+            .navbar-brand
+            {
+                display: none;
+            }
+            .left-div
+            {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <!-- HEADER END-->
+    <asp:Panel ID="PnlHeader" CssClass="navbar navbar-inverse set-radius-zero" runat="server"
+        Style="background-color: #E5DA00; background-size: 100%; background-repeat: no-repeat;">
+        <header style="background-color: #bab000; opacity: 0.8;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <strong style="font-family: Samim; font-size: 12px; font-weight: lighter;"><a href='<%= ResolveUrl("~/dashboard/user/me")%>'
+                            style="color: White; text-decoration: none;">
+                            <asp:Label ID="lblName" runat="server"></asp:Label>
+                        </a>
+                            <%-- |&nbsp
+                    <a href='<%= ResolveUrl("~/dashboard/user/me/wallet")%>' style="color:White;text-decoration:none;">
+                    <asp:Label ID="lblWallet" runat="server" ></asp:Label>
+                    </a>--%>
+                            |&nbsp
+                            <asp:Label ID="lblStatus" runat="server"></asp:Label>
+                            |&nbsp
+                            <asp:LinkButton Style="font-family: Samim; font-size: 12px; font-weight: lighter;
+                                color: Black;" ID="btnSignOut" runat="server">خروج</asp:LinkButton>
+                        </strong>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar">
+                    </span>
+                </button>
+                <a class="navbar-brand" href='<%= ResolveUrl("~/")%>'>
+                    <img src='<%= ResolveUrl("~/files/images/logos/logo_blue.png")%>' width="200" />
+                </a>
+            </div>
+            <div class="left-div">
+                <div class="user-settings-wrapper">
+                    <ul class="nav">
+                        <li class="dropdown"><a class="dropdown-toggle" href='<%= ResolveUrl("~\"+getProfileLink()) %>'
+                            target="_blank" aria-expanded="false"><span class='glyphicon glyphicon-user' style='font-size: 25px;'>
+                            </span></a>
+                            <%--<div class="dropdown-menu dropdown-settings">
+                                <div class="media">
+                                    <a class="media-left" href="#">
+                                        <asp:Image ImageUrl="assets/img/64-64.jpg" ID="imgAvatar" class="img-rounded"  runat="server" />
+                                    </a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">
+                                            <asp:Label ID="lblName" runat="server"></asp:Label>
+                                        </h4>
+                                        <h5>
+                                            Developer & Designer</h5>
+                                    </div>
+                                </div>
+                                <hr />
+                                <h5>
+                                    <strong>Personal Bio : </strong>
+                                </h5>
+                                Anim pariatur cliche reprehen derit.
+                                <hr />
+                                <a href="#" class="btn btn-info btn-sm">Full Profile</a>&nbsp; <a href="login.html"
+                                    class="btn btn-danger btn-sm">Logout</a>
+                            </div>--%>
+                        </li>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </asp:Panel>
+    <!-- LOGO HEADER END-->
+    <section class="menu-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="navbar-collapse collapse">
+                        <ul id="menu-top" class="nav navbar-nav navbar-right">
+                            <li style="text-align: right;"><a href='<%= ResolveUrl("~/")%>'>صفحه اصلی درگاه</a></li>
+                            <li style="text-align: right;"><a target="_blank" class="menu-top-active" href='<%= ResolveUrl("~\"+getProfileLink()) %>'>
+                                نمایش پروفایل</a></li>
+                            <li style="text-align: right;"><a href='<%= ResolveUrl("~/dashboard/user/me/messages")%>'>
+                                پیام ها</a></li>
+                            <%--  <li style="text-align:right;" style="text-align:right;"><a href='<%= ResolveUrl("~/dashboard/user/me/invoice")%>'>صورت حساب‌ها</a></li>
+                            <li style="text-align:right;"><a href='<%= ResolveUrl("~/dashboard/user/me/submission")%>'>فستیوال‌های شرکت کرده</a></li>
+                            <li style="text-align:right;"><a href='<%= ResolveUrl("~/جشنواره-های-فیلم-کوتاه-بلند")%>'>لیست فستیوال‌ها</a></li>
+                            <li style="text-align:right;"><a href='<%= ResolveUrl("~/dashboard/user/me/services")%>'>سرویس‌ها</a></li>--%>
+                            <li style="text-align: right;"><a href='<%= ResolveUrl("~/dashboard/user/me/projects")%>'>
+                                فیلم‌ها و فیلمنامه‌ها</a></li>
+                            <li style="text-align: right;"><a href='<%= ResolveUrl("~/dashboard/user/me")%>'>اطلاعات
+                                حقیقی/حقوقی</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- MENU SECTION END-->
+    <div class="content-wrapper">
+        <div class="container" style="direction: rtl; text-align: right;">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-success" style="font-family: Samim;text-align:center;">
+                        <asp:Label ID="lblInfoUsername" runat="server" Text="Label"></asp:Label>
+                    </div>
+                </div>
+            </div>
+            <%--            <div class="row">
+                <div class="col-md-3 col-sm-3 col-xs-6">
+                    <div class="dashboard-div-wrapper bk-clr-one" style="background-color: #539fa0;">
+                        <i class="fa fa-venus dashboard-div-icon"></i>
+                         <div class="progress progress-striped active">
+                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80"
+                                aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                            </div>
+                        </div>
+                        <h5 style="font-family: NazaninB; font-size: 17px;">
+                            پروژه‌های تایید نشده (<asp:Label ID="lbl_notification_project" runat="server" Text="Label"></asp:Label>)</h5>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-6">
+                    <div class="dashboard-div-wrapper bk-clr-two" style="background-color: #3aa2a5;">
+                         <i class="fa fa-edit dashboard-div-icon"></i>
+                        <div class="progress progress-striped active">
+                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="70"
+                                aria-valuemin="0" aria-valuemax="100" style="width: 70%">
+                            </div>
+                        </div>
+                        <h5 style="font-family: NazaninB; font-size: 17px;">
+                            فاکتورهای پرداخت نشده (<asp:Label ID="lbl_notification_notPaid" runat="server" Text="Label"></asp:Label>)</h5>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-6">
+                    <div class="dashboard-div-wrapper bk-clr-three" style="background-color: #20a6ad;">
+                        <i class="fa fa-cogs dashboard-div-icon"></i>
+                        <div class="progress progress-striped active">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
+                                aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                            </div>
+                        </div>
+                        <h5 style="font-family: NazaninB; font-size: 17px;">
+                            فستیوال‌های شرکت کرده (<asp:Label ID="lbl_notification_festivals" runat="server"
+                                Text="Label"></asp:Label>)</h5>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-6">
+                    <div class="dashboard-div-wrapper bk-clr-four" style="background-color: #00a9b2;">
+                        <i class="fa fa-bell-o dashboard-div-icon"></i>
+                          <div class="progress progress-striped active">
+                            <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="50"
+                                aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                            </div>
+                        </div>
+                        <h5 style="font-family: NazaninB; font-size: 17px;">
+                            پیام‌های خوانده نشده (<asp:Label ID="lbl_notification_msg" runat="server" Text="Label"></asp:Label>)</h5>
+                    </div>
+                </div>
+            </div>--%>
+            <div class="alert alert-warning" runat="server" id="warning" visible="false" style="font-family: koodak;
+                color: Red; background-color: #f9d1d1; border-color: Red;">
+                پروفایل شما معلق شده است، اطلاعات ارسالی شما بزودی توسط تیم کارشناسی درگاه بررسی
+                شده و نتیجه به اطلاع شما خواهد رسید. همچنین تا اطلاع ثانوی دسترسی عمومی به پروفایل
+                شما نیز معلق گردیده است.
+                <br />
+                از صبر و شکیبایی شما کمال تشکر را داریم.
+            </div>
+        </div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    <!-- CONTENT-WRAPPER SECTION END-->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    &copy; Copyright 2021. All Rights Reserved by <a href="http://www.iranfilmport.com/">
+                        IranFilmPort</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- FOOTER SECTION END-->
+    <!-- JAVASCRIPT AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
+    <!-- CORE JQUERY SCRIPTS -->
+    <script src="<%= ResolveUrl("~/dashboard/assets/js/jquery-1.11.1.js")%>"></script>
+    <!-- BOOTSTRAP SCRIPTS  -->
+    <script src="<%= ResolveUrl("~/dashboard/assets/js/bootstrap.js")%>"></script>
+    </form>
+</body>
+</html>

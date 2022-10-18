@@ -1,0 +1,225 @@
+﻿<%@ Application Language="VB" %>
+<%@ Import Namespace="System.Web.Routing" %>
+<%@ Import Namespace="System.Web.Routing.Route" %>
+<%@ Import Namespace="System.Web" %>
+<script runat="server">
+
+
+    Protected Sub Application_BeginRequest(sender As Object, e As System.EventArgs)
+
+        'remove default.aspx
+        Dim context As HttpContext = HttpContext.Current
+        Dim url As String = context.Request.RawUrl.ToString()
+        If url.EndsWith("/default.aspx", StringComparison.OrdinalIgnoreCase) Then
+            url = url.Substring(0, url.Length - 12)
+            context.Response.Redirect(url)
+        End If
+        'برای از بین بردن پسوند بقیه صفحات باید از تکنیک
+        'httpRedirect
+        'در فایل web.config
+        'استفاده کن
+
+    End Sub
+
+    Sub Application_Start(ByVal sender As Object, ByVal e As EventArgs)
+        RegisterRoutes(RouteTable.Routes)
+        RegisterRoutes_username(RouteTable.Routes)
+    End Sub
+
+    Sub Application_End(ByVal sender As Object, ByVal e As EventArgs)
+    End Sub
+
+    Sub Application_Error(ByVal sender As Object, ByVal e As EventArgs)
+        'Response.Redirect("~/عدم-دسترسی")
+    End Sub
+
+    Sub Session_Start(ByVal sender As Object, ByVal e As EventArgs)
+    End Sub
+
+    Sub Session_End(ByVal sender As Object, ByVal e As EventArgs)
+    End Sub
+    Shared Sub RegisterRoutes(ByVal routes As RouteCollection)
+
+        '------------- for working updatepanel
+        routes.Ignore("{resource}.apk/{*pathInfo}")
+        routes.Ignore("{resource}.axd/{*pathInfo}")
+        routes.Ignore("{resource}.css/{*pathInfo}")
+        routes.Ignore("{resource}.axd/{*pathInfo}")
+        routes.Ignore("{resource}.jpg/{*pathInfo}")
+        routes.Ignore("{*allaspx}", New With {.allaspx = ".*\.aspx(/.*)?"})
+        routes.Ignore("{file}.js")
+        routes.Ignore("{file}.css")
+        routes.Ignore("{file}.png")
+        routes.Ignore("{file}.apk")
+        '---------------------------------------------
+        routes.MapPageRoute("rss", "rss", "~/rss.aspx")
+        routes.MapPageRoute("rule", "قوانین-و-مقررات", "~/rules.aspx")
+        routes.MapPageRoute("howitworks", "پخش-و-ارسال-فیلم", "~/howitworks.aspx")
+        routes.MapPageRoute("article", "نقد-تحلیل-اخبار-فیلم-کوتاه", "~/posts.aspx")
+        routes.MapPageRoute("mediamaking", "رسانه-سازی-پخش-فیلم", "~/service_mediamaking.aspx")
+        routes.MapPageRoute("movibeta", "movibeta", "~/movibeta.aspx")
+        routes.MapPageRoute("Services", "سرویس-های-پخش-فیلم", "~/services.aspx")
+        routes.MapPageRoute("oscars", "فستیوال-های-اسکاری-فیلم-کوتاه", "~/festivalsOscar.aspx")
+        routes.MapPageRoute("festivalABC", "فستیوال-های-فیلم", "~/festivalABC.aspx")
+        routes.MapPageRoute("contact", "تماس-با-درگاه-فیلم-ایران", "~/contact.aspx")
+        routes.MapPageRoute("aboutus", "درباره-درگاه-فیلم-ایران", "~/aboutus.aspx")
+        routes.MapPageRoute("about", "about", "~/aboutus.aspx")
+        routes.MapPageRoute("customers", "مشتریان-درگاه-فیلم-ایران", "~/customers.aspx")
+        routes.MapPageRoute("price", "هزینه-پخش-بین-المللی-فیلم", "~/prices.aspx")
+        routes.MapPageRoute("consultation", "مشاوره-پخش-بین-المللی-فیلم", "~/consultation.aspx")
+        routes.MapPageRoute("consultationScript", "مشاوره-فیلمنامه-کوتاه-مشاوره-فیلمنامه-بلند", "~/consultationscript.aspx")
+        routes.MapPageRoute("features", "ویژگی-های-پخش-فیلم-درگاه-فیلم-ایران", "~/features.aspx")
+        routes.MapPageRoute("notallow", "عدم-دسترسی", "~/notAllow.aspx")
+        routes.MapPageRoute("profileband", "پروفایل-خارج-از-دسترس", "~/outProfile.aspx")
+        routes.MapPageRoute("resume", "کارنامه-پخش-فیلم-درگاه-فیلم-ایران", "~/CV.aspx")
+        routes.MapPageRoute("resume2", "accolades", "~/CV.aspx")
+        routes.MapPageRoute("login", "ورود-و-ثبت-نام", "~/login.aspx")
+        routes.MapPageRoute("me", "me", "~/login.aspx")
+        routes.MapPageRoute("namad", "نماد-اعتماد-درگاه-فیلم-ایران", "~/namad.aspx")
+        routes.MapPageRoute("strategy", "برنامه-استراتژیک-پخش-فیلم-به-جشنواره-های-خارجی", "~/strategy.aspx")
+        routes.MapPageRoute("exhibition", "picks", "~/exhibition.aspx")
+        routes.MapPageRoute("send", "send", "~/sendfilm.aspx")
+        routes.MapPageRoute("team", "team", "~/team.aspx")
+        routes.MapPageRoute("originality", "originality", "~/features.aspx")
+        routes.MapPageRoute("faq", "faq", "~/camscanner.aspx")
+        routes.MapPageRoute("captcha", "captcha", "~/captcha.aspx")
+        routes.MapPageRoute("trailer", "trailer", "~/trailer.aspx")
+        routes.MapPageRoute("advertiseFa", "ارسال-خبر-و-تبلیغات", "~/advertise.aspx")
+        routes.MapPageRoute("advertiseEn", "advertise", "~/advertise.aspx")
+        routes.MapPageRoute("sendinformation", "sendinformation", "~/sendinformation.aspx")
+        routes.MapPageRoute("participationplan", "participationplan", "~/participationplan.aspx")
+        routes.MapPageRoute("features2", "features", "~/features.aspx")
+        routes.MapPageRoute("testimonial", "تصدیق-نامه-فیلمسازان", "~/testimonial.aspx")
+        '----------------------------------------------------------------------------------------
+        routes.MapPageRoute("panel", "panel", "~/panel.aspx")
+        routes.MapPageRoute("panelClient", "panel/client/{id}", "~/PanelMain.aspx")
+        routes.MapPageRoute("panelMoney", "panel/money/{id}", "~/PanelMoney.aspx")
+        routes.MapPageRoute("panelStrategyReports", "panel/panelStrategyReports/{id}/{idFilm}", "~/Panel_StrategyReport.aspx")
+        '----------------------------------------------------------------------------------------
+        'ساخت لینک داینامیک
+        'routes.MapPageRoute("dynamicLink", "link/d/{randomString}", "~/files/images/background/banner_1.jpg")
+        '----------------------------------------------------------------------------------------
+        '---------------- Verification Code
+        routes.MapPageRoute("VerificationCode", "login/{veriC}/{email}", "~/login.aspx")
+        routes.MapPageRoute("convertToUnscale", "convertToUnscale", "~/convertToUnscale.aspx")
+        '----------------------------------------------------------------------------------------
+        '----------------------------------------------------------------------------------------
+        '----------------------------------------------------------------------------------------
+        '                                       Festival
+        '----------------------------------------------------------------------------------------
+        '----------------------------------------------------------------------------------------
+        '----------------------------------------------------------------------------------------
+        '---------------- نکته ای در خصوص کد زیر وجوددارد که در پایینتر توضیح داده خواهدشد
+        routes.MapPageRoute("festival", "جشنواره-های-فیلم-کوتاه-بلند", "~/festivals.aspx")
+        routes.MapPageRoute("festivalSearch", "festivals/search/{*items}", "~/festivalSearch.aspx")
+        'routes.MapPageRoute("festivalEach", "festival/{id}/{name_en}/{name_fa}", "~/aFestival.aspx")                
+        'دستورات زیر یعنی اگر دو پارامتر نام فارسی و انگلیسی خالی بودند خطا ندهد
+        routes.MapPageRoute("festivalEach",
+            "festival/{id}/{name_en}/{name_fa}",
+            "~/aFestival.aspx",
+            True,
+            New RouteValueDictionary(New With _
+                {.id = " ", _
+                 .name_en = " ", _
+                 .name_fa = " "}))
+        'وقتی از کد بالا استفاده میکنید لینک که از تگ انچور بصورت زیر استفاده میکنند دچار مشکل خواهند شد
+        '<a href="#"></a> 
+        'برای رفع مشکل بصورت زیر بنویسید
+        '<a href='<%= ResolveUrl("~/#")%>'></a>       
+        '----------------------------------------------------------------------------------------
+        '----------------------------------------------------------------------------------------
+        '----------------------------------------------------------------------------------------
+        '                                          Dashboard
+        '----------------------------------------------------------------------------------------
+        '----------------------------------------------------------------------------------------
+        '----------------------------------------------------------------------------------------
+        routes.MapPageRoute("dsahboard", "dashboard/", "~/dashboard/user/me/")
+        routes.MapPageRoute("dsahboardMain", "dashboard/user/me/", "~/dashboard/Default.aspx")
+        routes.MapPageRoute("dsahboardProject", "dashboard/user/me/projects", "~/dashboard/projects.aspx")
+        routes.MapPageRoute("dsahboardService", "dashboard/user/me/services", "~/dashboard/services.aspx")
+        routes.MapPageRoute("dsahboardSubmission", "dashboard/user/me/submission", "~/dashboard/submission.aspx")
+        routes.MapPageRoute("dsahboardInvoice", "dashboard/user/me/invoice", "~/dashboard/invoice.aspx")
+        routes.MapPageRoute("dsahboardMSG", "dashboard/user/me/messages", "~/dashboard/messages.aspx")
+        routes.MapPageRoute("dsahboardAproject", "dashboard/user/me/aproject/{id}", "~/dashboard/aproject.aspx")
+        routes.MapPageRoute("dsahboardAmsg", "dashboard/user/me/messages/msg/{id}", "~/dashboard/msg.aspx")
+        routes.MapPageRoute("dsahboardFactor", "dashboard/user/me/contract/factor/{factor}", "~/dashboard/contract.aspx")
+        routes.MapPageRoute("dsahboardPreCheckout", "dashboard/user/me/precheckout/{festivalID}", "~/dashboard/preCheckout.aspx")
+        routes.MapPageRoute("dsahboardCheckout", "dashboard/user/me/checkout/{festivalID}/{projectID}/{deadlineID}", "~/dashboard/checkout.aspx")
+        routes.MapPageRoute("dsahboardCallBackBacnk", "dashboard/user/me/CallBackBank", "~/dashboard/CallBackBank.aspx")
+        routes.MapPageRoute("dsahboardWallet", "dashboard/user/me/Wallet", "~/dashboard/Wallet.aspx")
+        '----------------------------------------------------------------------------------------
+        '----------------------------------------------------------------------------------------
+        '----------------------------------------------------------------------------------------
+        '                                          CMS
+        '----------------------------------------------------------------------------------------
+        '----------------------------------------------------------------------------------------
+        '----------------------------------------------------------------------------------------
+        routes.MapPageRoute("cmsSitemap", "cms/pages/sitemap/", "~/sitemap.aspx")
+        'کد زیر برای آن است که ادیتور آپلود عکس درست باز شود، چون پسوندهای ای اس پی ایکس بسته شده اند
+        routes.MapPageRoute("cmsImagesManagement", "cms/pages/imagesManagement/", "~/cms/pages/imagesManagement.aspx")
+        routes.MapPageRoute("cmsSecurityImageGenerator", "usercontrols/SecurityImageGenerator/", "~/usercontrols/SecurityImageGenerator.aspx")
+
+        routes.MapPageRoute("cmsAddPost", "cms/pages/AddNewPost/", "~/cms/pages/addBolg.aspx")
+        routes.MapPageRoute("cmsAddFestival", "cms/pages/AddFestival/", "~/cms/pages/addFest.aspx")
+        routes.MapPageRoute("cmsBackToWallet", "cms/pages/BacktoWallet/", "~/cms/pages/backtowallet.aspx")
+        routes.MapPageRoute("cmsCategoryOfPost", "cms/pages/CategoryOfPost/", "~/cms/pages/categoryArticle.aspx")
+        routes.MapPageRoute("cmsComments", "cms/pages/Comments/", "~/cms/pages/comment.aspx")
+        routes.MapPageRoute("cmsContact", "cms/pages/Contact/", "~/cms/pages/contact.aspx")
+        routes.MapPageRoute("cms", "cms/pages/", "~/cms/pages/Default.aspx")
+        routes.MapPageRoute("cmsDesktopSubmissionList", "cms/pages/DesktopSubmissionList/", "~/cms/pages/Desktop_SubmissionList.aspx")
+        routes.MapPageRoute("cmsDollars", "cms/pages/Dollars/", "~/cms/pages/dollars.aspx")
+        routes.MapPageRoute("cmsEditPost", "cms/pages/EditPost/", "~/cms/pages/editArticle.aspx")
+        routes.MapPageRoute("cmsEditFest", "cms/pages/EditFestival/", "~/cms/pages/editFest.aspx")
+        routes.MapPageRoute("cmsFileManagement", "cms/pages/FileManagement/", "~/cms/pages/fileManagement.aspx")
+        routes.MapPageRoute("cmsGeneralInvoice", "cms/pages/GeneralInvoice/", "~/cms/pages/GeneralInvoice.aspx")
+        routes.MapPageRoute("cmsGeneralSetting", "cms/pages/GeneralSetting/", "~/cms/pages/GeneralSetting.aspx")
+        routes.MapPageRoute("cmsInvoices", "cms/pages/Invoices/", "~/cms/pages/invoice.aspx")
+        routes.MapPageRoute("cmsInvoiceMSG", "cms/pages/InvoiceMSG/", "~/cms/pages/invoiceMSG.aspx")
+        routes.MapPageRoute("cmsmsgTOusers", "cms/pages/msgTOusers/", "~/cms/pages/msgTOusers.aspx")
+        routes.MapPageRoute("cmsPosterofcustomer", "cms/pages/posterofcustomer/", "~/cms/pages/posterofcustomer.aspx")
+        routes.MapPageRoute("cmsprofileCreator", "cms/pages/profileCreator/", "~/cms/pages/profileCreator.aspx")
+        routes.MapPageRoute("cmsprofileEdit", "cms/pages/profileEdit/", "~/cms/pages/profileEdit.aspx")
+        routes.MapPageRoute("cmsProfileInvoice", "cms/pages/ProfileInvoice/", "~/cms/pages/ProfileInvoice.aspx")
+        routes.MapPageRoute("cmsSitemapProfileProject", "cms/pages/ProfileProject/", "~/cms/pages/ProfileProject.aspx")
+        routes.MapPageRoute("cmsprofiles", "cms/pages/profiles/", "~/cms/pages/profiles.aspx")
+        routes.MapPageRoute("cmsprojectEdit", "cms/pages/projectEdit/", "~/cms/pages/projectEdit.aspx")
+        routes.MapPageRoute("cmsprojects", "cms/pages/projects/", "~/cms/pages/projects.aspx")
+        routes.MapPageRoute("cmsresume", "cms/pages/resume/", "~/cms/pages/resume.aspx")
+        routes.MapPageRoute("cmssendinfo", "cms/pages/sendinfo/", "~/cms/pages/sendinfo.aspx")
+        routes.MapPageRoute("cmsslider", "cms/pages/slider/", "~/cms/pages/slider.aspx")
+        routes.MapPageRoute("cmsstatistical", "cms/pages/statistical/", "~/cms/pages/statistical.aspx")
+        routes.MapPageRoute("cmssubmission", "cms/pages/submission/", "~/cms/pages/submission.aspx")
+        routes.MapPageRoute("cmsusers", "cms/pages/users/", "~/cms/pages/users.aspx")
+        routes.MapPageRoute("cmsadvertise", "cms/pages/advertise/", "~/cms/pages/advertise.aspx")
+        routes.MapPageRoute("cmsparticipationplan", "cms/pages/participationplan", "~/cms/pages/participationplan.aspx")
+        routes.MapPageRoute("cmsaboutus", "cms/pages/aboutus", "~/cms/pages/about.aspx")
+        routes.MapPageRoute("cmsAPK", "cms/pages/apks", "~/cms/pages/apk.aspx")
+
+    End Sub
+
+    Shared Sub RegisterRoutes_username(ByVal routes As RouteCollection)
+        '------------------------------------------------------------------ Runtime profile
+        routes.MapPageRoute("filmmaker", "filmmaker/{username}", "~/profile.aspx")
+        routes.MapPageRoute("filmmakerProject", "filmmaker/{username}/{IdProject}/{nameProject}", "~/profile_project.aspx")
+        '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        '                                          B L O G
+        '----------------------------------------------------------------------------------------
+        '----------------------------------------------------------------------------------------
+        '----------------------------------------------------------------------------------------
+        routes.MapPageRoute("tags", "tag/{text}", "~/tags.aspx")
+        routes.MapPageRoute("POSTwithUnique", "{id}", "~/post.aspx")
+        routes.MapPageRoute("POST", "{id}/{title}", "~/post.aspx")
+        routes.MapPageRoute("categories", "{id}/{title}/دسته-محتوایی", "~/categories.aspx")
+        routes.MapPageRoute("types", "{type}/{title}/دسته-اصلی", "~/types.aspx")
+        routes.MapPageRoute("postSearch", "post/search/{text}", "~/postSearch.aspx")
+        '----------------------------------------------------------------------------------------
+        '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        '                                          webservice
+        '----------------------------------------------------------------------------------------
+        '----------------------------------------------------------------------------------------
+        routes.MapPageRoute("webs1", "api/api/api/api", "~/{*Action}")
+
+
+    End Sub
+
+</script>

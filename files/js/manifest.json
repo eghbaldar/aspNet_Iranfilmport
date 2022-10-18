@@ -1,0 +1,31 @@
+﻿{
+  "name": "IRANFILMPORTWebsite",
+  "short_name": "IFP",
+  "icons": [{
+	  "src": "../images/logos/logo_footer.png",
+      "sizes": "128x128",
+      "type": "image/svg"
+    }, {
+      "src": "../images/logos/logo_footer.png",
+      "sizes": "144x144",
+      "type": "image/svg"
+    }, {
+      "src": "../images/logos/logo_footer.png",
+      "sizes": "152x152",
+      "type": "image/svg"
+    }, {
+      "src": "../images/logos/logo_footer.png",
+      "sizes": "192x192",
+      "type": "image/svg"
+    }, {
+      "src": "../images/logos/logo_footer.png",
+      "sizes": "256x256",
+      "type": "image/svg"
+    }],
+  "start_url": "/Default.aspx",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF"
+  ],
+  "author": "Snapp Co."
+}

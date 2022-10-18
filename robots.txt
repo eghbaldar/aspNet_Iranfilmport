@@ -1,0 +1,18 @@
+﻿Sitemap: http://iranfilmport.com/sitemap.xml
+Sitemap: http://iranfilmport.com/sitemap/sitemap1.xml
+
+User-agent: *
+Disallow: /CMS/
+Disallow: /CMS
+Disallow: /cms/
+Disallow: /cms
+Disallow: /dashboard/*
+Disallow: /blog/tag/*
+Disallow: /blog/*
+Disallow: /blog
+Disallow: /290@iranfilmport
+Disallow: /blog/tag/festival
+Disallow: /blog/tag/india
+Disallow: /blog/tag/شيملا
+Disallow: /blog/tag/هند
+Disallow: /blog/article/id/13

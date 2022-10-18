@@ -1,0 +1,118 @@
+﻿  @font-face
+        {
+            font-family: 'NazaninB';
+            src: url(../../files/font/NAZANB.TTF);
+        }
+        @font-face
+        {
+            font-family: 'Titr';
+            src: url(../../files/font/TITRBD.TTF);
+        }
+        @font-face
+        {
+            font-family: 'koodak';
+            src: url(../../files/font/KoodakBold.ttf);
+        }
+        @font-face
+        {
+            font-family: 'traffic';
+            src: url(../../files/font/TRAFFIC.TTF);
+        }
+        @font-face
+        {
+            font-family: 'irsans';
+            src: url(../../files/font/irsans.ttf);
+        }
+        @font-face
+        {
+            font-family: Samim;
+            src: url('../../files/font/Samim-FD.eot');
+            src: url('../../files/font/Samim-FD.eot?#iefix') format('FontName-opentype'), url('../../files/font/Samim-FD.woff') format('woff'), url('../../files/font/Samim-FD.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+body 
+{
+    direction:rtl;
+    font-family:Samim;
+}
+.flex
+{
+    display: flex;
+    width: 100%;}
+    
+    .flexright
+    {
+        width:20%;
+        margin:10px;
+        font-size:13px;
+        color:Gray;
+   }
+        .flexleft
+    {
+        width:80%;
+margin:10px;
+    }
+    
+            .btnChanging
+        {
+            border: 1px dotted red;
+            color: Red;
+            padding: 5px;
+            margin: 2px;
+            background-color: White;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            font-family: Samim;
+        }
+        .btnChanging:hover
+        {
+            cursor: pointer;
+            background-color: #ffcdc9;
+        }
+                .cssEmpty
+        {
+            border: 2px dashed red;
+            direction: rtl;
+            text-align: center;
+            font-family: Samim;
+            font-size: 13px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            color: Red;
+            padding: 26px;
+            background-color: #ffdedb;
+        }
+        .TitleTitle
+        {
+            font-family:traffic;
+            font-size:20px;
+            padding-top:5px;
+            padding-bottom:5px;
+            /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#000000+0,ffee00+100&0+0,0.65+100 */
+background: -moz-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(255,238,0,0.65) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left, rgba(0,0,0,0) 0%,rgba(255,238,0,0.65) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(255,238,0,0.65) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6ffee00',GradientType=1 ); /* IE6-9 */
+padding-right:10px;
+color:Black;
+        }
+@media screen and (max-width:767px){
+  .flex {
+    display: block;
+  }
+      .flexright
+    {
+        width:100%;
+        margin:0px;
+        margin-bottom:10px;
+        margin-top:10px;
+    }
+        .flexleft
+    {
+        width:100%;margin:0px;
+                margin-bottom:10px; 
+    }
+}

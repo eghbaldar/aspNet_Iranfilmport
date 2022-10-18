@@ -1,0 +1,123 @@
+﻿Imports System.IO
+Imports CKFinder
+Imports System.Drawing
+Imports System.Data
+
+Partial Class CMS_Pages_addBolg
+    Inherits System.Web.UI.Page
+
+    Protected Sub btnInsert_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnInsert.Click
+
+        Dim DL As New DLL_CMS
+
+        If FilePhoto.PostedFile.ContentLength > 110000 And Not (chkPhoto.Checked) Then
+            lblNotify.Text = "حجم فایل عکس شما بیش از 110 کیلوبایت است"
+            Exit Sub
+        End If
+
+        If cmd_type.SelectedValue <> "" And txtTitle.Text <> "" And txtText.Text <> "" Then
+
+            Dim End_FN As String = DateTime.Now.Ticks.ToString & "-" & txtTags.Text.Trim.Replace("-", "_").Replace(" ", "").Replace("_", "-").Replace("ي", "ی") & "-" & Path.GetExtension(FilePhoto.FileName)
+
+            Dim DT As String = Convert.ToDateTime(txtDate.Text).ToShortDateString & " " & txtHH.Text & ":" & txtMM.Text & ":" & txtSS.Text
+
+            DL.InsertArticle(Val(cmd_category.SelectedValue),
+                             Val(cmd_type.SelectedValue),
+                             Val(cmd_short_feature.SelectedValue),
+                              txtTitle.Text.Trim.Replace("ي", "ی"),
+                              convertNumFatoEn(txtText.Text.Trim.Replace("ي", "ی")),
+                              txtLid.Text.Trim.Replace("ي", "ی"),
+                              txtAuthors.Text.Trim.Replace("ي", "ی"),
+                              txtReference.Text.Trim.Replace("ي", "ی"),
+                              End_FN.Trim, "film",
+                              txtTags.Text.Replace("ي", "ی"),
+                              0,
+                              1,
+                              DT,
+                              txtTitleEn.Text.Trim)
+            FilePhoto.SaveAs(MapPath("~/files/UploadFiles/article/" + End_FN.Trim))
+            '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+            'Page.RegisterStartupScript("OpenPages", "<script type='text/javascript'>window.open('editArticle.aspx','_self');window.open('../../sitemap.aspx');</script>")
+            Response.Redirect("EditPost?type=complete")
+            '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        Else
+            lblNotify.Visible = True
+            lblNotify.Text = "فیلدها پر شوند"
+        End If
+
+    End Sub
+
+    Public Function convertNumFatoEn(ByVal T As String) As String
+        Return T.Replace("۰", "0").Replace("۱", "1").Replace("۲", "2").Replace("۳", "3").Replace("۴", "4").Replace("۵", "5").Replace("۶", "6").Replace("۷", "7").Replace("۸", "8").Replace("۹", "9").Replace("٫", "/")
+    End Function
+
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        Dim _FileBrowser As CKFinder.FileBrowser = New CKFinder.FileBrowser()
+        _FileBrowser.BasePath = "../../files/ckfinder"
+        _FileBrowser.SetupCKEditor(txtText)
+        If Not IsPostBack Then
+            S = ""
+            txtDate.Text = Now.ToShortDateString
+            txtHH.Text = "12"
+            txtMM.Text = "00"
+            txtSS.Text = "00"
+        End If
+    End Sub
+
+    Shared S As String = Nothing
+    Dim btn As New Button
+
+    Protected Sub btnPreTag_Click(sender As Object, e As System.EventArgs) Handles btnPreTag.Click
+        If txtPreTag.Text.Trim.Length > 0 Then
+            listTags.Items.Add(txtPreTag.Text.Trim.Replace(" ", "_"))
+            txtPreTag.Text = ""
+            txtPreTag.Focus()
+        End If
+    End Sub
+
+    Protected Sub deletelist_Click(sender As Object, e As System.EventArgs) Handles deletelist.Click
+        listTags.Items.RemoveAt(listTags.SelectedIndex)
+    End Sub
+
+    Protected Sub btnGoTags_Click(sender As Object, e As System.EventArgs) Handles btnGoTags.Click
+        S = Nothing
+        If listTags.Items.Count > 0 Then
+            For i As Byte = 0 To listTags.Items.Count - 1
+                S = S & listTags.Items(i).Text.Trim.Replace(" ", "_") + " - "
+            Next
+            txtTags.Text = S.Substring(0, S.Length - 2)
+        End If        
+    End Sub
+
+    Protected Sub CalDate_SelectionChanged(sender As Object, e As System.EventArgs) Handles CalDate.SelectionChanged
+        'If Not IsPostBack Then
+        txtDate.Text = CalDate.SelectedDate.ToString
+        'End If
+    End Sub
+
+    Protected Sub tag_1_Click(sender As Object, e As System.EventArgs) Handles tag_1.Click
+        listTags.Items.Add(tag_1.Text.Trim.Replace(" ", "_"))
+    End Sub
+    Protected Sub tag_2_Click(sender As Object, e As System.EventArgs) Handles tag_2.Click
+        listTags.Items.Add(tag_2.Text.Trim.Replace(" ", "_"))
+    End Sub
+    Protected Sub tag_3_Click(sender As Object, e As System.EventArgs) Handles tag_3.Click
+        listTags.Items.Add(tag_3.Text.Trim.Replace(" ", "_"))
+    End Sub
+    Protected Sub tag_4_Click(sender As Object, e As System.EventArgs) Handles tag_4.Click
+        listTags.Items.Add(tag_4.Text.Trim.Replace(" ", "_"))
+    End Sub
+    Protected Sub tag_5_Click(sender As Object, e As System.EventArgs) Handles tag_5.Click
+        listTags.Items.Add(tag_5.Text.Trim.Replace(" ", "_"))
+    End Sub
+    Protected Sub tag_6_Click(sender As Object, e As System.EventArgs) Handles tag_6.Click
+        listTags.Items.Add(tag_6.Text.Trim.Replace(" ", "_"))
+    End Sub
+    Protected Sub tag_7_Click(sender As Object, e As System.EventArgs) Handles tag_7.Click
+        listTags.Items.Add(tag_7.Text.Trim.Replace(" ", "_"))
+    End Sub
+    Protected Sub tag_8_Click(sender As Object, e As System.EventArgs) Handles tag_8.Click
+        listTags.Items.Add(tag_8.Text.Trim.Replace(" ", "_"))
+    End Sub
+
+End Class

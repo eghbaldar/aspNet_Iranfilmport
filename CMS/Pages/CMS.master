@@ -1,0 +1,407 @@
+﻿<%@ Master Language="VB" CodeFile="CMS.master.vb" Inherits="Management_Admin_CMS" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>پنل مدیریتی درگاه فیلم ایران</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link href="../files/cssCMS.css" rel="stylesheet" type="text/css" />
+    <!-- mobile responsive meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <%--Andriod--%>
+    <meta name="apple-mobile-web-app-status-bar-style" content="#ffffff">
+    <meta name="msapplication-navbutton-color" content="#ffffff">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" sizes="128x128" href='<%= ResolveUrl("~/files/images/icons/iconScreen.png")%>'>
+    <%--<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>--%>
+    <script src="../../files/js/menu_login/jquery-1.12.4.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        /*jQuery time*/
+        $(document).ready(function () {
+            $("#accordian h3").click(function () {
+                //slide up all the link lists
+                $("#accordian ul ul").slideUp();
+                //slide down the link list below the h3 clicked - only if its closed
+                if (!$(this).next().is(":visible")) {
+                    $(this).next().slideDown();
+                }
+            })
+        })
+    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .style1 {
+            width: 100%;
+        }
+
+        .style2 {
+            width: 121px;
+        }
+
+        .style12 {
+            width: 18px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="body">
+            <div id="master">
+                <div id="header">
+                    <div>
+                        <a href="../pages/">
+                            <img src="<%= ResolveUrl("~/files/images/logos/logo_movibeta.png") %>" class="imgHeader" border="0"
+                                alt="درگاه فیلم ایران" />
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <div id="LeftV" class="myFlex">
+                        <div class="LeftV_Content">
+                            <table style="width: 100%;">
+                                <tr>
+                                    <td style="font: normal 15px titr;">تاریخ امروز
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table>
+                                            <tr>
+                                                <td class="style12">
+                                                    <img src="../../files/images/icons/date.png" />
+                                                </td>
+                                                <td>
+                                                    <asp:Label ID="lblDate" Style="color: #134543;" runat="server"></asp:Label>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="LeftV_Content">
+                            <table style="width: 100%;">
+                                <tr>
+                                    <td style="font: normal 15px titr;">وضعیت کاربر ورود کرده
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table>
+                                            <tr>
+                                                <td class="style12">
+                                                    <img src="../../files/images/icons/mnu_resume.png" />
+                                                </td>
+                                                <td>
+                                                    <asp:LoginName ID="LoginName1" runat="server" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                            <asp:LoginStatus ID="LoginStatus1" runat="server" Font-Underline="False" LoginText="ورود"
+                                LogoutText="خــــــــــــروج" LogoutPageUrl="~/CMS/Login/Default.aspx" />
+                        </div>
+                        <div class="LeftV_Content">
+                            <table style="width: 100%;">
+                                <tr>
+                                    <td style="font: normal 15px titr;">آمار سایت
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <asp:DataList ID="DataList1" runat="server" CellPadding="4"
+                                            Width="100%"
+                                            DataSourceID="SDS_Statistical"
+                                            ForeColor="#333333">
+                                            <AlternatingItemStyle BackColor="White" ForeColor="#284775" />
+                                            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                            <ItemTemplate>
+                                                بازدید کنندگان امروز:
+                                            <asp:Label ID="تعداد_کل_بازدید_کنندگان_امروزLabel" runat="server" Text='<%# Eval("[تعداد کل بازدید کنندگان امروز]") %>' />
+                                                <br />
+                                                صفحات بازدید شده امروز:
+                                            <asp:Label ID="تعداد_کل_صفحات_بازدید_شده_امروزLabel" runat="server" Text='<%# Eval("[تعداد کل صفحات بازدید شده امروز]") %>' />
+                                                <br />
+                                                بازدید کنندگان دیروز:
+                                            <asp:Label ID="تعداد_کل_بازدید_کنندگان_دیروزLabel" runat="server" Text='<%# Eval("[تعداد کل بازدید کنندگان دیروز]") %>' />
+                                                <br />
+                                                صفحات بازدید شده دیروز:
+                                            <asp:Label ID="تعداد_کل_صفحات_بازدید_شده_دیروزLabel" runat="server" Text='<%# Eval("[تعداد کل صفحات بازدید شده دیروز]") %>' />
+                                                <br />
+                                                بازدید کنندگان سایت:
+                                            <asp:Label ID="تعداد_کل_بازدید_کنندگان_سایتLabel" runat="server" Text='<%# Eval("[تعداد کل بازدید کنندگان سایت]") %>' />
+                                                <br />
+                                                صفحات بازدید شده سایت:
+                                            <asp:Label ID="تعداد_کل_صفحات_بازدید_شده_سایتLabel" runat="server" Text='<%# Eval("[تعداد کل صفحات بازدید شده سایت]") %>' />
+                                                <br />
+                                                <br />
+                                            </ItemTemplate>
+                                            <SelectedItemStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                                        </asp:DataList>
+                                        <asp:SqlDataSource ID="SDS_Statistical" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
+                                            SelectCommand="sp_statistical_show" SelectCommandType="StoredProcedure"></asp:SqlDataSource>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="statistical.aspx">آمار بازدید از صفحات
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div style="font-family: Titr; font-size: 20px; padding: 15px; color: Blue; text-align: center; border: 2px solid gray; margin: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; background-color: #ffffab;">
+                            <a href="../../" style="color: black;" target="_blank">مشاهده وب سایت </a>
+                        </div>
+
+                        <div id="accordian" class="myFlex">
+                            <ul style="font-family: koodak;">
+                                <li>
+                                    <h3>
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <img src='<%= ResolveUrl("../files/img/home.png") %>' alt="location" />
+                                                </td>
+                                                <td>
+                                                    <a href="../../cms/pages/"><span class="titrAccordian" style="font-size: 20px;">صفحه نخست</span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </h3>
+                                </li>
+                                <li>
+                                    <h3>
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <img src='<%= ResolveUrl("../files/img/setting.png") %>' alt="location" />
+                                                </td>
+                                                <td>
+                                                    <span class="titrAccordian" style="font-size: 20px;">تنظیمات</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </h3>
+                                    <ul>
+                                        <a href="GeneralSetting">
+                                            <asp:Label ID="Label22" runat="server" Text="تنظیمات کلی وبسایت" /></a>
+                                        <a href="slider">
+                                            <asp:Label ID="Label3" runat="server" Text="اسلایدر" /></a>
+                                        <a href="../../cms/pages/sitemap">
+                                            <asp:Label ID="Label5" runat="server" Text="sitemap" /></a>
+                                        <a href="resume">
+                                            <asp:Label ID="Label11" runat="server" Text="کارنامه" /></a>
+                                        <a href="dollars">
+                                            <asp:Label ID="Label12" runat="server" Text="تنظیم دلار و حق کمسیون‌ها" /></a>
+                                        <a href="posterofcustomer">
+                                            <asp:Label ID="Label16" runat="server" Text="مشتریان (پوستر و تریلر)" /></a>
+                                        <a href="filemanagement">
+                                            <asp:Label ID="Label23" runat="server" Text="مدیریت فایل" /></a>
+                                        <a href="imagesManagement">
+                                            <asp:Label ID="Label26" runat="server" Text="مدیریت تصاویر" /></a>
+                                        <a href="advertise">
+                                            <asp:Label ID="L1abel27" runat="server" Text="تبلیغات" /></a>
+                                        <a href="participationplan">
+                                            <asp:Label ID="Label1127" runat="server" Text="طرح مشارکت" /></a>
+                                        <a href="aboutus">
+                                            <asp:Label ID="Label27" runat="server" Text="درباره ی ما" /></a>
+                                        <a href="apks">
+                                            <asp:Label ID="Label28" runat="server" Text="مدیریت apk ها" /></a>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <h3>
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <img src='<%= ResolveUrl("../files/img/blog.png") %>' width="20" alt="location" />
+                                                </td>
+                                                <td>
+                                                    <span class="titrAccordian" style="font-size: 20px;">بلاگ</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </h3>
+                                    <ul>
+                                        <a href="AddNewPost">
+                                            <asp:Label ID="NameLabel" runat="server" Text="درج پست" /></a>
+                                        <a href="EditPost">
+                                            <asp:Label ID="Label17" runat="server" Text="مشاهده ویرایش پست ها" /></a>
+                                        <a href="CategoryOfPost">
+                                            <asp:Label ID="Label1" runat="server" Text="موضوع بندی پست ها" /></a>
+                                        <a href="Comments">
+                                            <asp:Label ID="Label13" runat="server" Text="کامنت ها" /></a>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <h3>
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <img src='<%= ResolveUrl("../files/img/festival.png") %>' width="20" alt="location" />
+                                                </td>
+                                                <td>
+                                                    <span class="titrAccordian" style="font-size: 20px;">فستیوال</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </h3>
+                                    <ul>
+                                        <a href="AddFestival">
+                                            <asp:Label ID="Label7" runat="server" Text="درج فستیوال" /></a>
+                                        <a href="EditFestival">
+                                            <asp:Label ID="Label9" runat="server" Text=" مشاهده و ویرایش فستیوال ها" /></a>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <h3>
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <img src='<%= ResolveUrl("../files/img/submit.png") %>' width="20" alt="location" />
+                                                </td>
+                                                <td>
+                                                    <span class="titrAccordian" style="font-size: 20px;">ارسالی ها</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </h3>
+                                    <ul>
+                                        <a href="Invoices?type=V_ReadyForSend">
+                                            <asp:Label ID="Label14" runat="server" Text="پروژه های آماده ارسال" /></a>
+                                        <a href="Invoices?type=V_Sent">
+                                            <asp:Label ID="Label15" runat="server" Text="پروژه های ارسال شده" /></a>
+                                        <a href="Invoices?type=V_Deny">
+                                            <asp:Label ID="Label18" runat="server" Text="ارسال توسط ادمین لغو شده" /></a>
+                                        <a href="Invoices?type=V_ALL">
+                                            <asp:Label ID="Label19" runat="server" Text="تمام درخواست های ارسال" /></a>
+
+                                    </ul>
+                                </li>
+                                <li>
+                                    <h3>
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <img src='<%= ResolveUrl("~/dashboard/assets/img/icon_payment_Factor.png") %>' width="20" alt="location" />
+                                                </td>
+                                                <td>
+                                                    <span class="titrAccordian" style="font-size: 20px;">صورت حساب ها</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </h3>
+                                    <ul>
+                                        <a href="GeneralInvoice?type=OK">
+                                            <asp:Label ID="Label20" runat="server" Text="صورت حساب های پرداخت شده" /></a>
+                                        <a href="GeneralInvoice?type=NOK">
+                                            <asp:Label ID="Label21" runat="server" Text="صورت حساب های پرداخت نشده" /></a>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <h3>
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <img src='<%= ResolveUrl("../files/img/film.png") %>' alt="location" />
+                                                </td>
+                                                <td>
+                                                    <span class="titrAccordian" style="font-size: 20px;">فیلمسازان</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </h3>
+                                    <ul>
+                                        <a href="profiles">
+                                            <asp:Label ID="Label6" runat="server" Text="لیست فیلمسازان" /></a>
+                                        <a href="projects">
+                                            <asp:Label ID="Label8" runat="server" Text="پروژه ها" /></a>
+                                        <a href="msgTOusers">
+                                            <asp:Label ID="Label10" runat="server" Text="پیام به فیلمسازان" /></a>
+                                        <a href="sendinfo">
+                                            <asp:Label ID="Label25" runat="server" Text="ارسال فیلم و فیلمنامه" /></a>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <h3>
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <img src='<%= ResolveUrl("../files/img/contact.png") %>' width="20" alt="location" />
+                                                </td>
+                                                <td>
+                                                    <span class="titrAccordian" style="font-size: 20px;">تماس</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </h3>
+                                    <ul>
+                                        <a href="Contact">
+                                            <asp:Label ID="Label2" runat="server" Text="تماس با ما" /></a>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <h3>
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <img src='<%= ResolveUrl("../files/img/users.png") %>' alt="location" />
+                                                </td>
+                                                <td>
+                                                    <span class="titrAccordian" style="font-size: 20px;">کاربران</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </h3>
+                                    <ul>
+                                        <a href="users">
+                                            <asp:Label ID="Label4" runat="server" Text="مدیریت کاربران" /></a>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <h3>
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <img src='<%= ResolveUrl("../files/img/rename.gif") %>' alt="location" />
+                                                </td>
+                                                <td>
+                                                    <span class="titrAccordian" style="font-size: 20px;">اطلاعات دسکتاپ</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </h3>
+                                    <ul>
+                                        <a href="DesktopSubmissionList">
+                                            <asp:Label ID="Label24" runat="server" Text="لیست ثبت نام ها" /></a>
+                                    </ul>
+                                </li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <div id="vasat" class="myFlex">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+
+
+                </div>
+    </form>
+</body>
+</html>
