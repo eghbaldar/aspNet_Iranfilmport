@@ -493,6 +493,27 @@ Public Class DLL_CMS
         End Try
     End Function
 
+    Public Function ShowResumeEach(id As Long, FaEn As Boolean) As String
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            Dim input As String
+            Select Case FaEn
+                Case True
+                    input = "select [fa] from tbl_accolades where id=" + id.ToString
+                Case False
+                    input = "select [en] from tbl_accolades where id=" + id.ToString
+            End Select
+            Dim sqlcom As New SqlCommand(input, sqlconn)
+            Return sqlcom.ExecuteScalar.ToString.Replace("ي", "ی")
+            sqlconn.Close()
+
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+    End Function
+
     Public Sub UpdateAdvertise(ByVal TEXT As String)
         Try
             If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
@@ -917,6 +938,19 @@ Public Class DLL_CMS
             If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
             sqlconn.Open()
             Dim sqlcom As New SqlCommand("insert into tbl_accolades (id_film,fa,en) values (" + id_film.ToString + ",N'" + fa + "','" + en + "') ", sqlconn)
+            sqlcom.ExecuteNonQuery()
+            sqlconn.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+    End Function
+
+    Public Function UpdateAccolade(fa As String, en As String, id As Long)
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            Dim sqlcom As New SqlCommand("update tbl_accolades set fa= N'" + fa + "', en='" + en + "' where id=" + id.ToString, sqlconn)
             sqlcom.ExecuteNonQuery()
             sqlconn.Close()
         Catch ex As Exception

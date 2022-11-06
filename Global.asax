@@ -194,6 +194,7 @@
         routes.MapPageRoute("cmsparticipationplan", "cms/pages/participationplan", "~/cms/pages/participationplan.aspx")
         routes.MapPageRoute("cmsaboutus", "cms/pages/aboutus", "~/cms/pages/about.aspx")
         routes.MapPageRoute("cmsAPK", "cms/pages/apks", "~/cms/pages/apk.aspx")
+        routes.MapPageRoute("cmsresumeEdit", "cms/pages/resumeEdit/{idCV}", "~/cms/pages/resumeEdit.aspx")
 
     End Sub
 

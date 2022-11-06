@@ -75,7 +75,8 @@
                 <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
             </asp:GridView>
             <asp:SqlDataSource ID="SqlDataSourceFilms" runat="server" ConnectionString="<%$ ConnectionStrings:DesktopConnectionString %>"
-                SelectCommand="SELECT F.*, (select count(*) from [dbo].[tbSubmission] where id_film=F.id and valid=1 and receipt=2) as 'count' FROM [tbFilms] F WHERE (F.[customerId] = @customerId)">
+                SelectCommand="SELECT F.*, (select count(*) from [dbo].[tbSubmission] 
+                where id_film=F.id and valid=1 and receipt=2) as 'count' FROM [tbFilms] F WHERE (F.[customerId] = @customerId)">
                 <SelectParameters>
                     <asp:RouteParameter Name="customerId" RouteKey="id" Type="Int32" />
                 </SelectParameters>

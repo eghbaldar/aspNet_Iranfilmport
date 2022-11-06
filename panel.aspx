@@ -182,9 +182,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
             <img src="<%= ResolveUrl("~/files/images/logos/logo_1.png")%>" width="100" />
             <br />
             <br />
-            Online System of Status of Submissions - سیستم آنلاین وضعیت فستیوال‌های پخش شده
+            Online Status System of Submissions  - سیستم آنلاین وضعیت فستیوال‌های پخش شده
             <br />
-            Version 2.3
+            Version 2.4
         </div>
         <div style="padding: 10px;">
             <div style="text-align: center; direction: rtl;">

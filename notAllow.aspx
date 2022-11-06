@@ -6,7 +6,7 @@
     <title>عدم دسترسی - درگاه فیلم ایران</title>
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="<%= ResolveUrl("files/images/icons/icon.png")%>" />
+    <link rel="shortcut icon" href="<%= ResolveUrl("~/files/images/icons/icon.png")%>" />
     <style>
         @font-face
         {

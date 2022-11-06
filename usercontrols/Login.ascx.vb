@@ -44,7 +44,7 @@ Partial Class usercontrols_Loginascx
                 R = Guid.NewGuid.ToString ' R = code verification
                 DLL_Dash.Insert_ProfileCreator(Server.HtmlEncode(txtEmailReg.Text.Trim), R)
                 ''''''''''''' Send LINK with MAIL
-                Email.SendMail(txtEmailReg.Text.Trim, "به منظور ادامه ی فرآیند ثبت نام روی لینک زیر کلیک کنید.", "ارسال کد فعالسازی", "http://iranfilmport.com/login/" + R + "/" + txtEmailReg.Text.Trim)
+                Email.SendMail(txtEmailReg.Text.Trim, "به منظور ادامه ی فرآیند ثبت نام روی لینک زیر کلیک کنید.", "ارسال کد فعالسازی", "http://iranfilmport.com/login/" + R + "/" + txtEmailReg.Text.Trim + "/")
                 'Send "http://iranfilmport.com/login/" + veriC + "/"+ email
                 ''''''''''''''''''''''''''''''''''''''''''''''''''''
             Else
@@ -73,6 +73,7 @@ Partial Class usercontrols_Loginascx
     End Sub
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
         ''''''''''''''''' vaghti login kardi pas nabayad field haye login dobare neshan dade shavad
         If Not Request.Cookies("IFP") Is Nothing Then MultiView.ActiveViewIndex = 2
         '''''''''''''''''''' Check cookie

@@ -112,6 +112,10 @@
                             </ul>
                         </ul>
                     </div>
+
+                    					
+
+
                     <div class="left-side">
                         <div class="item-holder" style="direction: rtl;">
                             <div class="accordion">
@@ -215,10 +219,26 @@
                                     <li>فرم‌های مربوط به اطلاعات <strong>فیلم و مشخصات کارگردان و عوامل فیلم</strong> را
                                         از لینک های زیر دانلود کرده و با دقت پر کنید.</li>
                                     <ul>
-                                        <li><a href="files/uploadFiles/form_crew.docx" style="color: Blue; text-decoration: none;">
-                                            دانلود فرم خام اطلاعات کارگردان و عوامل</a></li>
-                                        <li><a href="files/uploadFiles/form_film.docx" style="color: Blue; text-decoration: none;">
-                                            دانلود فرم خام اطلاعات فیلم</a></li>
+                                        <li>
+                                            
+<a target="_blank" 
+href='<%= String.Format("{0}?t={1}", "http://iranfilmport.com/files/uploadFiles/form_crew.docx", DateTime.Now.Ticks)  %>'>
+دانلود فرم خام اطلاعات کارگردان و عوامل
+</a>
+
+
+                                        </li>
+                                        <li>
+                                            
+
+
+<a target="_blank" 
+href='<%= String.Format("{0}?t={1}", "http://iranfilmport.com/files/uploadFiles/form_film.docx", DateTime.Now.Ticks)  %>'>
+   دانلود فرم خام اطلاعات فیلم
+</a>
+
+
+                                        </li>
                                     </ul>
                                     <div>
                                         <ul>
@@ -226,22 +246,43 @@
                                                 قرارداد را نداشته و یا شخص دیگری را بعنوان جانشین خود در امور قرارداد منصوف کرده
                                                 باشد، پر کردن فرم رضایت نامه تهیه کننده الزامی است.</li>
                                             <li>
-                                                <li><a href="files/uploadFiles/form_testimonial_producer.docx" style="color: Blue;
-                                                    text-decoration: none;">دانلود فرم رضایت نامه تهیه کننده</a></li></li>
+                                                <li>
+                                                    
+
+
+<a target="_blank" 
+href='<%= String.Format("{0}?t={1}", "http://iranfilmport.com/files/uploadFiles/form_testimonial_producer.docx", DateTime.Now.Ticks)  %>'>
+دانلود فرم رضایت نامه تهیه کننده
+</a>
+
+
+                                                </li></li>
                                         </ul>
                                     </div>
                                     <li>فرم مربوط به اطلاعات <strong>فیلمنامه و مشخصات فیلمنامه‌نویس</strong> را از لینک
                                         زیر دانلود کرده و با دقت پر کنید.
                                     <ul>
-                                        <li><a href="files/uploadFiles/form_screenplay.docx" style="color: Blue; text-decoration: none;">
-                                            دانلود فرم خام اطلاعات فیلمنامه و فیلمنامه‌نویس</a></li>
+                                        <li>
+
+<a target="_blank" 
+href='<%= String.Format("{0}?t={1}", "http://iranfilmport.com/files/uploadFiles/form_screenplay.docx", DateTime.Now.Ticks)  %>'>
+      دانلود فرم خام اطلاعات فیلمنامه و فیلمنامه‌نویس
+</a>
+
+                                        </li>
                                     </ul></li>
 
                                     <li>فرم مربوط به <strong>حق کپی رایت موسیقی</strong> را از لینک
                                         زیر دانلود کرده و با دقت پر کنید.
                                     <ul>
-                                        <li><a href="files/uploadFiles/form_copyright_consent.docx" style="color: Blue; text-decoration: none;">
-                                            دانلود فرم خام رضایت نامه مولف خالق موسیقی</a></li>
+                                        <li>
+
+<a target="_blank" 
+href='<%= String.Format("{0}?t={1}", "http://iranfilmport.com/files/uploadFiles/form_copyright_consent.docx", DateTime.Now.Ticks)  %>'>
+  دانلود فرم خام رضایت نامه مولف خالق موسیقی
+</a>
+
+                                        </li>
                                     </ul></li>
 
                                 </ul>
