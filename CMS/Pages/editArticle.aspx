@@ -152,7 +152,7 @@
             <asp:Button CssClass="tabBtn" ID="btnSearchCodePost" runat="server" Text="بزن بریم!" />
         </div>
         <div class="TITLE">
-            <h4>پست هایی که در آینده به نمایش در خواهند آمد
+            <h4>پست هایی که در آینده به نمایش در خواهند آمدند و یا غیر فعال هستند
             </h4>
         </div>
         <div>
@@ -242,7 +242,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', end
                 <SortedDescendingHeaderStyle BackColor="#820000" />
             </asp:GridView>
             <asp:SqlDataSource ID="SDS_Future" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
-                SelectCommand="SELECT * FROM [tbl_articles] WHERE [date_time] > getdate() ORDER BY [date_time] DESC"></asp:SqlDataSource>
+                SelectCommand="SELECT * FROM [tbl_articles] WHERE [date_time] > getdate() OR visible = 0 ORDER BY [date_time] DESC"></asp:SqlDataSource>
         </div>
         <div class="TITLE">
             <h4>پست های به نمایش در آمده

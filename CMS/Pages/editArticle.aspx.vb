@@ -100,12 +100,10 @@ Partial Class CMS_Pages_editArticle
         End If
 
         '''''''''''''''''''''''''''''''''''''
-        Dim VisibleStatus As Boolean
-        If cmdVisible.Items(0).Selected Then
-            VisibleStatus = True
-        Else
-            VisibleStatus = False
-        End If
+        Dim VisibleStatus As Byte
+        If cmdVisible.Items(0).Selected Then VisibleStatus = 1
+        If cmdVisible.Items(1).Selected Then VisibleStatus = 0
+
 
         Dim DT As String = Convert.ToDateTime(txtDate.Text).ToShortDateString & " " & txtHH.Text & ":" & txtMM.Text & ":" & txtSS.Text
         DL.UpdateArticle(Val(cmd_category.SelectedValue), _

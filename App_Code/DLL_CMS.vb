@@ -218,14 +218,14 @@ Public Class DLL_CMS
     End Function
 
     Public Sub UpdateArticle(ByVal CateCode As Long, ByVal type As Integer, ByVal short_feature As Byte, ByVal title As String, ByVal text As String _
-                             , ByVal lid As String, ByVal Authors As String, ByVal reference As String, ByVal photo As String, _
-                              ByVal tags As String, ByVal visble As Boolean, ByVal id As Long, date_time As DateTime, titleEn As String)
+                             , ByVal lid As String, ByVal Authors As String, ByVal reference As String, ByVal photo As String,
+                              ByVal tags As String, ByVal visble As Byte, ByVal id As Long, date_time As DateTime, titleEn As String)
         Try
             If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
             sqlconn.Open()
-            Dim sqlcom As New SqlCommand("exec dbo.sp_updateArticle " + id.ToString + "," + _
-                                         CateCode.ToString + "," + type.ToString + "," + short_feature.ToString + ",'" + title + _
-                                         "','" + text + "','" + lid + "','" + Authors + "','" + reference + "',N'" + photo + "','" + _
+            Dim sqlcom As New SqlCommand("exec dbo.sp_updateArticle " + id.ToString + "," +
+                                         CateCode.ToString + "," + type.ToString + "," + short_feature.ToString + ",'" + title +
+                                         "','" + text + "','" + lid + "','" + Authors + "','" + reference + "',N'" + photo + "','" +
                                          tags + "'," + "'" + visble.ToString + "','" + date_time + "','" + titleEn + "'", sqlconn)
             sqlcom.ExecuteNonQuery()
             sqlconn.Close()
