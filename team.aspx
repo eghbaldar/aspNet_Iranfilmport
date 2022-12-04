@@ -89,8 +89,7 @@
                                 <table class="T">
                                     <tr>
                                         <td style="vertical-align: top; text-align: center;">
-                                            <img src="files/images/team/AlimohammadEghbaldar.JPG" style="-moz-border-radius: 5px;
-                                                -webkit-border-radius: 5px; border-radius: 5px;" width="250px" />
+                                            <img src="files/images/team/AlimohammadEghbaldar.JPG" style="border-radius: 40%;" width="250px" />
                                         </td>
                                         <td style="padding: 10px;">
                                             <div style="text-align: right;">
@@ -121,6 +120,7 @@
                                                             <li style="font-weight: bolder;">10. فیلم کوتاه «اتوپیا» </li>
                                                             <li style="font-weight: bolder;">11. فیلم کوتاه «یک اتفاق معمولی» </li>
                                                             <li style="font-weight: bolder;">12. فیلم کوتاه «نمایش 54» </li>
+                                                            <li style="font-weight: bolder;">13. فیلم کوتاه «آخرین ورژن عشق» </li>
                                                         </ul>
                                                     </li>
                                                 </ul>
@@ -328,7 +328,28 @@
                                                 </div>
                                             </div>
                                         </td>
-                                    </tr><tr><td></td><td></td></tr>
+                                    </tr>
+                                    <tr><td></td><td></td></tr>
+                                                                          <tr class="trPerson">
+                                        <td style="vertical-align: top; text-align: center;">
+                                            <img src="files/images/team/nedahasanzadeh.png" style="-moz-border-radius: 5px; -webkit-border-radius: 5px;
+                                                border-radius: 5px;" width="200px" />
+                                        </td>
+                                        <td>
+                                            <div class="Person">
+                                                <div>
+                                                    <span style="color: #e3cc00; font-family: Tahoma; font-size: 30px; font-weight: bolder;">
+                                                        NEDA HASANZADEH </span><span style="line-height: 40px; font-family: Tahoma; font-weight: bolder;
+                                                            font-size: 20px;">
+                                                            <br />
+                                                            Translator
+                                                            <br />
+                                                        </span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr><td></td><td></td></tr>
                                       <tr class="trPerson">
                                         <td style="vertical-align: top; text-align: center;">
                                             <img src="files/images/team/mb.png" style="-moz-border-radius: 5px; -webkit-border-radius: 5px;
@@ -347,7 +368,8 @@
                                                 </div>
                                             </div>
                                         </td>
-                                    </tr><tr><td></td><td></td></tr>
+                                    </tr>
+                                    <tr><td></td><td></td></tr>
                                       <tr class="trPerson">
                                         <td style="vertical-align: top; text-align: center;">
                                             <img src="files/images/team/ae.png" style="-moz-border-radius: 5px; -webkit-border-radius: 5px;
@@ -366,8 +388,9 @@
                                                 </div>
                                             </div>
                                         </td>
-                                    </tr><tr><td></td><td></td></tr>
-                                                                         <tr class="trPerson">
+                                    </tr>
+                                    <tr><td></td><td></td></tr>
+                                      <tr class="trPerson">
                                         <td style="vertical-align: top; text-align: center;">
                                             <img src="files/images/team/baharRava.png" style="-moz-border-radius: 5px; -webkit-border-radius: 5px;
                                                 border-radius: 5px;" width="200px" />
@@ -385,7 +408,8 @@
                                                 </div>
                                             </div>
                                         </td>
-                                    </tr><tr><td></td><td></td></tr>
+                                    </tr>
+                                    <tr><td></td><td></td></tr>
                                       <tr class="trPerson">
                                         <td style="vertical-align: top; text-align: center;">
                                             <img src="files/images/team/staffWoman.png" style="-moz-border-radius: 5px; -webkit-border-radius: 5px;
