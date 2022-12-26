@@ -47,6 +47,21 @@ Partial Class PanelMain
         End Select
     End Function
 
+    Public Function GetNotification(e As Object) As String
+        Return Convert.ToDateTime(e)
+    End Function
+    Public Function GetDateShamsi(e As Object) As String
+        Return ShamsiDate.Miladi2Shamsi(e, ShamsiDate.ShowType.ShortDate)
+    End Function
+    Public Function GetFeeValueBackground(e As Object) As Boolean
+        Select Case e.ToString
+            Case "1"
+                Return False
+            Case Else
+                Return True
+        End Select
+    End Function
+
     Protected Sub btnBacktoFilms_Click(sender As Object, e As System.EventArgs) Handles btnBacktoFilms.Click
         MultiView.ActiveViewIndex = 0
     End Sub

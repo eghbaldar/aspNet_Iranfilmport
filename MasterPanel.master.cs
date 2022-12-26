@@ -9,7 +9,7 @@ public partial class MasterPanel : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["PanelClient"] == "")
+        if (Session["PanelClient"] == null)
         {
             Response.Redirect("~/");
         }

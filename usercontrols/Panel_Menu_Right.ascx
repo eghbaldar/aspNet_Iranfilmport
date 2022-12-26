@@ -212,6 +212,14 @@
             <asp:ImageButton ID="btnMnuMoney" Width="45px" ImageUrl="~/files/images/icons/panel_money.png"
                 runat="server" />
         </p>
+
+
+        <p data-tooltip="تیکت‌ها">
+            <asp:ImageButton ID="btnMnuTicket" Width="45px" ImageUrl="~/files/images/icons/panel_ticket.png"
+              runat="server" />
+        </p>
+
+
         <p data-tooltip="خروج">
             <asp:ImageButton ID="btnMnuExit" Width="45px" ImageUrl="~/files/images/icons/panel_exit.png"
                 runat="server" />

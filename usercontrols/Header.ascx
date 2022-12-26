@@ -1,4 +1,5 @@
 ﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="Header.ascx.vb" Inherits="usercontrols_Header" %>
+<%@ Register src="advertiseModal.ascx" tagname="advertiseModal" tagprefix="uc1" %>
 <style>
     .imgMainLogoTop
     {
@@ -30,6 +31,10 @@
         }
     }
 </style>
+
+
+
+
 <section class="header-uper" style="/* permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#000000+0,ffee00+100&0+0,0.65+100 */
 background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(255,238,0,0.65) 100%);
     /* ff3.6-15 */
@@ -39,6 +44,10 @@ background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(255,238,0,0.65) 100
     /* w3c, ie10+, ff16+, chrome26+, opera12+, safari7+ */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6ffee00',GradientType=0 );
     /* ie6-9 */">
+
+
+    <uc1:advertiseModal ID="advertiseModal1" runat="server" />
+
     <div class="container clearfix">
         <div class="logo">
             <figure>

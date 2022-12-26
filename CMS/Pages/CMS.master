@@ -261,6 +261,30 @@
                                             <asp:Label ID="Label9" runat="server" Text=" مشاهده و ویرایش فستیوال ها" /></a>
                                     </ul>
                                 </li>
+
+
+
+                                <li>
+                                    <h3>
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <img src='<%= ResolveUrl("../files/img/users.png") %>' width="20" alt="location" />
+                                                </td>
+                                                <td>
+                                                    <span class="titrAccordian" style="font-size: 20px;">مشتریان</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </h3>
+                                    <ul>
+                                       <a href="commentClients">
+                                            <asp:Label ID="Label29" runat="server" Text="تیکت ها" /></a>
+                                    </ul>
+                                </li>
+                                
+
+
                                 <li>
                                     <h3>
                                         <table>
@@ -328,6 +352,7 @@
                                             <asp:Label ID="Label10" runat="server" Text="پیام به فیلمسازان" /></a>
                                         <a href="sendinfo">
                                             <asp:Label ID="Label25" runat="server" Text="ارسال فیلم و فیلمنامه" /></a>
+                                       
                                     </ul>
                                 </li>
                                 <li>

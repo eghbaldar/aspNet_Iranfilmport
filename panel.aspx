@@ -184,7 +184,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
             <br />
             Online Status System of Submissions  - سیستم آنلاین وضعیت فستیوال‌های پخش شده
             <br />
-            Version 2.4
+            Version 3.0
         </div>
         <div style="padding: 10px;">
             <div style="text-align: center; direction: rtl;">

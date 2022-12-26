@@ -38,4 +38,8 @@ Partial Class usercontrols_Panel_Menu_Right
         End If
     End Sub
 
+    Private Sub btnMnuTicket_Click(sender As Object, e As ImageClickEventArgs) Handles btnMnuTicket.Click
+        Response.Redirect("~/panel/tickets/" & Page.RouteData.Values("id"))
+    End Sub
+
 End Class

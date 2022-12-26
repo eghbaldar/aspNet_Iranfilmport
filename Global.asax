@@ -94,6 +94,8 @@
         routes.MapPageRoute("panel", "panel", "~/panel.aspx")
         routes.MapPageRoute("panelClient", "panel/client/{id}", "~/PanelMain.aspx")
         routes.MapPageRoute("panelMoney", "panel/money/{id}", "~/PanelMoney.aspx")
+        routes.MapPageRoute("panelTickets", "panel/tickets/{id}", "~/PanelTicket.aspx")
+        routes.MapPageRoute("panelTicketsNew", "panel/newtickets/{id}", "~/PanelTicketNew.aspx")
         routes.MapPageRoute("panelStrategyReports", "panel/panelStrategyReports/{id}/{idFilm}", "~/Panel_StrategyReport.aspx")
         '----------------------------------------------------------------------------------------
         'ساخت لینک داینامیک
@@ -195,6 +197,7 @@
         routes.MapPageRoute("cmsaboutus", "cms/pages/aboutus", "~/cms/pages/about.aspx")
         routes.MapPageRoute("cmsAPK", "cms/pages/apks", "~/cms/pages/apk.aspx")
         routes.MapPageRoute("cmsresumeEdit", "cms/pages/resumeEdit/{idCV}", "~/cms/pages/resumeEdit.aspx")
+        routes.MapPageRoute("cmscommentClients", "cms/pages/commentClients/", "~/cms/pages/commentClients.aspx")
 
     End Sub
 

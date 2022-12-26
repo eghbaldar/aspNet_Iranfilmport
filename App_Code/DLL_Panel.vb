@@ -296,4 +296,62 @@ Public Class DLL_Panel
 
     End Function
 
+    Public Sub InsertCommentClient(ByVal id_client As Long, sections As Byte, id_submission As Long, text As String)
+        Try
+            If sqlconn_Site.State = ConnectionState.Open Then sqlconn_Site.Close()
+            sqlconn_Site.Open()
+            Dim sqlcom As New SqlCommand("exec dbo.[sp_InsertCommentClient] " + id_client.ToString + "," _
+            + sections.ToString + "," + id_submission.ToString + ",'" + text + "'", sqlconn_Site)
+            sqlcom.ExecuteNonQuery()
+            sqlconn_Site.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn_Site.Close()
+        End Try
+    End Sub
+
+    Public Sub InsertCommentClientResponse(ByVal id_client As Long, id_parent As Long, text As String,
+                                           flag As Byte, read As Byte)
+        Try
+            If sqlconn_Site.State = ConnectionState.Open Then sqlconn_Site.Close()
+            sqlconn_Site.Open()
+            Dim sqlcom As New SqlCommand("exec dbo.[sp_InsertCommentClientResponse] " + id_client.ToString + "," _
+            + id_parent.ToString + ",'" + text + "'," + flag.ToString + "," + read.ToString, sqlconn_Site)
+            sqlcom.ExecuteNonQuery()
+            sqlconn_Site.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn_Site.Close()
+        End Try
+    End Sub
+
+    Public Function GetStatusOfClientComments(ByVal id_comment As Long) As String
+        Try
+            If sqlconn_Site.State = ConnectionState.Open Then sqlconn_Site.Close()
+            sqlconn_Site.Open()
+            Dim sqlcom As New SqlCommand("Select count(*) from [tbl_Comment_clients] where id=" + id_comment.ToString +
+                                         " And id_parent=0 And flag=1 ", sqlconn_Site)
+            Return sqlcom.ExecuteScalar
+            sqlconn_Site.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn_Site.Close()
+        End Try
+
+    End Function
+
+    Public Function GetFilmFestival(ByVal id_submission As Long) As String
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            Dim sqlcom As New SqlCommand("select (select [film] from [dbo].[tbFilms] where id=S.id_film) + '<br/>' + [festival]  'filmfestival' from tbSubmission S where id=" + id_submission.ToString, sqlconn)
+            Return sqlcom.ExecuteScalar
+            sqlconn.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+
+    End Function
+
 End Class

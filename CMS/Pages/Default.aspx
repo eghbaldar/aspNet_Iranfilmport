@@ -11,11 +11,46 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+       <div class="TITLE">
+        <h4>
+            تیکت های مشتریان
+        </h4>
+    </div>
+    <div>
+                     <asp:GridView ID="GridView6" runat="server" BackColor="LightGoldenrodYellow"
+            BorderColor="Tan" BorderWidth="1px" CellPadding="2" DataSourceID="SqlDataSourceUnderConstruction"
+            AutoGenerateColumns="False" ForeColor="Black" GridLines="None">
+            <AlternatingRowStyle BackColor="PaleGoldenrod" />
+            <Columns>
+                <asp:TemplateField HeaderText="در حال بررسی" >
+                    <ItemTemplate>
+                        <a href="commentClients">
+                            <div style="padding: 10px;">
+                                <asp:Label ID="Label11" Font-Size="20px" runat="server" Text='<%# Bind("[UnderConstruction]") %>'></asp:Label>
+                            </div>
+                        </a>
+                    </ItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+            <FooterStyle BackColor="Tan" />
+            <HeaderStyle BackColor="Tan" Font-Bold="True" />
+            <PagerStyle BackColor="PaleGoldenrod" ForeColor="DarkSlateBlue" HorizontalAlign="Center" />
+            <SelectedRowStyle BackColor="DarkSlateBlue" ForeColor="GhostWhite" />
+            <SortedAscendingCellStyle BackColor="#FAFAE7" />
+            <SortedAscendingHeaderStyle BackColor="#DAC09E" />
+            <SortedDescendingCellStyle BackColor="#E1DB9C" />
+            <SortedDescendingHeaderStyle BackColor="#C2A47B" />
+        </asp:GridView>
+        <asp:SqlDataSource ID="SqlDataSourceUnderConstruction" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
+            SelectCommand="
+           Select count(*) as 'UnderConstruction' from [tbl_Comment_clients] where flag=1 and Id_parent=0
+	"></asp:SqlDataSource> 
+        </div>
     <div class="TITLE">
         <h4>
             فیلمسازان
         </h4>
-    </div>
+    </div>کامنت
     <div>
         <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataSourceID="SDSStatisticalProfile"
             BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px"

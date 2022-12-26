@@ -100,11 +100,21 @@
                     Font-Size="12px" AutoGenerateColumns="False" BackColor="White" BorderColor="#848484"
                     BorderStyle="None" BorderWidth="1px" CellPadding="4" DataSourceID="SDS_NotNewUpdated">
                     <Columns>
+
+                        <asp:TemplateField HeaderText="تاریخ ارسال" ItemStyle-HorizontalAlign="Center" SortExpression="date_of_entryData">
+                            <ItemTemplate>
+                                <asp:Label ID="Labewaaal1" runat="server" Text='<%# GetDateShamsi(Eval("date_of_entryData")) %>'></asp:Label>
+                            </ItemTemplate>
+                            <ItemStyle HorizontalAlign="Center" />
+                        </asp:TemplateField>
+
+
+
                         <asp:BoundField DataField="id_film" HeaderText="id_film" SortExpression="id_film"
                             Visible="False" />
                         <asp:BoundField DataField="recordnumber" HeaderText="recordnumber" SortExpression="recordnumber"
                             Visible="False" />
-                        <asp:BoundField DataField="festival" ItemStyle-HorizontalAlign="Center" HeaderText="Festival"
+                        <asp:BoundField DataField="festival" ItemStyle-HorizontalAlign="Center" HeaderText="فستیوال"
                             HeaderStyle-HorizontalAlign="Center" SortExpression="festival">
                             <HeaderStyle HorizontalAlign="Center" />
                             <ItemStyle HorizontalAlign="Center" />
@@ -113,7 +123,7 @@
                             SortExpression="confirm" Visible="False">
                             <ItemStyle HorizontalAlign="Center" />
                         </asp:BoundField>
-                        <asp:TemplateField HeaderText="Status of Festival" ItemStyle-HorizontalAlign="Center"
+                        <asp:TemplateField HeaderText="وضعیت" ItemStyle-HorizontalAlign="Center"
                             SortExpression="accept" HeaderStyle-HorizontalAlign="Left">
                             <ItemTemplate>
                                 <asp:Label ID="Label1" runat="server" Text='<%# GetAccept(Eval("accept")) %>'></asp:Label>
@@ -123,40 +133,45 @@
                         </asp:TemplateField>
                         <asp:BoundField DataField="platforms" HeaderText="platforms" SortExpression="platforms"
                             Visible="False" />
-                        <asp:BoundField DataField="notification" ItemStyle-HorizontalAlign="Center" HeaderText="Notification"
-                            SortExpression="notification">
+
+
+                        <asp:TemplateField HeaderText="تاریخ احتمالی اعلان" ItemStyle-HorizontalAlign="Center" SortExpression="Fee">
+                            <ItemTemplate>
+                                <asp:Label ID="Labewal1" runat="server" Text='<%# GetNotification(Eval("notification")) %>'></asp:Label>
+                            </ItemTemplate>
                             <ItemStyle HorizontalAlign="Center" />
-                        </asp:BoundField>
-                        <asp:TemplateField HeaderText="Fee" ItemStyle-HorizontalAlign="Center" SortExpression="Fee">
+                        </asp:TemplateField>
+
+
+                        <asp:TemplateField HeaderText="رایگان / پولی" ItemStyle-HorizontalAlign="Center" SortExpression="Fee">
                             <ItemTemplate>
                                 <asp:Label ID="Label1" runat="server" Text='<%# GetFee(Eval("fee")) %>'></asp:Label>
+                                <div runat="server"
+                                    visible='<%# GetFeeValueBackground(Eval("FeeValue")) %>'
+                                    style="padding: 5px; background-color: red; color: white; width: 50px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;">
+                                    <asp:Label ID="Label2" runat="server" Text='<%# GetFeeValue(Eval("FeeValue")) %>'></asp:Label>
+                                </div>
                             </ItemTemplate>
                             <ItemStyle HorizontalAlign="Center" />
                         </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Fee of Festival ($)" ItemStyle-HorizontalAlign="Center"
-                            SortExpression="Fee">
-                            <ItemTemplate>
-                                <asp:Label ID="Label1" runat="server" Text='<%# GetFeeValue(Eval("FeeValue")) %>'></asp:Label>
-                            </ItemTemplate>
-                            <ItemStyle HorizontalAlign="Center" />
-                        </asp:TemplateField>
+
                         <asp:BoundField DataField="website" HeaderText="website" SortExpression="website"
                             Visible="False" />
-                        <asp:BoundField DataField="country" ItemStyle-HorizontalAlign="Center" HeaderText="Country"
+                        <asp:BoundField DataField="country" ItemStyle-HorizontalAlign="Center" HeaderText="کشور"
                             HeaderStyle-HorizontalAlign="Left" SortExpression="country">
                             <HeaderStyle HorizontalAlign="Center" />
                             <ItemStyle HorizontalAlign="Center" />
                         </asp:BoundField>
                         <asp:BoundField DataField="date_of_entryData" HeaderText="date_of_entryData" SortExpression="date_of_entryData"
                             Visible="False" />
-                        <asp:BoundField DataField="level" HeaderText="Level" SortExpression="level" ItemStyle-HorizontalAlign="Center">
+                        <asp:BoundField DataField="level" HeaderText="گرید" SortExpression="level" ItemStyle-HorizontalAlign="Center">
                             <ItemStyle HorizontalAlign="Center" />
                         </asp:BoundField>
                         <asp:BoundField DataField="valid" HeaderText="valid" SortExpression="valid" Visible="False" />
 
                         <asp:CheckBoxField DataField="ChangeAccept" HeaderText="ChangeAccept" SortExpression="ChangeAccept"
                             Visible="False" />
-                                                <asp:BoundField DataField="id" ItemStyle-HorizontalAlign="Center" HeaderText="ID"
+                        <asp:BoundField DataField="id" ItemStyle-HorizontalAlign="Center" HeaderText="شناسه"
                             InsertVisible="False" ReadOnly="True" SortExpression="id">
                             <ItemStyle HorizontalAlign="Center" />
                         </asp:BoundField>
@@ -197,18 +212,23 @@
                     BackColor="White" BorderColor="#848484" BorderStyle="None" BorderWidth="1px"
                     Font-Size="12px" CellPadding="4" DataSourceID="SqlDataSource_All">
                     <Columns>
-                      
+                                                <asp:TemplateField HeaderText="تاریخ ارسال" ItemStyle-HorizontalAlign="Center" SortExpression="date_of_entryData">
+                            <ItemTemplate>
+                                <asp:Label ID="Labewaaal1" runat="server" Text='<%# GetDateShamsi(Eval("date_of_entryData")) %>'></asp:Label>
+                            </ItemTemplate>
+                            <ItemStyle HorizontalAlign="Center" />
+                        </asp:TemplateField>
                         <asp:BoundField DataField="id_film" HeaderText="id_film" SortExpression="id_film"
                             Visible="False" />
                         <asp:BoundField DataField="recordnumber" HeaderText="recordnumber" SortExpression="recordnumber"
                             Visible="False" />
-                        <asp:BoundField DataField="festival" ItemStyle-HorizontalAlign="Center" HeaderText="Festival"
+                        <asp:BoundField DataField="festival" ItemStyle-HorizontalAlign="Center" HeaderText="فستیوال"
                             HeaderStyle-HorizontalAlign="Center" SortExpression="festival">
                             <HeaderStyle HorizontalAlign="Center" />
                         </asp:BoundField>
                         <asp:BoundField DataField="confirm" ItemStyle-HorizontalAlign="Center" HeaderText="confirm"
                             SortExpression="confirm" Visible="False" />
-                        <asp:TemplateField HeaderText="Status of Festival" ItemStyle-HorizontalAlign="Center"
+                        <asp:TemplateField HeaderText="وضعیت" ItemStyle-HorizontalAlign="Center"
                             SortExpression="accept" HeaderStyle-HorizontalAlign="Left">
                             <ItemTemplate>
                                 <asp:Label ID="Label1" runat="server" Text='<%# GetAccept(Eval("accept")) %>'></asp:Label>
@@ -217,32 +237,39 @@
                         </asp:TemplateField>
                         <asp:BoundField DataField="platforms" HeaderText="platforms" SortExpression="platforms"
                             Visible="False" />
-                        <asp:BoundField DataField="notification" ItemStyle-HorizontalAlign="Center" HeaderText="Notification"
-                            SortExpression="notification" />
-                        <asp:TemplateField HeaderText="Fee" ItemStyle-HorizontalAlign="Center" SortExpression="Fee">
+                        <asp:TemplateField HeaderText="تاریخ احتمالی اعلان" ItemStyle-HorizontalAlign="Center" SortExpression="Fee">
+                            <ItemTemplate>
+                                <asp:Label ID="Labewal1" runat="server" Text='<%# GetNotification(Eval("notification")) %>'></asp:Label>
+                            </ItemTemplate>
+                            <ItemStyle HorizontalAlign="Center" />
+                        </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="رایگان / پولی" ItemStyle-HorizontalAlign="Center" SortExpression="Fee">
                             <ItemTemplate>
                                 <asp:Label ID="Label1" runat="server" Text='<%# GetFee(Eval("fee")) %>'></asp:Label>
+                                <div runat="server"
+                                    visible='<%# GetFeeValueBackground(Eval("FeeValue")) %>'
+                                    style="padding: 5px; background-color: red; color: white; width: 50px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;">
+                                    <asp:Label ID="Label2" runat="server" Text='<%# GetFeeValue(Eval("FeeValue")) %>'></asp:Label>
+                                </div>
                             </ItemTemplate>
+                            <ItemStyle HorizontalAlign="Center" />
                         </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Fee of Festival ($)" ItemStyle-HorizontalAlign="Center"
-                            SortExpression="Fee">
-                            <ItemTemplate>
-                                <asp:Label ID="Label1" runat="server" Text='<%# GetFeeValue(Eval("FeeValue")) %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
+
                         <asp:BoundField DataField="website" HeaderText="website" SortExpression="website"
                             Visible="False" />
-                        <asp:BoundField DataField="country" ItemStyle-HorizontalAlign="Center" HeaderText="Country"
+                        <asp:BoundField DataField="country" ItemStyle-HorizontalAlign="Center" HeaderText="کشور"
                             HeaderStyle-HorizontalAlign="Left" SortExpression="country">
                             <HeaderStyle HorizontalAlign="Center" />
                         </asp:BoundField>
                         <asp:BoundField DataField="date_of_entryData" HeaderText="date_of_entryData" SortExpression="date_of_entryData"
                             Visible="False" />
-                        <asp:BoundField DataField="level" HeaderText="Level" SortExpression="level" ItemStyle-HorizontalAlign="Center" />
+                        <asp:BoundField DataField="level" HeaderText="گرید" SortExpression="level" ItemStyle-HorizontalAlign="Center" />
                         <asp:BoundField DataField="valid" HeaderText="valid" SortExpression="valid" Visible="False" />
 
                         <asp:CheckBoxField DataField="ChangeAccept" HeaderText="ChangeAccept" SortExpression="ChangeAccept"
-                            Visible="False" />  <asp:BoundField DataField="id" ItemStyle-HorizontalAlign="Center" HeaderText="ID"
+                            Visible="False" />
+                        <asp:BoundField DataField="id" ItemStyle-HorizontalAlign="Center" HeaderText="شناسه"
                             InsertVisible="False" ReadOnly="True" SortExpression="id" />
                     </Columns>
                     <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
