@@ -74,14 +74,12 @@ Partial Class Management_Login_Default
             Case "tata2"
                 cell = "09020763947"
         End Select
+
         Dim Generator As New Random
         Dim CodeCreated As String = Generator.Next(600000, 999999)
         Session("CodeCreated") = CodeCreated
-        Dim url As String = "http://login.parsgreen.com/UrlService/sendSMS.ashx?from=" +
-        "10009332300598" +
-        "&to=" + cell +
-        "&text=" + String.Format("کد عبور: {0} می باشد. «درگاه فیلم ایران»", CodeCreated) +
-        "&signature=" + "9D57838D-3935-4724-BB71-5A5FCB2EA579"
+
+        Dim url As String = "http://ippanel.com:8080/?apikey=XVU06zwUg1yXY1Dl7gGXQJPIm2o0b9Rq5hytsI2FkFQ=&pid=" & "6b7tgkdocub8rew" & "&fnum=" & SMS.numberHamkaran & "&tnum=" & cell & " &p1=code&v1=" & CodeCreated
 
         Dim req As HttpWebRequest = CType(WebRequest.Create(url), HttpWebRequest)
         Dim resp As Net.WebResponse = req.GetResponse()
@@ -90,6 +88,20 @@ Partial Class Management_Login_Default
         Dim _responseStr As String = sr.ReadToEnd()
         sr.Close()
         resp.Close()
+
+        'Dim url As String = "http://login.parsgreen.com/UrlService/sendSMS.ashx?from=" +
+        '"10009332300598" +
+        '"&to=" + cell +
+        '"&text=" + String.Format("کد عبور: {0} می باشد. «درگاه فیلم ایران»", CodeCreated) +
+        '"&signature=" + "9D57838D-3935-4724-BB71-5A5FCB2EA579"
+
+        'Dim req As HttpWebRequest = CType(WebRequest.Create(url), HttpWebRequest)
+        'Dim resp As Net.WebResponse = req.GetResponse()
+        'Dim st = resp.GetResponseStream()
+        'Dim sr = New StreamReader(st, Encoding.UTF8)
+        'Dim _responseStr As String = sr.ReadToEnd()
+        'sr.Close()
+        'resp.Close()
 
     End Function
 

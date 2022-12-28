@@ -44,7 +44,6 @@ Partial Class PanelTicketNew
         Return ShamsiDate.Miladi2Shamsi(data, ShamsiDate.ShowType.LongDate) & " | " & Convert.ToDateTime(data).TimeOfDay.ToString("hh':'mm':'ss")
     End Function
 
-
     Public Function GetWhich(obj As Object) As String
         If obj <> 0 Then
             Return "پاسخ فیلمساز /  فیلمنامه نویس"
@@ -52,7 +51,6 @@ Partial Class PanelTicketNew
             Return "پاسخ کارشناس"
         End If
     End Function
-
 
     Protected Sub cmdSections_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmdSections.SelectedIndexChanged
         If cmdSections.SelectedValue = 0 Then
@@ -67,19 +65,22 @@ Partial Class PanelTicketNew
     Private Sub btnInsert_Click(sender As Object, e As EventArgs) Handles btnInsert.Click
         If txtText.Text.Length <> 0 Then
             DL_Panel.InsertCommentClient(Val(Page.RouteData.Values("id")), cmdSections.SelectedValue, cmdFestival.SelectedValue, txtText.Text.Trim.Replace(ControlChars.Lf, "<br/>"))
-            SendSMS(Val(Page.RouteData.Values("id")), "تیکت شما با موفقیت به ثبت رسید و در اسرع وقت توسط کارشناس مربوطه‌ی «درگاه فیلم ایران» پاسخ داده خواهد شد.")
+            'SendSMS(Val(Page.RouteData.Values("id")), "تیکت شما با موفقیت به ثبت رسید و در اسرع وقت توسط کارشناس مربوطه‌ی «درگاه فیلم ایران» پاسخ داده خواهد شد.")
+            SendSMS("7nufm7nm65kdv2x", Val(Page.RouteData.Values("id")))
             MultiView.ActiveViewIndex = 1
         End If
     End Sub
 
-    Private Sub SendSMS(customerid As Long, text As String)
+    Private Sub SendSMS(PaternId As String, customerid As Long)
 
-        Dim cell As String = DL_Panel.GetPhoneCustomer(customerid)
-        Dim url As String = "http://login.parsgreen.com/UrlService/sendSMS.ashx?from=" +
-        "10009332300598" +
-        "&to=" + cell +
-        "&text=" + text +
-        "&signature=" + "9D57838D-3935-4724-BB71-5A5FCB2EA579"
+        'Dim cell As String = DL_Panel.GetPhoneCustomer(customerid)
+        'Dim url As String = "http://login.parsgreen.com/UrlService/sendSMS.ashx?from=" +
+        '"10009332300598" +
+        '"&to=" + cell +
+        '"&text=" + text +
+        '"&signature=" + "9D57838D-3935-4724-BB71-5A5FCB2EA579"
+
+        Dim url As String = "http://ippanel.com:8080/?apikey=XVU06zwUg1yXY1Dl7gGXQJPIm2o0b9Rq5hytsI2FkFQ=&pid=" & PaternId & "&fnum=" & SMS.numberHamkaran & "&tnum=" & DL_Panel.GetPhoneCustomer(customerid) & " &p1=name&v1=" & DL_Panel.GetNameCustomer(customerid)
 
         Dim req As HttpWebRequest = CType(WebRequest.Create(url), HttpWebRequest)
         Dim resp As Net.WebResponse = req.GetResponse()
@@ -92,17 +93,20 @@ Partial Class PanelTicketNew
     End Sub
 
     Private Sub btnResponse_Click(sender As Object, e As EventArgs) Handles btnResponse.Click
-        If Val(DL_Panel.GetStatusOfClientComments(Val(Page.Request.QueryString("ticket_token")))) = 0 Then
 
+
+        If Val(DL_Panel.GetStatusOfClientComments(Val(Page.Request.QueryString("ticket_token")))) = 0 Then
             If txtResponse.Text.Length <> 0 Then
                 DL_Panel.InsertCommentClientResponse(Val(Page.RouteData.Values("id")), Val(Page.Request.QueryString("ticket_token")),
                                           txtResponse.Text.Trim.Replace(ControlChars.Lf, "<br/>"), 1, 0)
-                SendSMS(Val(Page.RouteData.Values("id")), "کامنت جدید شما با موفقیت به ثبت رسید و در اسرع وقت توسط کارشناس مربوطه‌ی «درگاه فیلم ایران» پاسخ داده خواهد شد.")
+                'SendSMS(Val(Page.RouteData.Values("id")), "کامنت جدید شما با موفقیت به ثبت رسید و در اسرع وقت توسط کارشناس مربوطه‌ی «درگاه فیلم ایران» پاسخ داده خواهد شد.")
+                SendSMS("bw7a0w8vp9hgwyj", Val(Page.RouteData.Values("id")))
                 MultiView.ActiveViewIndex = 1
             End If
         Else
             MultiView.ActiveViewIndex = 3
         End If
+
     End Sub
 
 End Class

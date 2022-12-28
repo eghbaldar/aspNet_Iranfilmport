@@ -4,7 +4,7 @@
 <style>
     /* https://www.w3schools.com/howto/howto_css_modal_images.asp */
     #myImg {
-        border-radius: 5px;
+        -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius:5px;
         cursor: pointer;
         transition: 0.3s;
         
@@ -12,9 +12,11 @@
         #myImg:hover {
             opacity: 1;
         }
-
+        #img01{
+            -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius:5px;
+        }
     /* The Modal (background) */
-    .modal {
+    .modalaDs {
         display: none; /* Hidden by default */
         position: fixed; /* Stay in place */
         z-index: 1; /* Sit on top */
@@ -25,11 +27,11 @@
         height: 100%; /* Full height */
         overflow: auto; /* Enable scroll if needed */
         background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.1); /* Black w/ opacity */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     }
 
     /* Modal Content (Image) */
-    .modal-content {
+    .modalaDs-content {
         margin: auto;
         display: block;
         width: 80%;
@@ -56,7 +58,7 @@
     }
 
     /* Add Animation - Zoom in the Modal */
-    .modal-content, #caption {
+    .modalaDs-content, #caption {
         animation-name: zoom;
         animation-duration: 0.6s;
     }
@@ -107,26 +109,27 @@
             visibility: hidden;
         }
     }
-    /* 100% Image Width on Smaller Screens */
+    /* 100% Image Width on Smaller Screens 
     @media only screen and (max-width: 700px) {
-        .modal-content {
-            width: 100%;
+        .modalaDs-content {
+          width: 100%;  
         }
-    }
+    }*/
+
 </style>
 
 <!-- Trigger the Modal 
 <img id="myImg" src="files/images/logos/logo_movibeta.png" alt="Snow" style="width:100%;max-width:300px">
 -->
 <!-- The Modal -->
-<div id="myModal" class="modal">
+<div id="myModaladv" class="modalaDs">
 
     <!-- The Close Button -->
     <span class="closeADV">&times;</span>
 
     <!-- Modal Content (The Image) -->
 
-        <img class="modal-content" id="img01">
+        <img class="modalaDs-content" id="img01">
 
     <br />
 
@@ -139,7 +142,7 @@
 
 <script>
     // Get the modal
-    var modal = document.getElementById("myModal");
+    var myModaladv = document.getElementById("myModaladv");
 
     // Get the image and insert it inside the modal - use its "alt" text as a caption
     var img = document.getElementById("myImg");
@@ -147,7 +150,7 @@
     var captionText = document.getElementById("caption");
 
 
-    modal.style.display = "block";
+    myModaladv.style.display = "block";
     modalImg.src = "<%= ResolveUrl("~/files/images/background/festivalcannes.jpg") %>";
     captionText.innerHTML = "فستیوال «کن 2023» باز شد." + "</br>" + "<span class='blink'>" +
         "** هم اکنون اقدام کنید **" + "</span>" + "</br>"
@@ -159,6 +162,9 @@
 
     // When the user clicks on <span> (x), close the modal
     span.onclick = function () {
-        modal.style.display = "none";
+        myModaladv.style.display = "none";
+    }
+    document.onclick = function (e) {
+        myModaladv.style.display = "none";
     }
 </script>

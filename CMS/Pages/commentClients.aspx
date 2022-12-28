@@ -74,7 +74,20 @@
                                         <asp:Button ID="Button1"
                                             CommandArgument='<%# Eval("Id") & "|" & Eval("flag") & "|" & Eval("Id_client") %>'
                                             OnCommand="Ticket"
-                                            CssClass="btn" runat="server" Text="مشاهده" Width="100%" />
+                                            CssClass="btn" BorderColor="Green" Font-Names="Samim" runat="server" Text="مشاهده" Width="100%" />
+                                    </div>
+                                    <hr />
+                                    <div>
+                                        <asp:Panel runat="server" BackColor='<%# GetReadBackground(Eval("read")) %>' style="padding:2px;">
+                                        <asp:Button ID="Button2" CommandArgument='<%# Eval("Id") & "|1|1" %>' OnCommand="UpdateReadFlag" runat="server" BackColor="Green" Text="Read" />
+                                        <asp:Button ID="Button3" CommandArgument='<%# Eval("Id") & "|1|0" %>' OnCommand="UpdateReadFlag" runat="server" BackColor="Red" Text="unRead" />
+                                         </asp:Panel>
+                                    </div>
+                                    <hr />
+                                    <div>
+                                        <asp:Button ID="Button4" CommandArgument='<%# Eval("Id") & "|0|1" %>' OnCommand="UpdateReadFlag"  runat="server" BackColor="Yellow" Text="Under Consideration" />
+                                        <asp:Button ID="Button5" CommandArgument='<%# Eval("Id") & "|0|2" %>' OnCommand="UpdateReadFlag"  runat="server" BackColor="Green" Text="Responsed" />
+                                        <asp:Button ID="Button6" CommandArgument='<%# Eval("Id") & "|0|3" %>' OnCommand="UpdateReadFlag"  runat="server" BackColor="LightGray" Text="Closed" />
                                     </div>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Right" />

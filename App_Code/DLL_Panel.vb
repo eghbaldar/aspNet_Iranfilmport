@@ -354,4 +354,17 @@ Public Class DLL_Panel
 
     End Function
 
+    Public Sub UpdateCommentClient(ByVal id As Long, which As Boolean, readflag As Byte)
+        Try
+            If sqlconn_Site.State = ConnectionState.Open Then sqlconn_Site.Close()
+            sqlconn_Site.Open()
+            Dim sqlcom As New SqlCommand("exec [sp_UpdateCommentClient] " & id.ToString & "," & which.ToString & "," & readflag.ToString, sqlconn_Site)
+            sqlcom.ExecuteNonQuery()
+            sqlconn_Site.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn_Site.Close()
+        End Try
+    End Sub
+
 End Class

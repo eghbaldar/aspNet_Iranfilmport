@@ -86,14 +86,24 @@ Partial Class CMS_Pages_commentClients
             GetFlag()
         End If
     End Sub
-    Private Sub SendSMS(customerid As Long, text As String)
+    Private Sub SendSMS(PaternId As String, customerid As Long)
 
-        Dim cell As String = DL_Panel.GetPhoneCustomer(customerid)
-        Dim url As String = "http://login.parsgreen.com/UrlService/sendSMS.ashx?from=" +
-        "10009332300598" +
-        "&to=" + cell +
-        "&text=" + text +
-        "&signature=" + "9D57838D-3935-4724-BB71-5A5FCB2EA579"
+        'Dim cell As String = DL_Panel.GetPhoneCustomer(customerid)
+        'Dim url As String = "http://login.parsgreen.com/UrlService/sendSMS.ashx?from=" +
+        '"10009332300598" +
+        '"&to=" + cell +
+        '"&text=" + text +
+        '"&signature=" + "9D57838D-3935-4724-BB71-5A5FCB2EA579"
+
+        'Dim req As HttpWebRequest = CType(WebRequest.Create(url), HttpWebRequest)
+        'Dim resp As Net.WebResponse = req.GetResponse()
+        'Dim st = resp.GetResponseStream()
+        'Dim sr = New StreamReader(st, Encoding.UTF8)
+        'Dim _responseStr As String = sr.ReadToEnd()
+        'sr.Close()
+        'resp.Close()
+
+        Dim url As String = "http://ippanel.com:8080/?apikey=XVU06zwUg1yXY1Dl7gGXQJPIm2o0b9Rq5hytsI2FkFQ=&pid=" & PaternId & "&fnum=" & SMS.numberHamkaran & "&tnum=" & DL_Panel.GetPhoneCustomer(customerid) & " &p1=name&v1=" & DL_Panel.GetNameCustomer(customerid)
 
         Dim req As HttpWebRequest = CType(WebRequest.Create(url), HttpWebRequest)
         Dim resp As Net.WebResponse = req.GetResponse()
@@ -108,7 +118,8 @@ Partial Class CMS_Pages_commentClients
         If txtResponse.Text.Length <> 0 Then
             DL_Panel.InsertCommentClientResponse(0, Val(Page.Request.QueryString("id")),
                                       txtResponse.Text.Trim.Replace(ControlChars.Lf, "<br/>"), 2, 1)
-            SendSMS(Val(Page.Request.QueryString("id_client")), "تیکت شما توسط کارشناسی از «درگاه فیلم ایران» پاسخ داده شد.")
+            'SendSMS(Val(Page.Request.QueryString("id_client")), "تیکت شما توسط کارشناسی از «درگاه فیلم ایران» پاسخ داده شد.")
+            SendSMS("d4hbplkt4pgeceq", Val(Page.Request.QueryString("id_client")))
             DataListResponses.DataBind()
         End If
     End Sub
@@ -117,6 +128,22 @@ Partial Class CMS_Pages_commentClients
     End Function
 
     Private Sub btnBacktoTickets_Click(sender As Object, e As EventArgs) Handles btnBacktoTickets.Click
-        MultiView1.ActiveViewIndex = 0
+        Response.Redirect("commentClients")
     End Sub
+
+    Public Function GetReadBackground(read As Object) As System.Drawing.Color
+        Select Case Val(read)
+            Case 0
+                Return System.Drawing.Color.Green
+            Case 1
+                Return System.Drawing.Color.Green
+        End Select
+    End Function
+
+    Public Sub UpdateReadFlag(sender As Object, e As CommandEventArgs)
+        Dim s() As String = e.CommandArgument.ToString.Split("|")
+        DL_Panel.UpdateCommentClient(Val(s(0)), s(1), Val(s(2)))
+        dgComments.DataBind()
+    End Sub
+
 End Class
