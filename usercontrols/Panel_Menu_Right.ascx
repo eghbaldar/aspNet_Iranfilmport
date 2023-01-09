@@ -202,9 +202,36 @@
         color:White;
  border-radius:50%;
     }
+    .unread{
+        padding:2px;
+        border-radius:50%;
+        background-color:red;
+        width:10px;
+        color:white;
+        position:absolute;
+    }
+</style>
+<style>
+.button {
+  color: white;
+  display: inline-block;
+  position: relative;
+}
+.button__badge {
+  background-color: #fa3e3e;
+  border-radius: 5px;
+  color: white;
+  padding: 1px 5px;
+  font-size: 15px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
 </style>
 <div>
     <div class="example-elements">
+
+
         <p data-tooltip="صفحه اصلی">
             <asp:ImageButton ID="btnMnuHome" ImageUrl="~/files/images/icons/panel_home.png" runat="server" />
         </p>
@@ -212,11 +239,15 @@
             <asp:ImageButton ID="btnMnuMoney" Width="45px" ImageUrl="~/files/images/icons/panel_money.png"
                 runat="server" />
         </p>
-
-
+       
         <p data-tooltip="تیکت‌ها">
-            <asp:ImageButton ID="btnMnuTicket" Width="45px" ImageUrl="~/files/images/icons/panel_ticket.png"
+            <sapn class="button">
+                <asp:ImageButton ID="btnMnuTicket" Width="45px" ImageUrl="~/files/images/icons/panel_ticket.png"
               runat="server" />
+                 <span class="button__badge" runat="server" id="HolderLblCountUnread" >
+                     <asp:Label ID="lblCountUnread" runat="server" ></asp:Label>
+                 </span>
+            </sapn>            
         </p>
 
 

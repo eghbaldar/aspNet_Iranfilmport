@@ -2,10 +2,44 @@
     CodeFile="PanelMain.aspx.vb" Inherits="PanelMain" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+        <style>
+        .warning {
+            padding: 10px;
+            background-color: #f2fff6;
+            border: 1px solid #8affab;
+            border-radius: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            color: #2f8f4d;
+            font-size: 12px;
+
+        }
+            </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <asp:HiddenField ID="HiddenField_CustomerID" runat="server" />
     <asp:HiddenField ID="HiddenField_FilmID" runat="server" />
+
+        <div class="warning">
+        <ul>
+            <li>
+                جهت دانلود فایل آموزشی
+                <strong>(تیکت گذاری)</strong>
+                روی لینک زیر کلیک کنید:
+                <ul>
+                    <li>
+                        <a href="http://www.iranfilmport.com/files/uploadFiles/tickets.pdf">
+                            www.iranfilmport.com/files/uploadfiles/tickets.pdf
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+        
+
+        </ul>
+    </div>
+
     <asp:MultiView ID="MultiView" runat="server" ActiveViewIndex="0">
         <asp:View ID="View_Films" runat="server">
 

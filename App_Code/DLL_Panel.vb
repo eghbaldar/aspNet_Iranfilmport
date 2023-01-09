@@ -325,6 +325,19 @@ Public Class DLL_Panel
         End Try
     End Sub
 
+    Public Sub DeleteCommentClient(ByVal id_comment As Long)
+        Try
+            If sqlconn_Site.State = ConnectionState.Open Then sqlconn_Site.Close()
+            sqlconn_Site.Open()
+            Dim sqlcom As New SqlCommand("exec dbo.[sp_DeleteCommentClient] " + id_comment.ToString, sqlconn_Site)
+            sqlcom.ExecuteNonQuery()
+            sqlconn_Site.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn_Site.Close()
+        End Try
+    End Sub
+
     Public Function GetStatusOfClientComments(ByVal id_comment As Long) As String
         Try
             If sqlconn_Site.State = ConnectionState.Open Then sqlconn_Site.Close()
@@ -366,5 +379,19 @@ Public Class DLL_Panel
             sqlconn_Site.Close()
         End Try
     End Sub
+
+    Public Function GetUnreadComment(ByVal idClient As Long) As String
+        Try
+            If sqlconn_Site.State = ConnectionState.Open Then sqlconn_Site.Close()
+            sqlconn_Site.Open()
+            Dim sqlcom As New SqlCommand("select count(*) from tbl_Comment_clients where id_parent=0 and [flag]=2 and [read]=0 and Id_client=" + idClient.ToString, sqlconn_Site)
+            Return sqlcom.ExecuteScalar
+            sqlconn_Site.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn_Site.Close()
+        End Try
+
+    End Function
 
 End Class

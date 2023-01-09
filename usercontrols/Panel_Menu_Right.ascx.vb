@@ -8,6 +8,13 @@ Partial Class usercontrols_Panel_Menu_Right
         lblCustomerVisitCounter.Text = Dl.GetVisitCounterCustomer(Convert.ToInt64(Page.RouteData.Values("id")))
         lblCustomerPhone.Text = Dl.GetPhoneCustomer(Convert.ToInt64(Page.RouteData.Values("id")))
         Installment()
+        unread()
+    End Sub
+
+    Private Sub unread()
+        Dim pnl As New DLL_Panel
+        lblCountUnread.Text = pnl.GetUnreadComment(Convert.ToInt64(Page.RouteData.Values("id")))
+        HolderLblCountUnread.Visible = IIf(Val(lblCountUnread.Text) > 0, True, False)
     End Sub
 
     Protected Sub btnMnuHome_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnMnuHome.Click

@@ -106,7 +106,7 @@
         <div class="container clearfix">
             <div class="copyright-text">
                 <p style="font-size: 11px; color: #cbc100;">
-                    &copy; Copyright 2022. All Rights Reserved by <a href="../" style="color: #948d00;">
+                    &copy; Copyright 2023. All Rights Reserved by <a href="../" style="color: #948d00;">
                         IranFilmPort</a>
                 </p>
             </div>

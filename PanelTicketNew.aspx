@@ -180,7 +180,7 @@
             </asp:SqlDataSource>
            <div style="margin-top:20px;">
                <div style="font-size:19px;padding-bottom:15px;">
-                   ارسال کامنت جدید ...
+                   ارسال جوابی برای این تیکت ...
                </div>
                 <div>
                 <asp:TextBox ID="txtResponse" Font-Names="Samim" Style="padding: 10px; font-size: 15px;" runat="server" TextMode="MultiLine"

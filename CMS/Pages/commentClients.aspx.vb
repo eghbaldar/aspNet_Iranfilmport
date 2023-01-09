@@ -81,8 +81,11 @@ Partial Class CMS_Pages_commentClients
         End Select
     End Sub
     Private Sub CMS_Pages_commentClients_Load(sender As Object, e As EventArgs) Handles Me.Load
-        If Page.Request.QueryString("id") <> "" Then
+        If Page.Request.QueryString("id") <> "" And (Not IsPostBack) Then
             MultiView1.ActiveViewIndex = 1
+            If Page.Request.QueryString("Status") = "1" Then
+                DL_Panel.UpdateCommentClient(Val(Page.Request.QueryString("id")), True, 1)
+            End If
             GetFlag()
         End If
     End Sub
@@ -114,15 +117,17 @@ Partial Class CMS_Pages_commentClients
         resp.Close()
 
     End Sub
+
     Private Sub btnResponse_Click(sender As Object, e As EventArgs) Handles btnResponse.Click
         If txtResponse.Text.Length <> 0 Then
             DL_Panel.InsertCommentClientResponse(0, Val(Page.Request.QueryString("id")),
-                                      txtResponse.Text.Trim.Replace(ControlChars.Lf, "<br/>"), 2, 1)
+                                      txtResponse.Text.Trim.Replace(ControlChars.Lf, "<br/>"), 2, 0)
             'SendSMS(Val(Page.Request.QueryString("id_client")), "تیکت شما توسط کارشناسی از «درگاه فیلم ایران» پاسخ داده شد.")
             SendSMS("d4hbplkt4pgeceq", Val(Page.Request.QueryString("id_client")))
             DataListResponses.DataBind()
         End If
     End Sub
+
     Public Function GetNameClient(id_client As Object) As String
         Return DL_Panel.GetNameCustomer(id_client)
     End Function
@@ -134,7 +139,7 @@ Partial Class CMS_Pages_commentClients
     Public Function GetReadBackground(read As Object) As System.Drawing.Color
         Select Case Val(read)
             Case 0
-                Return System.Drawing.Color.Green
+                Return System.Drawing.Color.Red
             Case 1
                 Return System.Drawing.Color.Green
         End Select
@@ -144,6 +149,13 @@ Partial Class CMS_Pages_commentClients
         Dim s() As String = e.CommandArgument.ToString.Split("|")
         DL_Panel.UpdateCommentClient(Val(s(0)), s(1), Val(s(2)))
         dgComments.DataBind()
+    End Sub
+
+    Public Sub DeleteComment(sender As Object, e As CommandEventArgs)
+
+        DL_Panel.DeleteCommentClient(Val(e.CommandArgument))
+        dgComments.DataBind()
+
     End Sub
 
 End Class

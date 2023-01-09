@@ -6,12 +6,18 @@ Partial Class PanelTicketNew
     Inherits System.Web.UI.Page
 
     Dim DL_Panel As New DLL_Panel
+    Dim Email As New Email
 
     Private Sub PanelTicketNew_Load(sender As Object, e As EventArgs) Handles Me.Load
+
         Title = "تیکت جدید  |  پنل اختصاصی کاربران"
 
         If Page.Request.QueryString("ticket_token") <> "" Then
             MultiView.ActiveViewIndex = 2
+            If Page.Request.QueryString("Status") = 2 And (Not IsPostBack) Then
+                'It means after replying this ticket by an expert, then the client change status to "READ"
+                DL_Panel.UpdateCommentClient(Val(Page.Request.QueryString("ticket_token")), True, 1)
+            End If
         End If
 
         GetFlag()
@@ -65,8 +71,15 @@ Partial Class PanelTicketNew
     Private Sub btnInsert_Click(sender As Object, e As EventArgs) Handles btnInsert.Click
         If txtText.Text.Length <> 0 Then
             DL_Panel.InsertCommentClient(Val(Page.RouteData.Values("id")), cmdSections.SelectedValue, cmdFestival.SelectedValue, txtText.Text.Trim.Replace(ControlChars.Lf, "<br/>"))
-            'SendSMS(Val(Page.RouteData.Values("id")), "تیکت شما با موفقیت به ثبت رسید و در اسرع وقت توسط کارشناس مربوطه‌ی «درگاه فیلم ایران» پاسخ داده خواهد شد.")
+            ''''''''''''' SMS
             SendSMS("7nufm7nm65kdv2x", Val(Page.RouteData.Values("id")))
+            SendSMS_ToAdmin("9du2xqln8hj2rct", Val(Page.RouteData.Values("id")))
+            ''''''''''''' Email
+            ''''To Admin
+            SendEmail(Val(Page.RouteData.Values("id")), txtText.Text.Trim.Replace(ControlChars.Lf, "<br/>"))
+            ''''To Client
+            'SendEmail(Val(Page.RouteData.Values("id")), txtText.Text.Trim.Replace(ControlChars.Lf, "<br/>"))
+            ''''''''''''''''''''''''''''''''''''''''''''''''''''
             MultiView.ActiveViewIndex = 1
         End If
     End Sub
@@ -92,6 +105,31 @@ Partial Class PanelTicketNew
 
     End Sub
 
+    Private Sub SendEmail(customerid As Long, Text As String)
+        Try
+            Email.SendMail("iranfilmportdistributor@gmail.com",
+                      "کاربر: " & DL_Panel.GetNameCustomer(customerid) & "<br/>" & "<strong>" & Text & "</strong>",
+                      "تیکت: " & DL_Panel.GetNameCustomer(customerid),
+                      "http://iranfilmport.com/cms/pages/commentClients")
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub SendSMS_ToAdmin(PaternId As String, customerid As Long)
+
+        Dim url As String = "http://ippanel.com:8080/?apikey=XVU06zwUg1yXY1Dl7gGXQJPIm2o0b9Rq5hytsI2FkFQ=&pid=" & PaternId & "&fnum=" & SMS.numberHamkaran & "&tnum=" & "09111380846" & " &p1=name&v1=" & DL_Panel.GetNameCustomer(customerid)
+
+        Dim req As HttpWebRequest = CType(WebRequest.Create(url), HttpWebRequest)
+        Dim resp As Net.WebResponse = req.GetResponse()
+        Dim st = resp.GetResponseStream()
+        Dim sr = New StreamReader(st, Encoding.UTF8)
+        Dim _responseStr As String = sr.ReadToEnd()
+        sr.Close()
+        resp.Close()
+
+    End Sub
+
     Private Sub btnResponse_Click(sender As Object, e As EventArgs) Handles btnResponse.Click
 
 
@@ -99,8 +137,15 @@ Partial Class PanelTicketNew
             If txtResponse.Text.Length <> 0 Then
                 DL_Panel.InsertCommentClientResponse(Val(Page.RouteData.Values("id")), Val(Page.Request.QueryString("ticket_token")),
                                           txtResponse.Text.Trim.Replace(ControlChars.Lf, "<br/>"), 1, 0)
-                'SendSMS(Val(Page.RouteData.Values("id")), "کامنت جدید شما با موفقیت به ثبت رسید و در اسرع وقت توسط کارشناس مربوطه‌ی «درگاه فیلم ایران» پاسخ داده خواهد شد.")
+                '''''''''''''' SMS
                 SendSMS("bw7a0w8vp9hgwyj", Val(Page.RouteData.Values("id")))
+                SendSMS_ToAdmin("re9x2dh9u0sar1x", Val(Page.RouteData.Values("id")))
+                ''''''''''''' Email
+                '''To Admin
+                SendEmail(Val(Page.RouteData.Values("id")), txtResponse.Text.Trim.Replace(ControlChars.Lf, "<br/>"))
+                ''''To Client
+                'SendEmail(Val(Page.RouteData.Values("id")), txtText.Text.Trim.Replace(ControlChars.Lf, "<br/>"))
+                ''''''''''''''''''''''''''''''''''''''''''''''''''''
                 MultiView.ActiveViewIndex = 1
             End If
         Else

@@ -71,6 +71,13 @@
                             <asp:TemplateField HeaderText="" SortExpression="date">
                                 <ItemTemplate>
                                     <div>
+                                        <asp:ImageButton ID="ImageButton1"
+                                            ImageUrl="~\files\images\icons\delete.png"
+                                            CommandArgument='<%# Eval("Id") %>' OnCommand="DeleteComment" 
+                                            OnClientClick="return confirm('sure?');"
+                                            runat="server" />
+                                    </div>
+                                    <div>
                                         <asp:Button ID="Button1"
                                             CommandArgument='<%# Eval("Id") & "|" & Eval("flag") & "|" & Eval("Id_client") %>'
                                             OnCommand="Ticket"
@@ -79,8 +86,8 @@
                                     <hr />
                                     <div>
                                         <asp:Panel runat="server" BackColor='<%# GetReadBackground(Eval("read")) %>' style="padding:2px;">
-                                        <asp:Button ID="Button2" CommandArgument='<%# Eval("Id") & "|1|1" %>' OnCommand="UpdateReadFlag" runat="server" BackColor="Green" Text="Read" />
-                                        <asp:Button ID="Button3" CommandArgument='<%# Eval("Id") & "|1|0" %>' OnCommand="UpdateReadFlag" runat="server" BackColor="Red" Text="unRead" />
+                                        <asp:Button ID="Button2" CommandArgument='<%# Eval("Id") & "|1|1" %>' OnCommand="UpdateReadFlag" runat="server" BackColor="Red" Text="Read" />
+                                        <asp:Button ID="Button3" CommandArgument='<%# Eval("Id") & "|1|0" %>' OnCommand="UpdateReadFlag" runat="server" BackColor="Green" Text="unRead" />
                                          </asp:Panel>
                                     </div>
                                     <hr />
