@@ -121,7 +121,12 @@
                         SelectCommand="SELECT * FROM [tbl_Comment_clients] WHERE id_client<>0 and id_parent=0 ORDER BY flag asc,[date] DESC"></asp:SqlDataSource>
                 </asp:View>
                 <asp:View ID="View2" runat="server">
-                    <asp:Button ID="btnBacktoTickets" runat="server" Text="بازگشت به تیکت ها" />
+                    <div id="PnlWarning" class="warning" runat="server" visible="false" style="text-align:center;">
+                        <asp:Label ID="lblResult" runat="server" Font-Size="20px" ></asp:Label>
+                        </div>
+                     <hr />
+                    <asp:Button ID="btnBacktoTickets" CssClass="tabBtn" runat="server" Text="بازگشت به تیکت ها" />
+                    <hr />
                     <div style="padding: 8px; color: white; background-color: darkblue; margin: 5px; font-size: 11px; width: 150px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;">
                         <span>وضعیت تیکت:
                         </span>
@@ -154,6 +159,32 @@
 
                                 <asp:Label Style="font-size: 12px; color: #a3a3a3;" ID="dateLabel" runat="server" Text='<%# "تاریخ ثبت: " & GetDate(Eval("date")) %>' />
 
+
+                                <br />
+                                <br />
+
+                                 <div>
+                                        <asp:ImageButton ID="ImageButt2on1"
+                                            ImageUrl="~\files\images\icons\delete.png"
+                                            CommandArgument='<%# Eval("Id") %>' OnCommand="DeleteComment" 
+                                            OnClientClick="return confirm('sure?');"
+                                            runat="server" />
+                                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                             </asp:Panel>
 
                         </ItemTemplate>
@@ -176,6 +207,7 @@
                         </div>
                         <div style="padding-top: 15px;">
                             <asp:Button CssClass="cmdCss" ID="btnResponse" Font-Names="Samim" runat="server" Style="padding: 7px; cursor: pointer;" Text="ثبت" />
+                            <asp:Button CssClass="cmdCss" ID="btnSendSmsAgain" Font-Names="Samim" runat="server" Style="padding: 7px; cursor: pointer;" Text="تکرار ارسال اس ام اس برای این کاربر" />
                         </div>
                     </div>
                 </asp:View>

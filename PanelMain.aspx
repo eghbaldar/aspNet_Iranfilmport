@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="VB" MasterPageFile="~/MasterPanel.master" AutoEventWireup="false"
     CodeFile="PanelMain.aspx.vb" Inherits="PanelMain" %>
 
+<%@ Register src="usercontrols/ClientEmailModal.ascx" tagname="ClientEmailModal" tagprefix="uc1" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
         <style>
         .warning {
@@ -17,7 +19,8 @@
             </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <asp:HiddenField ID="HiddenField_CustomerID" runat="server" />
+    <uc1:ClientEmailModal ID="ClientEmailModal" runat="server" Visible="false" />
+<asp:HiddenField ID="HiddenField_CustomerID" runat="server" />
     <asp:HiddenField ID="HiddenField_FilmID" runat="server" />
 
         <div class="warning">

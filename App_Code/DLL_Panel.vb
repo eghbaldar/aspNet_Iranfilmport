@@ -338,6 +338,19 @@ Public Class DLL_Panel
         End Try
     End Sub
 
+    Public Sub DeleteCommentClientEach(ByVal id_comment As Long)
+        Try
+            If sqlconn_Site.State = ConnectionState.Open Then sqlconn_Site.Close()
+            sqlconn_Site.Open()
+            Dim sqlcom As New SqlCommand("delete from [tbl_Comment_clients] where id=" + id_comment.ToString, sqlconn_Site)
+            sqlcom.ExecuteNonQuery()
+            sqlconn_Site.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn_Site.Close()
+        End Try
+    End Sub
+
     Public Function GetStatusOfClientComments(ByVal id_comment As Long) As String
         Try
             If sqlconn_Site.State = ConnectionState.Open Then sqlconn_Site.Close()
@@ -390,6 +403,34 @@ Public Class DLL_Panel
         Catch ex As Exception
         Finally
             sqlconn_Site.Close()
+        End Try
+
+    End Function
+
+    Public Function GetEmailClient(ByVal idClient As Long) As String
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            Dim sqlcom As New SqlCommand("Select [email] from [dbo].[tbCustomers] where email<>'' and id =" & idClient.ToString, sqlconn)
+            Return sqlcom.ExecuteScalar
+            sqlconn.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+
+    End Function
+
+    Public Function UpdateEmailClient(ByVal idClient As Long, email As String) As String
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            Dim sqlcom As New SqlCommand("update [dbo].[tbCustomers] set [email]='" & email & "' where id =" & idClient.ToString, sqlconn)
+            Return sqlcom.ExecuteNonQuery
+            sqlconn.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
         End Try
 
     End Function

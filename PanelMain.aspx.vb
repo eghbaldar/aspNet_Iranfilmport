@@ -90,4 +90,13 @@ Partial Class PanelMain
         Response.Redirect("~/panel/panelStrategyReports/" & Page.RouteData.Values("id") & "/" & e.CommandArgument.ToString)
     End Sub
 
+    Private Sub PanelMain_Load(sender As Object, e As EventArgs) Handles Me.Load
+
+
+        If Not IsPostBack And String.IsNullOrEmpty(Dll.GetEmailClient(Val(Page.RouteData.Values("id")))) Then
+            ClientEmailModal.Visible = True
+        End If
+
+    End Sub
+
 End Class

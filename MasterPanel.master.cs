@@ -11,7 +11,7 @@ public partial class MasterPanel : System.Web.UI.MasterPage
     {
         if (Session["PanelClient"] == null)
         {
-            Response.Redirect("~/");
+            Response.Redirect("~/panel/");
         }
 
         DLL_Panel DL = new DLL_Panel();

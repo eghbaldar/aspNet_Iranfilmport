@@ -298,7 +298,11 @@ Partial Class CMS_Pages_fileManagement
 
     Protected Sub btnDeleteAllNotUsedFiles_Click(sender As Object, e As System.EventArgs) Handles btnDeleteAllNotUsedFiles.Click
         For i As Integer = 0 To DGNotUsedFiles.Rows.Count - 1
-            File.Delete(MapPath("/files/uploadFiles/article/" + DGNotUsedFiles.Rows(i).Cells(2).Text))
+            Try
+                File.Delete(MapPath("/files/uploadFiles/article/" + DGNotUsedFiles.Rows(i).Cells(2).Text))
+            Catch ex As Exception
+
+            End Try
         Next
         DGNotUsedFiles.DataBind()
     End Sub

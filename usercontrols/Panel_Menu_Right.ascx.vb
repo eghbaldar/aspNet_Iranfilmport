@@ -7,6 +7,8 @@ Partial Class usercontrols_Panel_Menu_Right
         lblCustomerName.Text = Dl.GetNameCustomer(Convert.ToInt64(Page.RouteData.Values("id")))
         lblCustomerVisitCounter.Text = Dl.GetVisitCounterCustomer(Convert.ToInt64(Page.RouteData.Values("id")))
         lblCustomerPhone.Text = Dl.GetPhoneCustomer(Convert.ToInt64(Page.RouteData.Values("id")))
+        lblEmail.Text = IIf(Dl.GetEmailClient(Convert.ToInt64(Page.RouteData.Values("id"))) <> "",
+Dl.GetEmailClient(Convert.ToInt64(Page.RouteData.Values("id"))), "وارد نشده")
         Installment()
         unread()
     End Sub

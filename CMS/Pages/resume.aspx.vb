@@ -29,12 +29,20 @@ Partial Class CMS_Pages_resume
     End Sub
 
     Protected Sub btnUpdateAccolade_Click(sender As Object, e As EventArgs) Handles btnUpdateAccolade.Click
+
         Dim ds As New DLL_CMS
         ds.InsertAccolade(Val(cmdFilm.SelectedValue), txtAccolade_fa.Value, txtAccolade_en.Value)
         txtAccolade_en.Value = ""
         txtAccolade_fa.Value = ""
-        dgAccolades.DataBind()
+        '''''''''''''''''''''''''''''''''''''''''
+        Dim s As String = "window.open('resumeeachone/" & cmdFilm.SelectedValue.ToString & "' , '_blank','width=900, height=600');"
+        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alertscript", s, True)
 
+    End Sub
+
+    Private Sub btnShowAccolades_Click(sender As Object, e As EventArgs) Handles btnShowAccolades.Click
+        Dim s As String = "window.open('resumeeachone/" & cmdFilm.SelectedValue.ToString & "' , '_blank','width=900, height=600');"
+        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alertscript", s, True)
     End Sub
 
 End Class

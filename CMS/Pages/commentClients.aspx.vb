@@ -6,6 +6,8 @@ Partial Class CMS_Pages_commentClients
     Inherits System.Web.UI.Page
 
     Dim DL_Panel As New DLL_Panel
+    Dim Email As New Email
+
     Public Function GetFilmFestival(id_submission As Object) As String
         Return DL_Panel.GetFilmFestival(id_submission)
     End Function
@@ -120,11 +122,39 @@ Partial Class CMS_Pages_commentClients
 
     Private Sub btnResponse_Click(sender As Object, e As EventArgs) Handles btnResponse.Click
         If txtResponse.Text.Length <> 0 Then
-            DL_Panel.InsertCommentClientResponse(0, Val(Page.Request.QueryString("id")),
+
+            Try
+                DL_Panel.InsertCommentClientResponse(0, Val(Page.Request.QueryString("id")),
                                       txtResponse.Text.Trim.Replace(ControlChars.Lf, "<br/>"), 2, 0)
-            'SendSMS(Val(Page.Request.QueryString("id_client")), "تیکت شما توسط کارشناسی از «درگاه فیلم ایران» پاسخ داده شد.")
-            SendSMS("d4hbplkt4pgeceq", Val(Page.Request.QueryString("id_client")))
+            Catch ex As Exception
+                lblResult.Text += "Err: Insert" + "</br>"
+            End Try
+            Try
+                SendSMS("d4hbplkt4pgeceq", Val(Page.Request.QueryString("id_client")))
+            Catch ex As Exception
+                lblResult.Text += "Err: SMS" + "</br>"
+            End Try
+            Try
+                Email.SendMail(DL_Panel.GetEmailClient(Val(Page.Request.QueryString("id_client"))),
+                      "فیلمساز / فیلمنامه عزیز؛: " & DL_Panel.GetNameCustomer(Val(Page.Request.QueryString("id_client"))) & "<br/>" & "<strong>" & "به تیکت شما پاسخی داده شده است. لطفا جهت مشاهده این پاسخ روی لینک زیر کلیک کنید." & "</strong>",
+                      "تیکت: " & DL_Panel.GetNameCustomer(Val(Page.Request.QueryString("id_client"))),
+                      "http://iranfilmport.com/panel/tickets/" & Page.Request.QueryString("id_client"))
+
+            Catch ex As Exception
+                lblResult.Text += "Err: Email" + "</br>"
+            End Try
+
+            If lblResult.Text.Trim = Nothing Then
+                PnlWarning.Visible = True
+                lblResult.Text = "Everything has been done!"
+                lblResult.ForeColor = System.Drawing.Color.Green
+            Else
+                lblResult.ForeColor = System.Drawing.Color.Red
+            End If
+
+            txtResponse.Text = Nothing
             DataListResponses.DataBind()
+
         End If
     End Sub
 
@@ -158,4 +188,14 @@ Partial Class CMS_Pages_commentClients
 
     End Sub
 
+    Public Sub DeleteCommentEach(sender As Object, e As CommandEventArgs)
+
+        DL_Panel.DeleteCommentClientEach(Val(e.CommandArgument))
+        DataListResponses.DataBind()
+
+    End Sub
+
+    Private Sub btnSendSmsAgain_Click(sender As Object, e As EventArgs) Handles btnSendSmsAgain.Click
+        SendSMS("d4hbplkt4pgeceq", Val(Page.Request.QueryString("id_client")))
+    End Sub
 End Class

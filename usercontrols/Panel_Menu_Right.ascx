@@ -286,6 +286,14 @@
             <asp:Label ID="lblCustomerPhone" runat="server"></asp:Label>
         </td>
     </tr>
+        <tr>
+        <td>
+            ایمیل:
+        </td>
+        <td>
+            <asp:Label ID="lblEmail" runat="server"></asp:Label>
+        </td>
+    </tr>
 </table>
 <asp:Panel ID="PnlWarningInstallment" Visible="false" runat="server">
     <hr />
