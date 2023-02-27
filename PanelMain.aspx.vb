@@ -24,6 +24,14 @@ Partial Class PanelMain
                 Return "انتخاب نشده است"
             Case "4"
                 Return "فستیوال کنسل شده است"
+            Case "5"
+                Return "نیمه نهایی"
+            Case "6"
+                Return "فینالیست"
+            Case "7"
+                Return "کاندید شده"
+            Case "8"
+                Return "جایزه گرفته"
         End Select
     End Function
     Public Function GetFee(e As Object) As String

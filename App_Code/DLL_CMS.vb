@@ -959,4 +959,24 @@ Public Class DLL_CMS
         End Try
     End Function
 
+    Public Function GetEachResumeEnFa(id As Integer, type As Boolean) As String
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            Dim sqlcom As New SqlCommand
+            sqlcom.Connection = sqlconn
+            Select Case type
+                Case True
+                    sqlcom.CommandText = "select [fa] from [tbl_accolades] where id=" + id.ToString
+                Case False
+                    sqlcom.CommandText = "select [en] from [tbl_accolades] where id=" + id.ToString
+            End Select
+            Return sqlcom.ExecuteScalar
+            sqlconn.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+    End Function
+
 End Class

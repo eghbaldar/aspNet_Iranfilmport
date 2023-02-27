@@ -120,4 +120,47 @@ Partial Class CMS_Pages_addBolg
         listTags.Items.Add(tag_8.Text.Trim.Replace(" ", "_"))
     End Sub
 
+    Private Sub rbSelection_CheckedChanged(sender As Object, e As EventArgs) Handles rbFestival.CheckedChanged, rbFilm.CheckedChanged, rbOther.CheckedChanged
+        Dim RB As RadioButton = CType(sender, RadioButton)
+        PanelFilm.Visible = False
+        PanelFestival.Visible = False
+        PanelOther.Visible = False
+        btnNextTag.Visible = True
+        Select Case RB.ID
+            Case "rbFilm"
+                PanelFilm.Visible = True
+            Case "rbFestival"
+                PanelFestival.Visible = True
+            Case "rbOther"
+                MultiView.ActiveViewIndex = 1
+        End Select
+    End Sub
+
+    Private Sub btnNextTag_Click(sender As Object, e As EventArgs) Handles btnNextTag.Click
+        If rbFilm.Checked _
+            And txtTagFilm.Text.Trim.Length > 0 _
+            And txtTagFilmEng.Text.Trim.Length > 0 _
+            And txtTagDirectors1.Text.Trim.Length > 0 _
+            And txtTagDirector1_Eng.Text.Trim.Length > 0 Then
+
+            listTags.Items.Add(txtTagFilm.Text.Trim.Replace(" ", "_"))
+            listTags.Items.Add(txtTagFilmEng.Text.Trim.Replace(" ", "_"))
+            listTags.Items.Add(txtTagDirectors1.Text.Trim.Replace(" ", "_"))
+            listTags.Items.Add(txtTagDirector1_Eng.Text.Trim.Replace(" ", "_"))
+            listTags.Items.Add(txtTagDirectors2.Text.Trim.Replace(" ", "_"))
+            listTags.Items.Add(txtTagDirector2_Eng.Text.Trim.Replace(" ", "_"))
+
+            MultiView.ActiveViewIndex = 1
+        End If
+        If rbFestival.Checked _
+           And txtTagFestivalFa.Text.Trim.Length > 0 _
+           And txtTagFestivalEng.Text.Trim.Length > 0 Then
+
+            listTags.Items.Add(txtTagFestivalFa.Text.Trim.Replace(" ", "_"))
+            listTags.Items.Add(txtTagFestivalEng.Text.Trim.Replace(" ", "_"))
+
+            MultiView.ActiveViewIndex = 1
+        End If
+    End Sub
+
 End Class

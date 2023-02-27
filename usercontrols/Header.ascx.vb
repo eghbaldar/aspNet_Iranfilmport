@@ -2,6 +2,9 @@
 Partial Class usercontrols_Header
     Inherits System.Web.UI.UserControl
 
+    Dim DL As New DLL
+    Dim DLLCMSS As New DLL_CMS
+
     Protected Sub Page_Load(sender As Object, e As System.EventArgs) Handles Me.Load
         If Not String.IsNullOrEmpty(Request.QueryString("lang")) Then
             If Request.QueryString("lang").Trim.ToLower = "en" Then
@@ -21,6 +24,8 @@ Partial Class usercontrols_Header
             lblEmailAddress.Text = "پست الکترونیک"
             lblRightnow.Text = "تماس بگیرید"
         End If
+
+        advertiseModal.Visible = True ' DL.GetStatusModalOnAllPage
     End Sub
 
 End Class

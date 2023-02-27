@@ -151,8 +151,8 @@
 
 
     myModaladv.style.display = "block";
-    modalImg.src = "<%= ResolveUrl("~/files/images/background/festivalcannes.jpg") %>";
-    captionText.innerHTML = "فستیوال «کن 2023» باز شد." + "</br>" + "<span class='blink'>" +
+    modalImg.src = "<%= ResolveUrl("~/files/images/background/nowroz1402.jpg") %>";
+    captionText.innerHTML = "تخفیف عیدانه فیلمسازها شروع شد" + "</br>" + "<span class='blink'>" +
         "** هم اکنون اقدام کنید **" + "</span>" + "</br>"
         + "<a href='tel: 09216343320'>" + "جهت مشاوره و ارسال (اینجا) کلیک/تاچ کنید." + "</a>";
 

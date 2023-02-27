@@ -204,6 +204,37 @@
                                             </div>
                                         </td>
                                     </tr>
+
+
+
+                                                                        <tr class="trPerson">
+                                        <td style="vertical-align: top; text-align: center;">
+                                            <img src="files/images/team/abbasEghbaldar.png" style="-moz-border-radius: 5px; -webkit-border-radius: 5px;
+                                                border-radius: 5px;" width="200px" />
+                                        </td>
+                                        <td>
+                                            <div class="Person">
+                                                <div>
+                                                    <span style="color: #e3cc00; font-family: Tahoma; font-size: 30px; font-weight: bolder;">
+                                                      ABBAS EGHBALDAR </span><span style="line-height: 40px; font-family: Tahoma; font-weight: bolder;
+                                                            font-size: 20px;">
+                                                            <br />
+                                                            President of Directors
+                                                            <br />
+
+                                                        </span>
+                                                </div>
+                                                <div style="direction: ltr;">
+                                                    <a href="mailto:abbaseghbaldar@iranfilmport.com">abbaseghbaldar@iranfilmport.com </a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+
+
+
+                                    <tr><td></td><td></td></tr>
                                     <tr class="trPerson">
                                         <td style="vertical-align: top; text-align: center;">
                                             <img src="files/images/team/peyvasteh.png" style="-moz-border-radius: 5px; -webkit-border-radius: 5px;
@@ -213,12 +244,27 @@
                                             <div class="Person">
                                                 <div>
                                                     <span style="color: #e3cc00; font-family: Tahoma; font-size: 30px; font-weight: bolder;">
-                                                        TAHERE PEYVASTE </span><span style="line-height: 40px; font-family: Tahoma; font-weight: bolder;
-                                                            font-size: 20px;">
+                                                        TAHERE PEYVASTE </span><div style="line-height: 40px; font-family: Tahoma; font-weight: bolder;
+                                                            font-size: 20px;direction:ltr;">
                                                             <br />
+                                                            A Member of the Board of Directors
+                                                            <br />
+                                                            +
+                                                            
                                                             Manager of Distributing & Marketing
                                                             <br />
-                                                        </span>
+
+                                                        </div>
+                                                    <div style="direction: ltr;">
+                                                <ul>
+                                                    <li style="font-family: Caveat; font-size: 22px;">Experience of Festival's Judging</li>
+                                                    <li>
+                                                        <ul>
+                                                            <li style="font-weight: bolder;">Aravali Film Festival - India - 2023</li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                                 </div>
                                                 <div style="direction: ltr;">
                                                     <a href="mailto:support@iranfilmport.com">support@iranfilmport.com </a>
@@ -228,7 +274,36 @@
                                                 </div>
                                             </div>
                                         </td>
-                                    </tr><tr><td></td><td></td></tr>
+                                    </tr>
+                                                                        <tr><td></td><td></td></tr>
+                                      <tr class="trPerson">
+                                        <td style="vertical-align: top; text-align: center;">
+                                            <img src="files/images/team/ae.png" style="-moz-border-radius: 5px; -webkit-border-radius: 5px;
+                                                border-radius: 5px;" width="200px" />
+                                        </td>
+                                        <td>
+                                            <div class="Person">
+                                                <div>
+                                                    <span style="color: #e3cc00; font-family: Tahoma; font-size: 30px;
+
+font-weight: bolder;">
+                                                        ASAL EGHBALDAR </span><div style="line-height: 40px; font-family: Tahoma; 
+font-weight: bolder;direction:ltr;
+                                                            font-size: 20px;">
+                                                            <br />
+                                                            A Member of the Board of Directors
+                                                            <br />
+                                                            + Graphic Affairs
+                                                            <br />
+                                                        </div>
+                                                </div>
+                                                      <div style="direction: ltr;">
+                                                    <a href="mailto:asal.eghbaldar2@gmail.com">asal.eghbaldar2@gmail.com </a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr><td></td><td></td></tr>
                                      <tr class="trPerson">
                                         <td style="vertical-align: top; text-align: center;">
                                             <img src="files/images/team/staffMan.png" style="-moz-border-radius: 5px; -webkit-border-radius: 5px;
@@ -244,6 +319,9 @@
                                                             Administrator of IRAN FILM PORT
                                                             <br />
                                                         </span>
+                                                </div>
+                                                 <div style="direction: ltr;">
+                                                    <a href="mailto:benyamin.armantalab@gmail.com">benyamin.armantalab@gmail.com </a>
                                                 </div>
                                             </div>
                                         </td>
@@ -369,26 +447,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr><td></td><td></td></tr>
-                                      <tr class="trPerson">
-                                        <td style="vertical-align: top; text-align: center;">
-                                            <img src="files/images/team/ae.png" style="-moz-border-radius: 5px; -webkit-border-radius: 5px;
-                                                border-radius: 5px;" width="200px" />
-                                        </td>
-                                        <td>
-                                            <div class="Person">
-                                                <div>
-                                                    <span style="color: #e3cc00; font-family: Tahoma; font-size: 30px; font-weight: bolder;">
-                                                        ASAL EGHBALDAR </span><span style="line-height: 40px; font-family: Tahoma; font-weight: bolder;
-                                                            font-size: 20px;">
-                                                            <br />
-                                                            Graphic Affairs
-                                                            <br />
-                                                        </span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+
                                     <tr><td></td><td></td></tr>
                                       <tr class="trPerson">
                                         <td style="vertical-align: top; text-align: center;">

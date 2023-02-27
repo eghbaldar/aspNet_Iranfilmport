@@ -36,6 +36,43 @@ set StatusOfRegister=@StatusOfRegister">
             </UpdateParameters>
         </asp:SqlDataSource>
     </div>
+
+
+
+    <div class="TITLE">
+        <h4>
+          وضعیت نمایش مودال در کل صفحات
+        </h4>
+    </div>
+    <div>
+        <asp:GridView ID="GridViewModal" runat="server" AutoGenerateColumns="False" 
+            BackColor="White" BorderColor="White" BorderStyle="Ridge" BorderWidth="2px" 
+            CellPadding="3" CellSpacing="1" DataSourceID="SqlDataSourceModalOnAllPage" GridLines="None">
+            <Columns>
+                <asp:CheckBoxField DataField="ModalOnAllPage" 
+                    HeaderText="وضعیت" SortExpression="ModalOnAllPage" />
+                <asp:CommandField ShowEditButton="True" />
+            </Columns>
+            <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
+            <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#E7E7FF" />
+            <PagerStyle BackColor="#C6C3C6" ForeColor="Black" HorizontalAlign="Right" />
+            <RowStyle BackColor="#DEDFDE" ForeColor="Black" />
+            <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
+            <SortedAscendingCellStyle BackColor="#F1F1F1" />
+            <SortedAscendingHeaderStyle BackColor="#594B9C" />
+            <SortedDescendingCellStyle BackColor="#CAC9C9" />
+            <SortedDescendingHeaderStyle BackColor="#33276A" />
+        </asp:GridView>
+        <asp:SqlDataSource ID="SqlDataSourceModalOnAllPage" runat="server" 
+            ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>" 
+            SelectCommand="SELECT [ModalOnAllPage] FROM [tbl_setting]" UpdateCommand="update tbl_setting
+set ModalOnAllPage=@ModalOnAllPage">
+            <UpdateParameters>
+                <asp:Parameter Name="ModalOnAllPage" />
+            </UpdateParameters>
+        </asp:SqlDataSource>
+    </div>
+
      <div class="TITLE">
         <h4>
             نمایش ورژن و یا پیام صفحه ورودی فیلمسازان

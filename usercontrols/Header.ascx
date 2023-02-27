@@ -45,8 +45,7 @@ background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(255,238,0,0.65) 100
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6ffee00',GradientType=0 );
     /* ie6-9 */">
 
-
-    <uc1:advertiseModal ID="advertiseModal1" runat="server" />
+    <uc1:advertiseModal ID="advertiseModal" runat="server" />
 
     <div class="container clearfix">
         <div class="logo">

@@ -275,4 +275,17 @@ Public Class DLL
         End Try
     End Function
 
+    Public Function GetStatusModalOnAllPage() As Boolean
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            Dim sqlcom As New SqlCommand("SELECT [ModalOnAllPage] FROM [tbl_setting]", sqlconn)
+            Return sqlcom.ExecuteScalar
+            sqlconn.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+    End Function
+
 End Class

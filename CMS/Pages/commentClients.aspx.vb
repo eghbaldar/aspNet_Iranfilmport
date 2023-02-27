@@ -85,9 +85,7 @@ Partial Class CMS_Pages_commentClients
     Private Sub CMS_Pages_commentClients_Load(sender As Object, e As EventArgs) Handles Me.Load
         If Page.Request.QueryString("id") <> "" And (Not IsPostBack) Then
             MultiView1.ActiveViewIndex = 1
-            If Page.Request.QueryString("Status") = "1" Then
-                DL_Panel.UpdateCommentClient(Val(Page.Request.QueryString("id")), True, 1)
-            End If
+            If Page.Request.QueryString("Status") = "1" Then DL_Panel.UpdateCommentClient(Val(Page.Request.QueryString("id")), True, 1)
             GetFlag()
         End If
     End Sub
