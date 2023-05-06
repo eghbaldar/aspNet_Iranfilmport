@@ -116,10 +116,10 @@
 
                         </asp:Panel>
                         <asp:Panel ID="PanelFestival" runat="server" Visible="false">
-                               <div>
+                            <div>
                                 <asp:TextBox CssClass="txtFa" ID="txtTagFestivalFa" placeholder="نام فستیوال بصورت کامل: مثال : «جشنواره فیلم کن»" runat="server"></asp:TextBox>
                             </div>
-                            
+
                             <div>
                                 <asp:TextBox CssClass="txtEn" ID="txtTagFestivalEng" placeholder="English Title of Festival: 'Cannes Internatioanl Film Festival' " runat="server"></asp:TextBox>
                             </div>
@@ -134,8 +134,8 @@
                     </div>
                 </ContentTemplate>
                 <Triggers>
-                    <asp:PostBackTrigger ControlID="rbOther"/>
-                     <asp:PostBackTrigger ControlID="btnNextTag"/>
+                    <asp:PostBackTrigger ControlID="rbOther" />
+                    <asp:PostBackTrigger ControlID="btnNextTag" />
                 </Triggers>
             </asp:UpdatePanel>
             <asp:UpdateProgress runat="server" AssociatedUpdatePanelID="UpdatePanel2">
@@ -264,17 +264,59 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:TextBox ID="txtTitle" placeholder="عنوان ..." runat="server" CssClass="txtFa"></asp:TextBox>
+
+                            <asp:TextBox onkeyup="countCharFa(this)" ID="txtTitle" placeholder="عنوان ..." runat="server" CssClass="txtFa"></asp:TextBox>
+                            <div class="numbersofChartFa"></div>
+                            <script>
+                                function countCharFa(val) {
+                                    var len = val.value.length;
+                                    if (len >= 95) {
+                                        val.value = val.value.substring(0, 95);
+                                        $('.numbersofChartFa').text('تعداد کارکترهای مجاز باقیمانده: ' + '0');
+                                    } else {
+                                        $('.numbersofChartFa').text('تعداد کارکترهای مجاز باقیمانده: ' + (95 - len));
+                                    }
+                                };
+                            </script>
+                            <style>
+                                .numbersofChartFa {
+                                    color: red;
+                                    text-align: center;
+                                    font-size: 20px;
+                                    padding: 10px;
+                                    font-family: Samim;
+                                }
+                            </style>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtTitle"
                                 ErrorMessage="الزامی است" ForeColor="Red" ValidationGroup="1"></asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <asp:TextBox ID="txtTitleEn" placeholder="Title ..." runat="server" CssClass="txtEn"></asp:TextBox>
+                            <asp:TextBox ID="txtTitleEn" onkeyup="countCharEn(this)" placeholder="Title ..." runat="server" CssClass="txtEn"></asp:TextBox>
+                             <div class="numbersofChartEn"></div>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="txtTitleEn"
                                 ErrorMessage="Mandatory Field" ForeColor="Red" ValidationGroup="1"></asp:RequiredFieldValidator>
-
+                            <script>
+                                function countCharEn(val) {
+                                    var len = val.value.length;
+                                    if (len >= 95) {
+                                        val.value = val.value.substring(0, 95);
+                                        $('.numbersofChartEn').text('Left Valid Count: ' + '0');
+                                    } else {
+                                        $('.numbersofChartEn').text('Left Valid Count: ' + (95 - len));
+                                    }
+                                };
+                            </script>
+                            <style>
+                                .numbersofChartEn {
+                                    color: red;
+                                    text-align: center;
+                                    font-size: 20px;
+                                    padding: 10px;
+                                    font-family: Tahoma;
+                                }
+                            </style>
                         </td>
                     </tr>
                     <tr>

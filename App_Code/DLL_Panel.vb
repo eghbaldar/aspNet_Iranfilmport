@@ -74,6 +74,19 @@ Public Class DLL_Panel
         End Try
     End Sub
 
+    Public Sub UpdateSubmissionAfterCheckingReceipt(ByVal IdSubmission As Long)
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            Dim sqlcom As New SqlCommand("UPDATE tbSubmission set receipt=3 where id=" & IdSubmission.ToString, sqlconn)
+            sqlcom.ExecuteNonQuery()
+            sqlconn.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+    End Sub
+
     Public Sub UpdateVisitCounter(ByVal customerid As Long)
         Try
             If sqlconn.State = ConnectionState.Open Then sqlconn.Close()

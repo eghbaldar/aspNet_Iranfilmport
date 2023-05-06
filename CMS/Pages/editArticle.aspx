@@ -477,19 +477,63 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', end
 
                     <tr>
                         <td>
-                            <asp:TextBox ID="txtTitle" runat="server"
+                            <asp:TextBox onkeyup="countCharFa(this)" ID="txtTitle" runat="server"
                                 placeholder="عنوان..." CssClass="txtFa"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtTitle"
                                 ErrorMessage="الزامی است" ForeColor="Red" ValidationGroup="1"></asp:RequiredFieldValidator>
+                             <div class="numbersofChartFa"></div>
+                            <script>
+                                function countCharFa(val) {
+                                    var len = val.value.length;
+                                    if (len >= 95) {
+                                        val.value = val.value.substring(0, 95);
+                                        $('.numbersofChartFa').text('تعداد کارکترهای مجاز باقیمانده: ' + '0');
+                                    } else {
+                                        $('.numbersofChartFa').text('تعداد کارکترهای مجاز باقیمانده: ' + (95 - len));
+                                    }
+                                };
+                            </script>
+                            <style>
+                                .numbersofChartFa {
+                                    color: red;
+                                    text-align: center;
+                                    font-size: 20px;
+                                    padding: 10px;
+                                    font-family: Samim;
+                                }
+                            </style>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="txtTitleEn"
                                 ErrorMessage="Mandatory Field" ForeColor="Red" ValidationGroup="1"></asp:RequiredFieldValidator>
-                            <asp:TextBox ID="txtTitleEn" runat="server"
+                            <asp:TextBox  onkeyup="countCharEn(this)" ID="txtTitleEn" runat="server"
                                 placeholder="Title ..."
                                 CssClass="txtEn"></asp:TextBox>
+
+                            <div class="numbersofChartEn"></div>
+                              <script>
+                                  function countCharEn(val) {
+                                      var len = val.value.length;
+                                      if (len >= 95) {
+                                          val.value = val.value.substring(0, 95);
+                                          $('.numbersofChartEn').text('Left Valid Count: ' + '0');
+                                      } else {
+                                          $('.numbersofChartEn').text('Left Valid Count: ' + (95 - len));
+                                      }
+                                  };
+                            </script>
+                            <style>
+                                .numbersofChartEn {
+                                    color: red;
+                                    text-align: center;
+                                    font-size: 20px;
+                                    padding: 10px;
+                                    font-family: Tahoma;
+                                }
+                            </style>
+
                         </td>
                     </tr>
                     <tr>

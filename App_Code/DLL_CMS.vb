@@ -979,4 +979,48 @@ Public Class DLL_CMS
         End Try
     End Function
 
+    Public Sub UpdateAgent(ByVal TEXT As String, FaEn As Boolean)
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            Dim input As String
+            Select Case FaEn
+                Case True
+                    input = "update tbl_Pages set [agentsFa]='" + TEXT + "'"
+                Case False
+                    input = "update tbl_Pages set [agentsEn]='" + TEXT + "'"
+            End Select
+            Dim sqlcom As New SqlCommand(input, sqlconn)
+            sqlcom.ExecuteNonQuery()
+            sqlconn.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+    End Sub
+
+    Public Function ShowAgent(FaEn As Boolean) As String
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            Dim input As String
+            Select Case FaEn
+                Case True
+                    input = "select [agentsFa] from tbl_Pages"
+                Case False
+                    input = "select [agentsEn] from tbl_Pages"
+            End Select
+            Dim sqlcom As New SqlCommand(input, sqlconn)
+            Dim sqlda As New SqlDataAdapter(sqlcom)
+            Dim ds As New DataSet
+            sqlda.Fill(ds)
+            Return ds.Tables(0).Rows(0)(0).ToString.Replace("ي", "ی")
+            sqlconn.Close()
+
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+    End Function
+
 End Class

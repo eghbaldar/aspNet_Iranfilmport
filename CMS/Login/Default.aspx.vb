@@ -73,6 +73,8 @@ Partial Class Management_Login_Default
                 cell = "09332300598"
             Case "tata2"
                 cell = "09020763947"
+            Case "alidost"
+                cell = "09112380067"
         End Select
 
         Dim Generator As New Random

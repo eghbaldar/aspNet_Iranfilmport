@@ -82,6 +82,7 @@ Partial Class CMS_Pages_imagesManagement
         Dim btn As New Button
         btn = DirectCast(sender, Button)
         File.Delete(MapPath("~/files/ckfinder/userfiles/images/" + btn.ToolTip))
+        'chkShowImages.Checked = False
         Response.Redirect("~/cms/pages/imagesManagement")
     End Sub
 
@@ -130,6 +131,8 @@ Partial Class CMS_Pages_imagesManagement
         lblAfterUpload.ForeColor = Drawing.Color.Blue
         lblAfterUpload.Text = "<a href='http://iranfilmport.com/files/ckfinder/userfiles/images/" + FN + Path.GetExtension(FileUpload.FileName) + "' target='_blank'>Right Click & Click on [Copy Link Address]</a>"
 
+        btnUpload.Visible = False
+
     End Sub
 
     Private Function checkFileExtension() As Boolean
@@ -160,7 +163,13 @@ Partial Class CMS_Pages_imagesManagement
                 Return False
             End If
         Else
-            Return True
+            If FileUpload.FileBytes.Length < 200000 Then
+                Return True
+            Else
+                lblWarning.ForeColor = Drawing.Color.Red
+                lblWarning.Text = "ماکسیمم حجم فایل باید 200 کیلوبایت باشد"
+                Return False
+            End If
         End If
     End Function
 
@@ -174,4 +183,24 @@ Partial Class CMS_Pages_imagesManagement
         Return True
     End Function
 
+    Private Sub chkShowImages_CheckedChanged(sender As Object, e As EventArgs) Handles chkShowImages.CheckedChanged
+
+        If chkShowImages.Checked Then
+            pnlMain.Visible = True
+        Else
+            pnlMain.Visible = False
+        End If
+    End Sub
+
+    Private Sub btnImageAfterUpload_Click(sender As Object, e As EventArgs) Handles btnImageAfterUpload.Click
+        System.IO.File.Delete(MapPath(imgAfterUpload.ImageUrl))
+        imgAfterUpload.ImageUrl = Nothing
+        btnUpload.Visible = True
+        DivAfterUploaded.Visible = False
+    End Sub
+
+    Private Sub btnNextUpload_Click(sender As Object, e As EventArgs) Handles btnNextUpload.Click
+        DivAfterUploaded.Visible = False
+        btnUpload.Visible = True
+    End Sub
 End Class

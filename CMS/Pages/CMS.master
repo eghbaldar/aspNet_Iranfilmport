@@ -215,6 +215,8 @@
                                             <asp:Label ID="Label27" runat="server" Text="درباره ی ما" /></a>
                                         <a href="apks">
                                             <asp:Label ID="Label28" runat="server" Text="مدیریت apk ها" /></a>
+                                        <a href="agents">
+                                            <asp:Label ID="Label30" runat="server" Text="نماینده‌های شرکت" /></a>
                                     </ul>
                                 </li>
                                 <li>

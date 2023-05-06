@@ -47,6 +47,7 @@
                 <li><a class="menuSubNode" href='<%= Page.ResolveUrl("~/کارنامه-پخش-فیلم-درگاه-فیلم-ایران?lang=en") %>'>CV - RESUME</a></li>
 
                 <li><a class="menuSubNode" href='<%= Page.ResolveUrl("~/team?lang=en") %>'>CEO & STAFF</a></li>
+                <li><a class="menuSubNode" href='<%= Page.ResolveUrl("~/agents") %>'>The Official Agents</a></li>
                 <li><a class="menuSubNode" href='<%= Page.ResolveUrl("~/مشتریان-درگاه-فیلم-ایران?lang=en") %>'>OUR CUSTOMERS</a></li>
                 <li><a class="menuSubNode" href='<%= Page.ResolveUrl("~/ویژگی-های-پخش-فیلم-درگاه-فیلم-ایران?lang=en") %>'>WHY US?</a> </li>
                 <li><a class="menuSubNode" href='<%= Page.ResolveUrl("~/movibeta") %>'>OUR PARTNET</a></li>

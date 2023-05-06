@@ -106,19 +106,19 @@ Partial Class CMS_Pages_editArticle
 
 
         Dim DT As String = Convert.ToDateTime(txtDate.Text).ToShortDateString & " " & txtHH.Text & ":" & txtMM.Text & ":" & txtSS.Text
-        DL.UpdateArticle(Val(cmd_category.SelectedValue), _
-                         Val(cmd_type.SelectedValue), _
-                         Val(cmd_short_feature.SelectedValue), _
-                          convertNumFatoEn(txtTitle.Text.Trim), _
-                          convertNumFatoEn(txtText.Text.Trim), _
-                          convertNumFatoEn(txtLid.Value.Trim), _
-                          txtAuthors.Text.Trim, _
-                          txtReference.Text.Trim, _
-                         FN, _
-                         txtTags.Text.Replace("ي", "ی"), _
-                         VisibleStatus, _
-                         Val(Request.QueryString("id")), _
-                         Convert.ToDateTime(DT), _
+        DL.UpdateArticle(Val(cmd_category.SelectedValue),
+                         Val(cmd_type.SelectedValue),
+                         Val(cmd_short_feature.SelectedValue),
+                          convertNumFatoEn(txtTitle.Text.Trim.Replace("ي", "ی").Replace("-", " ")),
+                          convertNumFatoEn(txtText.Text.Trim.Replace("ي", "ی")),
+                          convertNumFatoEn(txtLid.Value.Trim.Replace("ي", "ی")),
+                          txtAuthors.Text.Trim,
+                          txtReference.Text.Trim,
+                         FN,
+                         txtTags.Text.Replace("ي", "ی"),
+                         VisibleStatus,
+                         Val(Request.QueryString("id")),
+                         Convert.ToDateTime(DT),
                          txtTitleEn.Text.Trim)
 
         GV.DataBind()

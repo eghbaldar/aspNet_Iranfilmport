@@ -349,7 +349,26 @@ font-weight: bolder;direction:ltr;
                                         </td>
                                     </tr>
                                     <tr><td></td><td></td></tr>
-
+                                                                         <tr class="trPerson">
+                                        <td style="vertical-align: top; text-align: center;">
+                                            <img src="files/images/team/staffWoman.png" style="-moz-border-radius: 5px; -webkit-border-radius: 5px;
+                                                border-radius: 5px;" width="100px" />
+                                        </td>
+                                        <td>
+                                            <div class="Person">
+                                                <div>
+                                                    <span style="color: #e3cc00; font-family: Tahoma; font-size: 30px; font-weight: bolder;">
+                                                        Ayda Yaran </span><span style="line-height: 40px; font-family: Tahoma; font-weight: bolder;
+                                                            font-size: 20px;">
+                                                            <br />
+                                                            Director of Public Relations
+                                                            <br />
+                                                        </span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr><td></td><td></td></tr>
                                      <tr class="trPerson">
                                         <td style="vertical-align: top; text-align: center;">
                                             <img src="files/images/team/staffWoman.png" style="-moz-border-radius: 5px; -webkit-border-radius: 5px;
@@ -359,16 +378,17 @@ font-weight: bolder;direction:ltr;
                                             <div class="Person">
                                                 <div>
                                                     <span style="color: #e3cc00; font-family: Tahoma; font-size: 30px; font-weight: bolder;">
-                                                        GHAZAL SARRAF </span><span style="line-height: 40px; font-family: Tahoma; font-weight: bolder;
+                                                        GHAZAL SARRAF <l>(left)</l></span><span style="line-height: 40px; font-family: Tahoma; font-weight: bolder;
                                                             font-size: 20px;">
                                                             <br />
-                                                            Director of Public Relations
+                                                            Director of Public Relations (former)
                                                             <br />
                                                         </span>
                                                 </div>
                                             </div>
                                         </td>
-                                    </tr><tr><td></td><td></td></tr>
+                                    </tr>
+                                    <tr><td></td><td></td></tr>
                                       <tr class="trPerson">
                                         <td style="vertical-align: top; text-align: center;">
                                             <img src="files/images/team/staffWoman.png" style="-moz-border-radius: 5px; -webkit-border-radius: 5px;

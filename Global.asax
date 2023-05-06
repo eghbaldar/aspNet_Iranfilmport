@@ -39,7 +39,7 @@
     Sub Session_End(ByVal sender As Object, ByVal e As EventArgs)
     End Sub
     Shared Sub RegisterRoutes(ByVal routes As RouteCollection)
-
+        routes.MapPageRoute("rss1", "rss1", "~/test.aspx")
         '------------- for working updatepanel
         routes.Ignore("{resource}.apk/{*pathInfo}")
         routes.Ignore("{resource}.axd/{*pathInfo}")
@@ -90,6 +90,7 @@
         routes.MapPageRoute("participationplan", "participationplan", "~/participationplan.aspx")
         routes.MapPageRoute("features2", "features", "~/features.aspx")
         routes.MapPageRoute("testimonial", "تصدیق-نامه-فیلمسازان", "~/testimonial.aspx")
+        routes.MapPageRoute("agents", "agents", "~/agents.aspx")
         '----------------------------------------------------------------------------------------
         routes.MapPageRoute("panel", "panel", "~/panel.aspx")
         routes.MapPageRoute("panelClient", "panel/client/{id}", "~/PanelMain.aspx")
@@ -97,6 +98,7 @@
         routes.MapPageRoute("panelTickets", "panel/tickets/{id}", "~/PanelTicket.aspx")
         routes.MapPageRoute("panelTicketsNew", "panel/newtickets/{id}", "~/PanelTicketNew.aspx")
         routes.MapPageRoute("panelStrategyReports", "panel/panelStrategyReports/{id}/{idFilm}", "~/Panel_StrategyReport.aspx")
+        routes.MapPageRoute("panelReceipt", "panel/PanelReceipt/{id}/", "~/PanelReceipt.aspx")
         '----------------------------------------------------------------------------------------
         'ساخت لینک داینامیک
         'routes.MapPageRoute("dynamicLink", "link/d/{randomString}", "~/files/images/background/banner_1.jpg")
@@ -199,7 +201,7 @@
         routes.MapPageRoute("cmsresumeEdit", "cms/pages/resumeEdit/{idCV}", "~/cms/pages/resumeEdit.aspx")
         routes.MapPageRoute("cmscommentClients", "cms/pages/commentClients/", "~/cms/pages/commentClients.aspx")
         routes.MapPageRoute("cmsresumeeach", "cms/pages/resumeeachone/{id_film}", "~/cms/pages/resumeeachone.aspx")
-
+        routes.MapPageRoute("cmsagents", "cms/pages/agents/", "~/cms/pages/agents.aspx")
     End Sub
 
     Shared Sub RegisterRoutes_username(ByVal routes As RouteCollection)

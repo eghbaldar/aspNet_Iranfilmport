@@ -25,7 +25,7 @@ Partial Class usercontrols_Header
             lblRightnow.Text = "تماس بگیرید"
         End If
 
-        advertiseModal.Visible = True ' DL.GetStatusModalOnAllPage
+        advertiseModal.Visible = DL.GetStatusModalOnAllPage
     End Sub
 
 End Class

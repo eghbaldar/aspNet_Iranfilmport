@@ -50,6 +50,7 @@
                 <li><a class="menuSubNode" href='<%= Page.ResolveUrl("~/درباره-درگاه-فیلم-ایران") %>'>درباره ی درگاه</a></li>
                 <li><a class="menuSubNode" href='<%= Page.ResolveUrl("~/کارنامه-پخش-فیلم-درگاه-فیلم-ایران") %>'>کارنامه پخش درگاه</a></li>
                 <li><a class="menuSubNode" href='<%= Page.ResolveUrl("~/team") %>'>تیم و مدیریت درگاه</a></li>
+                <li><a class="menuSubNode" href='<%= Page.ResolveUrl("~/agents") %>'>نماینده‌های رسمی درگاه</a></li>
                 <li><a class="menuSubNode" href='<%= Page.ResolveUrl("~/مشتریان-درگاه-فیلم-ایران") %>'>مشتریان درگاه فیلم ایران</a></li>
                 <li><a class="menuSubNode" href='<%= Page.ResolveUrl("~/ویژگی-های-پخش-فیلم-درگاه-فیلم-ایران") %>'>چرا درگاه فیلم ایران؟</a> </li>
                 <li><a class="menuSubNode" href='<%= Page.ResolveUrl("~/movibeta") %>'>شریک اسپانیایی

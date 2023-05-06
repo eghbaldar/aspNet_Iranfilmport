@@ -24,10 +24,10 @@ Partial Class CMS_Pages_addBolg
             DL.InsertArticle(Val(cmd_category.SelectedValue),
                              Val(cmd_type.SelectedValue),
                              Val(cmd_short_feature.SelectedValue),
-                              txtTitle.Text.Trim.Replace("ي", "ی"),
+                              convertNumFatoEn(txtTitle.Text.Trim.Replace("ي", "ی").Replace("-", " ")),
                               convertNumFatoEn(txtText.Text.Trim.Replace("ي", "ی")),
-                              txtLid.Text.Trim.Replace("ي", "ی"),
-                              txtAuthors.Text.Trim.Replace("ي", "ی"),
+                              convertNumFatoEn(txtLid.Text.Trim.Replace("ي", "ی")),
+                              txtAuthors.Text.Trim,
                               txtReference.Text.Trim.Replace("ي", "ی"),
                               End_FN.Trim, "film",
                               txtTags.Text.Replace("ي", "ی"),
@@ -147,8 +147,8 @@ Partial Class CMS_Pages_addBolg
             listTags.Items.Add(txtTagFilmEng.Text.Trim.Replace(" ", "_"))
             listTags.Items.Add(txtTagDirectors1.Text.Trim.Replace(" ", "_"))
             listTags.Items.Add(txtTagDirector1_Eng.Text.Trim.Replace(" ", "_"))
-            listTags.Items.Add(txtTagDirectors2.Text.Trim.Replace(" ", "_"))
-            listTags.Items.Add(txtTagDirector2_Eng.Text.Trim.Replace(" ", "_"))
+            If txtTagDirectors2.Text.Trim.Length > 0 Then listTags.Items.Add(txtTagDirectors2.Text.Trim.Replace(" ", "_"))
+            If txtTagDirector2_Eng.Text.Trim.Length > 0 Then listTags.Items.Add(txtTagDirector2_Eng.Text.Trim.Replace(" ", "_"))
 
             MultiView.ActiveViewIndex = 1
         End If
