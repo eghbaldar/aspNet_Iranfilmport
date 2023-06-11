@@ -103,7 +103,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
         <br />
         سیستم آنلاین وضعیت فستیوال‌های پخش شده
         <br />
-        Version 4.1
+        Version 4.3
         <div>
             <asp:LinkButton Visible="false" ID="btnSignOut" runat="server">(خروج از سامانه)</asp:LinkButton>
         </div>

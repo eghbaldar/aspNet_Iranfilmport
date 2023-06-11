@@ -6,6 +6,7 @@ Imports System.Drawing
 Public Class DLL
 
     Dim sqlconn As New SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings("iranfilmportConnectionString").ConnectionString)
+    Dim sqlconnDesktop As New SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings("DesktopConnectionString").ConnectionString)
 
     Public Function GetClearString(ByVal text As String) As String
         Return text.Replace(" ", "-").Replace("»", "").Replace("«", "").Replace("‌", "-").Replace("ي", "ی").Replace("?", "").Replace("؟", "").Replace("!", "").Replace("معرفی", "").Replace("-بود-", "-").Replace("شدند", "").Replace(")", "").Replace("(", "").Replace("}", "").Replace("{", "").Replace("[", "").Replace("]", "").Replace("_", "").Replace("،", "").Replace("؛", "").Replace(".", "").Replace(":", "").Replace("""", "-").Replace("/", "").Replace("|", "").Replace("\", "-").Replace("-و-", "-").Replace("-در-", "-").Replace("-را-", "-").Replace("-با-", "-").Replace("-به-", "-").Replace("-آن-", "-").Replace("-این-", "-").Replace("-گردید-", "-").Replace("-شد-", "-").Replace("-های-", "-").Replace("--", "-").Replace("--", "").Replace("+", "-").Replace("---", "-")
@@ -285,6 +286,22 @@ Public Class DLL
         Catch ex As Exception
         Finally
             sqlconn.Close()
+        End Try
+    End Function
+
+    Public Function GetTempContractInformation(contractnumber As String) As DataTable
+        Try
+            If sqlconnDesktop.State = ConnectionState.Open Then sqlconnDesktop.Close()
+            sqlconnDesktop.Open()
+            Dim sqlcom As New SqlCommand("SELECT * FROM [tbTempContracts] where contractnumber='" & contractnumber.ToString() + "'", sqlconnDesktop)
+            Dim sqlda As New SqlDataAdapter(sqlcom)
+            Dim ds As New DataSet
+            sqlda.Fill(ds)
+            Return ds.Tables(0)
+            sqlconnDesktop.Close()
+        Catch ex As Exception
+        Finally
+            sqlconnDesktop.Close()
         End Try
     End Function
 

@@ -1,8 +1,6 @@
 ﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Master_Main.master" AutoEventWireup="false"
     CodeFile="contact.aspx.vb" Inherits="contact" %>
-
-<%@ Register Src="usercontrols/banners_right.ascx" TagName="banners_right" TagPrefix="uc1" %>
-<%@ Register Src="usercontrols/last_articles.ascx" TagName="last_articles" TagPrefix="uc2" %>
+<%@ Register Src="usercontrols/RightSide.ascx" TagName="RightSide" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript" src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
@@ -380,7 +378,7 @@
                                             (این شماره جهت مشاوره نمی‌باشد)
                                         </td>
                                         <td style="text-align: left;">
-                                            0930-543-4278
+                                            0912-280-3785
                                         </td>
                                     </tr>
                                     
@@ -455,9 +453,40 @@
                                             دفتر تهران
                                         </td>
                                         <td class="fr">
-                                            تهران - نواب - خیابان دامپزشکی - نرسیده به خیابان کارون - پ 424 - واحد 1 - کد پستی 1347776498
+                                            تهران - میدان آرژانتین - خیابان الوند - کوچه برمک - پلاک 4 - واحد 2
                                         </td>
                                     </tr>
+
+
+                                    <tr>
+                                        <td class="fr">
+                                            دفتر زنجان
+                                        </td>
+                                        <td class="fr">
+                                          زنجان، دروازه ی ارک ، طبقه ی بالای داروخانه ی رازی، سینماگران جوان (09193453936 - آقای کرمانی)
+                                        </td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td class="fr">
+                                            دفتر کرمانشاه
+                                        </td>
+                                        <td class="fr">
+                                           آقای بنیامین ایثاری - 09216828117
+                                        </td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td class="fr">
+                                            دفتر بزد
+                                        </td>
+                                        <td class="fr">
+                                            آقای امیر جلالی - 09131524547
+                                        </td>
+                                    </tr>
+
                                 </table>
                                 <p style="color: Red; font-size: 12px;">
                                     دی وی دی فیلم و سایر متریال های مورد نیاز را فقط به آدرس دفتر مرکزی ارسال کنید.</p>
@@ -572,8 +601,7 @@
                         </div>
                     </div>
                 </div>
-                <uc1:banners_right ID="banners_right1" runat="server" />
-                <%--<uc2:last_articles ID="last_articles1" runat="server" />--%>
+<uc1:RightSide ID="RightSide1" runat="server" />
             </div>
         </div>
     </section>

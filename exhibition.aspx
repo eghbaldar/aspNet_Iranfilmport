@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Master_Main.master" AutoEventWireup="false"
     CodeFile="exhibition.aspx.vb" Inherits="exhibition" %>
 
-<%@ Register Src="usercontrols/banners_right.ascx" TagName="banners_right" TagPrefix="uc1" %>
+
+<%@ Register Src="usercontrols/RightSide.ascx" TagName="RightSide" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style>
         h1, h2, h3, h4, h5, h6
@@ -16,7 +17,7 @@
             color: Black;
             font-size: 14px;
         }
-        tr, td
+        .T tr, .T td
         {
             text-shadow: 1px 1px 1px #878787;
         }
@@ -94,7 +95,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7abcff', end
                 
                 </td></tr>
                 <tr><td class="td1">لینک فیلم: </td><td>https://www.youtube.com/watch?v=BXTLsQBJSVc&list=PLTPQcjlcvvXHSVp-ehnxbD9i4wQ9C_qMO</td></tr>
-                </table>
+                </table class="T">
 
                 </div>
                 <div style="padding-bottom:5px;">
@@ -124,9 +125,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7abcff', end
                 </div>
 
                 </div>
-
-                 <uc1:banners_right ID="banners_right1" runat="server" />
-
+<uc1:RightSide ID="RightSide1" runat="server" />
             </div>
     </div>          
     </section>

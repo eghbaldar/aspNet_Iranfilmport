@@ -1,10 +1,11 @@
 ﻿Imports System.Data
+Imports System.Data.SqlClient
 Imports System.IO
+Imports System.Web.Script.Services
+Imports System.Web.Services
 
 Partial Class CMS_Pages_editArticle
     Inherits System.Web.UI.Page
-
-    'Shared PrePhotoPath As String
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
@@ -39,21 +40,17 @@ Partial Class CMS_Pages_editArticle
         ''''''''''''''''''''''''''
         Dset = DL.PreUpdateArticle(Val(Request.QueryString("id")))
         ''''''''''''''''''''''''''
-        cmd_category.SelectedValue = Dset.Tables(0).Rows(0)("catecode").ToString
-        cmd_short_feature.SelectedValue = Dset.Tables(0).Rows(0)("short_feature").ToString
         cmd_type.SelectedValue = Dset.Tables(0).Rows(0)("type").ToString
+        cmd_category.DataBind()
+        cmd_category.SelectedValue = Dset.Tables(0).Rows(0)("catecode").ToString
+
+        cmd_short_feature.SelectedValue = Dset.Tables(0).Rows(0)("short_feature").ToString
         txtTitle.Text = Dset.Tables(0).Rows(0)("title").ToString
         txtText.Text = Dset.Tables(0).Rows(0)("text").ToString
         txtLid.Value = Dset.Tables(0).Rows(0)("lid").ToString
         txtAuthors.Text = Dset.Tables(0).Rows(0)("authors").ToString
         txtReference.Text = Dset.Tables(0).Rows(0)("reference").ToString
         txtTitleEn.Text = Dset.Tables(0).Rows(0)("titleEn").ToString
-        'Dim dtFull As String() = Dset.Tables(0).Rows(0)("date_time").ToString.Split(" ")
-        'txtDate.Text = dtFull(0)
-        'Dim t As String() = dtFull(1).Split(":")
-        'txtHH.Text = t(0)
-        'txtMM.Text = t(1)
-        'txtSS.Text = t(2)
 
         Dim dtFill As DateTime = Convert.ToDateTime(Dset.Tables(0).Rows(0)("date_time").ToString)
         txtDate.Text = dtFill.Date
@@ -62,13 +59,13 @@ Partial Class CMS_Pages_editArticle
         txtSS.Text = dtFill.ToString("ss")
 
         imgPhoto.ImageUrl = "~\files\uploadFiles\article\" + Dset.Tables(0).Rows(0)("photo")
-        'PrePhotoPath = Dset.Tables(0).Rows(0)("photo").ToString.Trim
 
-        'Dset.Tables(0).Rows(0)("film").ToString
+        '================= Tag
         Dim tags() As String = Dset.Tables(0).Rows(0)("tags").ToString().Split("-")
         For i As Byte = 0 To tags.Length - 1
             listTags.Items.Add(tags(i).Trim.Replace("ي", "ی"))
         Next
+        '================= Tag Ends
 
         If Convert.ToBoolean(Dset.Tables(0).Rows(0)("visible").ToString) Then
             cmdVisible.Items(0).Selected = True
@@ -77,6 +74,7 @@ Partial Class CMS_Pages_editArticle
         End If
 
         lblNumberVistors.Text = DL.GetCountPostVistor(Val(Request.QueryString("id")))
+        ListedTags()
 
     End Sub
 
@@ -104,7 +102,7 @@ Partial Class CMS_Pages_editArticle
         If cmdVisible.Items(0).Selected Then VisibleStatus = 1
         If cmdVisible.Items(1).Selected Then VisibleStatus = 0
 
-
+        Dim ID = Request.QueryString("id")
         Dim DT As String = Convert.ToDateTime(txtDate.Text).ToShortDateString & " " & txtHH.Text & ":" & txtMM.Text & ":" & txtSS.Text
         DL.UpdateArticle(Val(cmd_category.SelectedValue),
                          Val(cmd_type.SelectedValue),
@@ -117,13 +115,15 @@ Partial Class CMS_Pages_editArticle
                          FN,
                          txtTags.Text.Replace("ي", "ی"),
                          VisibleStatus,
-                         Val(Request.QueryString("id")),
+                         Val(ID),
                          Convert.ToDateTime(DT),
                          txtTitleEn.Text.Trim)
 
         GV.DataBind()
         'Response.Redirect("EditPost")
-        Response.Redirect("EditPost?type=complete")
+        'Response.Redirect("EditPost?type=complete")
+        'Response.Redirect("~/" & ID)
+        Page.RegisterStartupScript("OpenPages", "<script type='text/javascript'>window.open('../../cms/pages/sitemap');</script>")
 
     End Sub
 
@@ -149,7 +149,7 @@ Partial Class CMS_Pages_editArticle
         If txtPreTag.Text.Trim.Length > 0 Then
             listTags.Items.Add(txtPreTag.Text.Trim.Replace(" ", "_"))
             txtPreTag.Text = ""
-        End If        
+        End If
     End Sub
 
     Protected Sub deletelist_Click(sender As Object, e As System.EventArgs) Handles deletelist.Click
@@ -157,6 +157,10 @@ Partial Class CMS_Pages_editArticle
     End Sub
 
     Protected Sub btnGoTags_Click(sender As Object, e As System.EventArgs) Handles btnGoTags.Click
+        ListedTags()
+    End Sub
+
+    Private Sub ListedTags()
         S = Nothing
         If listTags.Items.Count > 0 Then
             For i As Byte = 0 To listTags.Items.Count - 1
@@ -245,5 +249,51 @@ Partial Class CMS_Pages_editArticle
     Protected Sub btnOneWord_Click(sender As Object, e As System.EventArgs) Handles btnOneWord.Click
         Response.Redirect("EditPost?word=" & txtOneWord.Text.Trim)
     End Sub
+
+    <ScriptMethod()>
+    <WebMethod()>
+    Public Shared Function SearchTitleEn(ByVal prefixText As String, ByVal count As Integer) As List(Of String)
+        Using conn As SqlConnection = New SqlConnection()
+            conn.ConnectionString = ConfigurationManager.ConnectionStrings("iranfilmportConnectionString").ConnectionString
+            Using cmd As SqlCommand = New SqlCommand()
+                cmd.CommandText = "select top 10 titleEn from tbl_articles where titleEn like N'%' + @SearchText + '%' order by date_time desc"
+                cmd.Parameters.AddWithValue("@SearchText", prefixText)
+                cmd.Connection = conn
+                conn.Open()
+                Dim customers As List(Of String) = New List(Of String)()
+                Using sdr As SqlDataReader = cmd.ExecuteReader()
+                    While sdr.Read()
+                        customers.Add(sdr("titleEn").ToString())
+                    End While
+                End Using
+                conn.Close()
+
+                Return customers
+            End Using
+        End Using
+    End Function
+    <ScriptMethod()>
+    <WebMethod()>
+    Public Shared Function SearchTitleFa(ByVal prefixText As String, ByVal count As Integer) As List(Of String)
+        Using conn As SqlConnection = New SqlConnection()
+            conn.ConnectionString = ConfigurationManager.ConnectionStrings("iranfilmportConnectionString").ConnectionString
+            Using cmd As SqlCommand = New SqlCommand()
+                cmd.CommandText = "select  top 10 title from tbl_articles where title like N'%' + @SearchText + '%' order by date_time desc"
+                cmd.Parameters.AddWithValue("@SearchText", prefixText.Replace("ی", "ي"))
+                cmd.Connection = conn
+                conn.Open()
+                Dim customers As List(Of String) = New List(Of String)()
+                Using sdr As SqlDataReader = cmd.ExecuteReader()
+                    While sdr.Read()
+                        customers.Add(sdr("title").ToString())
+                    End While
+                End Using
+                conn.Close()
+
+                Return customers
+            End Using
+        End Using
+    End Function
+
 
 End Class

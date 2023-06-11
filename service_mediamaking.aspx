@@ -1,8 +1,6 @@
 ﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Master_Main.master" AutoEventWireup="false"
     CodeFile="service_mediamaking.aspx.vb" Inherits="service_mediamaking" %>
-
-<%@ Register Src="usercontrols/banners_right.ascx" TagName="banners_right" TagPrefix="uc1" %>
-<%@ Register Src="usercontrols/last_articles.ascx" TagName="last_articles" TagPrefix="uc2" %>
+<%@ Register Src="usercontrols/RightSide.ascx" TagName="RightSide" TagPrefix="uc1" %>
 <%@ Register src="usercontrols/comment.ascx" tagname="comment" tagprefix="uc3" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style>
@@ -50,10 +48,7 @@
                     <uc3:comment ID="comment" runat="server" />
                 </div>
                 </div>
-
-               <uc1:banners_right ID="banners_right1" runat="server" />
-
-                <%--<uc2:last_articles ID="last_articles1" runat="server" />--%>
+<uc1:RightSide ID="RightSide1" runat="server" />
 
                 </div>
                 </div>

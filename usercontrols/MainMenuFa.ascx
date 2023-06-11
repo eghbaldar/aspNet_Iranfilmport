@@ -33,7 +33,7 @@
                 <li><a class="menuSubNode" href='<%= Page.ResolveUrl(String.Format("{2}/{1}/{0}","دسته-اصلی",  "مقالات-آموزشی-فیلم-فیلمنامه-سینمایی","2")) %>'>مقالات آموزشی فیلمنامه و فیلم</a> </li>
                 <li><a class="menuSubNode" href='<%= Page.ResolveUrl(String.Format("{2}/{1}/{0}","دسته-اصلی",  "شناخت-جشنواره-خارجی-اسکاری","3")) %>'>شناخت جشنواره‌ها</a> </li>
                 <li><a class="menuSubNode" href='<%= Page.ResolveUrl(String.Format("{2}/{1}/{0}","دسته-اصلی",  "فراخوان-جشنواره","7")) %>'>فراخوان‌ها</a> </li>
-                <li><a class="menuSubNode" href='<%= Page.ResolveUrl(String.Format("{2}/{1}/{0}","دسته-اصلی",  "یادداشت-سردبیر","8")) %>'>یادداشت سردبیر</a> </li>
+                <li><a class="menuSubNode" href='<%= Page.ResolveUrl(String.Format("{2}/{1}/{0}","دسته-اصلی",  "یادداشت-سردبیر","8")) %>'>یادداشت‌های مدیران درگاه</a> </li>
             </ul>
         </li>
         <li><a class="menuMainNode" href='<%= Page.ResolveUrl("~/جشنواره-های-فیلم-کوتاه-بلند") %>'>فستیوال‌ها</a>

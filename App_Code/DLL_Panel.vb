@@ -61,11 +61,11 @@ Public Class DLL_Panel
         End Try
     End Function
 
-    Public Sub UpdateSubmissionAfterNotifiedFestival(ByVal IdSubmission As Long)
+    Public Sub UpdateSubmissionAfterNotifiedFestival(ByVal idFilm As Long)
         Try
             If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
             sqlconn.Open()
-            Dim sqlcom As New SqlCommand("UPDATE tbSubmission set ChangeAccept=0 where id=" & IdSubmission.ToString, sqlconn)
+            Dim sqlcom As New SqlCommand("UPDATE tbSubmission set ChangeAccept=0 where [id_film]=" & idFilm.ToString, sqlconn)
             sqlcom.ExecuteNonQuery()
             sqlconn.Close()
         Catch ex As Exception

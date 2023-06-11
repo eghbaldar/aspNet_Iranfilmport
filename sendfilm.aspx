@@ -1,8 +1,6 @@
 ﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Master_Main.master" AutoEventWireup="false"
     CodeFile="sendfilm.aspx.vb" Inherits="sendfilm" %>
-
-<%@ Register Src="usercontrols/banners_right.ascx" TagName="banners_right" TagPrefix="uc1" %>
-<%@ Register Src="usercontrols/last_articles.ascx" TagName="last_articles" TagPrefix="uc2" %>
+<%@ Register Src="usercontrols/RightSide.ascx" TagName="RightSide" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript" src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
@@ -36,16 +34,16 @@
         };
     </script>
     <style type="text/css">
-        .style1
+        .tbSend
         {
             width: 100%;
             font-family: irsans;
         }
-        tr
+        .tbSend tr
         {
             font-family: Titr;
         }
-        td
+        .tbSend td
         {
             font-family: Titr;
             padding: 5px;
@@ -171,7 +169,7 @@
                                                     شرکت ارسال کنید. </span></br>
                                         </div>
                                         <div class="Bg">
-                                            <table class="style1">
+                                            <table class="tbSend">
                                                 <tr>
                                                     <td>
                                                         نام و نام خانوادگی:
@@ -241,7 +239,7 @@
                                                     </td>
                                                 </tr>
                                             </table>
-                                            <table class="style1">
+                                            <table class="tbSend">
                                                 <tr>
                                                     <td>
                                                         اعتبارسنجی:
@@ -260,6 +258,7 @@
                                                     </td>
                                                     <td>
                                                         <asp:Button ID="btnSubmit" runat="server" Text="ارسال اطلاعات" Style="border: 1px solid #ccc;
+font-family:Samim;
                                                             background-color: #06AFFF; -moz-border-radius: 5px; -webkit-border-radius: 5px;
                                                             border-radius: 5px; color: White;" ValidationGroup="1" />
                                                     </td>
@@ -279,8 +278,7 @@
                         <%--<uc3:comment ID="comment" runat="server" />--%>
                     </div>
                 </div>
-                <uc1:banners_right ID="banners_right1" runat="server" />
-                <%--<uc2:last_articles ID="last_articles1" runat="server" />--%>
+<uc1:RightSide ID="RightSide1" runat="server" />
             </div>
         </div>
     </section>

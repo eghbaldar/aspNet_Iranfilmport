@@ -2,11 +2,18 @@
     AutoEventWireup="false" CodeFile="addBolg.aspx.vb" Inherits="CMS_Pages_addBolg" %>
 
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <script src="../../files/ckeditor/ckeditor.js"></script>
     <script src="../../files/ckeditor/samples/js/sample.js"></script>
     <link rel="stylesheet" href="../../files/ckeditor/samples/css/samples.css" />
     <link rel="stylesheet" href="../../files/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css" />
+    <style>
+        .autocomplete_completionListElement {
+            line-height: 30px;
+        }
+    </style>
     <style>
         .blink {
             -webkit-animation-name: blink;
@@ -58,7 +65,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <asp:ScriptManager runat="server">
+    <asp:ScriptManager runat="server" EnablePageMethods="true">
     </asp:ScriptManager>
     <asp:MultiView ID="MultiView" runat="server" ActiveViewIndex="0">
         <asp:View ID="ViewTag" runat="server">
@@ -223,49 +230,78 @@
                     <tr>
                         <td>
                             <div style="padding: 10px; border: 2px dashed Orange; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;">
-                                <div style="padding: 5px; font-family: Samim;">
-                                    دسته‌ی اصلی:
-                                </div>
-                                <div>
-                                    <asp:DropDownList ID="cmd_type" runat="server" CssClass="txtFa">
-                                        <asp:ListItem Value="1">نقد و مطالب تحلیلی</asp:ListItem>
-                                        <asp:ListItem Value="2">مقالات آموزشی فیلم و فیلمنامه</asp:ListItem>
-                                        <asp:ListItem Value="3">شناخت جشنواره ها</asp:ListItem>
-                                        <asp:ListItem Value="4">اخبار درگاه فیلم ایران</asp:ListItem>
-                                        <asp:ListItem Value="5">اخبار داخلی</asp:ListItem>
-                                        <asp:ListItem Value="6">اخبار بین المللی</asp:ListItem>
-                                        <asp:ListItem Value="7">فراخوان ها</asp:ListItem>
-                                        <asp:ListItem Value="8">یادداشت های سردبیر</asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
-                                <div style="padding: 5px; font-family: Samim;">
-                                    دسته‌ی فرعی:
-                                </div>
+                                <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+                                    <ContentTemplate>
 
-                                <div>
-                                    <asp:DropDownList ID="cmd_category" runat="server" CssClass="txtFa" DataSourceID="SDS_Cat"
-                                        DataTextField="name" DataValueField="ID">
-                                    </asp:DropDownList>
-                                    <asp:SqlDataSource ID="SDS_Cat" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
-                                        SelectCommand="SELECT * FROM [tbl_articleCategory] ORDER BY [ID] DESC"></asp:SqlDataSource>
-                                </div>
-                                <div style="padding: 5px; font-family: Samim;">
-                                    کوتاه و بلند:
-                                </div>
-                                <div>
-                                    <asp:DropDownList ID="cmd_short_feature" runat="server" CssClass="txtFa">
-                                        <asp:ListItem Value="1">کوتاه</asp:ListItem>
-                                        <asp:ListItem Value="2">بلند</asp:ListItem>
-                                        <asp:ListItem Value="3">هر دو</asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
+
+                                        <div style="padding: 5px; font-family: Samim;">
+                                            دسته‌ی اصلی:
+                                        </div>
+                                        <div>
+                                            <asp:DropDownList ID="cmd_type" runat="server" AutoPostBack="true" CssClass="txtFa">
+                                                <asp:ListItem Value="1">نقد و مطالب تحلیلی</asp:ListItem>
+                                                <asp:ListItem Value="2">مقالات آموزشی فیلم و فیلمنامه</asp:ListItem>
+                                                <asp:ListItem Value="3">شناخت جشنواره ها</asp:ListItem>
+                                                <asp:ListItem Value="4">اخبار درگاه فیلم ایران</asp:ListItem>
+                                                <asp:ListItem Value="5">اخبار داخلی</asp:ListItem>
+                                                <asp:ListItem Value="6">اخبار بین المللی</asp:ListItem>
+                                                <asp:ListItem Value="7">فراخوان ها</asp:ListItem>
+                                                <asp:ListItem Value="8">یادداشت‌های مدیران درگاه</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+                                        <div style="padding: 5px; font-family: Samim;">
+                                            دسته‌ی فرعی:
+                                        </div>
+                                        <div>
+                                            <asp:DropDownList ID="cmd_category" runat="server" CssClass="txtFa" DataSourceID="SDS_Cat"
+                                                DataTextField="name" DataValueField="ID">
+                                            </asp:DropDownList>
+                                            <asp:SqlDataSource ID="SDS_Cat" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
+                                                SelectCommand="SELECT * FROM [tbl_articleCategory]
+                                        WHERE mainCat = @mainCat
+                                        ORDER BY [ID] DESC">
+
+                                                <SelectParameters>
+                                                    <asp:ControlParameter ControlID="cmd_type" Name="mainCat"
+                                                        PropertyName="Text" Type="String" />
+                                                </SelectParameters>
+
+                                            </asp:SqlDataSource>
+                                        </div>
+                                        <div style="padding: 5px; font-family: Samim;">
+                                            کوتاه و بلند:
+                                        </div>
+                                        <div>
+                                            <asp:DropDownList ID="cmd_short_feature" runat="server" CssClass="txtFa">
+                                                <asp:ListItem Value="1">کوتاه</asp:ListItem>
+                                                <asp:ListItem Value="2">بلند</asp:ListItem>
+                                                <asp:ListItem Value="3">هر دو</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+                                        <asp:UpdateProgress ID="UpdateProgress1" AssociatedUpdatePanelID="UpdatePanel3" runat="server">
+                                            <ProgressTemplate>
+                                                <asp:Image ID="Image1" Width="50px" ImageUrl="~/files/images/icons/loading.gif" runat="server" />
+                                            </ProgressTemplate>
+                                        </asp:UpdateProgress>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td>
 
-                            <asp:TextBox onkeyup="countCharFa(this)" ID="txtTitle" placeholder="عنوان ..." runat="server" CssClass="txtFa"></asp:TextBox>
+
+                            <asp:TextBox onkeyup="countCharFa(this)"
+                                ID="txtTitle" placeholder="عنوان ..." runat="server" CssClass="txtFa"></asp:TextBox>
+                            <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server"
+                                CompletionListCssClass="autocomplete_completionListElement"
+                               
+                                ServiceMethod="SearchTitleFa"
+                                ServicePath="addBolg.aspx"
+                                MinimumPrefixLength="2" CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
+                                TargetControlID="txtTitle" FirstRowSelected="false">
+                            </cc1:AutoCompleteExtender>
                             <div class="numbersofChartFa"></div>
                             <script>
                                 function countCharFa(val) {
@@ -293,8 +329,17 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:TextBox ID="txtTitleEn" onkeyup="countCharEn(this)" placeholder="Title ..." runat="server" CssClass="txtEn"></asp:TextBox>
-                             <div class="numbersofChartEn"></div>
+
+                            <asp:TextBox ID="txtTitleEn" onkeyup="countCharEn(this)" placeholder="Title ..." runat="server"
+                                CssClass="txtEn"></asp:TextBox>
+                            <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" ServiceMethod="SearchTitleEn"
+                                CompletionListCssClass="autocomplete_completionListElement"
+                                ServicePath="addBolg.aspx"
+                                MinimumPrefixLength="2" CompletionInterval="10" EnableCaching="false" CompletionSetCount="10"
+                                TargetControlID="txtTitleEn" FirstRowSelected="false">
+                            </cc1:AutoCompleteExtender>
+
+                            <div class="numbersofChartEn"></div>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="txtTitleEn"
                                 ErrorMessage="Mandatory Field" ForeColor="Red" ValidationGroup="1"></asp:RequiredFieldValidator>
                             <script>

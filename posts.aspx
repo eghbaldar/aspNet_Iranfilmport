@@ -1,75 +1,66 @@
 ﻿<%@ Page Language="VB" MasterPageFile="~/Master_Main.master" AutoEventWireup="false"
     CodeFile="posts.aspx.vb" Inherits="post" %>
 
-<%@ Register Src="usercontrols/banners_right.ascx" TagName="banners_right" TagPrefix="uc1" %>
 <%@ Register Src="usercontrols/RightSide.ascx" TagName="RightSide" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-    <asp:PlaceHolder runat="server" id="pc"></asp:PlaceHolder>
+    <asp:PlaceHolder runat="server" ID="pc"></asp:PlaceHolder>
     <style>
-        .TitleL
-        {
+        .TitleL {
             font-family: traffic;
             font-size: 20px;
-            
         }
-        .TextL
-        {
+
+        .TextL {
             font-family: traffic;
             font-size: 15px;
             color: Black;
             text-justify: inter-word;
             text-align: justify;
         }
-        strong
-        {
+
+        strong {
             font-family: NazaninB;
         }
-        
-        .gridview
-        {
+
+        .gridview {
             background-color: #fff;
             padding: px;
             margin: 6% auto;
         }
-        .gridview a
-        {
-            margin: auto 6%;
-            border-radius: 50%;
-            background-color: #C0B700;
-            padding: 5px 10px 5px 10px;
-            color: #fff;
-            text-decoration: none;
-            -o-box-shadow: 1px 1px 1px #111;
-            -moz-box-shadow: 1px 1px 1px #111;
-            -webkit-box-shadow: 1px 1px 1px #111;
-            box-shadow: 1px 1px 1px #111;
-        }
-        .gridview a:hover
-        {
-            background-color: #E9DC01;
-            color: #fff;
-        }
-        
-        .gridview span
-        {
-            background-color: #E9DC01;
-            color: #fff;
-            -o-box-shadow: 1px 1px 1px #111;
-            -moz-box-shadow: 1px 1px 1px #111;
-            -webkit-box-shadow: 1px 1px 1px #111;
-            box-shadow: 1px 1px 1px #111;
-            border-radius: 50%;
-            padding: 5px 10px 5px 10px;
-        }
-               
     </style>
+    <style>
+        .GridPager {
+            background-color: #d6fcff;
+        }
 
+            .GridPager a, .GridPager span {
+                display: block;
+                height: 30px;
+                width: 30px;
+                font-weight: bold;
+                text-align: center;
+                font-size: 20px;
+                text-decoration: none;
+            }
+
+            .GridPager a {
+                background-color: #f5f5f5;
+                color: #969696;
+                border: 1px solid #969696;
+            }
+
+            .GridPager span {
+                background-color: #A1DCF2;
+                color: #000;
+                border: 1px solid #3AC0F2;
+            }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <section class="blog-section style-four section2">
     <div class="container">
         <div class="row">
-            <div class="col-md-9 col-sm-12 col-xs-12" >
+            <div class="col-md-9 col-sm-12 col-xs-12">g
                 <div class="left-side">
 
                 <div class="item-holder" style="direction:rtl;box-shadow:2px 2px 8px 8px #F4F4F4;padding:8px;">
@@ -114,9 +105,15 @@
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
-            <pagerstyle cssclass="gridview">
-
-</pagerstyle>
+                            <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
+                            <HeaderStyle BackColor="#CCCCCC" Font-Bold="True" ForeColor="#848484" />
+                            <PagerStyle HorizontalAlign="Center" CssClass="GridPager" />
+                            <RowStyle BackColor="White" ForeColor="#330099" />
+                            <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
+                            <SortedAscendingCellStyle BackColor="#FEFCEB" />
+                            <SortedAscendingHeaderStyle BackColor="#AF0101" />
+                            <SortedDescendingCellStyle BackColor="#F6F0C0" />
+                            <SortedDescendingHeaderStyle BackColor="#7E0000" />
         </asp:GridView>
         <asp:SqlDataSource ID="SDS_Master" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
             SelectCommand="SELECT * FROM [tbl_articles] WHERE [visible] = 1 and [date_time] <= getdate() ORDER BY [date_time] DESC">
@@ -127,7 +124,6 @@
 
 
             <uc1:RightSide ID="RightSide1" runat="server" />
-             <uc1:banners_right ID="banners_right1" runat="server" />
         </div>
     </div>
 </section>

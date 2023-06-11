@@ -1,8 +1,6 @@
 ﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Master_Main.master" AutoEventWireup="false"
     CodeFile="team.aspx.vb" Inherits="team" %>
-
-<%@ Register Src="usercontrols/banners_right.ascx" TagName="banners_right" TagPrefix="uc1" %>
-<%@ Register Src="usercontrols/last_articles.ascx" TagName="last_articles" TagPrefix="uc2" %>
+<%@ Register Src="usercontrols/RightSide.ascx" TagName="RightSide" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style>
         @font-face {
@@ -32,6 +30,20 @@
         .trPerson:hover {
             background-color: #fff658;
             cursor: pointer;
+        }
+
+        .BoxFa {
+            background-color: goldenrod;
+            padding-right: 6px;
+            padding-left: 6px;
+            font-family: Samim;
+            color: white;
+            font-size: 12px;
+            text-align: center;
+            display: inline-block;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
         }
 
         @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
@@ -304,6 +316,36 @@ font-weight: bolder;direction:ltr;
                                         </td>
                                     </tr>
                                     <tr><td></td><td></td></tr>
+                                      <tr class="trPerson">
+                                        <td style="vertical-align: top; text-align: center;">
+                                            <img src="files/images/team/hajati.png" style="-moz-border-radius: 5px; -webkit-border-radius: 5px;
+                                                border-radius: 5px;" width="200px" />
+                                        </td>
+                                        <td>
+                                            <div class="Person">
+                                                <div>
+                                                    <span style="color: #e3cc00; font-family: Tahoma; font-size: 30px;
+
+font-weight: bolder;">
+                                                        Mohammad Hajati </span><div style="line-height: 40px; font-family: Tahoma; 
+font-weight: bolder;direction:ltr;
+                                                            font-size: 20px;">
+                                                            <br />
+                                                            Company Lawyer
+                                                            <br />
+                                                            <div class="BoxFa">
+                                                                وکیل حقوقی شرکت
+                                                            </div>
+                                                            <br />
+                                                        </div>
+                                                </div>
+                                                     <%-- <div style="direction: ltr;">
+                                                    <a href="mailto:asal.eghbaldar2@gmail.com">asal.eghbaldar2@gmail.com </a>
+                                                </div>--%>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr><td></td><td></td></tr>
                                      <tr class="trPerson">
                                         <td style="vertical-align: top; text-align: center;">
                                             <img src="files/images/team/staffMan.png" style="-moz-border-radius: 5px; -webkit-border-radius: 5px;
@@ -358,7 +400,7 @@ font-weight: bolder;direction:ltr;
                                             <div class="Person">
                                                 <div>
                                                     <span style="color: #e3cc00; font-family: Tahoma; font-size: 30px; font-weight: bolder;">
-                                                        Ayda Yaran </span><span style="line-height: 40px; font-family: Tahoma; font-weight: bolder;
+                                                        Ayda Bahrami </span><span style="line-height: 40px; font-family: Tahoma; font-weight: bolder;
                                                             font-size: 20px;">
                                                             <br />
                                                             Director of Public Relations
@@ -513,8 +555,7 @@ font-weight: bolder;direction:ltr;
                         </div>
                     </div>
                 </div>
-                <uc1:banners_right ID="banners_right1" runat="server" />
-                <%--<uc2:last_articles ID="last_articles1" runat="server" />--%>
+<uc1:RightSide ID="RightSide1" runat="server" />
             </div>
         </div>
     </section>

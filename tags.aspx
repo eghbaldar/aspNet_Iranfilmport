@@ -5,7 +5,6 @@ AutoEventWireup="false"
 CodeFile="tags.aspx.vb"
 Inherits="post" %>
 
-<%@ Register Src="usercontrols/banners_right.ascx" TagName="banners_right" TagPrefix="uc1" %>
 <%@ Register Src="usercontrols/RightSide.ascx" TagName="RightSide" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <asp:PlaceHolder runat="server" id="pc"></asp:PlaceHolder>
@@ -36,35 +35,34 @@ Inherits="post" %>
    
    
 }
-.gridview a{
-  margin:auto 6%;
-    border-radius:50%;
-      background-color:#C0B700;
-      padding:5px 10px 5px 10px;
-      color:#fff;
-      text-decoration:none;
-      -o-box-shadow:1px 1px 1px #111;
-      -moz-box-shadow:1px 1px 1px #111;
-      -webkit-box-shadow:1px 1px 1px #111;
-      box-shadow:1px 1px 1px #111;
-     
-}
-.gridview a:hover{
-    background-color:#E9DC01;
-    color:#fff;
-}
+    </style>
+            <style>
+        .GridPager {
+            background-color: #d6fcff;
+        }
 
-.gridview span{
-    background-color:#E9DC01;
-    color:#fff;
-     -o-box-shadow:1px 1px 1px #111;
-      -moz-box-shadow:1px 1px 1px #111;
-      -webkit-box-shadow:1px 1px 1px #111;
-      box-shadow:1px 1px 1px #111;
+            .GridPager a, .GridPager span {
+                font-family:Samim;
+                display: block;
+                height: 30px;
+                width: 30px;
+                font-weight: bold;
+                text-align: center;
+                font-size: 15px;
+                text-decoration: none;
+            }
 
-    border-radius:50%;
-    padding:5px 10px 5px 10px;
-}
+            .GridPager a {
+                background-color: #f5f5f5;
+                color: #969696;
+                border: 1px solid #969696;
+            }
+
+            .GridPager span {
+                background-color: #A1DCF2;
+                color: #000;
+                border: 1px solid #3AC0F2;
+            }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -116,9 +114,15 @@ Inherits="post" %>
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
-                        <pagerstyle cssclass="gridview">
-
-</pagerstyle>
+                            <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
+                            <HeaderStyle BackColor="#CCCCCC" Font-Bold="True" ForeColor="#848484" />
+                            <PagerStyle HorizontalAlign="Center" CssClass="GridPager" />
+                            <RowStyle BackColor="White" ForeColor="#330099" />
+                            <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
+                            <SortedAscendingCellStyle BackColor="#FEFCEB" />
+                            <SortedAscendingHeaderStyle BackColor="#AF0101" />
+                            <SortedDescendingCellStyle BackColor="#F6F0C0" />
+                            <SortedDescendingHeaderStyle BackColor="#7E0000" />
         </asp:GridView>
 
           <asp:ObjectDataSource ID="ODS_Search" runat="server" SelectMethod="BlogSearch" TypeName="DLL">
@@ -130,9 +134,7 @@ Inherits="post" %>
                 </div>
             </div>
 
-
             <uc1:RightSide ID="RightSide1" runat="server" />
-             <uc1:banners_right ID="banners_right1" runat="server" />
         </div>
     </div>
 </section>

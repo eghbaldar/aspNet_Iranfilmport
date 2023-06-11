@@ -2,6 +2,9 @@
 Imports CKFinder
 Imports System.Drawing
 Imports System.Data
+Imports System.Web.Services
+Imports System.Data.SqlClient
+Imports System.Web.Script.Services
 
 Partial Class CMS_Pages_addBolg
     Inherits System.Web.UI.Page
@@ -86,7 +89,7 @@ Partial Class CMS_Pages_addBolg
                 S = S & listTags.Items(i).Text.Trim.Replace(" ", "_") + " - "
             Next
             txtTags.Text = S.Substring(0, S.Length - 2)
-        End If        
+        End If
     End Sub
 
     Protected Sub CalDate_SelectionChanged(sender As Object, e As System.EventArgs) Handles CalDate.SelectionChanged
@@ -162,5 +165,50 @@ Partial Class CMS_Pages_addBolg
             MultiView.ActiveViewIndex = 1
         End If
     End Sub
+
+    <ScriptMethod()>
+    <WebMethod()>
+    Public Shared Function SearchTitleEn(ByVal prefixText As String, ByVal count As Integer) As List(Of String)
+        Using conn As SqlConnection = New SqlConnection()
+            conn.ConnectionString = ConfigurationManager.ConnectionStrings("iranfilmportConnectionString").ConnectionString
+            Using cmd As SqlCommand = New SqlCommand()
+                cmd.CommandText = "select top 10 titleEn from tbl_articles where titleEn like N'%' + @SearchText + '%' order by date_time desc"
+                cmd.Parameters.AddWithValue("@SearchText", prefixText)
+                cmd.Connection = conn
+                conn.Open()
+                Dim customers As List(Of String) = New List(Of String)()
+                Using sdr As SqlDataReader = cmd.ExecuteReader()
+                    While sdr.Read()
+                        customers.Add(sdr("titleEn").ToString())
+                    End While
+                End Using
+                conn.Close()
+
+                Return customers
+            End Using
+        End Using
+    End Function
+    <ScriptMethod()>
+    <WebMethod()>
+    Public Shared Function SearchTitleFa(ByVal prefixText As String, ByVal count As Integer) As List(Of String)
+        Using conn As SqlConnection = New SqlConnection()
+            conn.ConnectionString = ConfigurationManager.ConnectionStrings("iranfilmportConnectionString").ConnectionString
+            Using cmd As SqlCommand = New SqlCommand()
+                cmd.CommandText = "select  top 10 title from tbl_articles where title like N'%' + @SearchText + '%' order by date_time desc"
+                cmd.Parameters.AddWithValue("@SearchText", prefixText.Replace("ی", "ي"))
+                cmd.Connection = conn
+                conn.Open()
+                Dim customers As List(Of String) = New List(Of String)()
+                Using sdr As SqlDataReader = cmd.ExecuteReader()
+                    While sdr.Read()
+                        customers.Add(sdr("title").ToString())
+                    End While
+                End Using
+                conn.Close()
+
+                Return customers
+            End Using
+        End Using
+    End Function
 
 End Class

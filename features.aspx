@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Master_Main.master" AutoEventWireup="false"
     CodeFile="features.aspx.vb" Inherits="featers" %>
-
-<%@ Register Src="usercontrols/banners_right.ascx" TagName="banners_right" TagPrefix="uc1" %>
+<%@ Register Src="usercontrols/RightSide.ascx" TagName="RightSide" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style>
         h1, h2, h3, h4, h5, h6
@@ -503,7 +502,7 @@
                         </div>
                     </div>
                 </div>
-                <uc1:banners_right ID="banners_right1" runat="server" />
+ <uc1:RightSide ID="RightSide1" runat="server" />
             </div>
         </div>
     </section>

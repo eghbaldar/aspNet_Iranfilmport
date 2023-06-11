@@ -1,8 +1,6 @@
 ﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Master_Main.master" AutoEventWireup="false"
     CodeFile="post.aspx.vb" Inherits="post" %>
-
 <%@ Register Src="usercontrols/RightSide.ascx" TagName="RightSide" TagPrefix="uc1" %>
-<%@ Register Src="usercontrols/banners_right.ascx" TagName="banners_right" TagPrefix="uc2" %>
 <%@ Register Src="usercontrols/comment.ascx" TagName="comment" TagPrefix="uc3" %>
 <%@ Register Src="usercontrols/Navigation.ascx" TagName="Navigation" TagPrefix="uc4" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -27,10 +25,6 @@
             font-family: Samim;
         }
 
-        strong {
-            font-family: traffic;
-        }
-
         p {
             font-family: Samim;
             font-size: 14px;
@@ -44,8 +38,17 @@
             list-style: inherit;
         }
 
-        .MainText Span, .MainText P {
+        .MainText P, .MainText div {
             color: Black;
+        }
+
+            .MainText span img, .MainText p img, .MainText div img {
+                width: 100% !important;
+                height: 100% !important;
+            }
+
+        .MainText li, .MainText li {
+            color: black;
         }
         /*@media only screen and (max-width: 550px) 
         {
@@ -120,7 +123,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-9 col-sm-12 col-xs-12">
-                    <div class="left-side">
+                    <div class="left-side" style="padding:5px;margin:10px;">
                         <div class="item-holder" style="direction: rtl; box-shadow: 2px 2px 8px 8px #F4F4F4;
                             padding: 8px;">
 
@@ -140,7 +143,13 @@
                                             </div>
                                             
                                             <div style="padding-top: 5px;">
+                                                <span class="zoomout" style="font-size:20px;" runat="server" visible='<%# GetEditPermission() %>'>
+                                                    <a href='<%# Eval("id", "../cms/pages/EditPost?type=article&id={0}") %>' target="_blank">Enlighten Me!</a>
+                                                    <br />
+                                                </span>
+                                                
                                                 <span class="zoomin">+</span> <span class="zoomout">-</span>
+                                                
                                             </div>
                                                                         
                                             <article id="example">
@@ -163,11 +172,11 @@
                                                 </div>
                                                 <div style="text-align: left;">
                                                     <a target="_blank" href='<%# getTelegram(Eval("id"),Eval("title")) %>'>
-                                                        <img width="30" src="../files/images/icons/teleg.png" />
+                                                        <i class="bi bi-telegram" style="font-size: 2em;"></i>
                                                     </a><a target="_blank" href='<%# getTw(Eval("id"),Eval("title")) %>'>
-                                                        <img width="30" src="../files/images/icons/tw.png" />
+                                                        <i class="bi bi-twitter" style="font-size: 2em;"></i>
                                                     </a><a target="_blank" href='<%# getFB(Eval("id"),Eval("title")) %>'>
-                                                        <img width="30" src="../files/images/icons/fb.png" />
+                                                        <i class="bi bi-facebook" style="font-size: 2em;"></i>
                                                     </a></h1>
                                                 </div>
                                                 <div>
@@ -273,10 +282,7 @@
                         </div>
                     </div>
                 </div>
-                <uc1:RightSide ID="RightSide1" runat="server" />
-                <div class="Banner">
-                    <uc2:banners_right ID="banners_right1" runat="server" />
-                </div>
+<uc1:RightSide ID="RightSide1" runat="server" />
             </div>
         </div>
     </section>

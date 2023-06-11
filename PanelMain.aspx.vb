@@ -9,6 +9,7 @@ Partial Class PanelMain
         MultiView.ActiveViewIndex = 1
         If Dll.GetNumberOfNotChecked(HiddenField_FilmID.Value) > 0 Then
             btnNewUpdated.Visible = True
+            lblReceipt.Visible = True
         Else
             btnNewUpdated.Visible = False
         End If
@@ -74,15 +75,16 @@ Partial Class PanelMain
 
     Protected Sub btnBacktoFilms_Click(sender As Object, e As System.EventArgs) Handles btnBacktoFilms.Click
         MultiView.ActiveViewIndex = 0
+        lblReceipt.Visible = False
     End Sub
 
     Protected Sub btnNewUpdated_Click(sender As Object, e As System.EventArgs) Handles btnNewUpdated.Click
+
         Dim dl As New DLL
-        For i As Integer = 0 To dgNewUpdated.Rows.Count - 1
-            Dll.UpdateSubmissionAfterNotifiedFestival(Val(dgNewUpdated.Rows(i).Cells(15).Text))
-        Next
+        Dll.UpdateSubmissionAfterNotifiedFestival(Val(HiddenField_FilmID.Value))
         dgNewUpdated.DataBind()
         btnNewUpdated.Visible = False
+
     End Sub
 
     Public Function EnableProfile() As Boolean
@@ -101,7 +103,6 @@ Partial Class PanelMain
     End Sub
 
     Private Sub PanelMain_Load(sender As Object, e As EventArgs) Handles Me.Load
-
 
         If Not IsPostBack And String.IsNullOrEmpty(Dll.GetEmailClient(Val(Page.RouteData.Values("id")))) Then
             ClientEmailModal.Visible = True
@@ -141,14 +142,17 @@ Partial Class PanelMain
         Select Case receipt
             Case "2" ' means the receipt was sent but the user has not opened it yet
                 If GetStatusExistedFileOnServer(id.ToString & ".jpg") Then 'check whether receipt is existed or not!
-                    Return "<div class='divGiveReceipt'><a style='text-decoration:none' target='_blank' href='../PanelReceipt/" & id.ToString & "#receipt'>دریافت رسید</a></div>"
+                    Return "<div class='divGiveReceipt'><a style='text-decoration:none' target='_blank' href='../PanelReceipt/" & Page.RouteData.Values("id") & "/" & id.ToString & "#receipt'>دریافت رسید</a></div>"
                 Else
                     ScriptManager.RegisterStartupScript(Me, Me.GetType(), "عدم یافت رسید", "alert('" & msg_not_found_physical_file & "');", True)
                     Return "<img style='cursor:pointer' width='25px'  src='..\..\files\images\icons\ban.png' title='" & msg_not_found_physical_file & "'/>"
                 End If
             Case "3" ' means the receipt was opened by user in the past and now he/she will always be able to open/see it.
-                Return "<div class='divGiveReceipt'><a style='text-decoration:none'  href='../PanelReceipt/" & id.ToString & "#receipt'>دریافت رسید</a></div>"
+                Return "<div class='divGiveReceipt'><a style='text-decoration:none' target='_blank' href='../PanelReceipt/" & Page.RouteData.Values("id") & "/" & id.ToString & "#receipt'>دریافت رسید</a></div>"
             Case "1"
+                ScriptManager.RegisterStartupScript(Me, Me.GetType(), "عدم یافت رسید", "alert('" & msg_not_uploaded_physical_file & "');", True)
+                Return "<img style='cursor:pointer' src='..\..\files\images\icons\awating.png' title='" & msg_not_uploaded_physical_file & "' />"
+            Case "0" 'thi submission has JUST confrimed but its receipt has not created yet
                 ScriptManager.RegisterStartupScript(Me, Me.GetType(), "عدم یافت رسید", "alert('" & msg_not_uploaded_physical_file & "');", True)
                 Return "<img style='cursor:pointer' src='..\..\files\images\icons\awating.png' title='" & msg_not_uploaded_physical_file & "' />"
             Case Else
@@ -191,16 +195,19 @@ Partial Class PanelMain
 
     Private Sub dgAll_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles dgAll.RowDataBound
         If Convert.ToInt16(DataBinder.Eval(e.Row.DataItem, "receipt")) = 2 _
-            And GetStatusExistedFileOnServer(Convert.ToString(DataBinder.Eval(e.Row.DataItem, "id")) & ".jpg") Then
+            And Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "date_of_entryData")) >= "2023-04-22 00:00:00.000" Then
+            'WHY "2023-04-22 00:00:00.000" ? Because after this date, we got started uploading the physica receipts
             e.Row.BackColor = System.Drawing.Color.FromName("#ffd6d6")
         End If
     End Sub
 
     Private Sub dgNewUpdated_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles dgNewUpdated.RowDataBound
         If Convert.ToInt16(DataBinder.Eval(e.Row.DataItem, "receipt")) = 2 _
-            And GetStatusExistedFileOnServer(Convert.ToString(DataBinder.Eval(e.Row.DataItem, "id")) & ".jpg") Then
+            And Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "date_of_entryData")) >= "2023-04-22 00:00:00.000" Then
+            'And GetStatusExistedFileOnServer(Convert.ToString(DataBinder.Eval(e.Row.DataItem, "id")) & ".jpg") Then
             e.Row.BackColor = System.Drawing.Color.FromName("#ffd6d6")
         End If
     End Sub
+
 
 End Class

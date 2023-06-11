@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Master_Main.master" AutoEventWireup="false"
     CodeFile="festivalABC.aspx.vb" Inherits="festivalABC" %>
 
-<%@ Register Src="usercontrols/banners_right.ascx" TagName="banners_right" TagPrefix="uc1" %>
+<%@ Register Src="usercontrols/RightSide.ascx" TagName="RightSide" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style>
         .txtSearch
@@ -262,7 +262,7 @@ FROM [tbl_festivals]
 WHERE ([Level] = 2 or [Level] = 3 or [Level] = 4) ORDER BY [ID] DESC"></asp:SqlDataSource>
                 </div>
             </div>
-            <uc1:banners_right ID="banners_right1" runat="server" />
+<uc1:RightSide ID="RightSide1" runat="server" />    
         </div>
     </div>
 </asp:Content>

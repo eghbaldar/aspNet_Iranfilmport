@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Master_Main.master" AutoEventWireup="false" CodeFile="strategy.aspx.vb" Inherits="strategy" %>
 
-<%@ Register Src="usercontrols/banners_right.ascx" TagName="banners_right" TagPrefix="uc1" %>
-<%@ Register Src="usercontrols/last_articles.ascx" TagName="last_articles" TagPrefix="uc2" %>
+<%@ Register Src="usercontrols/RightSide.ascx" TagName="RightSide" TagPrefix="uc1" %>
 <%@ Register Src="usercontrols/comment.ascx" TagName="comment" TagPrefix="uc3" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
@@ -95,7 +94,9 @@
             <div class="col-md-9 col-sm-12 col-xs-12" >
                 <div class="left-side">
                 <div class="item-holder" style="direction:rtl;text-justify:inter-word;     text-align: justify;padding:10px;">
-
+                    <div class="alert alert-danger" role="alert" style="direction:rtl;text-align:right;font-family:Samim;">
+  این مدل از پخش از سال 1397 از برنامه «درگاه فیلم ایران» خارج شده است.
+</div>
                  <p style="font-family:Titr;">برنامه استراتژیک پخش فیلم چیست؟</p>
                 <p>«درگاه فیلم ایران» با دارا بودن تیمی مجرب و حرفه ای در حوزه <a target="_blank" href="http://iranfilmport.com/%D9%BE%D8%AE%D8%B4-%D9%88-%D8%A7%D8%B1%D8%B3%D8%A7%D9%84-%D9%81%DB%8C%D9%84%D9%85">پخش و ارسال فیلم به فستیوال های بین المللیِ فیلم و فیلمنامه</a> در تمامی ژانرهای رایج (کوتاه داستانی، بلند داستانی، مستند کوتاه، مستند بلند، انیمیشن کوتاه، انیمیشن بلند، تجربی کوتاه و تجربی بلند)، برای اولین بار در ایران <a target="_blank" href="http://iranfilmport.com/%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87-%D8%A7%D8%B3%D8%AA%D8%B1%D8%A7%D8%AA%DA%98%DB%8C%DA%A9-%D9%BE%D8%AE%D8%B4-%D9%81%DB%8C%D9%84%D9%85-%D8%A8%D9%87-%D8%AC%D8%B4%D9%86%D9%88%D8%A7%D8%B1%D9%87-%D9%87%D8%A7%DB%8C-%D8%AE%D8%A7%D8%B1%D8%AC%DB%8C">«پِلن استراتژیک پخش»</a> را در اختیار فیلمساز و یا تهیه کننده قرار خواهد دارد.</p>
                 <p>«پِلن استراتژیک پخش» و یا برنامه ی مدون شده ی چگونگی ارسال فیلم به جشنواره های خارجی، نقشه ی راه موفقیت یک فیلم است. شما بدون نقشه نمیتوانید سفر کنید، پس چگونه بدون «پلن پخش» انتظار موفقیت فیلمتان را در جشنواره ها دارید؟ 99% شبه پخش کنندگان فیلم در ایران، بدون هیچگونه برنامه و یا پلنی مشخص، فیلم و یا فیلمنامه را به فستیوال ها ارسال میکنند. آنها فستیوال های باز شده را رصد کرده و سپس گله‌ای فیلم های زیر دستشان را حواله ی فستیوال ها میکنند. تعدادی هم با معدود فستیوال هایی، ارتباط مستقیم کاری داشته و تنها هنرشان رایزنی با همان فستیوال های خاص است. در صورتی که نمیدانند، تعداد فستیوال های A+ (اسکاری) و A (قدمت بالای 20 سال) در جهان حدود 700 فستیوال است!</p>
@@ -135,9 +136,7 @@
                 </div>
                 </div>
 
-               <uc1:banners_right ID="banners_right1" runat="server" />
-
-                <%--<uc2:last_articles ID="last_articles1" runat="server" />--%>
+<uc1:RightSide ID="RightSide1" runat="server" />
 
                 </div>
                 </div>

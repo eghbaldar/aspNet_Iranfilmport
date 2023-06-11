@@ -29,36 +29,7 @@
             padding: px;
             margin: 6% auto;
         }
-        .gridview a
-        {
-            margin: auto 6%;
-            border-radius: 50%;
-            background-color: #C0B700;
-            padding: 5px 10px 5px 10px;
-            color: #fff;
-            text-decoration: none;
-            -o-box-shadow: 1px 1px 1px #111;
-            -moz-box-shadow: 1px 1px 1px #111;
-            -webkit-box-shadow: 1px 1px 1px #111;
-            box-shadow: 1px 1px 1px #111;
-        }
-        .gridview a:hover
-        {
-            background-color: #E9DC01;
-            color: #fff;
-        }
-        
-        .gridview span
-        {
-            background-color: #E9DC01;
-            color: #fff;
-            -o-box-shadow: 1px 1px 1px #111;
-            -moz-box-shadow: 1px 1px 1px #111;
-            -webkit-box-shadow: 1px 1px 1px #111;
-            box-shadow: 1px 1px 1px #111;
-            border-radius: 50%;
-            padding: 5px 10px 5px 10px;
-        }
+
         #TableOfSearchRight
         {
             width: 95%;
@@ -111,13 +82,33 @@
             color: #000;
         }
     </style>
-    <%--        <script>
-            function ClickforSearch() {
-                var s = document.getElementById('txtSearch').value;
-                if (s != "جستجو در مطالب درگاه فیلم ایران ...")
-                    window.open('postSearch.aspx?text=' + s, "_self");
+    <style>
+        .GridPager {
+            background-color: #d6fcff;
+        }
+
+            .GridPager a, .GridPager span {
+                display: block;
+                height: 30px;
+                width: 30px;
+                font-weight: bold;
+                text-align: center;
+                font-size: 20px;
+                text-decoration: none;
             }
-    </script>--%>
+
+            .GridPager a {
+                background-color: #f5f5f5;
+                color: #969696;
+                border: 1px solid #969696;
+            }
+
+            .GridPager span {
+                background-color: #A1DCF2;
+                color: #000;
+                border: 1px solid #3AC0F2;
+            }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
   <section class="blog-section style-four section" style="margin-top: -50px;">
@@ -190,9 +181,15 @@
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
-            <pagerstyle cssclass="gridview">
-
-</pagerstyle>
+                            <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
+                            <HeaderStyle BackColor="#CCCCCC" Font-Bold="True" ForeColor="#848484" />
+                            <PagerStyle HorizontalAlign="Center" CssClass="GridPager" />
+                            <RowStyle BackColor="White" ForeColor="#330099" />
+                            <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
+                            <SortedAscendingCellStyle BackColor="#FEFCEB" />
+                            <SortedAscendingHeaderStyle BackColor="#AF0101" />
+                            <SortedDescendingCellStyle BackColor="#F6F0C0" />
+                            <SortedDescendingHeaderStyle BackColor="#7E0000" />
         </asp:GridView>
 
      </div>

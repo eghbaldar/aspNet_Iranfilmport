@@ -114,4 +114,12 @@ Partial Class post
         Return "https://www.facebook.com/sharer/sharer.php?u=" + "iranfilmport.com/" + id.ToString + "/" + DL.GetClearString(title.ToString())
     End Function
 
+    Public Function GetEditPermission() As Boolean
+        If HttpContext.Current.User.Identity.Name <> "ifp2021" Then
+            Return False
+        Else
+            Return True
+        End If
+    End Function
+
 End Class

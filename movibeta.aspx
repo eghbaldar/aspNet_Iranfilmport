@@ -4,9 +4,7 @@
     AutoEventWireup="false"
     CodeFile="movibeta.aspx.vb"
     Inherits="movibeta" %>
-
-<%@ Register Src="usercontrols/banners_right.ascx" TagName="banners_right" TagPrefix="uc1" %>
-<%@ Register Src="usercontrols/last_articles.ascx" TagName="last_articles" TagPrefix="uc2" %>
+<%@ Register Src="usercontrols/RightSide.ascx" TagName="RightSide" TagPrefix="uc1" %>
 <%@ Register Src="usercontrols/comment.ascx" TagName="comment" TagPrefix="uc3" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style>
@@ -58,8 +56,8 @@
                         Since 2019, IRAN FILM PORT reaches to common dialogue with a famous distribution film company in the world named "MOVIBETA". According to this accordance, IRAN FILM PORT can use all of the services of MOVIBETA for expanding its distribution.
                     </p>
                     <div style="text-align:center;">
-                        <a href="https://www.instagram.com/p/CdoWxLZO6ub/" target="_blank">
-                         <img alt="movibeta.com" width="400px" src="files\images\icons\MovibetaIG.jpg" 
+                        <a href="http://iranfilmport.com/files/ckfinder/userfiles/images/%D8%AF%D8%B1%DA%AF%D8%A7%D9%87_%D9%81%DB%8C%D9%84%D9%85_%D8%A7%DB%8C%D8%B1%D8%A7%D9%86_%D9%85%D9%88%D9%88%DB%8C_%D8%A8%D8%AA%D8%A7_%D8%B4%D8%B1%DB%8C%DA%A9_%D8%A7%D8%B3%D9%BE%D8%A7%D9%86%DB%8C%D8%A7%DB%8C%DB%8C_movibeta.jpg" target="_blank">
+                         <img alt="movibeta.com" width="400px" src="http://iranfilmport.com/files/ckfinder/userfiles/images/%D8%AF%D8%B1%DA%AF%D8%A7%D9%87_%D9%81%DB%8C%D9%84%D9%85_%D8%A7%DB%8C%D8%B1%D8%A7%D9%86_%D9%85%D9%88%D9%88%DB%8C_%D8%A8%D8%AA%D8%A7_%D8%B4%D8%B1%DB%8C%DA%A9_%D8%A7%D8%B3%D9%BE%D8%A7%D9%86%DB%8C%D8%A7%DB%8C%DB%8C_movibeta.jpg" 
                              style="-moz-border-radius: 15px;	-webkit-border-radius: 15px;	 border-radius:15px;
 border:2px solid #2e79ff;"/>
                             </a>
@@ -69,6 +67,15 @@ border:2px solid #2e79ff;"/>
                                     اسپانیایی منعقد کرده است که از جمله مفاد آن میتوان به پوشش فستیوالی و نیز تخفیفاتی
                                     در این زمینه اشاره کرد.</p>                              
                         </div>
+
+                     <div style="text-align:center;">
+                        <a href="https://www.instagram.com/p/CdoWxLZO6ub/" target="_blank">
+                         <img alt="movibeta.com" width="400px" src="files\images\icons\MovibetaIG.jpg" 
+                             style="-moz-border-radius: 15px;	-webkit-border-radius: 15px;	 border-radius:15px;
+border:2px solid #2e79ff;"/>
+                            </a>
+                    </div>
+                    <br />
                         <div style="direction:ltr;text-align:left; background-color:#c2e8ea;
                         padding:10px;-moz-border-radius: 5px;	-webkit-border-radius: 5px;	 border-radius:5px;">
                         MOVIBETA's statement:
@@ -96,11 +103,7 @@ border:2px solid #2e79ff;"/>
                     <uc3:comment ID="comment" runat="server" />
                 </div>
                 </div>
-
-               <uc1:banners_right ID="banners_right1" runat="server" />
-
-                <%--<uc2:last_articles ID="last_articles1" runat="server" />--%>
-
+ <uc1:RightSide ID="RightSide1" runat="server" />
                 </div>
                 </div>
     </section>

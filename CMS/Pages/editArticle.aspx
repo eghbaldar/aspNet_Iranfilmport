@@ -2,6 +2,8 @@
     AutoEventWireup="false" CodeFile="editArticle.aspx.vb" Inherits="CMS_Pages_editArticle" %>
 
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <script src="../../files/ckeditor/ckeditor.js"></script>
     <script src="../../files/ckeditor/samples/js/sample.js"></script>
@@ -433,13 +435,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', end
                     <tr>
                         <td>
                             <div style="padding: 10px; border: 2px dashed Orange; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;">
+                           <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+                                    <ContentTemplate>
 
                                    <div style="padding:5px;font-family:Samim;">
                             دسته‌ی اصلی:
                         </div>
                                 <div>
-                                    <asp:DropDownList ID="cmd_type" runat="server" CssClass="txtFa">
-                                        <asp:ListItem Value="1">نقد و مطالب تحلیلی</asp:ListItem>
+                                    <asp:DropDownList ID="cmd_type" AutoPostBack="true"  runat="server" CssClass="txtFa">
+                                <asp:ListItem Value="1">نقد و مطالب تحلیلی</asp:ListItem>
                                 <asp:ListItem Value="2">مقالات آموزشی فیلم و فیلمنامه</asp:ListItem>
                                 <asp:ListItem Value="3">شناخت جشنواره ها</asp:ListItem>
                                 <asp:ListItem Value="4">اخبار درگاه فیلم ایران</asp:ListItem>
@@ -457,7 +461,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', end
                                         DataTextField="name" DataValueField="ID">
                                     </asp:DropDownList>
                                     <asp:SqlDataSource ID="SDS_Cat" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
-                                        SelectCommand="SELECT * FROM [tbl_articleCategory] ORDER BY [ID] DESC"></asp:SqlDataSource>
+                                                SelectCommand="SELECT * FROM [tbl_articleCategory]
+                                        WHERE mainCat = @mainCat
+                                        ORDER BY [ID] DESC">
+
+                                                <SelectParameters>
+                                                    <asp:ControlParameter ControlID="cmd_type" Name="mainCat"
+                                                        PropertyName="Text" Type="String" />
+                                                </SelectParameters>
+
+                                            </asp:SqlDataSource>
                                 </div>
                                   <div style="padding:5px;font-family:Samim;">
                             کوتاه و بلند:
@@ -469,6 +482,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', end
                                         <asp:ListItem Value="3">هر دو</asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
+                                      <asp:UpdateProgress ID="UpdateProgress1" AssociatedUpdatePanelID="UpdatePanel3" runat="server">
+                                            <ProgressTemplate>
+                                                <asp:Image ID="Image1" Width="50px" ImageUrl="~/files/images/icons/loading.gif" runat="server" />
+                                            </ProgressTemplate>
+                                        </asp:UpdateProgress>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
                                </div>
                                              
 
@@ -479,6 +499,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', end
                         <td>
                             <asp:TextBox onkeyup="countCharFa(this)" ID="txtTitle" runat="server"
                                 placeholder="عنوان..." CssClass="txtFa"></asp:TextBox>
+                                                        <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server"
+                                CompletionListCssClass="autocomplete_completionListElement"
+                               
+                                ServiceMethod="SearchTitleFa"
+                                ServicePath="addBolg.aspx"
+                                MinimumPrefixLength="2" CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
+                                TargetControlID="txtTitle" FirstRowSelected="false">
+                            </cc1:AutoCompleteExtender>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtTitle"
                                 ErrorMessage="الزامی است" ForeColor="Red" ValidationGroup="1"></asp:RequiredFieldValidator>
                              <div class="numbersofChartFa"></div>
@@ -511,6 +539,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', end
                             <asp:TextBox  onkeyup="countCharEn(this)" ID="txtTitleEn" runat="server"
                                 placeholder="Title ..."
                                 CssClass="txtEn"></asp:TextBox>
+                                                        <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" ServiceMethod="SearchTitleEn"
+                                CompletionListCssClass="autocomplete_completionListElement"
+                                ServicePath="addBolg.aspx"
+                                MinimumPrefixLength="2" CompletionInterval="10" EnableCaching="false" CompletionSetCount="10"
+                                TargetControlID="txtTitleEn" FirstRowSelected="false">
+                            </cc1:AutoCompleteExtender>
 
                             <div class="numbersofChartEn"></div>
                               <script>

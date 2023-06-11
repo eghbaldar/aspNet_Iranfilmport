@@ -1,8 +1,6 @@
 ﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Master_Main.master" AutoEventWireup="false" CodeFile="testimonial.aspx.vb" Inherits="testimonial" %>
 
-
-<%@ Register Src="usercontrols/banners_right.ascx" TagName="banners_right" TagPrefix="uc1" %>
-<%@ Register Src="usercontrols/last_articles.ascx" TagName="last_articles" TagPrefix="uc2" %>
+<%@ Register Src="usercontrols/RightSide.ascx" TagName="RightSide" TagPrefix="uc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style>
@@ -12,17 +10,19 @@
             direction: rtl;
             color: #000;
         }
-        .filmmakerTitle{
-            padding:10px;
-            font-family:Samim;
-            color:black;
-            font-size:17px;
+
+        .filmmakerTitle {
+            padding: 10px;
+            font-family: Samim;
+            color: black;
+            font-size: 17px;
             /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f2f6d0+1,ffe800+86,ffe800+86,e0eff9+87,e2e2e2+88,e2e2e2+88&0+0,1+100 */
-background: -moz-linear-gradient(-45deg, rgba(242,246,208,0) 0%, rgba(242,246,208,0.01) 1%, rgba(255,232,0,0.86) 86%, rgba(224,239,249,0.87) 87%, rgba(226,226,226,0.88) 88%, rgba(226,226,226,1) 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(-45deg, rgba(242,246,208,0) 0%,rgba(242,246,208,0.01) 1%,rgba(255,232,0,0.86) 86%,rgba(224,239,249,0.87) 87%,rgba(226,226,226,0.88) 88%,rgba(226,226,226,1) 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(135deg, rgba(242,246,208,0) 0%,rgba(242,246,208,0.01) 1%,rgba(255,232,0,0.86) 86%,rgba(224,239,249,0.87) 87%,rgba(226,226,226,0.88) 88%,rgba(226,226,226,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00f2f6d0', endColorstr='#e2e2e2',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+            background: -moz-linear-gradient(-45deg, rgba(242,246,208,0) 0%, rgba(242,246,208,0.01) 1%, rgba(255,232,0,0.86) 86%, rgba(224,239,249,0.87) 87%, rgba(226,226,226,0.88) 88%, rgba(226,226,226,1) 100%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(-45deg, rgba(242,246,208,0) 0%,rgba(242,246,208,0.01) 1%,rgba(255,232,0,0.86) 86%,rgba(224,239,249,0.87) 87%,rgba(226,226,226,0.88) 88%,rgba(226,226,226,1) 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(135deg, rgba(242,246,208,0) 0%,rgba(242,246,208,0.01) 1%,rgba(255,232,0,0.86) 86%,rgba(224,239,249,0.87) 87%,rgba(226,226,226,0.88) 88%,rgba(226,226,226,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00f2f6d0', endColorstr='#e2e2e2',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
         }
+
         @media (max-width: 767px) {
             .item-holder {
                 width: 100%;
@@ -42,7 +42,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00f2f6d0', e
             </div>
         </div>
     </section>
-        
+
     <!--End Page Title-->
     <section class="blog-section style-four section2" style="margin-top: -50px;">
         <div class="container">
@@ -82,10 +82,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00f2f6d0', e
                         </div>
                     </div>
                 </div>
-                <uc1:banners_right ID="banners_right1" runat="server" />
-                
-
-             
+<uc1:RightSide ID="RightSide1" runat="server" />
             </div>
         </div>
     </section>
