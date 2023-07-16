@@ -14,7 +14,27 @@ Partial Class panel
             Dim IDUSER As Long = Dll.GetValid(txtUser.Text.Trim, txtPass.Text.Trim)
             If IDUSER > 0 Then
                 Dll.UpdateVisitCounter(IDUSER)
-                Session("PanelClient") = IDUSER
+
+                'Session("PanelClient") = IDUSER
+                ' sometimes used to persist user roles
+
+                'Dim ticket As FormsAuthenticationTicket = New FormsAuthenticationTicket(
+                '1, IDUSER, Date.Now, Date.Now.AddMonths(1), True, FormsAuthentication.FormsCookiePath)                                     ' ticket version
+                ' authenticated username
+                ' issueDate
+                ' expiryDate
+                ' true to persist across browser sessions
+                ' can be used to store additional user data
+                ' the path for the cookie
+
+                ' Encrypt the ticket using the machine key
+                'Dim encryptedTicket As String = FormsAuthentication.Encrypt(ticket)
+
+                ' Add the cookie to the request to save it
+                'Dim cookie As HttpCookie = New HttpCookie("IFP_CLIENT", encryptedTicket)
+                'cookie.HttpOnly = True
+                'Response.Cookies.Add(cookie)
+                FormsAuthentication.SetAuthCookie("clientIFP", True)
                 Response.Redirect("~/panel/client/" & IDUSER)
             End If
         End If
@@ -37,7 +57,7 @@ Partial Class panel
             Session.Remove("PanelClient")
         End Try
 
-        ImageCaptacha.ImageUrl = "captcha"
+        ImageCaptacha.ImageUrl = "~/captcha"
         If Not Dll.Version.Trim = Nothing Then
             lblVersion.Text = Dll.Version.Replace("ي", "ی")
             If Not IsPostBack Then ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Modal", "window.onload = function() { loadMODAL(); };", True)

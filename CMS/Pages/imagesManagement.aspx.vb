@@ -9,9 +9,12 @@ Partial Class CMS_Pages_imagesManagement
             txtUniqueNumber.Text = Guid.NewGuid.ToString                
         End If
         GetFiles(New DirectoryInfo(MapPath("~/files/ckfinder/userfiles/images/")))
+        GetEnteredTags(Request.QueryString("enteredTags"))
 
     End Sub
-
+    Sub GetEnteredTags(Tags As String)
+        txtEntryText.Text = Tags.Replace("+", " ").Replace("_", " ").Trim
+    End Sub
     Sub GetFiles(ByVal source As DirectoryInfo)
 
         pnlMain.Controls.Clear()

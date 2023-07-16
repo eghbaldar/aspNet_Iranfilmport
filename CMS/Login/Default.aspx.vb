@@ -1,6 +1,7 @@
 ﻿Imports System.Net
 Imports System.Web.Services
 Imports System.IO
+Imports System.Web.Configuration
 
 Partial Class Management_Login_Default
     Inherits System.Web.UI.Page
@@ -16,9 +17,9 @@ Partial Class Management_Login_Default
 
     Protected Sub Page_Load(sender As Object, e As System.EventArgs) Handles Me.Load
 
-        If HttpContext.Current.User.Identity.IsAuthenticated Then
-            Response.Redirect("~/cms/pages/")
-        End If
+        'If HttpContext.Current.User.Identity.IsAuthenticated Then
+        '    Response.Redirect("~/cms/pages/")
+        'End If
         If Not IsPostBack Then
             ImageCaptacha.ImageUrl = "~/captcha"
             ImageCaptachaSpecial.ImageUrl = "~/captcha"
@@ -46,11 +47,17 @@ Partial Class Management_Login_Default
 
             Dim En As New Encryptor
 
-            If txtSpecialUsername.Text.Trim = "ADMINadmin" And
-                "/lGDnMnen1UQetcwygI8Bg==" = En.EncryptText(txtSpecialPassword.Text.Trim, "ASN2022ajaba*&^") Then
+            'Fetch secure value from webconfig file directly
+            Dim AuthKey = WebConfigurationManager.AppSettings("AuthKey")
+            Dim StaticHashedPass = WebConfigurationManager.AppSettings("StaticHashedPass")
+            Dim USERNAME = WebConfigurationManager.AppSettings("USERNAME")
+            Dim Role = WebConfigurationManager.AppSettings("Role")
+
+            If txtSpecialUsername.Text.Trim = USERNAME And
+                AuthKey = En.EncryptText(txtSpecialPassword.Text.Trim, StaticHashedPass) Then
                 Session.Remove("CodeCreated")
                 Session("ADMIN") = "Full"
-                FormsAuthentication.SetAuthCookie("ifp2021", True)
+                FormsAuthentication.SetAuthCookie(Role, True)
                 Response.Redirect("~/cms/pages/")
             End If
 
@@ -75,6 +82,8 @@ Partial Class Management_Login_Default
                 cell = "09020763947"
             Case "alidost"
                 cell = "09112380067"
+            Case "maryam"
+                cell = "09304379477"
         End Select
 
         Dim Generator As New Random

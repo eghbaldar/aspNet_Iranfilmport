@@ -24,7 +24,8 @@ Dl.GetEmailClient(Convert.ToInt64(Page.RouteData.Values("id"))), "وارد نش�
     End Sub
 
     Protected Sub btnMnuExit_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnMnuExit.Click
-        Session("PanelClient") = ""
+        'Session("PanelClient") = ""
+        FormsAuthentication.SignOut()
         Response.Redirect("~/panel")
     End Sub
 

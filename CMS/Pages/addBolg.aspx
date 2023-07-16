@@ -63,6 +63,7 @@
             font-size: 14px;
         }
     </style>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <asp:ScriptManager runat="server" EnablePageMethods="true">
@@ -252,8 +253,11 @@
                                         <div style="padding: 5px; font-family: Samim;">
                                             دسته‌ی فرعی:
                                         </div>
+
                                         <div>
-                                            <asp:DropDownList ID="cmd_category" runat="server" CssClass="txtFa" DataSourceID="SDS_Cat"
+                                            <asp:DropDownList ID="cmd_category"
+                                                AutoPostBack="true"
+                                                runat="server" CssClass="txtFa" DataSourceID="SDS_Cat"
                                                 DataTextField="name" DataValueField="ID">
                                             </asp:DropDownList>
                                             <asp:SqlDataSource ID="SDS_Cat" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
@@ -267,6 +271,42 @@
                                                 </SelectParameters>
 
                                             </asp:SqlDataSource>
+
+                                            <div style="padding: 10px;">
+                                                <asp:GridView ID="DgSuggestedPost" runat="server"
+                                                    AutoGenerateColumns="false"
+                                                    GridLines="None"
+                                                    DataSourceID="SDD_SuggestedTitle">
+                                                    <Columns>
+                                                        <asp:TemplateField>
+                                                            <ItemTemplate>
+                                                                <asp:Label Style="color: gray;" runat="server"
+                                                                    Text='<%# Eval("title") %>'
+                                                                    ID="lblsuggested">
+                                                                </asp:Label>
+                                                                <a style="cursor:pointer;"
+                                                                    onclick="window.open('../../' + '<%# Eval("id") %>','_blank');">
+                                                                    (Show)
+                                                                </a>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                    </Columns>
+                                                </asp:GridView>
+                                                <asp:SqlDataSource ID="SDD_SuggestedTitle" runat="server"
+                                                    ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
+                                                    SelectCommand="
+                                                    SELECT top 5 * FROM [tbl_articles]
+                                        WHERE CateCode = @mainCat
+                                        ORDER BY [ID] DESC">
+
+                                                    <SelectParameters>
+                                                        <asp:ControlParameter ControlID="cmd_category" Name="mainCat"
+                                                            PropertyName="Text" Type="String" />
+                                                    </SelectParameters>
+
+                                                </asp:SqlDataSource>
+                                            </div>
+
                                         </div>
                                         <div style="padding: 5px; font-family: Samim;">
                                             کوتاه و بلند:
@@ -296,7 +336,6 @@
                                 ID="txtTitle" placeholder="عنوان ..." runat="server" CssClass="txtFa"></asp:TextBox>
                             <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server"
                                 CompletionListCssClass="autocomplete_completionListElement"
-                               
                                 ServiceMethod="SearchTitleFa"
                                 ServicePath="addBolg.aspx"
                                 MinimumPrefixLength="2" CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
@@ -366,7 +405,12 @@
                     </tr>
                     <tr>
                         <td>
-                            <a href="imagesManagement/" style="font-family: Samim; font-size: 20px;" target="_blank">... مدیریت تصاویر ... </a>
+                            <div style="padding: 10px; text-align: center;">
+                                <a
+                                    onclick="onOpenPhotos()"
+                                    style="font-family: Samim; font-size: 20px; cursor: pointer;"
+                                    target="_blank">... مدیریت تصاویر ... </a>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -463,7 +507,6 @@
                                             </div>
                                             <asp:ListBox ID="listTags" runat="server" CssClass="txtFa" Width="200px"></asp:ListBox>
                                             <asp:Button ID="deletelist" runat="server" Text="×" BackColor="Red" ForeColor="White"></asp:Button>
-                                            <asp:Button ID="btnGoTags" runat="server" Text="&gt;&gt;" />
 
                                         </div>
                                         <div>
@@ -474,6 +517,13 @@
                                                 TextMode="MultiLine" Enabled="False"></asp:TextBox>
 
                                         </div>
+                                        <asp:HiddenField ID="HiddenFieldTags" runat="server" />
+                                        <script>
+                                            function onOpenPhotos() {
+                                                var EnteredTags = document.getElementById('<%= HiddenFieldTags.ClientID%>').value;
+                                                window.open('imagesManagement/?enteredTags=' + EnteredTags, '_blank');
+                                            }
+                                        </script>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                         </td>

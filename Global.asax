@@ -93,14 +93,16 @@
         routes.MapPageRoute("testimonial", "تصدیق-نامه-فیلمسازان", "~/testimonial.aspx")
         routes.MapPageRoute("agents", "agents", "~/agents.aspx")
         routes.MapPageRoute("tempcontract", "contract/{id}", "~/contract.aspx")
+        routes.MapPageRoute("GeneralDetails", "GeneralDetails/{type}", "~/GeneralDetails.aspx")
+
         '----------------------------------------------------------------------------------------
-        routes.MapPageRoute("panel", "panel", "~/panel.aspx")
-        routes.MapPageRoute("panelClient", "panel/client/{id}", "~/PanelMain.aspx")
-        routes.MapPageRoute("panelMoney", "panel/money/{id}", "~/PanelMoney.aspx")
-        routes.MapPageRoute("panelTickets", "panel/tickets/{id}", "~/PanelTicket.aspx")
-        routes.MapPageRoute("panelTicketsNew", "panel/newtickets/{id}", "~/PanelTicketNew.aspx")
-        routes.MapPageRoute("panelStrategyReports", "panel/panelStrategyReports/{id}/{idFilm}", "~/Panel_StrategyReport.aspx")
-        routes.MapPageRoute("panelReceipt", "panel/PanelReceipt/{id}/{idSubmission}/", "~/PanelReceipt.aspx")
+        routes.MapPageRoute("panel", "panel/", "~/panelclients/panel.aspx")
+        routes.MapPageRoute("panelClient", "panel/client/{id}", "~/panelclients/PanelMain.aspx")
+        routes.MapPageRoute("panelMoney", "panel/money/{id}", "~/panelclients/PanelMoney.aspx")
+        routes.MapPageRoute("panelTickets", "panel/tickets/{id}", "~/panelclients/PanelTicket.aspx")
+        routes.MapPageRoute("panelTicketsNew", "panel/newtickets/{id}", "~/panelclients/PanelTicketNew.aspx")
+        routes.MapPageRoute("panelStrategyReports", "panel/panelStrategyReports/{id}/{idFilm}", "~/panelclients/Panel_StrategyReport.aspx")
+        routes.MapPageRoute("panelReceipt", "panel/PanelReceipt/{id}/{idSubmission}/", "~/panelclients/PanelReceipt.aspx")
         '----------------------------------------------------------------------------------------
         'ساخت لینک داینامیک
         'routes.MapPageRoute("dynamicLink", "link/d/{randomString}", "~/files/images/background/banner_1.jpg")
@@ -204,6 +206,8 @@
         routes.MapPageRoute("cmscommentClients", "cms/pages/commentClients/", "~/cms/pages/commentClients.aspx")
         routes.MapPageRoute("cmsresumeeach", "cms/pages/resumeeachone/{id_film}", "~/cms/pages/resumeeachone.aspx")
         routes.MapPageRoute("cmsagents", "cms/pages/agents/", "~/cms/pages/agents.aspx")
+        routes.MapPageRoute("Calendar", "cms/pages/Calendar/{*date}", "~/cms/pages/Calendar.aspx")
+
     End Sub
 
     Shared Sub RegisterRoutes_username(ByVal routes As RouteCollection)

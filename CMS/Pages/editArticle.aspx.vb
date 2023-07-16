@@ -33,6 +33,14 @@ Partial Class CMS_Pages_editArticle
 
     End Sub
 
+    Private Sub FillHiddenTags()
+        HiddenFieldTags.Value = String.Empty
+        For i As Byte = 0 To listTags.Items.Count - 1
+            HiddenFieldTags.Value += listTags.Items(i).Text & "+"
+        Next
+        HiddenFieldTags.Value += "علیمحمد اقبالدار"
+    End Sub
+
     Sub loaddata()
         Dim DL As New DLL_CMS
         Dim Dset As New DataSet
@@ -148,15 +156,15 @@ Partial Class CMS_Pages_editArticle
     Protected Sub btnPreTag_Click(sender As Object, e As System.EventArgs) Handles btnPreTag.Click
         If txtPreTag.Text.Trim.Length > 0 Then
             listTags.Items.Add(txtPreTag.Text.Trim.Replace(" ", "_"))
+            FillHiddenTags()
+            ListedTags()
             txtPreTag.Text = ""
         End If
     End Sub
 
     Protected Sub deletelist_Click(sender As Object, e As System.EventArgs) Handles deletelist.Click
         listTags.Items.RemoveAt(listTags.SelectedIndex)
-    End Sub
-
-    Protected Sub btnGoTags_Click(sender As Object, e As System.EventArgs) Handles btnGoTags.Click
+        FillHiddenTags()
         ListedTags()
     End Sub
 
@@ -168,6 +176,7 @@ Partial Class CMS_Pages_editArticle
             Next
             txtTags.Text = S.Substring(0, S.Length - 2)
         End If
+        FillHiddenTags()
     End Sub
 
     Protected Sub CalDate_SelectionChanged(sender As Object, e As System.EventArgs) Handles CalDate.SelectionChanged

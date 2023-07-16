@@ -409,9 +409,11 @@
                                     <ul>
                                         <a href="DesktopSubmissionList">
                                             <asp:Label ID="Label24" runat="server" Text="لیست ثبت نام ها" /></a>
+                                          <a href="calendar">
+                                            <asp:Label ID="Label31" runat="server" Text="تقویم خبرها" /></a>
                                     </ul>
                                 </li>
-                                <li></li>
+
                                 <li></li>
                                 <li></li>
                                 <li></li>

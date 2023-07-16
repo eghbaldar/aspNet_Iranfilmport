@@ -573,7 +573,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', end
                     <tr>
                         <td>
                             <div style="padding:10px;text-align:center;">
-                                <a href="imagesManagement/" style="font-family: Samim; font-size: 20px;" target="_blank">... مدیریت تصاویر... </a>
+                                <a
+                                onclick="onOpenPhotos()"
+                                style="font-family: Samim; font-size: 20px;cursor:pointer;"
+                                target="_blank">... مدیریت تصاویر ... </a>
                             </div>
                         </td>
                     </tr>
@@ -686,7 +689,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', end
                                                     </div>
                                                     <asp:ListBox ID="listTags" runat="server" CssClass="txtFa" Width="200px"></asp:ListBox>
                                                     <asp:Button ID="deletelist" runat="server" Text="×" BackColor="Red" ForeColor="White"></asp:Button>
-                                                    <asp:Button ID="btnGoTags" runat="server" Text="&gt;&gt;" />
 </div>
 
                                         <div>
@@ -698,6 +700,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', end
                                                         TextMode="MultiLine" Enabled="False"></asp:TextBox>
                                         </div>
                                     </div>
+                                     <asp:HiddenField ID="HiddenFieldTags" runat="server" />
+                                        <script>
+                                            function onOpenPhotos() {
+                                                var EnteredTags = document.getElementById('<%= HiddenFieldTags.ClientID%>').value;
+                                                window.open('imagesManagement/?enteredTags=' + EnteredTags, '_blank');
+                                            }
+                                        </script>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                         </td>

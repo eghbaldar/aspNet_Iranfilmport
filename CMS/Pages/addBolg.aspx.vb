@@ -73,16 +73,24 @@ Partial Class CMS_Pages_addBolg
     Protected Sub btnPreTag_Click(sender As Object, e As System.EventArgs) Handles btnPreTag.Click
         If txtPreTag.Text.Trim.Length > 0 Then
             listTags.Items.Add(txtPreTag.Text.Trim.Replace(" ", "_"))
+            FillHiddenTags()
             txtPreTag.Text = ""
-            txtPreTag.Focus()
         End If
     End Sub
 
+    Public Function RemoveHTML(htmlString) As String
+        Dim matchpattern As String = "<(?:[^>=]|='[^']*'|=""[^""]*""|=[^'""][^\s>]*)*>"
+        Dim replacementstring As String = ""
+        Return Regex.Replace(htmlString, matchpattern, replacementstring, RegexOptions.IgnoreCase Or RegexOptions.IgnorePatternWhitespace Or RegexOptions.Multiline Or RegexOptions.Singleline)
+    End Function
+
     Protected Sub deletelist_Click(sender As Object, e As System.EventArgs) Handles deletelist.Click
         listTags.Items.RemoveAt(listTags.SelectedIndex)
+        FillHiddenTags()
+        ListedTags()
     End Sub
 
-    Protected Sub btnGoTags_Click(sender As Object, e As System.EventArgs) Handles btnGoTags.Click
+    Private Sub ListedTags()
         S = Nothing
         If listTags.Items.Count > 0 Then
             For i As Byte = 0 To listTags.Items.Count - 1
@@ -140,6 +148,7 @@ Partial Class CMS_Pages_addBolg
     End Sub
 
     Private Sub btnNextTag_Click(sender As Object, e As EventArgs) Handles btnNextTag.Click
+
         If rbFilm.Checked _
             And txtTagFilm.Text.Trim.Length > 0 _
             And txtTagFilmEng.Text.Trim.Length > 0 _
@@ -152,18 +161,27 @@ Partial Class CMS_Pages_addBolg
             listTags.Items.Add(txtTagDirector1_Eng.Text.Trim.Replace(" ", "_"))
             If txtTagDirectors2.Text.Trim.Length > 0 Then listTags.Items.Add(txtTagDirectors2.Text.Trim.Replace(" ", "_"))
             If txtTagDirector2_Eng.Text.Trim.Length > 0 Then listTags.Items.Add(txtTagDirector2_Eng.Text.Trim.Replace(" ", "_"))
-
             MultiView.ActiveViewIndex = 1
         End If
         If rbFestival.Checked _
            And txtTagFestivalFa.Text.Trim.Length > 0 _
            And txtTagFestivalEng.Text.Trim.Length > 0 Then
-
             listTags.Items.Add(txtTagFestivalFa.Text.Trim.Replace(" ", "_"))
             listTags.Items.Add(txtTagFestivalEng.Text.Trim.Replace(" ", "_"))
-
             MultiView.ActiveViewIndex = 1
         End If
+
+        FillHiddenTags()
+
+    End Sub
+
+    Private Sub FillHiddenTags()
+        HiddenFieldTags.Value = String.Empty
+        For i As Byte = 0 To listTags.Items.Count - 1
+            HiddenFieldTags.Value += listTags.Items(i).Text & "+"
+        Next
+        HiddenFieldTags.Value += "علیمحمد اقبالدار"
+        ListedTags()
     End Sub
 
     <ScriptMethod()>

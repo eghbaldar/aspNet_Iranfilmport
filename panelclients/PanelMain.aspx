@@ -1,7 +1,7 @@
-﻿<%@ Page Title="" Language="VB" MasterPageFile="~/MasterPanel.master" AutoEventWireup="false"
+﻿<%@ Page Title="" Language="VB" MasterPageFile="~/panelclients/MasterPanel.master" AutoEventWireup="false"
     CodeFile="PanelMain.aspx.vb" Inherits="PanelMain" %>
 
-<%@ Register Src="usercontrols/ClientEmailModal.ascx" TagName="ClientEmailModal" TagPrefix="uc1" %>
+<%@ Register Src="~/usercontrols/ClientEmailModal.ascx" TagName="ClientEmailModal" TagPrefix="uc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style>
@@ -584,7 +584,7 @@
                         </asp:GridView>
                     </div>
                     <asp:SqlDataSource ID="SqlDataSource_All" runat="server" ConnectionString="<%$ ConnectionStrings:DesktopConnectionString %>"
-                        SelectCommand="SELECT * FROM [tbSubmission] WHERE [id_film] = @id_film and valid=1 and receipt>0 ORDER BY [date_of_entryData] DESC">
+                        SelectCommand="SELECT * FROM [tbSubmission] WHERE [id_film] = @id_film and valid=1 ORDER BY [date_of_entryData] DESC">
                         <SelectParameters>
                             <asp:ControlParameter ControlID="HiddenField_FilmID" Name="id_film" PropertyName="Value"
                                 Type="Int32" />

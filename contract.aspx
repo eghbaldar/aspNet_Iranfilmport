@@ -6,11 +6,11 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <!--Page Title-->
-    <section class="page-title text-center" style="background-image: url(files/images/background/banner_8.jpg);">
+    <section class="page-title text-center" style="background-image: url(../files/images/background/banner_8.jpg);">
         <div class="container">
             <div class="title-text">
                 <h1>
-                    <span style="font-family: Titr;">جزییات قرارداد</span>
+                    <span style="font-family: Titr;">جزییات قرارداد/نامه رسمی</span>
                 </h1>
             </div>
         </div>
@@ -34,7 +34,7 @@
                             <a href="../contactus/">تماس با ما</a>
                         </div>
                         <div id="OK" class="alert alert-success" role="alert" visible="false"  runat="server">
-                            قرارداد با مشخصات زیر در سیستم ثبت شده است:
+                            قرارداد/نامه رسمی با مشخصات زیر در سیستم ثبت شده است:
                             <br />
                             تاریخ ثبت:
                         <strong>

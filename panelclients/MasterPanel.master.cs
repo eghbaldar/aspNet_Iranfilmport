@@ -9,10 +9,14 @@ public partial class MasterPanel : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["PanelClient"] == null)
-        {
-            Response.Redirect("~/panel/");
-        }
+        //if (! HttpCookie.Cookies["COOKIE_KEY"] != null)
+        //{
+        //    Response.Redirect("~/panel/");
+        //}
+        if (!(HttpContext.Current.User.Identity.Name == "clientIFP"))
+            {
+            Response.Redirect("~/panel");
+            }
 
         DLL_Panel DL = new DLL_Panel();
         Int64 LeftDays;

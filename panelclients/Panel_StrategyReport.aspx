@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="VB" MasterPageFile="~/MasterPanel.master" AutoEventWireup="false" CodeFile="Panel_StrategyReport.aspx.vb" Inherits="Panel_StrategyReport" %>
+﻿<%@ Page Title="" Language="VB" MasterPageFile="~/panelclients/MasterPanel.master" AutoEventWireup="false" CodeFile="Panel_StrategyReport.aspx.vb" Inherits="Panel_StrategyReport" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 

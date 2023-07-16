@@ -1,7 +1,7 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPanel.master.cs"
     Inherits="MasterPanel" %>
 
-<%@ Register Src="usercontrols/Panel_Menu_Right.ascx" TagName="Panel_Menu_Right"
+<%@ Register Src="~/usercontrols/Panel_Menu_Right.ascx" TagName="Panel_Menu_Right"
     TagPrefix="uc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -103,7 +103,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
         <br />
         سیستم آنلاین وضعیت فستیوال‌های پخش شده
         <br />
-        Version 4.3
+        Version 5.1
         <div>
             <asp:LinkButton Visible="false" ID="btnSignOut" runat="server">(خروج از سامانه)</asp:LinkButton>
         </div>

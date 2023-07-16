@@ -5,6 +5,7 @@ Imports System.Data
 Public Class DLL_CMS
 
     Dim sqlconn As New SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings("iranfilmportConnectionString").ConnectionString)
+    Dim sqlconnDesktop As New SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings("DesktopConnectionString").ConnectionString)
 
     Public Function GetAllFilesOfArticles() As String()
         Try
@@ -1023,4 +1024,28 @@ Public Class DLL_CMS
         End Try
     End Function
 
+    Public Function InsertCalendar(_date As String, note As String)
+        Try
+            If sqlconnDesktop.State = ConnectionState.Open Then sqlconnDesktop.Close()
+            sqlconnDesktop.Open()
+            Dim sqlcom As New SqlCommand("insert into [tbCalendar] (iduser,[date],note) values (0,'" + _date + "',N'" + note + "') ", sqlconnDesktop)
+            sqlcom.ExecuteNonQuery()
+            sqlconnDesktop.Close()
+        Catch ex As Exception
+        Finally
+            sqlconnDesktop.Close()
+        End Try
+    End Function
+    Public Function DeleteCalendar(id As Long)
+        Try
+            If sqlconnDesktop.State = ConnectionState.Open Then sqlconnDesktop.Close()
+            sqlconnDesktop.Open()
+            Dim sqlcom As New SqlCommand("delete from [tbCalendar] where id=" + id.ToString, sqlconnDesktop)
+            sqlcom.ExecuteNonQuery()
+            sqlconnDesktop.Close()
+        Catch ex As Exception
+        Finally
+            sqlconnDesktop.Close()
+        End Try
+    End Function
 End Class
