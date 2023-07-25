@@ -5,6 +5,11 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <%--SweetAlert--%>
+    <script src="../../files/sweetalert/sweetalert2.all.min.js"></script>
+    <link href="../../files/sweetalert/sweetalert2.min.css" rel="stylesheet" />
+    <script src="../../files/sweetalert/sweetalert2.min.js"></script>
+    <%--Others--%>
     <script src="../../files/ckeditor/ckeditor.js"></script>
     <script src="../../files/ckeditor/samples/js/sample.js"></script>
     <link rel="stylesheet" href="../../files/ckeditor/samples/css/samples.css" />
@@ -15,6 +20,14 @@
         }
     </style>
     <style>
+        .swal2-popup {
+            font-family: Samim;
+        }
+
+        .swal2-styled.swal2-confirm {
+            font-family: Samim;
+        }
+
         .blink {
             -webkit-animation-name: blink;
             -webkit-animation-iteration-count: infinite;
@@ -284,9 +297,8 @@
                                                                     Text='<%# Eval("title") %>'
                                                                     ID="lblsuggested">
                                                                 </asp:Label>
-                                                                <a style="cursor:pointer;"
-                                                                    onclick="window.open('../../' + '<%# Eval("id") %>','_blank');">
-                                                                    (Show)
+                                                                <a style="cursor: pointer;"
+                                                                    onclick="window.open('../../' + '<%# Eval("id") %>','_blank');">(Show)
                                                                 </a>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
@@ -546,4 +558,15 @@
             </div>
         </asp:View>
     </asp:MultiView>
+    <script>
+        function myAlert(text) {
+            Swal.fire({
+                title: 'پیام سیستمی!',
+                text: text,
+                icon: 'error',
+                confirmButtonColor: '#ffa200',
+                confirmButtonText: 'متوجه شدم!',
+            });
+        }
+    </script>
 </asp:Content>

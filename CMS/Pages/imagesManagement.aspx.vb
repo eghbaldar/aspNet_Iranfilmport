@@ -6,10 +6,10 @@ Partial Class CMS_Pages_imagesManagement
     Protected Sub Page_Load(sender As Object, e As System.EventArgs) Handles Me.Load
 
         If Not IsPostBack Then
-            txtUniqueNumber.Text = Guid.NewGuid.ToString                
+            txtUniqueNumber.Text = Guid.NewGuid.ToString
+            GetFiles(New DirectoryInfo(MapPath("~/files/ckfinder/userfiles/images/")))
+            GetEnteredTags(Request.QueryString("enteredTags"))
         End If
-        GetFiles(New DirectoryInfo(MapPath("~/files/ckfinder/userfiles/images/")))
-        GetEnteredTags(Request.QueryString("enteredTags"))
 
     End Sub
     Sub GetEnteredTags(Tags As String)
@@ -104,13 +104,12 @@ Partial Class CMS_Pages_imagesManagement
         If rbUniqueNumber.Checked Then
             FN = txtUniqueNumber.Text
             txtUniqueNumber.Text = Guid.NewGuid.ToString
-        End If
-        If rbEntryText.Checked Then
-            If Not txtEntryText.Text.Trim = Nothing Then
+        ElseIf rbEntryText.Checked Then
+            If txtEntryText.Text.Trim.Length > 0 Then
                 FN = txtEntryText.Text.Trim.Replace(" ", "_")
             Else
-                lblWarning.ForeColor = Drawing.Color.Red
-                lblWarning.Text = "عبارت را وارد کنید."
+                lblWarning.ForeColor = Drawing.Color.Blue
+                lblWarning.Text = txtEntryText.Text.Trim.Length ' "عبارت را وارد کنید."
                 Exit Sub
             End If
         End If
@@ -131,9 +130,8 @@ Partial Class CMS_Pages_imagesManagement
         DivAfterUploaded.Visible = True
         imgAfterUpload.ImageUrl = "~/files/ckfinder/userfiles/images/" + FN + Path.GetExtension(FileUpload.FileName)
         imgAfterUpload.Dispose()
-        lblAfterUpload.ForeColor = Drawing.Color.Blue
-        lblAfterUpload.Text = "<a href='http://iranfilmport.com/files/ckfinder/userfiles/images/" + FN + Path.GetExtension(FileUpload.FileName) + "' target='_blank'>Right Click & Click on [Copy Link Address]</a>"
-
+        Dim LINK = "http://iranfilmport.com/files/ckfinder/userfiles/images/" + FN + Path.GetExtension(FileUpload.FileName)
+        lblAfterUpload.Text = "<button style='cursor:pointer;padding: 5px; background-color: blue; color: white; font-family: Samim;' onclick='CopyLink(""" & LINK & """);return false'>Just click on it and copy the link address</button>"
         btnUpload.Visible = False
 
     End Sub

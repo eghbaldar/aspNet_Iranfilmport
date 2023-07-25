@@ -5,11 +5,23 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <%--SweetAlert--%>
+    <script src="../../files/sweetalert/sweetalert2.all.min.js"></script>
+    <link href="../../files/sweetalert/sweetalert2.min.css" rel="stylesheet" />
+    <script src="../../files/sweetalert/sweetalert2.min.js"></script>
+    <%--Others--%>
     <script src="../../files/ckeditor/ckeditor.js"></script>
     <script src="../../files/ckeditor/samples/js/sample.js"></script>
     <link rel="stylesheet" href="../../files/ckeditor/samples/css/samples.css" />
     <link rel="stylesheet" href="../../files/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css" />
     <style>
+        .swal2-popup {
+            font-family: Samim;
+        }
+
+        .swal2-styled.swal2-confirm {
+            font-family: Samim;
+        }
         .ContextBlink {
             padding: 10px;
             border: 1px solid red;
@@ -39,29 +51,13 @@
             width: 93px;
             margin-bottom: 0px;
         }
-                .DivOptimize{
-            padding:10px;
-            background-color:red;
-            color:white;
+
+        .DivOptimize {
+            padding: 10px;
+            background-color: red;
+            color: white;
         }
     </style>
-    <%--Copy in Clipboard--%>
-    <script>
-        function myFunction() {
-            /* Get the text field */
-            var copyText = document.getElementById("myInput");
-
-            /* Select the text field */
-            copyText.select();
-            copyText.setSelectionRange(0, 999999999); /* For mobile devices */
-
-            /* Copy the text inside the text field */
-            document.execCommand("copy");
-
-            /* Alert the copied text */
-            alert("Copied the text: " + copyText.value);
-        }
-    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <%--    <asp:Button ID="Button1" runat="server" Text="Button" />
@@ -138,7 +134,7 @@
                     <SortedDescendingHeaderStyle BackColor="#575357" />
                 </asp:GridView>
                 <asp:SqlDataSource ID="SDS_OneWord" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
-                    SelectCommand="SELECT * FROM [tbl_articles] WHERE [text] like N'%' + @word + '%' OR [title] like N'%' + @word + '%'">
+                    SelectCommand="SELECT top 50 * FROM [tbl_articles] WHERE [text] like N'%' + @word + '%' OR [title] like N'%' + @word + '%'">
                     <SelectParameters>
                         <asp:QueryStringParameter Name="word" QueryStringField="word" Type="String" />
                     </SelectParameters>
@@ -244,7 +240,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', end
                 <SortedDescendingHeaderStyle BackColor="#820000" />
             </asp:GridView>
             <asp:SqlDataSource ID="SDS_Future" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
-                SelectCommand="SELECT * FROM [tbl_articles] WHERE [date_time] > getdate() OR visible = 0 ORDER BY [date_time] DESC"></asp:SqlDataSource>
+                SelectCommand="SELECT top 50 * FROM [tbl_articles] WHERE [date_time] > getdate() OR visible = 0 ORDER BY [date_time] DESC"></asp:SqlDataSource>
         </div>
         <div class="TITLE">
             <h4>پست های به نمایش در آمده
@@ -333,7 +329,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', end
             <SortedDescendingHeaderStyle BackColor="#3E3277" />
         </asp:GridView>
         <asp:SqlDataSource ID="SDS_Article" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
-            SelectCommand="SELECT * FROM [tbl_articles] WHERE [date_time] <= getdate() ORDER BY [date_time] DESC"></asp:SqlDataSource>
+            SelectCommand="SELECT top 50 * FROM [tbl_articles] WHERE [date_time] <= getdate() ORDER BY [date_time] DESC"></asp:SqlDataSource>
     </div>
     <div runat="server" style="padding: 10px; border: 1px solid #ccc;" id="divFestival">
         <asp:Panel ID="Panel" Enabled="false" runat="server">
@@ -349,7 +345,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', end
                 <h4>تعداد بازدیدها
                 </h4>
             </div>
-            <div style="font-size: 30px; text-align: center; padding: 10px; font-family: Samim;color:red;">
+            <div style="font-size: 30px; text-align: center; padding: 10px; font-family: Samim; color: red;">
                 <asp:Label ID="lblNumberVistors" runat="server"></asp:Label>
             </div>
 
@@ -435,32 +431,32 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', end
                     <tr>
                         <td>
                             <div style="padding: 10px; border: 2px dashed Orange; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;">
-                           <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+                                <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                                     <ContentTemplate>
 
-                                   <div style="padding:5px;font-family:Samim;">
-                            دسته‌ی اصلی:
-                        </div>
-                                <div>
-                                    <asp:DropDownList ID="cmd_type" AutoPostBack="true"  runat="server" CssClass="txtFa">
-                                <asp:ListItem Value="1">نقد و مطالب تحلیلی</asp:ListItem>
-                                <asp:ListItem Value="2">مقالات آموزشی فیلم و فیلمنامه</asp:ListItem>
-                                <asp:ListItem Value="3">شناخت جشنواره ها</asp:ListItem>
-                                <asp:ListItem Value="4">اخبار درگاه فیلم ایران</asp:ListItem>
-                                <asp:ListItem Value="5">اخبار داخلی</asp:ListItem>
-                                <asp:ListItem Value="6">اخبار بین المللی</asp:ListItem>
-                                <asp:ListItem Value="7">فراخوان ها</asp:ListItem>
-                                <asp:ListItem Value="8">یادداشت های سردبیر</asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
-                                 <div style="padding:5px;font-family:Samim;">
-                            دسته‌ی فرعی:
-                        </div>
-                                <div>
-                                    <asp:DropDownList ID="cmd_category" runat="server" CssClass="txtFa" DataSourceID="SDS_Cat"
-                                        DataTextField="name" DataValueField="ID">
-                                    </asp:DropDownList>
-                                    <asp:SqlDataSource ID="SDS_Cat" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
+                                        <div style="padding: 5px; font-family: Samim;">
+                                            دسته‌ی اصلی:
+                                        </div>
+                                        <div>
+                                            <asp:DropDownList ID="cmd_type" AutoPostBack="true" runat="server" CssClass="txtFa">
+                                                <asp:ListItem Value="1">نقد و مطالب تحلیلی</asp:ListItem>
+                                                <asp:ListItem Value="2">مقالات آموزشی فیلم و فیلمنامه</asp:ListItem>
+                                                <asp:ListItem Value="3">شناخت جشنواره ها</asp:ListItem>
+                                                <asp:ListItem Value="4">اخبار درگاه فیلم ایران</asp:ListItem>
+                                                <asp:ListItem Value="5">اخبار داخلی</asp:ListItem>
+                                                <asp:ListItem Value="6">اخبار بین المللی</asp:ListItem>
+                                                <asp:ListItem Value="7">فراخوان ها</asp:ListItem>
+                                                <asp:ListItem Value="8">یادداشت های سردبیر</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+                                        <div style="padding: 5px; font-family: Samim;">
+                                            دسته‌ی فرعی:
+                                        </div>
+                                        <div>
+                                            <asp:DropDownList ID="cmd_category" runat="server" CssClass="txtFa" DataSourceID="SDS_Cat"
+                                                DataTextField="name" DataValueField="ID">
+                                            </asp:DropDownList>
+                                            <asp:SqlDataSource ID="SDS_Cat" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
                                                 SelectCommand="SELECT * FROM [tbl_articleCategory]
                                         WHERE mainCat = @mainCat
                                         ORDER BY [ID] DESC">
@@ -471,26 +467,26 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', end
                                                 </SelectParameters>
 
                                             </asp:SqlDataSource>
-                                </div>
-                                  <div style="padding:5px;font-family:Samim;">
-                            کوتاه و بلند:
-                        </div>
-                                <div>
-                                    <asp:DropDownList ID="cmd_short_feature" runat="server" CssClass="txtFa">
-                                        <asp:ListItem Value="1">کوتاه</asp:ListItem>
-                                        <asp:ListItem Value="2">بلند</asp:ListItem>
-                                        <asp:ListItem Value="3">هر دو</asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
-                                      <asp:UpdateProgress ID="UpdateProgress1" AssociatedUpdatePanelID="UpdatePanel3" runat="server">
+                                        </div>
+                                        <div style="padding: 5px; font-family: Samim;">
+                                            کوتاه و بلند:
+                                        </div>
+                                        <div>
+                                            <asp:DropDownList ID="cmd_short_feature" runat="server" CssClass="txtFa">
+                                                <asp:ListItem Value="1">کوتاه</asp:ListItem>
+                                                <asp:ListItem Value="2">بلند</asp:ListItem>
+                                                <asp:ListItem Value="3">هر دو</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+                                        <asp:UpdateProgress ID="UpdateProgress1" AssociatedUpdatePanelID="UpdatePanel3" runat="server">
                                             <ProgressTemplate>
                                                 <asp:Image ID="Image1" Width="50px" ImageUrl="~/files/images/icons/loading.gif" runat="server" />
                                             </ProgressTemplate>
                                         </asp:UpdateProgress>
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
-                               </div>
-                                             
+                            </div>
+
 
                         </td>
                     </tr>
@@ -499,9 +495,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', end
                         <td>
                             <asp:TextBox onkeyup="countCharFa(this)" ID="txtTitle" runat="server"
                                 placeholder="عنوان..." CssClass="txtFa"></asp:TextBox>
-                                                        <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server"
+                            <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server"
                                 CompletionListCssClass="autocomplete_completionListElement"
-                               
                                 ServiceMethod="SearchTitleFa"
                                 ServicePath="addBolg.aspx"
                                 MinimumPrefixLength="2" CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
@@ -509,7 +504,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', end
                             </cc1:AutoCompleteExtender>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtTitle"
                                 ErrorMessage="الزامی است" ForeColor="Red" ValidationGroup="1"></asp:RequiredFieldValidator>
-                             <div class="numbersofChartFa"></div>
+                            <div class="numbersofChartFa"></div>
                             <script>
                                 function countCharFa(val) {
                                     var len = val.value.length;
@@ -536,10 +531,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', end
                         <td>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="txtTitleEn"
                                 ErrorMessage="Mandatory Field" ForeColor="Red" ValidationGroup="1"></asp:RequiredFieldValidator>
-                            <asp:TextBox  onkeyup="countCharEn(this)" ID="txtTitleEn" runat="server"
+                            <asp:TextBox onkeyup="countCharEn(this)" ID="txtTitleEn" runat="server"
                                 placeholder="Title ..."
                                 CssClass="txtEn"></asp:TextBox>
-                                                        <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" ServiceMethod="SearchTitleEn"
+                            <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" ServiceMethod="SearchTitleEn"
                                 CompletionListCssClass="autocomplete_completionListElement"
                                 ServicePath="addBolg.aspx"
                                 MinimumPrefixLength="2" CompletionInterval="10" EnableCaching="false" CompletionSetCount="10"
@@ -547,16 +542,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', end
                             </cc1:AutoCompleteExtender>
 
                             <div class="numbersofChartEn"></div>
-                              <script>
-                                  function countCharEn(val) {
-                                      var len = val.value.length;
-                                      if (len >= 95) {
-                                          val.value = val.value.substring(0, 95);
-                                          $('.numbersofChartEn').text('Left Valid Count: ' + '0');
-                                      } else {
-                                          $('.numbersofChartEn').text('Left Valid Count: ' + (95 - len));
-                                      }
-                                  };
+                            <script>
+                                function countCharEn(val) {
+                                    var len = val.value.length;
+                                    if (len >= 95) {
+                                        val.value = val.value.substring(0, 95);
+                                        $('.numbersofChartEn').text('Left Valid Count: ' + '0');
+                                    } else {
+                                        $('.numbersofChartEn').text('Left Valid Count: ' + (95 - len));
+                                    }
+                                };
                             </script>
                             <style>
                                 .numbersofChartEn {
@@ -572,11 +567,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', end
                     </tr>
                     <tr>
                         <td>
-                            <div style="padding:10px;text-align:center;">
+                            <div style="padding: 10px; text-align: center;">
                                 <a
-                                onclick="onOpenPhotos()"
-                                style="font-family: Samim; font-size: 20px;cursor:pointer;"
-                                target="_blank">... مدیریت تصاویر ... </a>
+                                    onclick="onOpenPhotos()"
+                                    style="font-family: Samim; font-size: 20px; cursor: pointer;"
+                                    target="_blank">... مدیریت تصاویر ... </a>
                             </div>
                         </td>
                     </tr>
@@ -621,10 +616,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', end
                             <div style="color: Red; padding: 3px; font-family: Tahoma;">
                                 فایل انتخابی نباید بیش از 110 کیلوبایت باشد.
                             </div>
-                                                    <div style="padding:20px;">
-                            <span class="DivOptimize"><a style="color:white;" href="http://optimizilla.com/" target="_blank">Optimization (1)</a></span>
-                            <span class="DivOptimize"><a style="color:white;" href="https://www.imgonline.com.ua/eng/compress-image-size.php" target="_blank">Optimization (2)</a></span>
-                        </div>
+                            <div style="padding: 20px;">
+                                <span class="DivOptimize"><a style="color: white;" href="http://optimizilla.com/" target="_blank">Optimization (1)</a></span>
+                                <span class="DivOptimize"><a style="color: white;" href="https://www.imgonline.com.ua/eng/compress-image-size.php" target="_blank">Optimization (2)</a></span>
+                            </div>
                             <br />
                             <div>
                                 <div>
@@ -679,34 +674,33 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', end
                                                 <asp:LinkButton ID="tag_8" runat="server">حضور بین المللی فیلم</asp:LinkButton>
                                             </div>
                                         </div>
-<div>
-       <asp:TextBox ID="txtPreTag" CssClass="txtFa" runat="server"></asp:TextBox>
-                                                    <asp:Button ID="btnPreTag" runat="server" Text="&gt;&gt;" />
-                                                    <div style="color: Red; padding: 3px; font-family: Tahoma;">
-                                                        اگر کلمات بصورت تک سیلابی باشد و یا چند سیلابی باشد همانطور که هست وارد شود. بعنوان
+                                        <div>
+                                            <asp:TextBox ID="txtPreTag" CssClass="txtFa" runat="server"></asp:TextBox>
+                                            <asp:Button ID="btnPreTag" runat="server" Text="&gt;&gt;" />
+                                            <div style="color: Red; padding: 3px; font-family: Tahoma;">
+                                                اگر کلمات بصورت تک سیلابی باشد و یا چند سیلابی باشد همانطور که هست وارد شود. بعنوان
                                                         مثلا "سینما" و یا "فیلم کوتاه" بنابراین هیچ علامت دیگری از جمله خط تیره و یا فاصله
                                                         اضافی بین و یا بعدشان نباشد باشد
-                                                    </div>
-                                                    <asp:ListBox ID="listTags" runat="server" CssClass="txtFa" Width="200px"></asp:ListBox>
-                                                    <asp:Button ID="deletelist" runat="server" Text="×" BackColor="Red" ForeColor="White"></asp:Button>
-</div>
+                                            </div>
+                                            <asp:ListBox ID="listTags" runat="server" CssClass="txtFa" Width="200px"></asp:ListBox>
+                                            <asp:Button ID="deletelist" runat="server" Text="×" BackColor="Red" ForeColor="White"></asp:Button>
+                                        </div>
 
                                         <div>
-
                                             نتیجه تگ ها:<asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server"
-                                                    ControlToValidate="txtTags" ErrorMessage="الزامی است" ForeColor="Red" ValidationGroup="1"></asp:RequiredFieldValidator>
-                                                    &nbsp;<hr />
-                                                    <asp:TextBox ID="txtTags" runat="server" CssClass="txtFa" Height="93px"
-                                                        TextMode="MultiLine" Enabled="False"></asp:TextBox>
+                                                ControlToValidate="txtTags" ErrorMessage="الزامی است" ForeColor="Red" ValidationGroup="1"></asp:RequiredFieldValidator>
+                                            &nbsp;<hr />
+                                            <asp:TextBox ID="txtTags" runat="server" CssClass="txtFa" Height="93px"
+                                                TextMode="MultiLine" Enabled="False"></asp:TextBox>
                                         </div>
                                     </div>
-                                     <asp:HiddenField ID="HiddenFieldTags" runat="server" />
-                                        <script>
-                                            function onOpenPhotos() {
-                                                var EnteredTags = document.getElementById('<%= HiddenFieldTags.ClientID%>').value;
-                                                window.open('imagesManagement/?enteredTags=' + EnteredTags, '_blank');
-                                            }
-                                        </script>
+                                    <asp:HiddenField ID="HiddenFieldTags" runat="server" />
+                                    <script>
+                                        function onOpenPhotos() {
+                                            var EnteredTags = document.getElementById('<%= HiddenFieldTags.ClientID%>').value;
+                                            window.open('imagesManagement/?enteredTags=' + EnteredTags, '_blank');
+                                        }
+                                    </script>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                         </td>
@@ -728,16 +722,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', end
     </div>
     <div>
     </div>
-    <div>
-        <button onclick="myFunction()" style="font-family: Tahoma;">
-            کپی متن هشدار عدم ویرایش و حذف</button>
-        <br />
-        <textarea name="w3review" id="myInput" rows="4" cols="50">
-خواهش میکنم توجه کنید: پس از تائید خبر و پس از قرار گرفتن در وب سایت رسمی شرکت، اینستاگرام و کانال تلگرامی، به دلیل «جرایم گوگل» و «اینستاگرام» در خصوص ویرایش و حذف پست، به هیچ عنوان پست ویرایش و حذف نخواهد شد.
-خواهش میکنم در بررسی خودتون دقت کنید.
-سپاس
-مدیر روابط عمومی درگاه فیلم ایران
-غفاری
-</textarea>
-    </div>
+    <script>
+        function myAlert(text) {
+            Swal.fire({
+                title: 'پیام سیستمی!',
+                text: text,
+                icon: 'error',
+                confirmButtonColor: '#ffa200',
+                confirmButtonText: 'متوجه شدم!',
+            });
+        }
+    </script>
 </asp:Content>

@@ -13,11 +13,44 @@ Partial Class CMS_Pages_addBolg
 
         Dim DL As New DLL_CMS
 
-        If FilePhoto.PostedFile.ContentLength > 110000 And Not (chkPhoto.Checked) Then
-            lblNotify.Text = "حجم فایل عکس شما بیش از 110 کیلوبایت است"
+        ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        '' SOME IMPORTANT VALIDATIONS
+        If CountCharacter(txtTitle.Text.Trim, " ") > 1 Then
+            ScriptManager.RegisterStartupScript(Me, GetType(String), "key", "myAlert('دو یا بیشتر فاصله خالی در تایتل فارسی وجود دارد');", True)
             Exit Sub
         End If
 
+        If CountCharacter(txtTitleEn.Text.Trim, " ") > 1 Then
+            ScriptManager.RegisterStartupScript(Me, GetType(String), "key", "myAlert('دو یا بیشتر فاصله خالی در تایتل انگلیسی وجود دارد');", True)
+            Exit Sub
+        End If
+
+        Dim FinalTitle = convertNumFatoEn(txtTitle.Text.Trim.Replace("ي", "ی").Replace("-", " "))
+        If FinalTitle.IndexOf("'") > 0 Then
+            ScriptManager.RegisterStartupScript(Me, GetType(String), "key", "myAlert('کارکتر غیرمجاز در تایتل فارسی');", True)
+            Exit Sub
+        End If
+
+        If txtTitleEn.Text.Trim.IndexOf("'") > 0 Then
+            ScriptManager.RegisterStartupScript(Me, GetType(String), "key", "myAlert('کارکتر غیرمجاز در تایتل انگلیسی');", True)
+            Exit Sub
+        End If
+
+        If Not FilePhoto.HasFile Then
+            ScriptManager.RegisterStartupScript(Me, GetType(String), "key", "myAlert('تصویر را انتخاب کنید');", True)
+            Exit Sub
+        End If
+
+        If FilePhoto.PostedFile.ContentLength > 110000 And Not (chkPhoto.Checked) Then
+            ScriptManager.RegisterStartupScript(Me, GetType(String), "key", "myAlert('حجم فایل عکس شما بیش از 110 کیلوبایت است');", True)
+            Exit Sub
+        End If
+
+        If cmd_type.SelectedValue = "" Or txtTitle.Text.Trim = "" Or txtText.Text.Trim = "" Then
+            ScriptManager.RegisterStartupScript(Me, GetType(String), "key", "myAlert('فیلدهایی خالیست');", True)
+            Exit Sub
+        End If
+        ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
         If cmd_type.SelectedValue <> "" And txtTitle.Text <> "" And txtText.Text <> "" Then
 
             Dim End_FN As String = DateTime.Now.Ticks.ToString & "-" & txtTags.Text.Trim.Replace("-", "_").Replace(" ", "").Replace("_", "-").Replace("ي", "ی") & "-" & Path.GetExtension(FilePhoto.FileName)
@@ -49,6 +82,24 @@ Partial Class CMS_Pages_addBolg
         End If
 
     End Sub
+
+    Public Function CountCharacter(ByVal value As String, ByVal ch As Char) As Integer
+        'Ali-Moha-mamd--Egh
+        Dim cnt As Integer = 0
+        For i As Integer = 0 To value.Length - 1
+            If Convert.ToChar(value.Substring(i, 1)) = ch Then
+                If cnt + 1 = 2 Then Return 2
+                cnt = 1
+            End If
+            If cnt = 1 And i < value.Length - 1 Then
+                If Convert.ToChar(value.Substring(i + 1, 1)) = ch Then
+                    Return 2
+                Else
+                    cnt = 0
+                End If
+            End If
+        Next
+    End Function
 
     Public Function convertNumFatoEn(ByVal T As String) As String
         Return T.Replace("۰", "0").Replace("۱", "1").Replace("۲", "2").Replace("۳", "3").Replace("۴", "4").Replace("۵", "5").Replace("۶", "6").Replace("۷", "7").Replace("۸", "8").Replace("۹", "9").Replace("٫", "/")

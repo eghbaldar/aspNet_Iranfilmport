@@ -88,44 +88,71 @@ Partial Class CMS_Pages_editArticle
 
     Protected Sub btnUpdate_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUpdate.Click
 
+
         Dim DL As New DLL_CMS
 
-        If FilePhoto.PostedFile.ContentLength > 110000 And Not (chkPhoto.Checked) Then
-            lblNotify.Text = "حجم فایل عکس شما بیش از 110 کیلوبایت است"
+        ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        '' SOME IMPORTANT VALIDATIONS
+        If CountCharacter(txtTitle.Text.Trim, " ") > 1 Then
+            ScriptManager.RegisterStartupScript(Me, GetType(String), "key", "myAlert('دو یا بیشتر فاصله خالی در تایتل فارسی وجود دارد');", True)
             Exit Sub
         End If
 
+        If CountCharacter(txtTitleEn.Text.Trim, " ") > 1 Then
+            ScriptManager.RegisterStartupScript(Me, GetType(String), "key", "myAlert('دو یا بیشتر فاصله خالی در تایتل انگلیسی وجود دارد');", True)
+            Exit Sub
+        End If
+
+        Dim FinalTitle = convertNumFatoEn(txtTitle.Text.Trim.Replace("ي", "ی").Replace("-", " "))
+        If FinalTitle.IndexOf("'") > 0 Then
+            ScriptManager.RegisterStartupScript(Me, GetType(String), "key", "myAlert('کارکتر غیرمجاز در تایتل فارسی');", True)
+            Exit Sub
+        End If
+
+        If txtTitleEn.Text.Trim.IndexOf("'") > 0 Then
+            ScriptManager.RegisterStartupScript(Me, GetType(String), "key", "myAlert('کارکتر غیرمجاز در تایتل انگلیسی');", True)
+            Exit Sub
+        End If
+
+        If FilePhoto.PostedFile.ContentLength > 110000 And Not (chkPhoto.Checked) Then
+            ScriptManager.RegisterStartupScript(Me, GetType(String), "key", "myAlert('حجم فایل عکس شما بیش از 110 کیلوبایت است');", True)
+            Exit Sub
+        End If
+        ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
         Dim FN As String
         If FilePhoto.HasFile Then
             FN = DateTime.Now.Ticks.ToString & "-" & txtTags.Text.Trim.Replace("-", "_").Replace(" ", "").Replace("_", "-").Replace("ي", "ی") & "-" & Path.GetExtension(FilePhoto.FileName)
             FilePhoto.SaveAs(MapPath("~/files/UploadFiles/article/" + FN))
             imgPhoto.ImageUrl = "~/files/uploadFiles/article/" + FN
         Else
-            'FN = PrePhotoPath.Replace("ي", "ی")
             FN = Path.GetFileName(imgPhoto.ImageUrl).Replace("ي", "ی")
         End If
 
-        '''''''''''''''''''''''''''''''''''''
         Dim VisibleStatus As Byte
         If cmdVisible.Items(0).Selected Then VisibleStatus = 1
         If cmdVisible.Items(1).Selected Then VisibleStatus = 0
 
         Dim ID = Request.QueryString("id")
         Dim DT As String = Convert.ToDateTime(txtDate.Text).ToShortDateString & " " & txtHH.Text & ":" & txtMM.Text & ":" & txtSS.Text
-        DL.UpdateArticle(Val(cmd_category.SelectedValue),
-                         Val(cmd_type.SelectedValue),
-                         Val(cmd_short_feature.SelectedValue),
-                          convertNumFatoEn(txtTitle.Text.Trim.Replace("ي", "ی").Replace("-", " ")),
-                          convertNumFatoEn(txtText.Text.Trim.Replace("ي", "ی")),
-                          convertNumFatoEn(txtLid.Value.Trim.Replace("ي", "ی")),
-                          txtAuthors.Text.Trim,
-                          txtReference.Text.Trim,
-                         FN,
-                         txtTags.Text.Replace("ي", "ی"),
-                         VisibleStatus,
-                         Val(ID),
-                         Convert.ToDateTime(DT),
-                         txtTitleEn.Text.Trim)
+        Try
+            DL.UpdateArticle(Val(cmd_category.SelectedValue),
+                        Val(cmd_type.SelectedValue),
+                        Val(cmd_short_feature.SelectedValue),
+                         FinalTitle,
+                         convertNumFatoEn(txtText.Text.Trim.Replace("ي", "ی")),
+                         convertNumFatoEn(txtLid.Value.Trim.Replace("ي", "ی")),
+                         txtAuthors.Text.Trim,
+                         txtReference.Text.Trim,
+                        FN,
+                        txtTags.Text.Replace("ي", "ی"),
+                        VisibleStatus,
+                        Val(ID),
+                        Convert.ToDateTime(DT),
+                        txtTitleEn.Text.Trim)
+        Catch ex As Exception
+            ScriptManager.RegisterStartupScript(Me, GetType(String), "key", "myAlert('" & Err.Number.ToString & "');", True)
+            Exit Sub
+        End Try
 
         GV.DataBind()
         'Response.Redirect("EditPost")
@@ -134,6 +161,24 @@ Partial Class CMS_Pages_editArticle
         Page.RegisterStartupScript("OpenPages", "<script type='text/javascript'>window.open('../../cms/pages/sitemap');</script>")
 
     End Sub
+
+    Public Function CountCharacter(ByVal value As String, ByVal ch As Char) As Integer
+        'Ali-Moha-mamd--Egh
+        Dim cnt As Integer = 0
+        For i As Integer = 0 To value.Length - 1
+            If Convert.ToChar(value.Substring(i, 1)) = ch Then
+                If cnt + 1 = 2 Then Return 2
+                cnt = 1
+            End If
+            If cnt = 1 And i < value.Length - 1 Then
+                If Convert.ToChar(value.Substring(i + 1, 1)) = ch Then
+                    Return 2
+                Else
+                    cnt = 0
+                End If
+            End If
+        Next
+    End Function
 
     Public Sub delete(ByVal sender As Object, ByVal e As CommandEventArgs)
         Dim dl As New DLL_CMS
@@ -154,12 +199,20 @@ Partial Class CMS_Pages_editArticle
     Dim btn As New Button
 
     Protected Sub btnPreTag_Click(sender As Object, e As System.EventArgs) Handles btnPreTag.Click
+
         If txtPreTag.Text.Trim.Length > 0 Then
+
+            If txtPreTag.Text.Trim.Replace(" ", "_").Split("_").Length > 4 Then
+                ScriptManager.RegisterStartupScript(Me, GetType(String), "key", "myAlert('تعداد سیلاب ها بیش از 4 نباشد');", True)
+                Exit Sub
+            End If
+
             listTags.Items.Add(txtPreTag.Text.Trim.Replace(" ", "_"))
             FillHiddenTags()
             ListedTags()
             txtPreTag.Text = ""
         End If
+
     End Sub
 
     Protected Sub deletelist_Click(sender As Object, e As System.EventArgs) Handles deletelist.Click

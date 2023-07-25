@@ -11,6 +11,7 @@ Partial Class PanelTicketNew
     Private Sub PanelTicketNew_Load(sender As Object, e As EventArgs) Handles Me.Load
 
         Title = "تیکت جدید  |  پنل اختصاصی کاربران"
+        HiddenFieldClientID.Value = Page.RouteData.Values("id")
 
         If Page.Request.QueryString("ticket_token") <> "" Then
             MultiView.ActiveViewIndex = 2
@@ -152,6 +153,13 @@ Partial Class PanelTicketNew
             MultiView.ActiveViewIndex = 3
         End If
 
+    End Sub
+
+    Private Sub btnMethodRecord_Click(sender As Object, e As EventArgs) Handles btnMethodRecord.Click
+        MultiViewMethod.ActiveViewIndex = 2
+    End Sub
+    Private Sub btnMethodText_Click(sender As Object, e As EventArgs) Handles btnMethodText.Click
+        MultiViewMethod.ActiveViewIndex = 1
     End Sub
 
 End Class
