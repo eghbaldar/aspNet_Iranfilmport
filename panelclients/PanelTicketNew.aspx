@@ -102,7 +102,7 @@
             }
         }
     </style>
-    <%--Wave Style--%>
+    <%--Wave Style, show when recoding--%>
     <style>
         .waveUl {
             padding: 0;
@@ -163,6 +163,50 @@
 
         .waveUl li:nth-child(6) {
             animation-delay: .6s;
+        }
+    </style>
+     <%--Wave Style, show when playing--%>
+        <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            > *
+
+        {
+            margin: 8px;
+        }
+
+        }
+
+        button {
+            max-width: 300px;
+        }
+        .playpause{
+            background-color:red;
+            color:white;
+            padding:4px;
+            width:50px;
+            font-size:9px;
+            text-align:center;
+            cursor:pointer;
+        }
+    </style>
+
+    <style>
+        {
+            "container": "body", "height": 96, "splitChannels": false, "normalize": true, "waveColor": "#ffdd00", "progressColor": "#8f8f8f", "cursorColor": "#ddd5e9", "cursorWidth": 5, "barWidth": 5, "barGap": 2, "barRadius": 30, "barHeight": 0.5, "barAlign": "", "minPxPerSec": 1, "fillParent": true, "url": "/wavesurfer-code/examples/audio/audio.wav", "media":
+
+        {
+        }
+
+        ,
+        "autoplay": false,
+        "interact": true,
+        "hideScrollbar": false,
+        "audioRate": 1,
+        "autoScroll": true,
+        "autoCenter": true,
+        "sampleRate": 8000
         }
     </style>
 </asp:Content>
@@ -287,7 +331,7 @@
                         </button>
 
                         <!-- Small modal -->
-                        <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                        <div id="myModal" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-sm">
                                 <div class="modal-content">
                                     <div style="text-align: center; display: grid; place-items: center;">
@@ -350,7 +394,7 @@
                                 /** The color of the playpack cursor */
                                 cursorColor: '#ddd5e9',
                                 /** The cursor width */
-                                cursorWidth: 2,
+                                cursorWidth: 5,
                                 /** Render the waveform with bars like this: ▁ ▂ ▇ ▃ ▅ ▂ */
                                 barWidth: NaN,
                                 /** Spacing between bars in pixels */
@@ -614,8 +658,15 @@
                         <script>
                             function fun(b) {
 
+                                var Id_Client = document.getElementById('<%= HiddenFieldClientID.ClientID %>').value;
+                                var Sections = document.getElementById('<%= cmdSections.ClientID %>').value;
+                                var Id_Submission = document.getElementById('<%= cmdFestival.ClientID %>').value;
+
                                 var form = new FormData();
-                                form.append("data1", b);
+                                form.append("voice", b);
+                                form.append("Id_Client", Id_Client);
+                                form.append("Sections", Sections);
+                                form.append("Id_Submission", Id_Submission);
                                 var xhttp = new XMLHttpRequest();
 
                                 xhttp.onreadystatechange = (e) => {
@@ -623,7 +674,7 @@
                                         return;
                                     }
                                     if (xhttp.status === 200) {
-                                        //alert('Your voice was uploaded successfully!');
+                                        $('#myModal').modal('hide');
                                         Swal.fire({
                                             title: 'پیام!',
                                             text: 'تیکت شما از طریق «وُیس» با موفقیت ثبت شد. لطفا منتظر پاسخ کارشناس مربوطه بمانید.',
@@ -632,7 +683,7 @@
                                             confirmButtonText: 'متوجه شدم'
                                         }).then((result) => {
                                             if (result.value) {
-                                                location.href = '../../panel/tickets/' + document.getElementById('<%= HiddenFieldClientID.ClientID %>').value;
+                                                location.href = '../../panel/tickets/' + Id_Client;
                                             }
                                         });
                                     } else {
@@ -716,12 +767,79 @@
 
                 <ItemTemplate>
 
-
-
-                    <asp:Panel ID="Panel1" runat="server"
-                        BackColor='<%# GetAdminClientBackground(Eval("id_client")) %>'
+                    <asp:Panel ID="Panel_Voice" runat="server"
+                         BackColor='<%# GetAdminClientBackground(Eval("id_client")) %>'
+                        Visible='<%# IIf(Eval("textvoice") = True, True, False) %>'
                         Style="padding: 10px; color: white; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; color: black;">
 
+                            <div style="padding: 15px; border: 2px dotted gray; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;">
+                            <div style="padding: 5px; background-color: #545454; color: white; font-style: italic; font-size: 12px; width: 150px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; margin-bottom: 10px;">
+                                
+                                <asp:Label ID="Label2" runat="server" Text='<%# GetWhich(Eval("Id_client")) %>' />
+
+                            </div>
+
+                        <div id='<%# String.Format("div_{0}", Eval("id")) %>' style="background-color:dimgrey;">
+                        </div>
+                        <div id='<%# String.Format("divPlayPause_{0}", Eval("id")) %>' class="playpause">
+                            بازپخش
+                        </div>
+                        <script type="module">
+
+                            import WaveSurfer from 'https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js'
+
+                            var file = '../../files/clientsStaff/ticketVoices/' + '<%#String.Format("{0}", Eval("voicefile")) %>';
+
+                            const wavesurfer = WaveSurfer.create({
+                                container: '<%# String.Format("#div_{0}", Eval("id")) %>',
+                                "height": 96,
+                                "splitChannels": false,
+                                "normalize": true,
+                                "waveColor": "#ffdd00",
+                                "progressColor": "#8f8f8f",
+                                "cursorColor": "#ddd5e9",
+                                "cursorWidth": 5,
+                                "barWidth": 5,
+                                "barGap": 2,
+                                "barRadius": 30,
+                                "barHeight": 0.5,
+                                "barAlign": "",
+                                "minPxPerSec": 1,
+                                "fillParent": true,
+                                url: file,
+                            })
+
+                            wavesurfer.on('interaction', () => {
+                                wavesurfer.play()
+                            })
+
+                            // Play/pause button
+                            const button = document.getElementById('<%# String.Format("divPlayPause_{0}", Eval("id")) %>')
+                            wavesurfer.once('ready', () => {
+                                button.onclick = () => {
+                                    wavesurfer.playPause()
+                                }
+                            })
+                            wavesurfer.on('play', () => {
+                                button.textContent = 'توقف پخش'
+                            })
+                            wavesurfer.on('pause', () => {
+                                button.textContent = 'بازپخش'
+                            })
+                        </script>
+                                
+                                </div>
+                        <br />
+
+                        <asp:Label Style="font-size: 12px; color: #a3a3a3;" ID="Label1" runat="server" Text='<%# "تاریخ ثبت: " & GetDate(Eval("date")) %>' />
+
+                    </asp:Panel>
+
+                    <asp:Panel ID="Panel_Text" runat="server"
+                        Visible='<%#IIf(Eval("textvoice") = False, True, False) %>'
+                        BackColor='<%# GetAdminClientBackground(Eval("id_client")) %>'
+                        Style="padding: 10px; color: white; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; color: black;">
+                        
                         <div style="padding: 15px; border: 2px dotted gray; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;">
                             <div style="padding: 5px; background-color: #545454; color: white; font-style: italic; font-size: 12px; width: 150px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; margin-bottom: 10px;">
 

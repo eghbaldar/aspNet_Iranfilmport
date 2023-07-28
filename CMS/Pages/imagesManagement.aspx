@@ -102,10 +102,9 @@
                     <br />
                     <span>
                         <asp:CheckBox ID="chkShowImages" runat="server" AutoPostBack="True" />
-                        لیست کامل تصاویر
+                        لیست کامل تصاویر  
+                        
                     </span>
-                    <hr />
-                    <span style="color: red">جهت نمایش تصاویر تیک بالا را بزنید</span>
                     <hr />
                     <asp:UpdateProgress ID="UpdateProgress1" runat="server">
                         <ProgressTemplate>

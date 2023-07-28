@@ -53,9 +53,9 @@ Partial Class PanelTicketNew
 
     Public Function GetWhich(obj As Object) As String
         If obj <> 0 Then
-            Return "پاسخ فیلمساز /  فیلمنامه نویس"
+            Return "پیام فیلمساز /  فیلمنامه نویس"
         Else
-            Return "پاسخ کارشناس"
+            Return "پیام کارشناس"
         End If
     End Function
 
@@ -71,7 +71,9 @@ Partial Class PanelTicketNew
 
     Private Sub btnInsert_Click(sender As Object, e As EventArgs) Handles btnInsert.Click
         If txtText.Text.Length <> 0 Then
-            DL_Panel.InsertCommentClient(Val(Page.RouteData.Values("id")), cmdSections.SelectedValue, cmdFestival.SelectedValue, txtText.Text.Trim.Replace(ControlChars.Lf, "<br/>"))
+            DL_Panel.InsertCommentClient(Val(Page.RouteData.Values("id")),
+                                         cmdSections.SelectedValue, cmdFestival.SelectedValue,
+            txtText.Text.Trim.Replace(ControlChars.Lf, "<br/>"), 0, "")
             ''''''''''''' SMS
             SendSMS("7nufm7nm65kdv2x", Val(Page.RouteData.Values("id")))
             SendSMS_ToAdmin("9du2xqln8hj2rct", Val(Page.RouteData.Values("id")))

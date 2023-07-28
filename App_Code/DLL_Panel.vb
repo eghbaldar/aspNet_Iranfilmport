@@ -309,12 +309,14 @@ Public Class DLL_Panel
 
     End Function
 
-    Public Sub InsertCommentClient(ByVal id_client As Long, sections As Byte, id_submission As Long, text As String)
+    Public Sub InsertCommentClient(ByVal id_client As Long, sections As Byte, id_submission As Long, text As String,
+                                   textvoice As Boolean,
+                                   voicefile As String)
         Try
             If sqlconn_Site.State = ConnectionState.Open Then sqlconn_Site.Close()
             sqlconn_Site.Open()
             Dim sqlcom As New SqlCommand("exec dbo.[sp_InsertCommentClient] " + id_client.ToString + "," _
-            + sections.ToString + "," + id_submission.ToString + ",'" + text + "'", sqlconn_Site)
+            + sections.ToString + "," + id_submission.ToString + ",'" + text + "'," + textvoice.ToString + ",'" + voicefile + "'", sqlconn_Site)
             sqlcom.ExecuteNonQuery()
             sqlconn_Site.Close()
         Catch ex As Exception

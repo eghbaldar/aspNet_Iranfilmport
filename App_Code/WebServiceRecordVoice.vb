@@ -15,7 +15,14 @@ Public Class WebServiceRecordVoice
     <WebMethod()>
     Public Sub RecordVoice()
 
-        Dim sbOutput As StringBuilder = New StringBuilder()
+        Dim DL_PANEL As New DLL_Panel
+
+        Dim ID = HttpContext.Current.Request.Params("Id_Client")
+        Dim Sections = HttpContext.Current.Request.Params("Sections")
+        Dim Id_Submission = HttpContext.Current.Request.Params("Id_Submission")
+
+        '///ino badan test kon bebin kar mikone
+        'Dim theContext As HttpContext = HttpContext.Current.Request.Params("voice")
         Dim theContext As HttpContext = HttpContext.Current
         Dim Files As HttpFileCollection = theContext.Request.Files
         Dim fs As Stream = Files(0).InputStream
@@ -23,6 +30,7 @@ Public Class WebServiceRecordVoice
         Dim bytes As Byte() = br.ReadBytes(Convert.ToInt32(fs.Length))
 
         Dim filename As String = Guid.NewGuid().ToString
+        DL_PANEL.InsertCommentClient(Val(ID), Val(Sections), Val(Id_Submission), 0, 1, filename & ".mp3")
         File.WriteAllBytes(HttpContext.Current.Server.MapPath("~/files/clientsStaff/ticketVoices/" & filename & ".mp3"), bytes)
 
     End Sub

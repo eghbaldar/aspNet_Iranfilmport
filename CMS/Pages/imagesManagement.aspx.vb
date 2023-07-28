@@ -1,4 +1,5 @@
-﻿Imports System.IO
+﻿Imports System.Data
+Imports System.IO
 
 Partial Class CMS_Pages_imagesManagement
     Inherits System.Web.UI.Page
@@ -7,20 +8,36 @@ Partial Class CMS_Pages_imagesManagement
 
         If Not IsPostBack Then
             txtUniqueNumber.Text = Guid.NewGuid.ToString
-            GetFiles(New DirectoryInfo(MapPath("~/files/ckfinder/userfiles/images/")))
             GetEnteredTags(Request.QueryString("enteredTags"))
         End If
 
     End Sub
+
     Sub GetEnteredTags(Tags As String)
         txtEntryText.Text = Tags.Replace("+", " ").Replace("_", " ").Trim
     End Sub
+
+    Private Function MakeOrderInDataTable(files) As DataTable
+        Dim dtb As New System.Data.DataTable
+        dtb.Columns.Add("filename")
+        dtb.Columns.Add("creationdate", GetType(DateTime))
+        For Each f In files
+            Dim file As FileInfo = f
+            dtb.Rows.Add(file.Name, file.CreationTimeUtc)
+        Next
+        Dim dvw As DataView = dtb.DefaultView
+        dvw.Sort = "creationdate DESC"
+        Return dvw.ToTable()
+    End Function
     Sub GetFiles(ByVal source As DirectoryInfo)
 
         pnlMain.Controls.Clear()
         Dim files() As FileInfo = source.GetFiles
-        Dim f As FileInfo
-        For Each f In files
+
+        Dim dtb As System.Data.DataTable = MakeOrderInDataTable(files)
+        For i As Long = 0 To dtb.Rows.Count - 1
+
+            Dim f As New FileInfo(MapPath("~/files/ckfinder/userfiles/images/" + dtb.Rows(i)(0).ToString))
 
             Dim pnl As New Panel
             Dim pnlImg As New Panel
@@ -33,14 +50,13 @@ Partial Class CMS_Pages_imagesManagement
             Dim img As New Image
             Dim lblName As New Label
 
-            'img.ImageUrl = "~/files/ckfinder/userfiles/images/" + f.Name
-            img.ImageUrl = "~\convertToUnscale\?photo=" + "files/ckfinder/userfiles/images/" + f.Name + "&w=100&h=100"
+            img.ImageUrl = "~\convertToUnscale\?photo=" + "files/ckfinder/userfiles/images/" + dtb.Rows(i)(0).ToString + "&w=100&h=100"
             img.Width = 100
             img.Height = 100
             img.Style.Add("margin", "10px")
             img.Style.Add("object-fit", "cover")
 
-            lblName.Text = f.Name
+            lblName.Text = f.Name & "<br/>" & "<strong>" & ShamsiDate.Miladi2Shamsi(dtb.Rows(i)(1).ToString, ShamsiDate.ShowType.ShortDate) & "</strong>"
             lblName.ID = Guid.NewGuid.ToString
             lblName.Style.Add("font-size", "10px")
 
@@ -50,7 +66,7 @@ Partial Class CMS_Pages_imagesManagement
             pnl.Style.Add("float", "left")
 
             btnCopy.InnerText = "Copy"
-            btnCopy.Attributes.Add("onclick", "CP('http://iranfilmport.com/files/ckfinder/userfiles/images/" & f.Name & "')")
+            btnCopy.Attributes.Add("onclick", "CopyLink('http://iranfilmport.com/files/ckfinder/userfiles/images/" & f.Name & "')")
             btnCopy.Style.Add("cursor", "pointer")
 
             btnDelete.Text = "×"
@@ -63,7 +79,7 @@ Partial Class CMS_Pages_imagesManagement
             btnOpen.Text = "  (Show)"
             btnOpen.Style.Add("font-size", "8px")
             btnOpen.Target = "_blank"
-            btnOpen.NavigateUrl = "~/files/ckfinder/userfiles/images/" + f.Name
+            btnOpen.NavigateUrl = "~/files/ckfinder/userfiles/images/" + dtb.Rows(i)(0).ToString
 
             pnlImg.Controls.Add(img)
             pnlblName.Controls.Add(lblName)
@@ -188,6 +204,7 @@ Partial Class CMS_Pages_imagesManagement
 
         If chkShowImages.Checked Then
             pnlMain.Visible = True
+            GetFiles(New DirectoryInfo(MapPath("~/files/ckfinder/userfiles/images/")))
         Else
             pnlMain.Visible = False
         End If
