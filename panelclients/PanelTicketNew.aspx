@@ -89,6 +89,28 @@
             font-size: 12px;
             text-align: center;
         }
+
+        .MnuButtons {
+            padding: 8px;
+            color: black;
+            background-color: lightgray;
+            text-align: center;
+            margin: 5px;
+            font-size: 11px;
+            width: 150px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+        }
+        .alert{
+            background-color:#F8D7DA;
+            color:#721C24;
+            padding:10px;
+            font-size:13px;
+                        -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+        }
     </style>
     <%--Blinking--%>
     <style>
@@ -165,8 +187,8 @@
             animation-delay: .6s;
         }
     </style>
-     <%--Wave Style, show when playing--%>
-        <style>
+    <%--Wave Style, show when playing--%>
+    <style>
         .container {
             display: flex;
             flex-direction: column;
@@ -181,17 +203,17 @@
         button {
             max-width: 300px;
         }
-        .playpause{
-            background-color:red;
-            color:white;
-            padding:4px;
-            width:50px;
-            font-size:9px;
-            text-align:center;
-            cursor:pointer;
+
+        .playpause {
+            background-color: red;
+            color: white;
+            padding: 4px;
+            width: 50px;
+            font-size: 9px;
+            text-align: center;
+            cursor: pointer;
         }
     </style>
-
     <style>
         {
             "container": "body", "height": 96, "splitChannels": false, "normalize": true, "waveColor": "#ffdd00", "progressColor": "#8f8f8f", "cursorColor": "#ddd5e9", "cursorWidth": 5, "barWidth": 5, "barGap": 2, "barRadius": 30, "barHeight": 0.5, "barAlign": "", "minPxPerSec": 1, "fillParent": true, "url": "/wavesurfer-code/examples/audio/audio.wav", "media":
@@ -209,9 +231,111 @@
         "sampleRate": 8000
         }
     </style>
+    <%--Conversation--%>
+    <style>
+        .CssTicketSysAdmin {
+            width: 55%;
+            float: left;
+            padding: 15px;
+            color: white;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            color: black;
+        }
+
+        .CssTicketClient {
+            width: 55%;
+            float: right;
+            padding: 15px;
+            color: white;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            color: black;
+        }
+
+        .CssTicketContextTitle {
+            padding: 5px;
+            background-color: #545454;
+            color: white;
+            font-style: italic;
+            font-size: 12px;
+            width: 150px;
+            margin-bottom: 10px;
+            border: 2px dotted gray;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+        }
+
+        .CssTicket {
+            padding: 15px;
+            border: 2px dotted gray;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        .CssTicketSysAdminBubble {
+            width: 100px;
+            align-items: flex-start;
+            background: #ff9029;
+            padding: 20px;
+            font-weight: 900;
+            font-size: 10px;
+            color: #fff;
+            text-align: left;
+            font-family: Samim;
+            position: relative;
+        }
+
+        .admin:before {
+            content: "";
+            width: 0px;
+            height: 0px;
+            position: absolute;
+            border-left: 10px solid transparent;
+            border-right: 10px solid #ff9029;
+            border-top: 10px solid #ff9029;
+            border-bottom: 10px solid transparent;
+            left: -19px;
+            top: 6px;
+        }
+
+        .CssTicketClientBubble {
+            font-size: 9px;
+            width: 110px;
+            margin: 5px 35px 0px 5px;
+            background: gray;
+            padding: 20px;
+            text-align: right;
+            font-weight: 900;
+            color: #fff;
+            font-family: Samim;
+            position: relative;
+        }
+
+        .client:before {
+            content: "";
+            width: 0px;
+            height: 0px;
+            position: absolute;
+            border-left: 10px solid gray;
+            border-right: 10px solid transparent;
+            border-top: 10px solid gray;
+            border-bottom: 10px solid transparent;
+            right: -20px;
+            top: 6px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <asp:HiddenField ID="HiddenFieldNewOrResponse" Value="0" runat="server" />
+    <asp:HiddenField ID="HiddenFieldToken" Value="0" runat="server" />
     <asp:HiddenField ID="HiddenFieldClientID" runat="server" />
+    <asp:HiddenField ID="HiddenFieldResponseSections" runat="server" />
+    <asp:HiddenField ID="HiddenFieldResponseIdSubmission" runat="server" />
     <asp:MultiView ID="MultiView" runat="server" ActiveViewIndex="0">
         <asp:View ID="View1" runat="server">
 
@@ -321,7 +445,7 @@
 
                         <button type="button" data-toggle="modal"
                             class="linkbtnMethod"
-                            style="width: 100%; text-align: center;cursor:pointer;"
+                            style="width: 100%; text-align: center; cursor: pointer;"
                             data-target=".bd-example-modal-sm">
 
 
@@ -330,412 +454,7 @@
 
                         </button>
 
-                        <!-- Small modal -->
-                        <div id="myModal" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-sm">
-                                <div class="modal-content">
-                                    <div style="text-align: center; display: grid; place-items: center;">
-                                        <audio id="recorder" muted hidden></audio>
-                                        <img src="../../files/images/icons/ic_record.png"
-                                            style="cursor: pointer;" onclick="StatusRec()" width="100" id="start" />
 
-
-                                        <ul class='waveUl' style="display: none;">
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                            <li></li>
-                                        </ul>
-                                        <hr />
-                                        <button type='button' class="btnStop" id="stop" onclick="StatusRec()">توقف و ارسال ویس</button>
-                                        <hr />
-                                        <span id="lblRecord" style="font-family: Samim; display: none; color: gray;">صدای شما در حال ضبط می‌باشد ...
-                                        </span>
-                                        <hr />
-                                        <div id="countup">
-                                            <span id="minutes"></span>
-                                            <span id="seconds"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-
-
-
-                        <script>
-                            // All wavesurfer options in one place: https://wavesurfer-js.org/examples/#all-options.js 
-                            import WaveSurfer from 'https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js'
-
-                            const audio = new Audio()
-                            audio.controls = true
-                            audio.style.width = '100%'
-                            document.body.appendChild(audio)
-
-                            const options = {
-                                /** HTML element or CSS selector (required) */
-                                container: 'body',
-                                /** The height of the waveform in pixels */
-                                height: 128,
-                                /** Render each audio channel as a separate waveform */
-                                splitChannels: false,
-                                /** Stretch the waveform to the full height */
-                                normalize: false,
-                                /** The color of the waveform */
-                                waveColor: '#ff4e00',
-                                /** The color of the progress mask */
-                                progressColor: '#dd5e98',
-                                /** The color of the playpack cursor */
-                                cursorColor: '#ddd5e9',
-                                /** The cursor width */
-                                cursorWidth: 5,
-                                /** Render the waveform with bars like this: ▁ ▂ ▇ ▃ ▅ ▂ */
-                                barWidth: NaN,
-                                /** Spacing between bars in pixels */
-                                barGap: NaN,
-                                /** Rounded borders for bars */
-                                barRadius: NaN,
-                                /** A vertical scaling factor for the waveform */
-                                barHeight: NaN,
-                                /** Vertical bar alignment **/
-                                barAlign: '',
-                                /** Minimum pixels per second of audio (i.e. zoom level) */
-                                minPxPerSec: 1,
-                                /** Stretch the waveform to fill the container, true by default */
-                                fillParent: true,
-                                /** Audio URL */
-                                //url: file,*/
-                                /** Pre-computed audio data */
-                                peaks: undefined,
-                                /** Pre-computed duration */
-                                duration: undefined,
-                                /** Use an existing media element instead of creating one */
-                                media: audio,
-                                /** Play the audio on load */
-                                autoplay: false,
-                                /** Pass false to disable clicks on the waveform */
-                                interact: true,
-                                /** Hide the scrollbar */
-                                hideScrollbar: false,
-                                /** Audio rate */
-                                audioRate: 1,
-                                /** Automatically scroll the container to keep the current position in viewport */
-                                autoScroll: true,
-                                /** If autoScroll is enabled, keep the cursor in the center of the waveform during playback */
-                                autoCenter: true,
-                                /** Decoding sample rate. Doesn't affect the playback. Defaults to 8000 */
-                                sampleRate: 8000,
-                            }
-
-                            const wavesurfer = WaveSurfer.create(options)
-
-                            wavesurfer.on('ready', () => {
-                                wavesurfer.setTime(10)
-                            })
-
-                            // Generate a form input for each option
-                            const schema = {
-                                height: {
-                                    value: 128,
-                                    min: 10,
-                                    max: 512,
-                                    step: 1,
-                                },
-                                cursorWidth: {
-                                    value: 1,
-                                    min: 0,
-                                    max: 10,
-                                    step: 1,
-                                },
-                                minPxPerSec: {
-                                    value: 1,
-                                    min: 1,
-                                    max: 1000,
-                                    step: 1,
-                                },
-                                barWidth: {
-                                    value: 0,
-                                    min: 1,
-                                    max: 30,
-                                    step: 1,
-                                },
-                                barHeight: {
-                                    value: 1,
-                                    min: 0.1,
-                                    max: 4,
-                                    step: 0.1,
-                                },
-                                barGap: {
-                                    value: 0,
-                                    min: 1,
-                                    max: 30,
-                                    step: 1,
-                                },
-                                barRadius: {
-                                    value: 0,
-                                    min: 1,
-                                    max: 30,
-                                    step: 1,
-                                },
-                                peaks: {
-                                    type: 'json',
-                                },
-                                audioRate: {
-                                    value: 1,
-                                    min: 0.1,
-                                    max: 4,
-                                    step: 0.1,
-                                },
-                                sampleRate: {
-                                    value: 8000,
-                                    min: 8000,
-                                    max: 48000,
-                                    step: 1000,
-                                },
-                            }
-
-                            const form = document.createElement('form')
-                            Object.assign(form.style, {
-                                display: 'flex',
-                                flexDirection: 'column',
-                                gap: '1rem',
-                                padding: '1rem',
-                            })
-                            document.body.appendChild(form)
-
-                            for (const key in options) {
-                                if (options[key] === undefined) continue
-                                const isColor = key.includes('Color')
-
-                                const label = document.createElement('label')
-                                Object.assign(label.style, {
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                })
-
-                                const span = document.createElement('span')
-                                Object.assign(span.style, {
-                                    textTransform: 'capitalize',
-                                    width: '7em',
-                                })
-                                span.textContent = `${key.replace(/[a-z0-9](?=[A-Z])/g, '$& ')}: `
-                                label.appendChild(span)
-
-                                const input = document.createElement('input')
-                                const type = typeof options[key]
-                                Object.assign(input, {
-                                    type: isColor ? 'color' : type === 'number' ? 'range' : type === 'boolean' ? 'checkbox' : 'text',
-                                    name: key,
-                                    value: options[key],
-                                    checked: options[key] === true,
-                                })
-                                if (input.type === 'text') input.style.flex = 1
-                                if (options[key] instanceof HTMLElement) input.disabled = true
-
-                                if (schema[key]) {
-                                    Object.assign(input, schema[key])
-                                }
-
-                                label.appendChild(input)
-                                form.appendChild(label)
-
-                                input.oninput = () => {
-                                    if (type === 'number') {
-                                        options[key] = input.valueAsNumber
-                                    } else if (type === 'boolean') {
-                                        options[key] = input.checked
-                                    } else if (schema[key] && schema[key].type === 'json') {
-                                        options[key] = JSON.parse(input.value)
-                                    } else {
-                                        options[key] = input.value
-                                    }
-                                    wavesurfer.setOptions(options)
-                                    textarea.value = JSON.stringify(options, null, 2)
-                                }
-                            }
-
-                            const textarea = document.createElement('textarea')
-                            Object.assign(textarea.style, {
-                                width: '100%',
-                                height: Object.keys(options).length + 1 + 'rem',
-                            })
-                            textarea.value = JSON.stringify(options, null, 2)
-                            textarea.readOnly = true
-                            form.appendChild(textarea)
-
-                        </script>
-
-                        <script type="text/javascript">
-                            class VoiceRecorder {
-                                constructor() {
-                                    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-                                        console.log("getUserMedia supported")
-                                    } else {
-                                        console.log("getUserMedia is not supported on your browser!")
-                                    }
-                                    this.mediaRecorder
-                                    this.stream
-                                    this.chunks = []
-                                    this.isRecording = false
-                                    this.recorderRef = document.querySelector("#recorder")
-                                    this.startRef = document.querySelector("#start")
-                                    this.stopRef = document.querySelector("#stop")
-                                    this.startRef.onclick = this.startRecording.bind(this)
-                                    this.stopRef.onclick = this.stopRecording.bind(this)
-                                    this.constraints = {
-                                        audio: true,
-                                        video: false
-                                    }
-
-                                }
-
-                                handleSuccess(stream) {
-                                    this.stream = stream
-                                    this.stream.oninactive = () => {
-                                        console.log("Stream ended!")
-                                    };
-                                    this.recorderRef.srcObject = this.stream
-                                    this.mediaRecorder = new MediaRecorder(this.stream)
-                                    console.log(this.mediaRecorder)
-
-                                    this.mediaRecorder.ondataavailable = this.onMediaRecorderDataAvailable.bind(this)
-
-                                    this.mediaRecorder.onstop = this.onMediaRecorderStop.bind(this)
-                                    this.recorderRef.play()
-                                    this.mediaRecorder.start()
-
-                                }
-
-                                handleError(error) {
-                                    console.log("navigator.getUserMedia error: ", error)
-                                }
-
-                                onMediaRecorderDataAvailable(e) {
-                                    this.chunks.push(e.data)
-                                    //object blob : e.data
-                                    fun(e.data)
-
-                                }
-
-                                onMediaRecorderStop(e) {
-                                    const blob = new Blob(this.chunks, { 'type': 'audio/ogg; codecs=opus' })
-                                    const audioURL = window.URL.createObjectURL(blob)
-                                    this.chunks = []
-                                    this.stream.getAudioTracks().forEach(track => track.stop())
-                                    this.stream = null
-                                    StatusRec('OK')
-                                }
-
-                                startRecording() {
-                                    if (this.isRecording) return
-                                    this.isRecording = true
-                                    this.startRef.innerHTML = 'Recording...'
-                                    navigator.mediaDevices
-                                        .getUserMedia(this.constraints)
-                                        .then(this.handleSuccess.bind(this))
-                                        .catch(this.handleError.bind(this))
-                                    StatusRec()
-                                }
-
-                                stopRecording() {
-                                    if (!this.isRecording) return
-                                    this.isRecording = false
-                                    this.startRef.innerHTML = 'Record'
-                                    this.recorderRef.pause()
-                                    this.mediaRecorder.stop()
-                                }
-                            }
-
-                            window.voiceRecorder = new VoiceRecorder();
-                        </script>
-
-                        <script>
-                            function fun(b) {
-
-                                var Id_Client = document.getElementById('<%= HiddenFieldClientID.ClientID %>').value;
-                                var Sections = document.getElementById('<%= cmdSections.ClientID %>').value;
-                                var Id_Submission = document.getElementById('<%= cmdFestival.ClientID %>').value;
-
-                                var form = new FormData();
-                                form.append("voice", b);
-                                form.append("Id_Client", Id_Client);
-                                form.append("Sections", Sections);
-                                form.append("Id_Submission", Id_Submission);
-                                var xhttp = new XMLHttpRequest();
-
-                                xhttp.onreadystatechange = (e) => {
-                                    if (xhttp.readyState !== 4) {
-                                        return;
-                                    }
-                                    if (xhttp.status === 200) {
-                                        $('#myModal').modal('hide');
-                                        Swal.fire({
-                                            title: 'پیام!',
-                                            text: 'تیکت شما از طریق «وُیس» با موفقیت ثبت شد. لطفا منتظر پاسخ کارشناس مربوطه بمانید.',
-                                            icon: 'info',
-                                            confirmButtonColor: '#ff9100',
-                                            confirmButtonText: 'متوجه شدم'
-                                        }).then((result) => {
-                                            if (result.value) {
-                                                location.href = '../../panel/tickets/' + Id_Client;
-                                            }
-                                        });
-                                    } else {
-                                        alert('Something went wrong!');
-                                    }
-                                };
-
-                                xhttp.open("POST", "../../../panelclients/WebServiceRecordVoice.asmx/RecordVoice", true);
-                                xhttp.send(form);
-                            }
-                            function StatusRec() {
-
-                                var start = document.getElementById("start");
-                                var stop = document.getElementsByClassName("waveUl")[0];
-                                var btnStop = document.getElementById("stop");
-                                var lblRecord = document.getElementById("lblRecord");
-
-
-                                if (start.style.display === "none") {
-                                    start.style.display = "block";
-                                } else {
-                                    start.style.display = "none";
-                                    startTime();
-                                }
-                                if (stop.style.display === "none") {
-                                    stop.style.display = "flex";
-                                    btnStop.style.display = "block";
-                                    lblRecord.style.display = "block";
-                                } else {
-                                    stop.style.display = "none";
-                                    btnStop.style.display = "none";
-                                    lblRecord.style.display = "none";
-                                    stopTime();
-                                }
-
-                            }
-
-                            var count;
-                            var second = 0;
-
-                            function startTime() {
-                                var second = 0;
-                                function upTimer(count) { return count > 9 ? count : "0" + count; }
-                                count = setInterval(function () {
-                                    $("#seconds").html(':' + upTimer(++second % 60));
-                                    $("#minutes").html(upTimer(parseInt(second / 30, 10)));
-                                }, 1000);
-                            }
-                            function stopTime() {
-                                clearInterval(count);
-                            }
-                        </script>
 
                     </asp:View>
                 </asp:MultiView>
@@ -755,141 +474,609 @@
             </div>
         </asp:View>
         <asp:View ID="ViewResponse" runat="server">
-            <div style="padding: 8px; color: white; background-color: darkblue; margin: 5px; font-size: 11px; width: 150px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;">
+           <div style="padding-bottom:20px;padding-top:5px;">
+                <a class="MnuButtons">
                 <span>وضعیت تیکت:
                 </span>
                 <asp:Label ID="lblStatus" runat="server" Text="Label"></asp:Label>
-            </div>
-            <hr />
-            <asp:DataList ID="DataListResponses" runat="server"
-                Width="100%"
-                DataSourceID="sds_responses">
+            </a>
 
-                <ItemTemplate>
+              <a class="MnuButtons" href="#reply" style="text-decoration:none;">
+              پاسخ به این تیکت
+            </a>
+           </div>
 
-                    <asp:Panel ID="Panel_Voice" runat="server"
-                         BackColor='<%# GetAdminClientBackground(Eval("id_client")) %>'
-                        Visible='<%# IIf(Eval("textvoice") = True, True, False) %>'
-                        Style="padding: 10px; color: white; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; color: black;">
+            <div style="background-color: #f6f6f6;">
+                <asp:DataList ID="DataListResponses" runat="server"
+                    Width="100%"
+                    DataSourceID="sds_responses">
 
-                            <div style="padding: 15px; border: 2px dotted gray; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;">
-                            <div style="padding: 5px; background-color: #545454; color: white; font-style: italic; font-size: 12px; width: 150px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; margin-bottom: 10px;">
-                                
+                    <ItemTemplate>
+
+
+                        <asp:Panel ID="Panel_Voice" runat="server"
+                            BackColor='<%# GetAdminClientBackground(Eval("id_client")) %>'
+                            Visible='<%# IIf(Eval("textvoice") = True, True, False) %>'
+                            CssClass='<%# IIf(Val(Eval("id_client")) = 0, "CssTicketSysAdmin", "CssTicketClient") %>'>
+                            <asp:Panel ID="PanelTicketTitle" runat="server"
+                                CssClass='<%# IIf(Val(Eval("id_client")) = 0, "CssTicketSysAdminBubble admin", "CssTicketClientBubble client") %>'>
                                 <asp:Label ID="Label2" runat="server" Text='<%# GetWhich(Eval("Id_client")) %>' />
-
-                            </div>
-
-                        <div id='<%# String.Format("div_{0}", Eval("id")) %>' style="background-color:dimgrey;">
-                        </div>
-                        <div id='<%# String.Format("divPlayPause_{0}", Eval("id")) %>' class="playpause">
-                            بازپخش
-                        </div>
-                        <script type="module">
-
-                            import WaveSurfer from 'https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js'
-
-                            var file = '../../files/clientsStaff/ticketVoices/' + '<%#String.Format("{0}", Eval("voicefile")) %>';
-
-                            const wavesurfer = WaveSurfer.create({
-                                container: '<%# String.Format("#div_{0}", Eval("id")) %>',
-                                "height": 96,
-                                "splitChannels": false,
-                                "normalize": true,
-                                "waveColor": "#ffdd00",
-                                "progressColor": "#8f8f8f",
-                                "cursorColor": "#ddd5e9",
-                                "cursorWidth": 5,
-                                "barWidth": 5,
-                                "barGap": 2,
-                                "barRadius": 30,
-                                "barHeight": 0.5,
-                                "barAlign": "",
-                                "minPxPerSec": 1,
-                                "fillParent": true,
-                                url: file,
-                            })
-
-                            wavesurfer.on('interaction', () => {
-                                wavesurfer.play()
-                            })
-
-                            // Play/pause button
-                            const button = document.getElementById('<%# String.Format("divPlayPause_{0}", Eval("id")) %>')
-                            wavesurfer.once('ready', () => {
-                                button.onclick = () => {
-                                    wavesurfer.playPause()
-                                }
-                            })
-                            wavesurfer.on('play', () => {
-                                button.textContent = 'توقف پخش'
-                            })
-                            wavesurfer.on('pause', () => {
-                                button.textContent = 'بازپخش'
-                            })
-                        </script>
-                                
+                            </asp:Panel>
+                            <div class="CssTicket">
+                                <div id='<%# String.Format("div_{0}", Eval("id")) %>' style="background-color: dimgrey;">
                                 </div>
-                        <br />
+                                <div id='<%# String.Format("divPlayPause_{0}", Eval("id")) %>' class="playpause">
+                                    بازپخش
+                                </div>
+                                <script type="module">
 
-                        <asp:Label Style="font-size: 12px; color: #a3a3a3;" ID="Label1" runat="server" Text='<%# "تاریخ ثبت: " & GetDate(Eval("date")) %>' />
+                                    import WaveSurfer from 'https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js'
 
-                    </asp:Panel>
+                                    var file = '../../files/clientsStaff/ticketVoices/' + '<%#String.Format("{0}", Eval("voicefile")) %>';
 
-                    <asp:Panel ID="Panel_Text" runat="server"
-                        Visible='<%#IIf(Eval("textvoice") = False, True, False) %>'
-                        BackColor='<%# GetAdminClientBackground(Eval("id_client")) %>'
-                        Style="padding: 10px; color: white; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; color: black;">
-                        
-                        <div style="padding: 15px; border: 2px dotted gray; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;">
-                            <div style="padding: 5px; background-color: #545454; color: white; font-style: italic; font-size: 12px; width: 150px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; margin-bottom: 10px;">
+                                    const wavesurfer = WaveSurfer.create({
+                                        container: '<%# String.Format("#div_{0}", Eval("id")) %>',
+                                        "height": 96,
+                                        "splitChannels": false,
+                                        "normalize": true,
+                                        "waveColor": "#ffdd00",
+                                        "progressColor": "#8f8f8f",
+                                        "cursorColor": "#ddd5e9",
+                                        "cursorWidth": 5,
+                                        "barWidth": 5,
+                                        "barGap": 2,
+                                        "barRadius": 30,
+                                        "barHeight": 0.5,
+                                        "barAlign": "",
+                                        "minPxPerSec": 1,
+                                        "fillParent": true,
+                                        url: file,
+                                    })
 
+                                    wavesurfer.on('interaction', () => {
+                                        wavesurfer.play()
+                                    })
+
+                                    // Play/pause button
+                                    const button = document.getElementById('<%# String.Format("divPlayPause_{0}", Eval("id")) %>')
+                                    wavesurfer.once('ready', () => {
+                                        button.onclick = () => {
+                                            wavesurfer.playPause()
+                                        }
+                                    })
+                                    wavesurfer.on('play', () => {
+                                        button.textContent = 'توقف پخش'
+                                    })
+                                    wavesurfer.on('pause', () => {
+                                        button.textContent = 'بازپخش'
+                                    })
+                                </script>
+
+                            </div>
+                            <br />
+                            <asp:Label Style="font-size: 12px; color: #a3a3a3;" ID="Label1" runat="server" Text='<%# "تاریخ ثبت: " & GetDate(Eval("date")) %>' />
+
+                        </asp:Panel>
+
+                        <asp:Panel ID="Panel_Text" runat="server"
+                            Visible='<%#IIf(Eval("textvoice") = False, True, False) %>'
+                            BackColor='<%# GetAdminClientBackground(Eval("id_client")) %>'
+                            CssClass='<%# IIf(Val(Eval("id_client")) = 0, "CssTicketSysAdmin", "CssTicketClient") %>'>
+                            <asp:Panel ID="Panel1" runat="server"
+                                CssClass='<%# IIf(Val(Eval("id_client")) = 0, "CssTicketSysAdminBubble admin", "CssTicketClientBubble client") %>'>
                                 <asp:Label ID="Id_clientLabel" runat="server" Text='<%# GetWhich(Eval("Id_client")) %>' />
-
+                            </asp:Panel>
+                            <div class="CssTicket">
+                                <div style="padding-right: 15px;">
+                                    <asp:Label ID="textLabel" runat="server" Text='<%# Eval("text") %>' />
+                                </div>
                             </div>
-                            <div style="padding-right: 15px;">
-                                <asp:Label ID="textLabel" runat="server" Text='<%# Eval("text") %>' />
-                            </div>
-                        </div>
-                        <br />
+                            <br />
 
-                        <asp:Label Style="font-size: 12px; color: #a3a3a3;" ID="dateLabel" runat="server" Text='<%# "تاریخ ثبت: " & GetDate(Eval("date")) %>' />
+                            <asp:Label Style="font-size: 12px; color: #a3a3a3;" ID="dateLabel" runat="server" Text='<%# "تاریخ ثبت: " & GetDate(Eval("date")) %>' />
 
-                    </asp:Panel>
+                        </asp:Panel>
 
-                </ItemTemplate>
+                    </ItemTemplate>
 
-            </asp:DataList>
+                </asp:DataList>
+            </div>
             <asp:SqlDataSource ID="sds_responses" runat="server"
                 ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
-                SelectCommand="SELECT * FROM [tbl_Comment_clients] WHERE (id_client=@Id or id_client=0) And (([Id] = @Id_parent) or ([Id_parent] = @Id_parent)) order by [date] desc">
+                SelectCommand="SELECT * FROM [tbl_Comment_clients] WHERE (id_client=@Id or id_client=0) 
+                And (([Id] = @Id_parent) or ([Id_parent] = @Id_parent)) order by [date] asc">
                 <SelectParameters>
                     <asp:RouteParameter Name="Id" RouteKey="id" Type="Int64" />
                     <asp:QueryStringParameter Name="Id_parent" QueryStringField="ticket_token" Type="Int64" />
                 </SelectParameters>
             </asp:SqlDataSource>
-            <div style="margin-top: 20px;">
-                <div style="font-size: 19px; padding-bottom: 15px;">
-                    ارسال جوابی برای این تیکت ...
-                </div>
-                <div>
-                    <asp:TextBox ID="txtResponse" Font-Names="Samim" Style="padding: 10px; font-size: 15px;" runat="server" TextMode="MultiLine"
-                        placeholder="متن خود را وارد کنید ..." Height="250px" Width="100%"></asp:TextBox>
-                </div>
+            <div style="margin-top: 20px;" id="reply">
 
-                <div style="padding-top: 15px;">
-                    <asp:Button CssClass="cmdCss" ID="btnResponse" Font-Names="Samim" runat="server" Style="padding: 7px; cursor: pointer;" Text="ثبت" />
-                </div>
+                <asp:MultiView ID="MultiViewAnswer" runat="server" ActiveViewIndex="1">
+                    <asp:View ID="View" runat="server">
+                        <div class="alert" role="alert">
+                            تا پاسخگویی کارشناس مربوطه، امکان ارسال جواب وجود نخواهد داشت.
+                        <br />
+                            لطفا صبور باشید.
+                        </div>
+                    </asp:View>
+                    <asp:View ID="View8" runat="server">
+                        <div style="font-size: 19px; padding-bottom: 15px;">
+                            ارسال جوابی برای این تیکت ...
+                        </div>
+
+                        <div style="text-align: center; align-content: center; padding: 20px;">
+                            <asp:LinkButton runat="server" Height="60" ForeColor="#606060"
+                                ID="btnEnableResponseText"
+                                CssClass="linkbtnMethod"
+                                Style="padding: 10px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;">
+    
+<asp:Label runat="server" Text="ارسال متن" style="margin:20px 0px 50px 5px; float:left;"/>
+                            <asp:Image runat="server"
+                                ImageUrl="~/files/images/icons/clientmethod_text.png" Height="50" style="float:left;"/>
+                            </asp:LinkButton>
+                            <asp:LinkButton runat="server" Height="60" ForeColor="#606060"
+                                ID="btnEnableResponseVoice"
+                                CssClass="linkbtnMethod"
+                                Style="padding: 10px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;">
+    
+<asp:Label runat="server" Text="ارسال ویس (امکان جدید)" style="margin:20px 0px 50px 5px; float:left;"/>
+                            <asp:Image runat="server" ImageUrl="~/files/images/icons/clientmethod_record.png" Height="50" style="float:left;"/>
+                            </asp:LinkButton>
+
+                        </div>
+
+                    </asp:View>
+                    <asp:View ID="View7" runat="server">
+
+                        <div>
+                            <asp:TextBox ID="txtResponse" Font-Names="Samim" Style="padding: 10px; font-size: 15px;" runat="server" TextMode="MultiLine"
+                                placeholder="متن خود را وارد کنید ..." Height="250px" Width="100%"></asp:TextBox>
+                        </div>
+
+                        <div style="padding-top: 15px;">
+                            <asp:Button CssClass="cmdCss" ID="btnResponse" Font-Names="Samim" runat="server" Style="padding: 7px; cursor: pointer;" Text="ثبت" />
+                        </div>
+                    </asp:View>
+                    <asp:View ID="View3" runat="server">
+
+
+                        <button type="button" data-toggle="modal"
+                            class="linkbtnMethod"
+                            style="width: 100%; text-align: center; cursor: pointer;"
+                            data-target=".bd-example-modal-sm">
+
+
+                            <asp:Image runat="server"
+                                ImageUrl="~/files/images/icons/clientmethod_record.png" CssClass="blink" Height="50" />
+
+                        </button>
+
+
+                    </asp:View>
+                </asp:MultiView>
             </div>
         </asp:View>
-        <asp:View ID="View3" runat="server">
-            <div class="warning">
 
-                <img src="../../../files/images/icons/wait.png" />
-                <br />
-                کامنت قبلی شما پاسخ داده نشده است، تا پاسخگویی کارشناس مربوطه شکیبا باشید.
-          
-            </div>
-        </asp:View>
+
     </asp:MultiView>
+
+    <!-- Small modal -->
+    <div id="myModal" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div style="text-align: center; display: grid; place-items: center;">
+                    <audio id="recorder" muted hidden></audio>
+                    <img src="../../files/images/icons/ic_record.png"
+                        style="cursor: pointer;" onclick="StatusRec()" width="100" id="start" />
+
+
+                    <ul class='waveUl' style="display: none;">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <hr />
+                    <button type='button' class="btnStop" id="stop" onclick="StatusRec()">توقف و ارسال ویس</button>
+                    <hr />
+                    <span id="lblRecord" style="font-family: Samim; display: none; color: gray;">صدای شما در حال ضبط می‌باشد ...
+                    </span>
+                    <hr />
+                    <div id="countup">
+                        <span id="minutes"></span>
+                        <span id="seconds"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // All wavesurfer options in one place: https://wavesurfer-js.org/examples/#all-options.js 
+        import WaveSurfer from 'https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js'
+
+        const audio = new Audio()
+        audio.controls = true
+        audio.style.width = '100%'
+        document.body.appendChild(audio)
+
+        const options = {
+            /** HTML element or CSS selector (required) */
+            container: 'body',
+            /** The height of the waveform in pixels */
+            height: 128,
+            /** Render each audio channel as a separate waveform */
+            splitChannels: false,
+            /** Stretch the waveform to the full height */
+            normalize: false,
+            /** The color of the waveform */
+            waveColor: '#ff4e00',
+            /** The color of the progress mask */
+            progressColor: '#dd5e98',
+            /** The color of the playpack cursor */
+            cursorColor: '#ddd5e9',
+            /** The cursor width */
+            cursorWidth: 5,
+            /** Render the waveform with bars like this: ▁ ▂ ▇ ▃ ▅ ▂ */
+            barWidth: NaN,
+            /** Spacing between bars in pixels */
+            barGap: NaN,
+            /** Rounded borders for bars */
+            barRadius: NaN,
+            /** A vertical scaling factor for the waveform */
+            barHeight: NaN,
+            /** Vertical bar alignment **/
+            barAlign: '',
+            /** Minimum pixels per second of audio (i.e. zoom level) */
+            minPxPerSec: 1,
+            /** Stretch the waveform to fill the container, true by default */
+            fillParent: true,
+            /** Audio URL */
+            //url: file,*/
+            /** Pre-computed audio data */
+            peaks: undefined,
+            /** Pre-computed duration */
+            duration: undefined,
+            /** Use an existing media element instead of creating one */
+            media: audio,
+            /** Play the audio on load */
+            autoplay: false,
+            /** Pass false to disable clicks on the waveform */
+            interact: true,
+            /** Hide the scrollbar */
+            hideScrollbar: false,
+            /** Audio rate */
+            audioRate: 1,
+            /** Automatically scroll the container to keep the current position in viewport */
+            autoScroll: true,
+            /** If autoScroll is enabled, keep the cursor in the center of the waveform during playback */
+            autoCenter: true,
+            /** Decoding sample rate. Doesn't affect the playback. Defaults to 8000 */
+            sampleRate: 8000,
+        }
+
+        const wavesurfer = WaveSurfer.create(options)
+
+        wavesurfer.on('ready', () => {
+            wavesurfer.setTime(10)
+        })
+
+        // Generate a form input for each option
+        const schema = {
+            height: {
+                value: 128,
+                min: 10,
+                max: 512,
+                step: 1,
+            },
+            cursorWidth: {
+                value: 1,
+                min: 0,
+                max: 10,
+                step: 1,
+            },
+            minPxPerSec: {
+                value: 1,
+                min: 1,
+                max: 1000,
+                step: 1,
+            },
+            barWidth: {
+                value: 0,
+                min: 1,
+                max: 30,
+                step: 1,
+            },
+            barHeight: {
+                value: 1,
+                min: 0.1,
+                max: 4,
+                step: 0.1,
+            },
+            barGap: {
+                value: 0,
+                min: 1,
+                max: 30,
+                step: 1,
+            },
+            barRadius: {
+                value: 0,
+                min: 1,
+                max: 30,
+                step: 1,
+            },
+            peaks: {
+                type: 'json',
+            },
+            audioRate: {
+                value: 1,
+                min: 0.1,
+                max: 4,
+                step: 0.1,
+            },
+            sampleRate: {
+                value: 8000,
+                min: 8000,
+                max: 48000,
+                step: 1000,
+            },
+        }
+
+        const form = document.createElement('form')
+        Object.assign(form.style, {
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '1rem',
+            padding: '1rem',
+        })
+        document.body.appendChild(form)
+
+        for (const key in options) {
+            if (options[key] === undefined) continue
+            const isColor = key.includes('Color')
+
+            const label = document.createElement('label')
+            Object.assign(label.style, {
+                display: 'flex',
+                alignItems: 'center',
+            })
+
+            const span = document.createElement('span')
+            Object.assign(span.style, {
+                textTransform: 'capitalize',
+                width: '7em',
+            })
+            span.textContent = `${key.replace(/[a-z0-9](?=[A-Z])/g, '$& ')}: `
+            label.appendChild(span)
+
+            const input = document.createElement('input')
+            const type = typeof options[key]
+            Object.assign(input, {
+                type: isColor ? 'color' : type === 'number' ? 'range' : type === 'boolean' ? 'checkbox' : 'text',
+                name: key,
+                value: options[key],
+                checked: options[key] === true,
+            })
+            if (input.type === 'text') input.style.flex = 1
+            if (options[key] instanceof HTMLElement) input.disabled = true
+
+            if (schema[key]) {
+                Object.assign(input, schema[key])
+            }
+
+            label.appendChild(input)
+            form.appendChild(label)
+
+            input.oninput = () => {
+                if (type === 'number') {
+                    options[key] = input.valueAsNumber
+                } else if (type === 'boolean') {
+                    options[key] = input.checked
+                } else if (schema[key] && schema[key].type === 'json') {
+                    options[key] = JSON.parse(input.value)
+                } else {
+                    options[key] = input.value
+                }
+                wavesurfer.setOptions(options)
+                textarea.value = JSON.stringify(options, null, 2)
+            }
+        }
+
+        const textarea = document.createElement('textarea')
+        Object.assign(textarea.style, {
+            width: '100%',
+            height: Object.keys(options).length + 1 + 'rem',
+        })
+        textarea.value = JSON.stringify(options, null, 2)
+        textarea.readOnly = true
+        form.appendChild(textarea)
+
+    </script>
+
+    <script type="text/javascript">
+        class VoiceRecorder {
+            constructor() {
+                if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                    console.log("getUserMedia supported")
+                } else {
+                    console.log("getUserMedia is not supported on your browser!")
+                }
+                this.mediaRecorder
+                this.stream
+                this.chunks = []
+                this.isRecording = false
+                this.recorderRef = document.querySelector("#recorder")
+                this.startRef = document.querySelector("#start")
+                this.stopRef = document.querySelector("#stop")
+                this.startRef.onclick = this.startRecording.bind(this)
+                this.stopRef.onclick = this.stopRecording.bind(this)
+                this.constraints = {
+                    audio: true,
+                    video: false
+                }
+
+            }
+
+            handleSuccess(stream) {
+                this.stream = stream
+                this.stream.oninactive = () => {
+                    console.log("Stream ended!")
+                };
+                this.recorderRef.srcObject = this.stream
+                this.mediaRecorder = new MediaRecorder(this.stream)
+                console.log(this.mediaRecorder)
+
+                this.mediaRecorder.ondataavailable = this.onMediaRecorderDataAvailable.bind(this)
+
+                this.mediaRecorder.onstop = this.onMediaRecorderStop.bind(this)
+                this.recorderRef.play()
+                this.mediaRecorder.start()
+
+            }
+
+            handleError(error) {
+                console.log("navigator.getUserMedia error: ", error)
+            }
+
+            onMediaRecorderDataAvailable(e) {
+                this.chunks.push(e.data)
+                //object blob : e.data
+                fun(e.data)
+
+            }
+
+            onMediaRecorderStop(e) {
+                const blob = new Blob(this.chunks, { 'type': 'audio/ogg; codecs=opus' })
+                const audioURL = window.URL.createObjectURL(blob)
+                this.chunks = []
+                this.stream.getAudioTracks().forEach(track => track.stop())
+                this.stream = null
+                StatusRec('OK')
+            }
+
+            startRecording() {
+                if (this.isRecording) return
+                this.isRecording = true
+                this.startRef.innerHTML = 'Recording...'
+                navigator.mediaDevices
+                    .getUserMedia(this.constraints)
+                    .then(this.handleSuccess.bind(this))
+                    .catch(this.handleError.bind(this))
+                StatusRec()
+            }
+
+            stopRecording() {
+                if (!this.isRecording) return
+                this.isRecording = false
+                this.startRef.innerHTML = 'Record'
+                this.recorderRef.pause()
+                this.mediaRecorder.stop()
+            }
+        }
+
+        window.voiceRecorder = new VoiceRecorder();
+    </script>
+
+    <script>
+        function fun(b) {
+
+            $('#myModal').modal('hide');
+            $('*').css('cursor', 'wait') // change cursor to waiting mode
+            $('#clickElement').off('click'); // not allowed to click evenet!
+            ///////////////////////////////////////////
+            var NewOrResponse = document.getElementById('<%= HiddenFieldNewOrResponse.ClientID %>').value;
+            var Token = document.getElementById('<%= HiddenFieldToken.ClientID %>').value;
+            var Id_Client = document.getElementById('<%= HiddenFieldClientID.ClientID %>').value;
+            var Sections = document.getElementById('<%= HiddenFieldResponseSections.ClientID %>').value;
+            var Id_Submission = document.getElementById('<%= HiddenFieldResponseIdSubmission.ClientID %>').value;
+
+            var form = new FormData();
+            form.append("voice", b);
+            form.append("ClientOrAdmin", "1");
+            form.append("NewOrResponse", NewOrResponse);
+            form.append("Token", Token);
+            form.append("Id_Client", Id_Client);
+            form.append("Sections", Sections);
+            form.append("Id_Submission", Id_Submission);
+            var xhttp = new XMLHttpRequest();
+
+            xhttp.onreadystatechange = (e) => {
+                if (xhttp.readyState !== 4) {
+                    return;
+                }
+                if (xhttp.status === 200) {
+                    Swal.fire({
+                        title: 'پیام!',
+                        text: 'تیکت شما از طریق «وُیس» با موفقیت ثبت شد. لطفا منتظر پاسخ کارشناس مربوطه بمانید.',
+                        icon: 'info',
+                        confirmButtonColor: '#ff9100',
+                        confirmButtonText: 'متوجه شدم'
+                    }).then((result) => {
+                        if (result.value) {
+                            if (NewOrResponse == 0) //new ticket
+                                location.href = '../../panel/tickets/' + Id_Client;
+                            if (NewOrResponse == 1) //response ticket
+                                location.href = '../../panel/newtickets/' + Id_Client + '?newpost=off&ticket_token=' + Token + '&Status=2&sections=' + Sections + '&id_submission=' + Id_Submission;
+                        }
+                    });
+                } else {
+                    Swal.fire({
+                        title: 'خطا!',
+                        text: 'خطایی در ارسال وُیس‌تان پیش آمده است، در صورت آپلود ناقص وُیس، آن را پاک کرده و دوباره اقدام بفرمائید.',
+                        icon: 'error',
+                        confirmButtonColor: '#ff9100',
+                        confirmButtonText: 'متوجه شدم'
+                    })
+                }
+            };
+
+            xhttp.open("POST", "../../../panelclients/WebServiceRecordVoice.asmx/RecordVoice", true);
+            xhttp.send(form);
+        }
+        function StatusRec() {
+
+            var start = document.getElementById("start");
+            var stop = document.getElementsByClassName("waveUl")[0];
+            var btnStop = document.getElementById("stop");
+            var lblRecord = document.getElementById("lblRecord");
+
+
+            if (start.style.display === "none") {
+                start.style.display = "block";
+            } else {
+                start.style.display = "none";
+                startTime();
+            }
+            if (stop.style.display === "none") {
+                stop.style.display = "flex";
+                btnStop.style.display = "block";
+                lblRecord.style.display = "block";
+            } else {
+                stop.style.display = "none";
+                btnStop.style.display = "none";
+                lblRecord.style.display = "none";
+                stopTime();
+            }
+
+        }
+
+        var count;
+        var second = 0;
+
+        function startTime() {
+            var second = 0;
+            function upTimer(count) { return count > 9 ? count : "0" + count; }
+            count = setInterval(function () {
+                $("#seconds").html(':' + upTimer(++second % 60));
+                $("#minutes").html(upTimer(parseInt(second / 30, 10)));
+            }, 1000);
+        }
+        function stopTime() {
+            clearInterval(count);
+        }
+    </script>
 </asp:Content>
 

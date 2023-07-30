@@ -21,6 +21,10 @@ Partial Class PanelTicketNew
             End If
         End If
 
+        'If the client's ticket is not answered yet, the client will not be able to reply this ticket!
+        If Val(DL_Panel.GetStatusOfClientComments(Val(Page.Request.QueryString("ticket_token")))) <> 0 Then
+            MultiViewAnswer.ActiveViewIndex = 0
+        End If
         GetFlag()
 
 
@@ -135,24 +139,20 @@ Partial Class PanelTicketNew
 
     Private Sub btnResponse_Click(sender As Object, e As EventArgs) Handles btnResponse.Click
 
-
-        If Val(DL_Panel.GetStatusOfClientComments(Val(Page.Request.QueryString("ticket_token")))) = 0 Then
-            If txtResponse.Text.Length <> 0 Then
-                DL_Panel.InsertCommentClientResponse(Val(Page.RouteData.Values("id")), Val(Page.Request.QueryString("ticket_token")),
-                                          txtResponse.Text.Trim.Replace(ControlChars.Lf, "<br/>"), 1, 0)
-                '''''''''''''' SMS
-                SendSMS("bw7a0w8vp9hgwyj", Val(Page.RouteData.Values("id")))
-                SendSMS_ToAdmin("re9x2dh9u0sar1x", Val(Page.RouteData.Values("id")))
-                ''''''''''''' Email
-                '''To Admin
-                SendEmail(Val(Page.RouteData.Values("id")), txtResponse.Text.Trim.Replace(ControlChars.Lf, "<br/>"))
-                ''''To Client
-                'SendEmail(Val(Page.RouteData.Values("id")), txtText.Text.Trim.Replace(ControlChars.Lf, "<br/>"))
-                ''''''''''''''''''''''''''''''''''''''''''''''''''''
-                MultiView.ActiveViewIndex = 1
-            End If
-        Else
-            MultiView.ActiveViewIndex = 3
+        If txtResponse.Text.Length <> 0 Then
+            DL_Panel.InsertCommentClientResponse(Val(Page.RouteData.Values("id")),
+                                                 Val(Page.Request.QueryString("ticket_token")),
+                                                txtResponse.Text.Trim.Replace(ControlChars.Lf, "<br/>"), 1, 0, 0, "")
+            '''''''''''''' SMS
+            SendSMS("bw7a0w8vp9hgwyj", Val(Page.RouteData.Values("id")))
+            SendSMS_ToAdmin("re9x2dh9u0sar1x", Val(Page.RouteData.Values("id")))
+            ''''''''''''' Email
+            '''To Admin
+            SendEmail(Val(Page.RouteData.Values("id")), txtResponse.Text.Trim.Replace(ControlChars.Lf, "<br/>"))
+            ''''To Client
+            'SendEmail(Val(Page.RouteData.Values("id")), txtText.Text.Trim.Replace(ControlChars.Lf, "<br/>"))
+            ''''''''''''''''''''''''''''''''''''''''''''''''''''
+            MultiView.ActiveViewIndex = 1
         End If
 
     End Sub
@@ -162,6 +162,18 @@ Partial Class PanelTicketNew
     End Sub
     Private Sub btnMethodText_Click(sender As Object, e As EventArgs) Handles btnMethodText.Click
         MultiViewMethod.ActiveViewIndex = 1
+    End Sub
+
+    Private Sub btnEnableResponseText_Click(sender As Object, e As EventArgs) Handles btnEnableResponseText.Click
+        MultiViewAnswer.ActiveViewIndex = 2
+    End Sub
+
+    Private Sub btnEnableResponseVoice_Click(sender As Object, e As EventArgs) Handles btnEnableResponseVoice.Click
+        MultiViewAnswer.ActiveViewIndex = 3
+        HiddenFieldResponseSections.Value = Request.QueryString("sections")
+        HiddenFieldResponseIdSubmission.Value = Request.QueryString("id_submission")
+        HiddenFieldNewOrResponse.Value = 1
+        HiddenFieldToken.Value = Page.Request.QueryString("ticket_token")
     End Sub
 
 End Class

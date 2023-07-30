@@ -326,12 +326,12 @@ Public Class DLL_Panel
     End Sub
 
     Public Sub InsertCommentClientResponse(ByVal id_client As Long, id_parent As Long, text As String,
-                                           flag As Byte, read As Byte)
+                                           flag As Byte, read As Byte, textVoice As Boolean, voicefile As String)
         Try
             If sqlconn_Site.State = ConnectionState.Open Then sqlconn_Site.Close()
             sqlconn_Site.Open()
             Dim sqlcom As New SqlCommand("exec dbo.[sp_InsertCommentClientResponse] " + id_client.ToString + "," _
-            + id_parent.ToString + ",'" + text + "'," + flag.ToString + "," + read.ToString, sqlconn_Site)
+            + id_parent.ToString + ",'" + text + "'," + flag.ToString + "," + read.ToString + "," + textVoice.ToString + ",'" + voicefile + "'", sqlconn_Site)
             sqlcom.ExecuteNonQuery()
             sqlconn_Site.Close()
         Catch ex As Exception

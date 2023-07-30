@@ -48,7 +48,7 @@ Partial Class CMS_Pages_commentClients
         End Select
     End Function
     Public Function GetDate(data As Object) As String
-        Return ShamsiDate.Miladi2Shamsi(data, ShamsiDate.ShowType.LongDate)
+        Return ShamsiDate.Miladi2Shamsi(data, ShamsiDate.ShowType.LongDate) & " | " & Convert.ToDateTime(data).TimeOfDay.ToString("hh':'mm':'ss")
     End Function
     Public Sub Ticket(sender As Object, e As CommandEventArgs)
 
@@ -87,6 +87,8 @@ Partial Class CMS_Pages_commentClients
             MultiView1.ActiveViewIndex = 1
             If Page.Request.QueryString("Status") = "1" Then DL_Panel.UpdateCommentClient(Val(Page.Request.QueryString("id")), True, 1)
             GetFlag()
+            HiddenFieldToken.Value = Page.Request.QueryString("id")
+            HiddenFieldClientID.Value = Page.Request.QueryString("id_client")
         End If
     End Sub
     Private Sub SendSMS(PaternId As String, customerid As Long)
@@ -123,7 +125,7 @@ Partial Class CMS_Pages_commentClients
 
             Try
                 DL_Panel.InsertCommentClientResponse(0, Val(Page.Request.QueryString("id")),
-                                      txtResponse.Text.Trim.Replace(ControlChars.Lf, "<br/>"), 2, 0)
+                                      txtResponse.Text.Trim.Replace(ControlChars.Lf, "<br/>"), 2, 0, 0, "")
             Catch ex As Exception
                 lblResult.Text += "Err: Insert" + "</br>"
             End Try
@@ -196,4 +198,5 @@ Partial Class CMS_Pages_commentClients
     Private Sub btnSendSmsAgain_Click(sender As Object, e As EventArgs) Handles btnSendSmsAgain.Click
         SendSMS("d4hbplkt4pgeceq", Val(Page.Request.QueryString("id_client")))
     End Sub
+
 End Class

@@ -45,7 +45,7 @@ Partial Class PanelTicket
 
         Dim s() As String = e.CommandArgument.ToString.Split("|")
         Response.Redirect("~/panel/newtickets/" & Page.RouteData.Values("id") +
-            "?newpost=off&ticket_token=" + s(0) + "&Status=" + s(1))
+            "?newpost=off&ticket_token=" + s(0) + "&Status=" + s(1) + "&sections=" + s(2) + "&id_submission=" + s(3))
     End Sub
 
     Public Function GetSection(section As Object) As String

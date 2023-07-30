@@ -106,7 +106,7 @@
                     <ItemTemplate>
                         <div>
                             <asp:Button ID="Button1"
-                                CommandArgument='<%# Eval("Id") & "|" & Eval("flag") %>'
+                                CommandArgument='<%# Eval("Id") & "|" & Eval("flag") & "|" & Eval("sections") & "|" & Eval("id_submission") %>'
                                 OnCommand="Ticket"
                                 CssClass="btn" runat="server" Text="مشاهده" Width="100%" />
                         </div>
