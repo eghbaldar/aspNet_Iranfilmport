@@ -508,6 +508,13 @@
                                 <div id='<%# String.Format("divPlayPause_{0}", Eval("id")) %>' class="playpause">
                                     بازپخش
                                 </div>
+                                <div>
+                                    در صورت عدم پخش فایل صوتی، 
+                                    <a href='<%# "../../panel/ticket/voice/" & Eval("voicefile").Replace(".mp3", "") %>' target="_blank">
+                                        (اینجا) 
+                                    </a>
+                                    کلیک کنید.
+                                </div>
                                 <script type="module">
 
                                     import WaveSurfer from 'https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js'

@@ -103,6 +103,7 @@
         routes.MapPageRoute("panelTicketsNew", "panel/newtickets/{id}", "~/panelclients/PanelTicketNew.aspx")
         routes.MapPageRoute("panelStrategyReports", "panel/panelStrategyReports/{id}/{idFilm}", "~/panelclients/Panel_StrategyReport.aspx")
         routes.MapPageRoute("panelReceipt", "panel/PanelReceipt/{id}/{idSubmission}/", "~/panelclients/PanelReceipt.aspx")
+        routes.MapPageRoute("panelTicketVoice", "panel/ticket/voice/{file}", "~/panelclients/playvoice.aspx")
         '----------------------------------------------------------------------------------------
         'ساخت لینک داینامیک
         'routes.MapPageRoute("dynamicLink", "link/d/{randomString}", "~/files/images/background/banner_1.jpg")
