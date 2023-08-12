@@ -125,7 +125,7 @@ Partial Class CMS_Pages_commentClients
 
             Try
                 DL_Panel.InsertCommentClientResponse(0, Val(Page.Request.QueryString("id")),
-                                      txtResponse.Text.Trim.Replace(ControlChars.Lf, "<br/>"), 2, 0, 0, "")
+                                      convertNumFatoEn(txtResponse.Text.Trim.Replace(ControlChars.Lf, "<br/>")), 2, 0, 0, "")
             Catch ex As Exception
                 lblResult.Text += "Err: Insert" + "</br>"
             End Try
@@ -198,5 +198,8 @@ Partial Class CMS_Pages_commentClients
     Private Sub btnSendSmsAgain_Click(sender As Object, e As EventArgs) Handles btnSendSmsAgain.Click
         SendSMS("d4hbplkt4pgeceq", Val(Page.Request.QueryString("id_client")))
     End Sub
+    Public Function convertNumFatoEn(ByVal T As String) As String
+        Return T.Replace("۰", "0").Replace("۱", "1").Replace("۲", "2").Replace("۳", "3").Replace("۴", "4").Replace("۵", "5").Replace("۶", "6").Replace("۷", "7").Replace("۸", "8").Replace("۹", "9").Replace("٫", "/")
+    End Function
 
 End Class

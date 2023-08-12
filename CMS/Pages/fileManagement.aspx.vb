@@ -134,6 +134,8 @@ Partial Class CMS_Pages_fileManagement
         If ETree.SelectedValue.Trim() <> "~/Images/Public/ ".Trim() Then
             FillDGFiles(ETree.SelectedValue)
             FilePath = ETree.SelectedValue
+            lblPathForUpload.Text = FilePath
+            lblRealPathForUpload.Text = MapPath(FilePath)
             lbl_currentBranch.Text = MapPath(ETree.SelectedValue)
             DelPath = ETree.SelectedValue
 
@@ -186,13 +188,22 @@ Partial Class CMS_Pages_fileManagement
         '--------------
         Dim i As Integer
         For i = 0 To Files.Length - 1
-            r = dt.NewRow()
-            r("اسم فایل") = Path.GetFileName(Files(i).ToString())
-            Dim FileSize As New FileInfo(Files(i).ToString())
-            r("(KB)حجم") = FileSize.Length
-            r("(MB)حجم") = BytesToMegabytes(Convert.ToDouble(FileSize.Length.ToString())).ToString()
-            r("لینک فایل") = Files(i)
-            dt.Rows.Add(r)
+            Try
+                r = dt.NewRow()
+                r("اسم فایل") = Path.GetFileName(Files(i).ToString())
+                Dim FileSize As New FileInfo(Files(i).ToString())
+                r("(KB)حجم") = FileSize.Length
+                r("(MB)حجم") = BytesToMegabytes(Convert.ToDouble(FileSize.Length.ToString())).ToString()
+                r("لینک فایل") = Files(i)
+                dt.Rows.Add(r)
+            Catch ex As Exception
+                r = dt.NewRow()
+                r("اسم فایل") = "notRead"
+                r("(KB)حجم") = "notRead"
+                r("(MB)حجم") = "notRead"
+                r("لینک فایل") = "notRead"
+                dt.Rows.Add(r)
+            End Try
         Next i
 
         Dim DS As New DataSet
@@ -205,19 +216,27 @@ Partial Class CMS_Pages_fileManagement
 
     Protected Sub btn_createDir_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btn_createDir.Click
 
-        Directory.CreateDirectory(MapPath(FilePath + nameDirectory.Text))
+        If txtUploadFileName.Text.Trim <> "" Then
+            Directory.CreateDirectory(MapPath(FilePath + nameDirectory.Text))
 
-        ETree.Nodes.Clear()
-        PopulateTree()
-        ETree.ExpandAll()
-        nameDirectory.Text = ""
+            ETree.Nodes.Clear()
+            PopulateTree()
+            ETree.ExpandAll()
+            nameDirectory.Text = ""
+        End If
 
     End Sub
 
     Protected Sub btn_UpFile_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btn_UpFile.Click
 
-        FileUpload.SaveAs(MapPath(FilePath + FileUpload.FileName))
-        FillDGFiles(FilePath)
+        If txtUploadFileName.Text.Trim <> "" And FileUpload.FileName <> ""   Then
+            Dim fileInfo As New FileInfo(FileUpload.FileName)
+            Dim file = FilePath + Date.Now.Ticks.ToString + "-" + txtUploadFileName.Text.Trim.Replace(" ", "-") + fileInfo.Extension
+            FileUpload.SaveAs(MapPath(file))
+            FillDGFiles(FilePath)
+            lblAfterUploading.Text = "<a href='" & ResolveUrl(file) & "' target='_blank'>GetLink</a>"
+            txtUploadFileName.Text = ""
+        End If
 
     End Sub
 

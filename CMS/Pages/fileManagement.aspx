@@ -125,13 +125,24 @@ EnableEventValidation="false"
         آپلود فایل
     </div>
     <div>
+        <div style="direction:ltr;color:red;text-align:center;">
+            Virtual Path:
+            <asp:Label ID="lblPathForUpload" runat="server"></asp:Label>
+            <br />Real Path:
+            <asp:Label ID="lblRealPathForUpload" runat="server"></asp:Label>
+        </div>
+        <br />  <br />
         <asp:Button ID="btn_UpFile" runat="server" Style="font-family: Tahoma; font-size: 11px"
             Text="ارسال" />
+        <asp:TextBox ID="txtUploadFileName" placeholder="نام فایل را وارد کنید ** به انتهای این فایل شماره ای یونیک اضافه میشود** " 
+            runat="server" Width="50%"></asp:TextBox>
         <asp:FileUpload ID="FileUpload" runat="server" />
-        :فایل
         <br />
-        [File]
+         <div style="text-align:center;font-size:20px;padding:20px;background-color:darkkhaki;">
+             <asp:Label ID="lblAfterUploading" runat="server"></asp:Label>
+         </div>
     </div>
+    <hr />
     <div>
         :حذف پوشه
         <asp:ImageButton ID="Del_Dir" OnClientClick="return confirm('آیا از حذف این پوشه مطمئن هستید؟');"
@@ -149,7 +160,7 @@ EnableEventValidation="false"
     <div>
         <asp:GridView ID="DG" runat="server" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None"
             BorderWidth="1px" CellPadding="3" GridLines="Horizontal" Style="font-family: Tahoma;
-            font-size: 12px">
+            font-size: 12px" AllowPaging="True">
             <FooterStyle BackColor="#B5C7DE" ForeColor="#4A3C8C" />
             <RowStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" />
             <Columns>

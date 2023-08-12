@@ -142,7 +142,7 @@ Partial Class PanelTicketNew
         If txtResponse.Text.Length <> 0 Then
             DL_Panel.InsertCommentClientResponse(Val(Page.RouteData.Values("id")),
                                                  Val(Page.Request.QueryString("ticket_token")),
-                                                txtResponse.Text.Trim.Replace(ControlChars.Lf, "<br/>"), 1, 0, 0, "")
+                                                convertNumFatoEn(txtResponse.Text.Trim.Replace(ControlChars.Lf, "<br/>")), 1, 0, 0, "")
             '''''''''''''' SMS
             SendSMS("bw7a0w8vp9hgwyj", Val(Page.RouteData.Values("id")))
             SendSMS_ToAdmin("re9x2dh9u0sar1x", Val(Page.RouteData.Values("id")))
@@ -175,5 +175,9 @@ Partial Class PanelTicketNew
         HiddenFieldNewOrResponse.Value = 1
         HiddenFieldToken.Value = Page.Request.QueryString("ticket_token")
     End Sub
+
+    Public Function convertNumFatoEn(ByVal T As String) As String
+        Return T.Replace("۰", "0").Replace("۱", "1").Replace("۲", "2").Replace("۳", "3").Replace("۴", "4").Replace("۵", "5").Replace("۶", "6").Replace("۷", "7").Replace("۸", "8").Replace("۹", "9").Replace("٫", "/")
+    End Function
 
 End Class

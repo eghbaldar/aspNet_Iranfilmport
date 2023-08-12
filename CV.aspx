@@ -55,7 +55,7 @@
                         </div>
                         <div>
                             
-                            <asp:DataList ID="DataListFilm" Width="100%" runat="server" DataSourceID="SDS_FILM" style="margin-top: 0px">
+                            <asp:DataList Visible="false" ID="DataListFilm" Width="100%" runat="server" DataSourceID="SDS_FILM" style="margin-top: 0px">
                                 <ItemTemplate>
 
                                     <asp:Label ID="id_film_accolade" Visible="false" runat="server" Text='<%# Eval("id") %>' />

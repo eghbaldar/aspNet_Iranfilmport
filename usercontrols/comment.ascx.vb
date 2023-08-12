@@ -44,8 +44,9 @@ Partial Class usercontrols_comment
 
     Protected Sub btnInsert_Click(sender As Object, e As System.EventArgs) Handles btnInsert.Click
         If ImgCaptcha.ToolTip.ToUpper = txtCaptcha.Text.Trim.ToUpper Then
-            DL.InsertComment(_Section, _Id_POST, 0, _
-                             convertNumFatoEn(txtText.Text.Replace(ControlChars.Lf, "<br/>")), txtName.Text.Trim, txtEmail.Text.Trim, False, 0)
+            DL.InsertComment(_Section, _Id_POST, 0,
+                             convertNumFatoEn(txtText.Text.Replace(ControlChars.Lf, "<br/>")),
+                             txtName.Text.Trim, txtEmail.Text.Trim, False, 0)
             txtEmail.Text = ""
             txtName.Text = ""
             txtText.Text = ""
@@ -77,8 +78,9 @@ Partial Class usercontrols_comment
                     If txtText <> "" Then text = txtText
                 Next
             Next
-        DL.InsertComment(_Section, _Id_POST, Val(e.CommandArgument.ToString), text.Trim.Replace(ControlChars.Lf, "<br/>"), name.Trim, email.Trim, False, 0)
-            dgComment.DataBind()
+        DL.InsertComment(_Section, _Id_POST, Val(e.CommandArgument.ToString),
+                         convertNumFatoEn(text.Trim.Replace(ControlChars.Lf, "<br/>")), name.Trim, email.Trim, False, 0)
+        dgComment.DataBind()
             Div_success.Visible = True
             Div_comment.Visible = False
 
