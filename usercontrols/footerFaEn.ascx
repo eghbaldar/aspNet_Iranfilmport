@@ -61,10 +61,10 @@
         </a></span><span><a href="../">
             <img alt="لوگو درگاه فیلم ایران" style="text-shadow: 3px 1px 1px #000;" width="100"
                 src='<%= Page.ResolveUrl("~/files/images/logos/logoSquare.png") %>' />
-        </a></span><span>
+        </a></span><%--<span>
             <img id='Img1' style='cursor: pointer' onclick='window.open("https://logo.samandehi.ir/Verify.aspx?id=131805&p=rfthxlaorfthmcsiobpddshw", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")'
                 alt='logo-samandehi' src='https://logo.samandehi.ir/logo.aspx?id=131805&p=nbpdqftinbpdaqgwlymaujyn' />
-        </span><span>
+        </span>--%><span>
             <script src="https://cdn.zarinpal.com/trustlogo/v1/trustlogo.js" type="text/javascript"></script>
         </span>
 

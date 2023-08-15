@@ -90,7 +90,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
-
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="TITLE" style="text-align: center; color: Black; font-size: 20px;">
         <h4>
             <a href="../../accolades" target="_blank" style="color: Black; font-family: Samim;">مشاهده صفحه کارنامه درگاه </a>
@@ -168,12 +168,20 @@
                         placeholder="فیلم / فیلمنامه ... سرچ لحظه ای ..."
                         ID="txtSearchInDropbox" runat="server" AutoPostBack="true"></asp:TextBox>
                     
+                    
                     <asp:DropDownList CssClass="txtFa"
-                        ID="cmdFilm" runat="server" DataSourceID="SqlDataSourceFilm" DataTextField="nameFa" DataValueField="id">
+                        ID="cmdFilm" runat="server" DataSourceID="SqlDataSourceFilm" DataTextField="film" DataValueField="id">
                     </asp:DropDownList>
-                    <asp:SqlDataSource ID="SqlDataSourceFilm" runat="server"
+                       <asp:SqlDataSource ID="SqlDataSourceFilm" runat="server"
+                        ConnectionString="<%$ ConnectionStrings:DesktopConnectionString %>"
+                        SelectCommand="SELECT id,Film FROM [tbFilms] order by [Film]">
+                    </asp:SqlDataSource>
+                 <%--   <asp:SqlDataSource ID="SqlDataSourceFilm" runat="server"
                         ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
-                        SelectCommand="SELECT id,[nameFa]+ ' - ' + nameEn 'nameFa' FROM [tbl_PosterOfCustomer] order by [namefa]"></asp:SqlDataSource>
+                        SelectCommand="SELECT id,[nameFa]+ ' - ' + nameEn 'nameFa' FROM [tbl_PosterOfCustomer] order by [namefa]">
+                    </asp:SqlDataSource>--%>
+
+
                     <br />
                     <div style="padding: 5px;">
                     <asp:LinkButton ID="btnShowAccolades" Font-Size="Small" Font-Names="Samim"  runat="server">مشاهده افتخارات این فیلم</asp:LinkButton>
@@ -206,4 +214,31 @@
 
 		</div>
 	</details>
+                <details >
+		<summary>
+			اولویت بندی ها
+		</summary>
+                    <div style="text-align:center;">
+                       <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                           <ContentTemplate>
+                               <asp:Button ID="btnUp" runat="server" Font-Size="100px"  Text="+"></asp:Button>
+
+                                   <asp:ListBox ID="lstPriorities" Height="500px"
+                                       style="text-align:center;"
+                                       Width="500px"
+                                       Font-Size="Medium"
+                                       runat="server"
+                                       DataSourceID="sqlPriorities"
+                                       DataTextField="id_film"
+                                       DataValueField="id">
+
+                        </asp:ListBox>
+                                <asp:SqlDataSource ID="sqlPriorities" runat="server"
+                                    ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
+                                    SelectCommand="SELECT * FROM [tbl_accolades] order by [priority] asc"></asp:SqlDataSource>
+                               <asp:Button ID="btnDown" runat="server" Font-Size="100px" Text="-"></asp:Button>
+                           </ContentTemplate>
+                       </asp:UpdatePanel>
+                    </div>
+                    	</details>
 </asp:Content>

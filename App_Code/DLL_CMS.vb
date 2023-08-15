@@ -1048,4 +1048,51 @@ Public Class DLL_CMS
             sqlconnDesktop.Close()
         End Try
     End Function
+
+    Public Function GetFilmNameWithId(id As Long) As String
+        Try
+            If sqlconnDesktop.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconnDesktop.Open()
+            Dim sqlcom As New SqlCommand("select [film] from tbFilms where id=" & id.ToString, sqlconnDesktop)
+            Return sqlcom.ExecuteScalar()
+            sqlconnDesktop.Close()
+        Catch ex As Exception
+        Finally
+            sqlconnDesktop.Close()
+        End Try
+    End Function
+
+    Public Function GetAccoladeFilmId(id As Long, language As String) As String
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            Dim sqlcom As New SqlCommand
+            If language.ToUpper() = "FA" Then
+                sqlcom = New SqlCommand("select [fa] from [tbl_accolades] where id_film=" & id.ToString, sqlconn)
+            Else
+                sqlcom = New SqlCommand("select [en] from [tbl_accolades] where id_film=" & id.ToString, sqlconn)
+            End If
+            Return sqlcom.ExecuteScalar()
+            sqlconn.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+    End Function
+
+    Public Function UpdateAccoladePriority(id As Long, priority As Integer) As Boolean
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            Dim sqlcom As New SqlCommand
+            sqlcom = New SqlCommand("update [tbl_accolades] set [priority]=" & priority.ToString & " where id=" & id.ToString, sqlconn)
+            sqlcom.ExecuteNonQuery()
+            Return True
+            sqlconn.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+    End Function
+
 End Class

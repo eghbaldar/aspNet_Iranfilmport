@@ -3,6 +3,7 @@ Partial Class movibeta
     Inherits System.Web.UI.Page
 
     Public FaEn As Boolean
+    Dim DL_CMS As New DLL_CMS
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
@@ -47,5 +48,16 @@ Partial Class movibeta
     '    Return txt.Replace("ي", "ی").Replace("Tahoma,Geneva,sans-serif", "irsans").Replace("Tahoma,Gene7a,sans-serif", "irsans").Replace("<p>", "").Replace("</p>", "")
 
     'End Function
+
+    Public Function GetFilmName(Id_film As Object, Language As Object)
+        If Language.ToString().ToUpper = "FA" Then
+            Return DL_CMS.GetFilmNameWithId(Val(Id_film))
+        End If
+    End Function
+
+    Public Function GetAccolade(Id_film As Object, Language As Object)
+        Return DL_CMS.GetAccoladeFilmId(Val(Id_film), Language.ToString)
+    End Function
+
 
 End Class
