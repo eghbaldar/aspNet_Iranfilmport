@@ -45,7 +45,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6db3f2', end
     <form id="form1" runat="server">
         <div>
             <div style="direction: rtl; padding: 20px; font-family: Samim; font-size: 20px;">
-                    <asp:Label ID="lblTitle" runat="server" Text=" لیست افتخارات این اثر:"></asp:Label>
+                    <asp:Label ID="lblTitle" runat="server" ></asp:Label>
                 </div>
             <asp:MultiView ID="MultiView" runat="server" ActiveViewIndex="0">
                 <asp:View ID="ViewList" runat="server">

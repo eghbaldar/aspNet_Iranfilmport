@@ -934,11 +934,11 @@ Public Class DLL_CMS
         End Try
     End Function
 
-    Public Function InsertAccolade(id_film As Long, fa As String, en As String)
+    Public Function InsertUpdateAccolade(id_film As Long, fa As String, en As String)
         Try
             If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
             sqlconn.Open()
-            Dim sqlcom As New SqlCommand("insert into tbl_accolades (id_film,fa,en) values (" + id_film.ToString + ",N'" + fa + "','" + en + "') ", sqlconn)
+            Dim sqlcom As New SqlCommand("exec [sp_Insert_Update_Accolades] " + id_film.ToString + ",N'" + fa + "','" + en + "'", sqlconn)
             sqlcom.ExecuteNonQuery()
             sqlconn.Close()
         Catch ex As Exception
@@ -947,12 +947,16 @@ Public Class DLL_CMS
         End Try
     End Function
 
-    Public Function UpdateAccolade(fa As String, en As String, id As Long)
+    Public Function ExistAccoalde(id_film As Long) As Boolean
         Try
             If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
             sqlconn.Open()
-            Dim sqlcom As New SqlCommand("update tbl_accolades set fa= N'" + fa + "', en='" + en + "' where id=" + id.ToString, sqlconn)
-            sqlcom.ExecuteNonQuery()
+            Dim sqlcom As New SqlCommand("select count(*) from tbl_accolades where id_film=" & id_film.ToString, sqlconn)
+            If Val(sqlcom.ExecuteScalar) > 0 Then
+                Return True 'UPDATE
+            Else
+                Return False 'INSERT
+            End If
             sqlconn.Close()
         Catch ex As Exception
         Finally

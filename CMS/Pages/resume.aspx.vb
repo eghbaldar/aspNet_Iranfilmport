@@ -17,47 +17,63 @@ Partial Class CMS_Pages_resume
 
     Private Sub btnDown_Click(sender As Object, e As EventArgs) Handles btnDown.Click
 
-        Dim currentIndex = lstPriorities.SelectedIndex
+        Dim currentIndex = lstPriorities.SelectedIndex '0
 
-        Dim currentItem = lstPriorities.Items.Item(currentIndex).Value 'id
-        Dim currentValue = lstPriorities.Items.Item(currentIndex).ToString 'id_film
-        Dim downItem = lstPriorities.Items.Item(currentIndex + 1).Value 'id
-        Dim downValue = lstPriorities.Items.Item(currentIndex + 1).ToString 'id_film
+        If currentIndex <> (lstPriorities.Items.Count - 1) Then
 
-        DL_CMS.UpdateAccoladePriority(Val(downItem), currentIndex + 1)
-        DL_CMS.UpdateAccoladePriority(Val(currentItem), currentIndex + 2)
+            Dim currentItem = lstPriorities.Items.Item(currentIndex).ToString 'a
+            Dim currentValue = lstPriorities.Items.Item(currentIndex).Value '6
 
-        lstPriorities.Items.RemoveAt(currentIndex)
-        lstPriorities.Items.RemoveAt(currentIndex)
+            Dim downItem = lstPriorities.Items.Item(currentIndex + 1).ToString 'b
+            Dim downValue = lstPriorities.Items.Item(currentIndex + 1).Value  '3
 
-        Dim list As New ListItem(currentValue, currentItem)
-        lstPriorities.Items.Insert(currentIndex, list)
-        lstPriorities.Items.Insert(currentIndex, downValue)
+            DL_CMS.UpdateAccoladePriority(Val(currentValue), currentIndex + 1)
+            DL_CMS.UpdateAccoladePriority(Val(downValue), currentIndex)
 
-        lstPriorities.SelectedIndex = currentIndex + 1
+            lstPriorities.Items.RemoveAt(currentIndex)
+            lstPriorities.Items.RemoveAt(currentIndex)
+
+            Dim list2 As New ListItem(downItem, downValue)
+            lstPriorities.Items.Insert(currentIndex, list2)
+
+            Dim list As New ListItem(currentItem, currentValue)
+            lstPriorities.Items.Insert(currentIndex + 1, list)
+
+
+
+            lstPriorities.SelectedIndex = currentIndex + 1
+
+        End If
 
     End Sub
 
     Private Sub btnUp_Click(sender As Object, e As EventArgs) Handles btnUp.Click
 
-        Dim currentIndex = lstPriorities.SelectedIndex
+        Dim currentIndex = lstPriorities.SelectedIndex '1
+        If currentIndex <> 0 Then
 
-        Dim currentItem = lstPriorities.Items.Item(currentIndex).Value 'id
-        Dim currentValue = lstPriorities.Items.Item(currentIndex).ToString 'id_film
-        Dim downItem = lstPriorities.Items.Item(currentIndex - 1).Value 'id
-        Dim downValue = lstPriorities.Items.Item(currentIndex - 1).ToString 'id_film
+            Dim currentItem = lstPriorities.Items.Item(currentIndex).ToString '152
+            Dim currentValue = lstPriorities.Items.Item(currentIndex).Value '3337
 
-        DL_CMS.UpdateAccoladePriority(Val(downItem), currentIndex + 1)
-        DL_CMS.UpdateAccoladePriority(Val(currentItem), currentIndex)
+            Dim downItem = lstPriorities.Items.Item(currentIndex - 1).ToString '151
+            Dim downValue = lstPriorities.Items.Item(currentIndex - 1).Value '2280
 
-        lstPriorities.Items.RemoveAt(currentIndex)
-        lstPriorities.Items.RemoveAt(currentIndex - 1)
+            DL_CMS.UpdateAccoladePriority(Val(downValue), currentIndex)
+            DL_CMS.UpdateAccoladePriority(Val(currentValue), currentIndex - 1)
 
-        Dim list As New ListItem(currentValue, currentItem)
-        lstPriorities.Items.Insert(currentIndex - 1, list)
-        lstPriorities.Items.Insert(currentIndex, downValue)
+            lstPriorities.Items.RemoveAt(currentIndex)
+            lstPriorities.Items.RemoveAt(currentIndex - 1)
 
-        lstPriorities.SelectedIndex = currentIndex - 1
+            Dim list As New ListItem(currentItem, currentValue)
+            lstPriorities.Items.Insert(currentIndex - 1, list)
+
+            Dim list2 As New ListItem(downItem, downValue)
+            lstPriorities.Items.Insert(currentIndex, list2)
+
+            lstPriorities.SelectedIndex = currentIndex - 1
+
+        End If
+
 
     End Sub
 
@@ -77,18 +93,6 @@ Partial Class CMS_Pages_resume
     Protected Sub btnEnUpdate_Click(sender As Object, e As System.EventArgs) Handles btnEnUpdate.Click
         Dim ds As New DLL_CMS
         ds.UpdateResume(txtCVEn.Value, False)
-    End Sub
-
-    Protected Sub btnUpdateAccolade_Click(sender As Object, e As EventArgs) Handles btnUpdateAccolade.Click
-
-        Dim ds As New DLL_CMS
-        ds.InsertAccolade(Val(cmdFilm.SelectedValue), txtAccolade_fa.Value, txtAccolade_en.Value)
-        txtAccolade_en.Value = ""
-        txtAccolade_fa.Value = ""
-        '''''''''''''''''''''''''''''''''''''''''
-        Dim s As String = "window.open('resumeeachone/" & cmdFilm.SelectedValue.ToString & "' , '_blank','width=900, height=600');"
-        Page.ClientScript.RegisterStartupScript(Me.GetType(), "alertscript", s, True)
-
     End Sub
 
     Private Sub btnShowAccolades_Click(sender As Object, e As EventArgs) Handles btnShowAccolades.Click
@@ -128,4 +132,9 @@ Partial Class CMS_Pages_resume
 
 
     End Sub
+
+    Private Sub cmdFilm_DataBound(sender As Object, e As EventArgs) Handles cmdFilm.DataBound
+        cmdFilm.Items.Insert(0, New ListItem("--  فیلمی را انتخاب کنید  --", "0"))
+    End Sub
+
 End Class

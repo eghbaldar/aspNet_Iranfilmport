@@ -90,7 +90,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
-    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <asp:ScriptManager ID="ScriptManager1" runat="server" ></asp:ScriptManager>
+
     <div class="TITLE" style="text-align: center; color: Black; font-size: 20px;">
         <h4>
             <a href="../../accolades" target="_blank" style="color: Black; font-family: Samim;">مشاهده صفحه کارنامه درگاه </a>
@@ -107,7 +108,9 @@
         <%--  https://codepen.io/havardob/pen/abBJgQo--%>
         <details>
 		<summary>
-			قسمت بالای پیج : افتخارات کلی
+			<span style="color:red;">
+                قسمت بالای پیج : افتخارات کلی (به این قسمت به هیچ عنوان دست نزن)
+			</span>
 		</summary>
 		<div>
 			  <asp:Button CssClass="tabBtn" ID="btnFa" runat="server" Text="فا" />
@@ -125,14 +128,22 @@
     </asp:MultiView>
 		</div>
 	</details>
-        <details>
+        <details style="background-color:lightgoldenrodyellow;">
 		<summary>
 			 ثبت موردی افتخارات
 		</summary>
 		<div>
 
 
-
+<asp:UpdatePanel ID="UpdatePanel2" runat="server">
+    <ContentTemplate>
+        <asp:UpdateProgress ID="UpdateProgress1" AssociatedUpdatePanelID="UpdatePanel2" runat="server">
+<ProgressTemplate>
+    <div style="text-align:center;">
+    <asp:Image ID="Image1" Width="50px" ImageUrl="~/files/images/icons/loading.gif" runat="server"></asp:Image>
+</div>
+</ProgressTemplate>
+        </asp:UpdateProgress>
                 <div style="padding: 15px;">
                     <script>
                         var display, value, ddlStates;
@@ -169,17 +180,14 @@
                         ID="txtSearchInDropbox" runat="server" AutoPostBack="true"></asp:TextBox>
                     
                     
-                    <asp:DropDownList CssClass="txtFa"
-                        ID="cmdFilm" runat="server" DataSourceID="SqlDataSourceFilm" DataTextField="film" DataValueField="id">
+                    <asp:DropDownList CssClass="txtFa" AutoPostBack="true"
+                        ID="cmdFilm" runat="server" DataSourceID="SqlDataSourceFilm" DataTextField="film" DataValueField="id"
+                        >
                     </asp:DropDownList>
                        <asp:SqlDataSource ID="SqlDataSourceFilm" runat="server"
                         ConnectionString="<%$ ConnectionStrings:DesktopConnectionString %>"
                         SelectCommand="SELECT id,Film FROM [tbFilms] order by [Film]">
                     </asp:SqlDataSource>
-                 <%--   <asp:SqlDataSource ID="SqlDataSourceFilm" runat="server"
-                        ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
-                        SelectCommand="SELECT id,[nameFa]+ ' - ' + nameEn 'nameFa' FROM [tbl_PosterOfCustomer] order by [namefa]">
-                    </asp:SqlDataSource>--%>
 
 
                     <br />
@@ -189,30 +197,13 @@
 
                 </div>
 
-
-
-
-        <div style="direction: rtl; padding: 20px; font-family: Samim; font-size: 20px;">
-            افتخار بصورت فارسی:
-
-                         <span style="color: red;">(فقط یک خط باشد!)</span>
-        </div>
-        <div>
-            <textarea id="txtAccolade_fa" name="content" class="ckeditor" runat="server"></textarea>
-        </div>
-        <div style="direction: ltr; padding: 20px; font-family: Tahoma; font-size: 20px;">
-            Accolade in English:
-
-                       <span style="color: red;">(Only One Line!)</span>
-        </div>
-        <div>
-            <textarea id="txtAccolade_en" name="content" class="ckeditor" runat="server"></textarea>
-        </div>
-        <div>
-            <asp:Button CssClass="tabBtn" ID="btnUpdateAccolade" runat="server" Text="بروزرسانی" />
-        </div>
-
+            </ContentTemplate>
+    <Triggers>
+        <asp:PostBackTrigger ControlID="btnShowAccolades" />
+    </Triggers>
+</asp:UpdatePanel>
 		</div>
+
 	</details>
                 <details >
 		<summary>
@@ -221,6 +212,13 @@
                     <div style="text-align:center;">
                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                            <ContentTemplate>
+<asp:UpdateProgress ID="UpdateProgress21" AssociatedUpdatePanelID="UpdatePanel1" runat="server">
+<ProgressTemplate>
+    <div style="text-align:center;">
+    <asp:Image ID="Im1age1" Width="50px" ImageUrl="~/files/images/icons/loading.gif" runat="server"></asp:Image>
+</div>
+</ProgressTemplate>
+</asp:UpdateProgress>                               
                                <asp:Button ID="btnUp" runat="server" Font-Size="100px"  Text="+"></asp:Button>
 
                                    <asp:ListBox ID="lstPriorities" Height="500px"
