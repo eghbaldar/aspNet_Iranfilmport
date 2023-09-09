@@ -72,7 +72,7 @@ Partial Class CMS_Pages_imagesManagement
             btnDelete.Text = "×"
             btnDelete.Attributes.Add("runat", "server")
             btnDelete.Style.Add("background-color", "red")
-            btnDelete.ToolTip = lblName.Text
+            btnDelete.ToolTip = f.Name
             AddHandler btnDelete.Click, AddressOf btnDeleteClick
             btnDelete.OnClientClick = "return confirm('آیا از حذف این عکس مطمئن هستید؟');"
 
@@ -101,8 +101,7 @@ Partial Class CMS_Pages_imagesManagement
         Dim btn As New Button
         btn = DirectCast(sender, Button)
         File.Delete(MapPath("~/files/ckfinder/userfiles/images/" + btn.ToolTip))
-        'chkShowImages.Checked = False
-        Response.Redirect("~/cms/pages/imagesManagement")
+        GetFiles(New DirectoryInfo(MapPath("~/files/ckfinder/userfiles/images/")))
     End Sub
 
     Protected Sub btnUpload_Click(sender As Object, e As System.EventArgs) Handles btnUpload.Click
@@ -201,10 +200,8 @@ Partial Class CMS_Pages_imagesManagement
     End Function
 
     Private Sub chkShowImages_CheckedChanged(sender As Object, e As EventArgs) Handles chkShowImages.CheckedChanged
-
         If chkShowImages.Checked Then
             pnlMain.Visible = True
-            GetFiles(New DirectoryInfo(MapPath("~/files/ckfinder/userfiles/images/")))
         Else
             pnlMain.Visible = False
         End If
@@ -221,4 +218,9 @@ Partial Class CMS_Pages_imagesManagement
         DivAfterUploaded.Visible = False
         btnUpload.Visible = True
     End Sub
+
+    Private Sub UpdatePanel_Init(sender As Object, e As EventArgs) Handles UpdatePanel.Init
+        GetFiles(New DirectoryInfo(MapPath("~/files/ckfinder/userfiles/images/")))
+    End Sub
+
 End Class

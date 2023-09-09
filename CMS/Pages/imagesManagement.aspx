@@ -97,7 +97,7 @@
                 </div>
             </div>
 
-            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <asp:UpdatePanel ID="UpdatePanel" runat="server" UpdateMode="Conditional">
                 <ContentTemplate>
                     <br />
                     <span>
@@ -106,9 +106,11 @@
                         
                     </span>
                     <hr />
-                    <asp:UpdateProgress ID="UpdateProgress1" runat="server">
+                    <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel">
                         <ProgressTemplate>
-                            Loading ...
+                          <div style="text-align:center;">
+                                  <asp:Image ID="Image1" Width="50px" ImageUrl="~/files/images/icons/loading.gif" runat="server"></asp:Image>
+                          </div>
                         </ProgressTemplate>
                     </asp:UpdateProgress>
                     <asp:Panel ID="pnlMain" runat="server" Direction="LeftToRight" Visible="false">
