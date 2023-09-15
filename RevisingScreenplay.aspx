@@ -1,9 +1,8 @@
-﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Master_Main.master" AutoEventWireup="false"
-    CodeFile="consultation.aspx.vb" Inherits="consultation" %>
+﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Master_Main.master" AutoEventWireup="false" CodeFile="RevisingScreenplay.aspx.vb" Inherits="RevisingScreenplay" %>
 <%@ Register Src="usercontrols/RightSide.ascx" TagName="RightSide" TagPrefix="uc1" %>
 <%@ Register Src="usercontrols/comment.ascx" TagName="comment" TagPrefix="uc3" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-    <style>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+        <style>
         h5
         {
             font-family: Samim;
@@ -30,13 +29,13 @@
         }
     </style>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <!--Page Title-->
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+     <!--Page Title-->
     <section class="page-title text-center" style="background-image: url(files/images/background/banner_7.jpg);">
         <div class="container">
             <div class="title-text">
                 <h1>
-                    <span style="font-family: Titr;">مشاوره ارسال و پخش فیلم</span>
+                    <span style="font-family: Titr;">نگارش و بازنویسی حرفه‌ای فیلمنامه کوتاه و بلند</span>
                 </h1>
             </div>
         </div>
@@ -56,3 +55,4 @@
         </div>
     </section>
 </asp:Content>
+

@@ -193,7 +193,7 @@ Public Class DLL_CMS
         Try
             If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
             sqlconn.Open()
-            Dim sqlcom As New SqlCommand("exec dbo.sp_InsertArticle " + CateCode.ToString + "," + type.ToString + "," + short_feature.ToString + ",'" + title + "','" + text + "','" + lid + "','" + Authors + "','" + reference + "',N'" + photo + "','" + film + "','" + tags + "'," + "'True'," + admin_code.ToString + "," + visit.ToString + ",'" + date_time.ToString + "','" + titleEn + "'", sqlconn)
+            Dim sqlcom As New SqlCommand("exec dbo.sp_InsertArticle " + CateCode.ToString + "," + type.ToString + "," + short_feature.ToString + ",N'" + title + "',N'" + text + "',N'" + lid + "','" + Authors + "','" + reference + "',N'" + photo + "','" + film + "',N'" + tags + "'," + "'True'," + admin_code.ToString + "," + visit.ToString + ",'" + date_time.ToString + "',N'" + titleEn + "'", sqlconn)
             sqlcom.ExecuteNonQuery()
             sqlconn.Close()
         Catch ex As Exception
@@ -225,9 +225,9 @@ Public Class DLL_CMS
             If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
             sqlconn.Open()
             Dim sqlcom As New SqlCommand("exec dbo.sp_updateArticle " + id.ToString + "," +
-                                         CateCode.ToString + "," + type.ToString + "," + short_feature.ToString + ",'" + title +
-                                         "','" + text + "','" + lid + "','" + Authors + "','" + reference + "',N'" + photo + "','" +
-                                         tags + "'," + "'" + visble.ToString + "','" + date_time + "','" + titleEn + "'", sqlconn)
+                                         CateCode.ToString + "," + type.ToString + "," + short_feature.ToString + ",N'" + title +
+                                         "',N'" + text + "',N'" + lid + "','" + Authors + "','" + reference + "',N'" + photo + "',N'" +
+                                         tags + "'," + "'" + visble.ToString + "','" + date_time + "',N'" + titleEn + "'", sqlconn)
             sqlcom.ExecuteNonQuery()
             sqlconn.Close()
         Catch ex As Exception
@@ -543,11 +543,43 @@ Public Class DLL_CMS
         End Try
     End Sub
 
+    Public Sub UpdateScriptConsultation(ByVal TEXT As String)
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            Dim input As String = "update tbl_Pages set [scriptFa]='" + TEXT + "'"
+            Dim sqlcom As New SqlCommand(input, sqlconn)
+            sqlcom.ExecuteNonQuery()
+            sqlconn.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+    End Sub
+
     Public Function ShowParticipationPlan() As String
         Try
             If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
             sqlconn.Open()
             Dim input As String = "select [participationplan] from tbl_Pages"
+            Dim sqlcom As New SqlCommand(input, sqlconn)
+            Dim sqlda As New SqlDataAdapter(sqlcom)
+            Dim ds As New DataSet
+            sqlda.Fill(ds)
+            Return ds.Tables(0).Rows(0)(0).ToString.Replace("ي", "ی")
+            sqlconn.Close()
+
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+    End Function
+
+    Public Function ShowScriptConsultation() As String
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            Dim input As String = "select [scriptFa] from tbl_Pages"
             Dim sqlcom As New SqlCommand(input, sqlconn)
             Dim sqlda As New SqlDataAdapter(sqlcom)
             Dim ds As New DataSet

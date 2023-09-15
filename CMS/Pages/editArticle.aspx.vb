@@ -104,12 +104,12 @@ Partial Class CMS_Pages_editArticle
         End If
 
         Dim FinalTitle = convertNumFatoEn(txtTitle.Text.Trim.Replace("ي", "ی").Replace("-", " "))
-        If FinalTitle.IndexOf("'") > 0 Then
+        If InvalidCharacter(FinalTitle) Then
             ScriptManager.RegisterStartupScript(Me, GetType(String), "key", "myAlert('کارکتر غیرمجاز در تایتل فارسی');", True)
             Exit Sub
         End If
 
-        If txtTitleEn.Text.Trim.IndexOf("'") > 0 Then
+        If InvalidCharacter(txtTitleEn.Text.Trim) Then
             ScriptManager.RegisterStartupScript(Me, GetType(String), "key", "myAlert('کارکتر غیرمجاز در تایتل انگلیسی');", True)
             Exit Sub
         End If
@@ -161,6 +161,33 @@ Partial Class CMS_Pages_editArticle
         Page.RegisterStartupScript("OpenPages", "<script type='text/javascript'>window.open('../../cms/pages/sitemap');</script>")
 
     End Sub
+
+    Public Function InvalidCharacter(text As String) As Boolean
+        If text.IndexOf("'") > 0 _
+            Or text.IndexOf("&") > 0 _
+            Or text.IndexOf("@") > 0 _
+            Or text.IndexOf("#") > 0 _
+            Or text.IndexOf("!") > 0 _
+            Or text.IndexOf("$") > 0 _
+            Or text.IndexOf("%") > 0 _
+            Or text.IndexOf("^") > 0 _
+            Or text.IndexOf("*") > 0 _
+            Or text.IndexOf("+") > 0 _
+            Or text.IndexOf("=") > 0 _
+            Or text.IndexOf("/") > 0 _
+            Or text.IndexOf("\") > 0 _
+            Or text.IndexOf("|") > 0 _
+            Or text.IndexOf("{") > 0 _
+            Or text.IndexOf("}") > 0 _
+            Or text.IndexOf("[") > 0 _
+            Or text.IndexOf("]=") > 0 _
+            Or text.IndexOf(">") > 0 _
+            Or text.IndexOf("<") > 0 Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
 
     Public Function CountCharacter(ByVal value As String, ByVal ch As Char) As Integer
         'Ali-Moha-mamd--Egh

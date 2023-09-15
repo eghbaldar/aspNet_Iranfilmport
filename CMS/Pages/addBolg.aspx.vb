@@ -26,12 +26,12 @@ Partial Class CMS_Pages_addBolg
         End If
 
         Dim FinalTitle = convertNumFatoEn(txtTitle.Text.Trim.Replace("ي", "ی").Replace("-", " "))
-        If FinalTitle.IndexOf("'") > 0 Then
+        If InvalidCharacter(FinalTitle) Then
             ScriptManager.RegisterStartupScript(Me, GetType(String), "key", "myAlert('کارکتر غیرمجاز در تایتل فارسی');", True)
             Exit Sub
         End If
 
-        If txtTitleEn.Text.Trim.IndexOf("'") > 0 Then
+        If InvalidCharacter(txtTitleEn.Text.Trim) Then
             ScriptManager.RegisterStartupScript(Me, GetType(String), "key", "myAlert('کارکتر غیرمجاز در تایتل انگلیسی');", True)
             Exit Sub
         End If
@@ -103,6 +103,33 @@ Partial Class CMS_Pages_addBolg
 
     Public Function convertNumFatoEn(ByVal T As String) As String
         Return T.Replace("۰", "0").Replace("۱", "1").Replace("۲", "2").Replace("۳", "3").Replace("۴", "4").Replace("۵", "5").Replace("۶", "6").Replace("۷", "7").Replace("۸", "8").Replace("۹", "9").Replace("٫", "/")
+    End Function
+
+    Public Function InvalidCharacter(text As String) As Boolean
+        If text.IndexOf("'") > 0 _
+            Or text.IndexOf("&") > 0 _
+            Or text.IndexOf("@") > 0 _
+            Or text.IndexOf("#") > 0 _
+            Or text.IndexOf("!") > 0 _
+            Or text.IndexOf("$") > 0 _
+            Or text.IndexOf("%") > 0 _
+            Or text.IndexOf("^") > 0 _
+            Or text.IndexOf("*") > 0 _
+            Or text.IndexOf("+") > 0 _
+            Or text.IndexOf("=") > 0 _
+            Or text.IndexOf("/") > 0 _
+            Or text.IndexOf("\") > 0 _
+            Or text.IndexOf("|") > 0 _
+            Or text.IndexOf("{") > 0 _
+            Or text.IndexOf("}") > 0 _
+            Or text.IndexOf("[") > 0 _
+            Or text.IndexOf("]=") > 0 _
+            Or text.IndexOf(">") > 0 _
+            Or text.IndexOf("<") > 0 Then
+            Return True
+        Else
+            Return False
+        End If
     End Function
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load

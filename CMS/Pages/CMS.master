@@ -207,12 +207,6 @@
                                             <asp:Label ID="Label23" runat="server" Text="مدیریت فایل" /></a>
                                         <a href="imagesManagement/?enteredTags=">
                                             <asp:Label ID="Label26" runat="server" Text="مدیریت تصاویر" /></a>
-                                        <a href="advertise">
-                                            <asp:Label ID="L1abel27" runat="server" Text="تبلیغات" /></a>
-                                        <a href="participationplan">
-                                            <asp:Label ID="Label1127" runat="server" Text="طرح مشارکت" /></a>
-                                        <a href="aboutus">
-                                            <asp:Label ID="Label27" runat="server" Text="درباره ی ما" /></a>
                                         <a href="apks">
                                             <asp:Label ID="Label28" runat="server" Text="مدیریت apk ها" /></a>
                                         <a href="agents">
@@ -413,8 +407,32 @@
                                             <asp:Label ID="Label31" runat="server" Text="تقویم خبرها" /></a>
                                     </ul>
                                 </li>
-
-                                <li></li>
+                                <li>
+                                    <h3>
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <img src='<%= ResolveUrl("../files/img/rename.gif") %>' alt="location" />
+                                                </td>
+                                                <td>
+                                                    <span class="titrAccordian" style="font-size: 20px;">مدیریت صفحات</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </h3>
+                                    <ul>
+                                        <a href="scriptconsultation">
+                                            <asp:Label ID="Label32" runat="server" Text="فیلمنامه و مشاوره" /></a>
+                                          <a href="calendar">
+                                            <asp:Label ID="Label33" runat="server" Text="تقویم خبرها" /></a>
+                                                                                <a href="advertise">
+                                            <asp:Label ID="L1abel27" runat="server" Text="تبلیغات" /></a>
+                                        <a href="participationplan">
+                                            <asp:Label ID="Label1127" runat="server" Text="طرح مشارکت" /></a>
+                                        <a href="aboutus">
+                                            <asp:Label ID="Label27" runat="server" Text="درباره ی ما" /></a>
+                                    </ul>
+                                </li>
                                 <li></li>
                                 <li></li>
                                 <li></li>

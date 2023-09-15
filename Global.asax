@@ -94,6 +94,7 @@
         routes.MapPageRoute("agents", "agents", "~/agents.aspx")
         routes.MapPageRoute("tempcontract", "contract/{id}", "~/contract.aspx")
         routes.MapPageRoute("GeneralDetails", "GeneralDetails/{type}", "~/GeneralDetails.aspx")
+        routes.MapPageRoute("RevisingScreenplay", "نگارش-بازنویسی-فیلمنامه-کوتاه-بلند", "~/RevisingScreenplay.aspx")
 
         '----------------------------------------------------------------------------------------
         routes.MapPageRoute("panel", "panel/", "~/panelclients/panel.aspx")
@@ -208,6 +209,7 @@
         routes.MapPageRoute("cmsresumeeach", "cms/pages/resumeeachone/{id_film}", "~/cms/pages/resumeeachone.aspx")
         routes.MapPageRoute("cmsagents", "cms/pages/agents/", "~/cms/pages/agents.aspx")
         routes.MapPageRoute("Calendar", "cms/pages/Calendar/{*date}", "~/cms/pages/Calendar.aspx")
+        routes.MapPageRoute("scriptconsultation", "cms/pages/scriptconsultation", "~/cms/pages/scriptconsultation.aspx")
 
     End Sub
 
