@@ -151,10 +151,12 @@
 
 
     myModaladv.style.display = "block";
-    modalImg.src = "<%= ResolveUrl("~/files/images/background/nowroz1402.jpg") %>";
-    captionText.innerHTML = "تخفیف عیدانه فیلمسازها شروع شد" + "</br>" + "<span class='blink'>" +
+    modalImg.src = "<%= ResolveUrl("~/files/images/background/berlinale.jpg") %>";
+    captionText.innerHTML = "جشنواره فیلم «برلین» آلمان باز شد" + "</br>" + "<span class='blink'>" +
         "** هم اکنون اقدام کنید **" + "</span>" + "</br>"
-        + "<a href='tel: 09216343320'>" + "جهت مشاوره و ارسال (اینجا) کلیک/تاچ کنید." + "</a>";
+        + "<a href='tel: 09216343320'>" + "جهت مشاوره تلفنی (اینجا) کلیک/تاچ کنید." + "</a>"
+        + "<a style='color:red;' href='https://iranfilmport.com/%D9%BE%D8%AE%D8%B4-%D9%88-%D8%A7%D8%B1%D8%B3%D8%A7%D9%84-%D9%81%DB%8C%D9%84%D9%85'></br>" +
+        "[جهت مشاهده چگونگی ارسال اینجا کلیک کنید]" + "</a>";
 
 
     // Get the <span> element that closes the modal
