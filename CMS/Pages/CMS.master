@@ -431,6 +431,8 @@
                                             <asp:Label ID="Label1127" runat="server" Text="طرح مشارکت" /></a>
                                         <a href="aboutus">
                                             <asp:Label ID="Label27" runat="server" Text="درباره ی ما" /></a>
+                                         <a href="modalAdvert">
+                                            <asp:Label ID="Label34" runat="server" Text="مودال تبلیغاتی" /></a>
                                     </ul>
                                 </li>
                                 <li></li>

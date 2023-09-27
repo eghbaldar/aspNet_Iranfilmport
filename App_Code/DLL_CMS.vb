@@ -1131,4 +1131,67 @@ Public Class DLL_CMS
         End Try
     End Function
 
+    Public Function InsertModalAdvert(title As String, blinkText As String, subTitle1 As String, LinkSubTitle1 As String _
+                                      , subTitle2 As String, LinkSubTitle2 As String, Color As String, Photo As String)
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            Dim sqlcom As New SqlCommand("INSERT INTO [dbo].[tbl_ModalAdvertisement] " +
+                                             "  ([title] ,[blinkText] ,[subTitle1] ,[LinkSubTitle1] ,[subTitle2] ,[LinkSubTitle2] ,[Color] ,[Enable] ,[Photo]) " +
+                                             " VALUES ('" + title + "' ,'" + blinkText + "' ,'" + subTitle1 + "','" + LinkSubTitle1 + "' " +
+                                             ",'" + subTitle2 + "' ,'" + LinkSubTitle2 + "' ,'" + Color + "' ,1 ,'" + Photo + "');" +
+                                             "SELECT SCOPE_IDENTITY()", sqlconn)
+            UpdateModalAdvertEnable(sqlcom.ExecuteScalar())
+            sqlconn.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+    End Function
+
+    Public Sub UpdateModalAdvertEnable(ID As Integer)
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            Dim input As String
+            input = "update tbl_ModalAdvertisement set [enable]=0; update tbl_ModalAdvertisement set [enable]=1 where id=" + ID.ToString
+            Dim sqlcom As New SqlCommand(input, sqlconn)
+            sqlcom.ExecuteNonQuery()
+            sqlconn.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+    End Sub
+
+    Public Function GetEnableModalAdvertisement() As DataTable
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            Dim sqlda As New SqlDataAdapter
+            Dim dt As New DataTable
+            Dim sqlcom As New SqlCommand("select top 1 * from tbl_ModalAdvertisement where enable=1", sqlconn)
+            sqlda.SelectCommand = sqlcom
+            sqlda.Fill(dt)
+            Return dt
+            sqlconn.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+    End Function
+
+    Public Function DeleteModalAdvertisement(id As Long)
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconnDesktop.Close()
+            sqlconn.Open()
+            Dim sqlcom As New SqlCommand("delete from [tbl_ModalAdvertisement] where enable<>1 and id=" + id.ToString, sqlconn)
+            sqlcom.ExecuteNonQuery()
+            sqlconn.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+    End Function
+
 End Class

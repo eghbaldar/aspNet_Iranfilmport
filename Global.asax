@@ -210,6 +210,7 @@
         routes.MapPageRoute("cmsagents", "cms/pages/agents/", "~/cms/pages/agents.aspx")
         routes.MapPageRoute("Calendar", "cms/pages/Calendar/{*date}", "~/cms/pages/Calendar.aspx")
         routes.MapPageRoute("scriptconsultation", "cms/pages/scriptconsultation", "~/cms/pages/scriptconsultation.aspx")
+        routes.MapPageRoute("modalAdvert", "cms/pages/modalAdvert", "~/cms/pages/modalAdvert.aspx")
 
     End Sub
 
