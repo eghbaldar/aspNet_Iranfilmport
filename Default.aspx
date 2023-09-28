@@ -136,7 +136,9 @@
                                         <tr>
                                             <td>
                                                 <a href='<%# String.Format("festival/{0}/{1}/{2}", Eval("id"),Eval("title_en").Replace(" ","-"),getLinkFest(Eval("title_fa")).Replace(" ","-").Replace("ي", "ی")) %>'>
-                                                    <asp:Image CssClass="IMG" ID="Image1" ImageUrl='<%# String.Format("~/files/uploadFiles/festival/{0}", Eval("logo")) %>'
+                                                    <asp:Image CssClass="IMG"
+                                                        AlternateText='<%# Eval("title_fa").Replace("ي", "ی") %>'
+                                                        ID="Image1" ImageUrl='<%# String.Format("~/files/uploadFiles/festival/{0}", Eval("logo")) %>'
                                                         runat="server" />
                                                 </a>
                                             </td>

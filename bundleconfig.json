@@ -1,0 +1,32 @@
+[
+  {
+    "outputFileName": "files/css/main-style.css",
+    "inputFiles": [
+      "files/css/default.css",
+      "files/css/Master.css",
+      "files/css/MenuTopLeft.css",
+      "files/css/style.css",
+      "files/css/styleEn.css",
+      "files/css/stylePanel.css"
+    ]
+  },
+  {
+    "outputFileName": "files/plugins/slick/slick-theme.min.css",
+    "inputFiles": [
+      "files/plugins/slick/slick-theme.css"
+    ]
+  },
+  {
+    "outputFileName": "files/plugins/slick/slick-bundle.css",
+    "inputFiles": [
+      "files/plugins/slick/slick-theme.css",
+      "files/plugins/slick/slick.css"
+    ]
+  },
+  {
+    "outputFileName": "files/css/Master-bundle.min.css",
+    "inputFiles": [
+      "files/css/Master-bundle.css"
+    ]
+  }
+]

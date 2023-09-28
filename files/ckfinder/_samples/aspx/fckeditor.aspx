@@ -1,5 +1,5 @@
-<%@ Page Language="C#" %>
-<%@ Register TagPrefix="FCKeditorV2" Namespace="FredCK.FCKeditorV2" Assembly="FredCK.FCKeditorV2" %>
+﻿<%@ Page Language="C#" %>
+<%--<%@ Register TagPrefix="FCKeditorV2" Namespace="FredCK.FCKeditorV2" Assembly="FredCK.FCKeditorV2" %>--%>
 <%--
  * CKFinder
  * ========
@@ -29,7 +29,7 @@
 	{
 		CKFinder.FileBrowser _FileBrowser = new CKFinder.FileBrowser();
 		_FileBrowser.BasePath = "../../" ;
-		_FileBrowser.SetupFCKeditor( FCKeditor1 );
+		//_FileBrowser.SetupFCKeditor( FCKeditor1 );
 	}
 
 </script>
@@ -53,7 +53,7 @@
 			CKFinder. If this is not true, just set the following "BasePath"
 			to the correct path to FCKeditor (like "/fckeditor/").
 		-->
-		<FCKeditorV2:FCKeditor id="FCKeditor1" BasePath="../../../fckeditor/" runat="server" value="<p>Just click the <b>Image</b> or <b>Link</b> button, and then <b>&quot;Browse Server&quot;</b>.</p>"></FCKeditorV2:FCKeditor>
+
 	</p>
 	<div id="footer">
 		<hr />

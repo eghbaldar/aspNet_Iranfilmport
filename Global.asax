@@ -2,8 +2,8 @@
 <%@ Import Namespace="System.Web.Routing" %>
 <%@ Import Namespace="System.Web.Routing.Route" %>
 <%@ Import Namespace="System.Web" %>
-<script runat="server">
 
+<script runat="server">
 
     Protected Sub Application_BeginRequest(sender As Object, e As System.EventArgs)
 

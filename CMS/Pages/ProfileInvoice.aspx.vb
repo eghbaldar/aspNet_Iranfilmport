@@ -10,35 +10,35 @@ Partial Class CMS_Pages_ProfileInvoice
         Dim s() As String = e.CommandArgument.ToString.Split("|")
         Select Case s(1)
             Case "0"
-                DLL.UpdateAccolades(Val(s(0)), 0)
+                DLL.UpdateInvoice(Val(s(0)), 0)
                 dg.DataBind()
                 Response.Redirect("invoiceMSG.aspx?invoiceID=" + s(0) + "&email=" + s(2))
             Case "1"
-                DLL.UpdateAccolades(Val(s(0)), 1)
+                DLL.UpdateInvoice(Val(s(0)), 1)
                 dg.DataBind()
                 Response.Redirect("invoiceMSG.aspx?invoiceID=" + s(0) + "&email=" + s(2))
             Case "2"
-                DLL.UpdateAccolades(Val(s(0)), 2)
+                DLL.UpdateInvoice(Val(s(0)), 2)
                 dg.DataBind()
                 Response.Redirect("invoiceMSG.aspx?invoiceID=" + s(0) + "&email=" + s(2))
             Case "3"
-                DLL.UpdateAccolades(Val(s(0)), 3)
+                DLL.UpdateInvoice(Val(s(0)), 3)
                 dg.DataBind()
                 Response.Redirect("invoiceMSG.aspx?invoiceID=" + s(0) + "&email=" + s(2))
             Case "4"
-                DLL.UpdateAccolades(Val(s(0)), 4)
+                DLL.UpdateInvoice(Val(s(0)), 4)
                 dg.DataBind()
                 Response.Redirect("invoiceMSG.aspx?invoiceID=" + s(0) + "&email=" + s(2))
             Case "5"
-                DLL.UpdateAccolades(Val(s(0)), 5)
+                DLL.UpdateInvoice(Val(s(0)), 5)
                 dg.DataBind()
                 Response.Redirect("invoiceMSG.aspx?invoiceID=" + s(0) + "&email=" + s(2))
             Case "6"
-                DLL.UpdateAccolades(Val(s(0)), 6)
+                DLL.UpdateInvoice(Val(s(0)), 6)
                 dg.DataBind()
                 Response.Redirect("invoiceMSG.aspx?invoiceID=" + s(0) + "&email=" + s(2))
             Case "7"
-                DLL.UpdateAccolades(Val(s(0)), 7)
+                DLL.UpdateInvoice(Val(s(0)), 7)
                 dg.DataBind()
                 Response.Redirect("invoiceMSG.aspx?invoiceID=" + s(0) + "&email=" + s(2))
         End Select

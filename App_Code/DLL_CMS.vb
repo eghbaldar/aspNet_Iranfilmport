@@ -724,7 +724,7 @@ Public Class DLL_CMS
         End Try
     End Function
 
-    Public Function UpdateAccolades(id As Long, AccoladesStatus As Byte) As Boolean
+    Public Function UpdateInvoice(id As Long, AccoladesStatus As Byte) As Boolean
         Try
             If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
             sqlconn.Open()

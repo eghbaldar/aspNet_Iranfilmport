@@ -113,7 +113,7 @@
                     </td>
                     <td class="TopBarTd">
                         <asp:LinkButton ID="btnEn" runat="server" OnClick="btnEn_Click">
-                     <img  class="iconTopFlag" src='<%= Page.ResolveUrl("~/files/images/icons/langen.png") %>'
+                     <img  class="iconTopFlag" alt="لوگو تغییر زبان" src='<%= Page.ResolveUrl("~/files/images/icons/langen.png") %>'
                             />
                         </asp:LinkButton>
                     </td>

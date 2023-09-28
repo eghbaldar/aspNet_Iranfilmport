@@ -14,9 +14,9 @@ Partial Class CMS_Pages_resumeEdit
     End Sub
 
     Private Sub btnUpdateAccolade_Click(sender As Object, e As EventArgs) Handles btnUpdateAccolade.Click
-        Dim ds As New DLL_CMS
-        ds.UpdateAccolade(txtAccolade_fa.Value, txtAccolade_en.Value, Convert.ToInt64(Page.RouteData.Values("idCV")))
-        ScriptManager.RegisterStartupScript(Me, GetType(String), "key", "window.close();", True)
+        'Dim ds As New DLL_CMS
+        'ds.UpdateAccolade(txtAccolade_fa.Value, txtAccolade_en.Value, Convert.ToInt64(Page.RouteData.Values("idCV")))
+        'ScriptManager.RegisterStartupScript(Me, GetType(String), "key", "window.close();", True)
     End Sub
 
 End Class

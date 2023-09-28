@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Management/Pages/CMS.master" AutoEventWireup="false" CodeFile="users.aspx.vb" Inherits="Management_Pages_Default2" %>
+﻿<%@ Page Title="" Language="VB" MasterPageFile="~/CMS/Pages/CMS.master" AutoEventWireup="false" CodeFile="users.aspx.vb" Inherits="Management_Pages_Default2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <style type="text/css">
