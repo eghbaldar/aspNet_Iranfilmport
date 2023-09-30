@@ -86,6 +86,17 @@ Partial Class CMS_Pages_editArticle
 
     End Sub
 
+    Function RemoveWhitespace(fullString As String) As String
+        Dim PreText = System.Text.RegularExpressions.Regex.Replace(fullString.Trim(), "\s+", " ")
+        If PreText.Split(" ").Count > 3 Then
+            ScriptManager.RegisterStartupScript(Me, GetType(String), "key", "myAlert('" + "تعداد سیلاب های هر تگ باید کمتر 3 باشد." + "');", True)
+            Return ""
+        Else
+            Return PreText.Replace(" ", "_")
+        End If
+    End Function
+
+
     Protected Sub btnUpdate_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUpdate.Click
 
 
@@ -228,16 +239,14 @@ Partial Class CMS_Pages_editArticle
     Protected Sub btnPreTag_Click(sender As Object, e As System.EventArgs) Handles btnPreTag.Click
 
         If txtPreTag.Text.Trim.Length > 0 Then
+            Dim result = RemoveWhitespace(txtPreTag.Text)
+            If Not String.IsNullOrEmpty(result) Then
 
-            If txtPreTag.Text.Trim.Replace(" ", "_").Split("_").Length > 4 Then
-                ScriptManager.RegisterStartupScript(Me, GetType(String), "key", "myAlert('تعداد سیلاب ها بیش از 4 نباشد');", True)
-                Exit Sub
+                listTags.Items.Add(result)
+                FillHiddenTags()
+                ListedTags()
+                txtPreTag.Text = ""
             End If
-
-            listTags.Items.Add(txtPreTag.Text.Trim.Replace(" ", "_"))
-            FillHiddenTags()
-            ListedTags()
-            txtPreTag.Text = ""
         End If
 
     End Sub
@@ -262,7 +271,6 @@ Partial Class CMS_Pages_editArticle
     Protected Sub CalDate_SelectionChanged(sender As Object, e As System.EventArgs) Handles CalDate.SelectionChanged
         txtDate.Text = CalDate.SelectedDate
     End Sub
-
 
     Public Function getDate(_date As Object) As String
         Return ShamsiDate.Miladi2Shamsi(_date.ToString, ShamsiDate.ShowType.LongDate) & "<br/>" & Convert.ToDateTime(_date).TimeOfDay.ToString

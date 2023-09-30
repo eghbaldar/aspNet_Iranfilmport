@@ -150,11 +150,23 @@ Partial Class CMS_Pages_addBolg
 
     Protected Sub btnPreTag_Click(sender As Object, e As System.EventArgs) Handles btnPreTag.Click
         If txtPreTag.Text.Trim.Length > 0 Then
-            listTags.Items.Add(txtPreTag.Text.Trim.Replace(" ", "_"))
-            FillHiddenTags()
-            txtPreTag.Text = ""
+            Dim result = RemoveWhitespace(txtPreTag.Text)
+            If Not String.IsNullOrEmpty(result) Then
+                listTags.Items.Add(result)
+                FillHiddenTags()
+                txtPreTag.Text = ""
+            End If
         End If
     End Sub
+    Function RemoveWhitespace(fullString As String) As String
+        Dim PreText = System.Text.RegularExpressions.Regex.Replace(fullString.Trim(), "\s+", " ")
+        If PreText.Split(" ").Count > 3 Then
+            ScriptManager.RegisterStartupScript(Me, GetType(String), "key", "myAlert('" + "تعداد سیلاب های هر تگ باید کمتر 3 باشد." + "');", True)
+            Return ""
+        Else
+            Return PreText.Replace(" ", "_")
+        End If
+    End Function
 
     Public Function RemoveHTML(htmlString) As String
         Dim matchpattern As String = "<(?:[^>=]|='[^']*'|=""[^""]*""|=[^'""][^\s>]*)*>"
@@ -233,19 +245,70 @@ Partial Class CMS_Pages_addBolg
             And txtTagDirectors1.Text.Trim.Length > 0 _
             And txtTagDirector1_Eng.Text.Trim.Length > 0 Then
 
-            listTags.Items.Add(txtTagFilm.Text.Trim.Replace(" ", "_"))
-            listTags.Items.Add(txtTagFilmEng.Text.Trim.Replace(" ", "_"))
-            listTags.Items.Add(txtTagDirectors1.Text.Trim.Replace(" ", "_"))
-            listTags.Items.Add(txtTagDirector1_Eng.Text.Trim.Replace(" ", "_"))
-            If txtTagDirectors2.Text.Trim.Length > 0 Then listTags.Items.Add(txtTagDirectors2.Text.Trim.Replace(" ", "_"))
-            If txtTagDirector2_Eng.Text.Trim.Length > 0 Then listTags.Items.Add(txtTagDirector2_Eng.Text.Trim.Replace(" ", "_"))
+            Dim result = RemoveWhitespace(txtTagFilm.Text)
+            If String.IsNullOrEmpty(result) Then
+                Exit Sub
+            Else
+                listTags.Items.Add(result)
+            End If
+            result = RemoveWhitespace(txtTagFilmEng.Text)
+            If String.IsNullOrEmpty(result) Then
+                Exit Sub
+            Else
+                listTags.Items.Add(result)
+            End If
+            result = RemoveWhitespace(txtTagDirectors1.Text)
+            If String.IsNullOrEmpty(result) Then
+                Exit Sub
+            Else
+                listTags.Items.Add(result)
+            End If
+            result = RemoveWhitespace(txtTagDirector1_Eng.Text)
+            If String.IsNullOrEmpty(result) Then
+                Exit Sub
+            Else
+                listTags.Items.Add(result)
+            End If
+
+            If txtTagDirectors2.Text.Trim.Length > 0 Then
+                result = RemoveWhitespace(txtTagDirectors2.Text)
+                If String.IsNullOrEmpty(result) Then
+                    Exit Sub
+                Else
+                    listTags.Items.Add(result)
+                End If
+            End If
+            If txtTagDirector2_Eng.Text.Trim.Length > 0 Then
+                result = RemoveWhitespace(txtTagDirector2_Eng.Text)
+                If String.IsNullOrEmpty(result) Then
+                    Exit Sub
+                Else
+                    listTags.Items.Add(result)
+                End If
+            End If
+
             MultiView.ActiveViewIndex = 1
-        End If
-        If rbFestival.Checked _
-           And txtTagFestivalFa.Text.Trim.Length > 0 _
-           And txtTagFestivalEng.Text.Trim.Length > 0 Then
-            listTags.Items.Add(txtTagFestivalFa.Text.Trim.Replace(" ", "_"))
-            listTags.Items.Add(txtTagFestivalEng.Text.Trim.Replace(" ", "_"))
+            End If
+
+        If rbFestival.Checked And txtTagFestivalFa.Text.Trim.Length > 0 And txtTagFestivalEng.Text.Trim.Length > 0 Then
+            Dim result As String
+            If txtTagFestivalFa.Text.Trim.Length > 0 Then
+                Result = RemoveWhitespace(txtTagFestivalFa.Text)
+                If String.IsNullOrEmpty(Result) Then
+                    Exit Sub
+                Else
+                    listTags.Items.Add(Result)
+                End If
+            End If
+            If txtTagFestivalEng.Text.Trim.Length > 0 Then
+                Result = RemoveWhitespace(txtTagFestivalEng.Text)
+                If String.IsNullOrEmpty(Result) Then
+                    Exit Sub
+                Else
+                    listTags.Items.Add(Result)
+                End If
+            End If
+
             MultiView.ActiveViewIndex = 1
         End If
 
