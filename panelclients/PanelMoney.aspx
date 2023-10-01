@@ -61,7 +61,7 @@
                     </asp:SqlDataSource>
                 </td>
                 <td>
-                    <asp:Button CssClass="cmdCss"  ID="btnShowInfo" Font-Names="Samim" runat="server" style="padding:7px;cursor:pointer;" Text="نمایش اطلاعات" />
+                    <asp:Button CssClass="cmdCss"  ID="btnShowInfo" Font-Names="Samim" runat="server" style="padding:7px;cursor:pointer;" Text="نمایش" />
                 </td>
             </tr>
         </table>
@@ -171,8 +171,15 @@
                         <asp:Label ID="Label1" runat="server" style="color:Red;font-weight:bolder;" Text='<%# Bind("leftdays") %>'></asp:Label>
                         - روز
                     </ItemTemplate>
+
+<ItemStyle HorizontalAlign="Center"></ItemStyle>
                 </asp:TemplateField>
             </Columns>
+            <EmptyDataTemplate>
+                <div style="font-family:Samim;">
+                    قسطی وجود ندارد.
+                </div>
+            </EmptyDataTemplate>
             <FooterStyle BackColor="#CCCC99" />
             <HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />
             <PagerStyle BackColor="#F7F7DE" ForeColor="Black" HorizontalAlign="Right" />

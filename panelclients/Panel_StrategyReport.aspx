@@ -59,9 +59,9 @@
         مدل و استراتژی پخش
     </div>
     <div style="padding: 15px;">
-        <asp:Label ID="lblStrategyText" runat="server" Text="Lab1el"></asp:Label>
+        <asp:Label ID="lblStrategyText" runat="server"></asp:Label>
         <br />
-        <asp:Label ID="lblMethod" runat="server" Text="Labe2l"></asp:Label>
+        <asp:Label ID="lblMethod" runat="server"></asp:Label>
     </div>
     <div class="TitleTitle">
         پخش به تفکیک آماری

@@ -184,7 +184,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
             <br />
             Online Status System of Submissions  - سیستم آنلاین وضعیت فستیوال‌های پخش شده
             <br />
-            Version 5.1
+            <asp:Label ID="lblPanelVersion" runat="server"></asp:Label>
         </div>
         <div style="padding: 10px;">
             <div style="text-align: center; direction: rtl;">

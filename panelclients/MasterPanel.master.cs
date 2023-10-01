@@ -17,7 +17,7 @@ public partial class MasterPanel : System.Web.UI.MasterPage
             {
             Response.Redirect("~/panel");
             }
-
+        lblPanelVersion.Text = "Version: " + PanelVersion.Version;
         DLL_Panel DL = new DLL_Panel();
         Int64 LeftDays;
         LeftDays=DL.GetLastLeftDaysOfInstallment(Convert.ToInt64(Page.RouteData.Values["id"]));

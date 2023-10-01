@@ -51,6 +51,7 @@ Partial Class panel
         Catch ex As Exception
 
         End Try
+        lblPanelVersion.Text = "Version: " & PanelVersion.Version
         Try
             If Session("PanelClient").ToString <> "" Then Response.Redirect("~/panel/client/" & Session("PanelClient").ToString)
         Catch ex As Exception

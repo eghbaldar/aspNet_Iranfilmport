@@ -102,12 +102,75 @@
             -webkit-border-radius: 5px;
             border-radius: 5px;
         }
-        .alert{
-            background-color:#F8D7DA;
-            color:#721C24;
-            padding:10px;
-            font-size:13px;
-                        -moz-border-radius: 5px;
+        /*////////////////////////////*/
+
+        input[type=text], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+
+        @media screen and (max-width: 600px) {
+            .MnuButtons {
+                width:100%;
+            }
+            .tb {
+                border: 0;
+            }
+
+                .tb caption {
+                    font-size: 1.3em;
+                }
+
+                .tb thead {
+                    border: none;
+                    clip: rect(0 0 0 0);
+                    height: 1px;
+                    margin: -1px;
+                    overflow: hidden;
+                    padding: 0;
+                    position: absolute;
+                    width: 1px;
+                }
+
+                .tb tr {
+                    border-bottom: 3px solid #ddd;
+                    display: block;
+                    margin-bottom: .625em;
+                }
+
+                .tb td {
+                    border-bottom: 1px solid #ddd;
+                    display: block;
+                    font-size: .8em;
+                    text-align: right;
+                }
+
+                    .tb td::before {
+                        /*
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+                        content: attr(data-label);
+                        float: left;
+                        font-weight: bold;
+                        text-transform: uppercase;
+                    }
+
+                    .tb td:last-child {
+                        border-bottom: 0;
+                    }
+        }
+        /*////////////////////////////*/
+        .alert {
+            background-color: #F8D7DA;
+            color: #721C24;
+            padding: 10px;
+            font-size: 13px;
+            -moz-border-radius: 5px;
             -webkit-border-radius: 5px;
             border-radius: 5px;
         }
@@ -414,11 +477,7 @@
     <asp:Label runat="server" Text="ارسال متن" style="margin:20px 0px 50px 5px; float:left;"/>
                                     <asp:Image runat="server"
                                         ImageUrl="~/files/images/icons/clientmethod_text.png" Height="50" style="float:left;"/>
-                            </asp:LinkButton>
-
-
-
-                            <asp:LinkButton runat="server" Height="60" ForeColor="#606060"
+                            </asp:LinkButton><asp:LinkButton runat="server" Height="60" ForeColor="#606060"
                                 ID="btnMethodRecord"
                                 CssClass="linkbtnMethod"
                                 Style="padding: 10px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;">
@@ -427,13 +486,14 @@
                                     <asp:Image runat="server" ImageUrl="~/files/images/icons/clientmethod_record.png" Height="50" style="float:left;"/>
                             </asp:LinkButton>
                         </div>
-
                     </asp:View>
                     <asp:View ID="View5" runat="server">
 
 
                         <div>
-                            <asp:TextBox ID="txtText" Font-Names="Samim" Style="padding: 10px; font-size: 15px;" runat="server" TextMode="MultiLine"
+                            <asp:TextBox ID="txtText" Font-Names="Samim"
+                                CssClass="col-75"
+                                runat="server" TextMode="MultiLine"
                                 placeholder="متن خود را وارد کنید ..." Height="250px" Width="100%"></asp:TextBox>
                         </div>
                         <div style="padding-top: 15px;">
@@ -467,25 +527,19 @@
                 <img src="../../../files/images/icons/tick.png" />
                 <br />
                 تیکت و یا کامنت جدید شما با موفقیت به ثبت رسید. لطفا منتظر پاسخ کارشناس مربوطه بمانید.
-            <br />
+                <br />
                 پاسخ را از پنل خود و قسمت تیکت ها پیگیری نمایید.
-            <br />
+                <br />
                 همچنین در صورت فعال بودن اس ام اس انبوه خود، فرآیند پاسخگویی را از طریق اس ام اس دریافت خواهید کرد.
             </div>
         </asp:View>
         <asp:View ID="ViewResponse" runat="server">
-           <div style="padding-bottom:20px;padding-top:5px;">
+            <div style="padding-bottom: 20px; padding-top: 5px;">
                 <a class="MnuButtons">
-                <span>وضعیت تیکت:
-                </span>
-                <asp:Label ID="lblStatus" runat="server" Text="Label"></asp:Label>
-            </a>
-
-              <a class="MnuButtons" href="#reply" style="text-decoration:none;">
-              پاسخ به این تیکت
-            </a>
-           </div>
-
+                    <span>وضعیت تیکت: </span>
+                    <asp:Label ID="lblStatus" runat="server" Text="Label"></asp:Label></a>
+                <a class="MnuButtons" href="#reply" style="text-decoration: none;">پاسخ به این تیکت </a>
+            </div>
             <div style="background-color: #f6f6f6;">
                 <asp:DataList ID="DataListResponses" runat="server"
                     Width="100%"
@@ -509,11 +563,7 @@
                                     بازپخش
                                 </div>
                                 <div>
-                                    در صورت عدم پخش فایل صوتی، 
-                                    <a href='<%# "../../panel/ticket/voice/" & Eval("voicefile").Replace(".mp3", "") %>' target="_blank">
-                                        (اینجا) 
-                                    </a>
-                                    کلیک کنید.
+                                    در صورت عدم پخش فایل صوتی، <a href='<%# "../../panel/ticket/voice/" & Eval("voicefile").Replace(".mp3", "") %>' target="_blank">(اینجا) </a>کلیک کنید.
                                 </div>
                                 <script type="module">
 
@@ -558,7 +608,6 @@
                                         button.textContent = 'بازپخش'
                                     })
                                 </script>
-
                             </div>
                             <br />
                             <asp:Label Style="font-size: 12px; color: #a3a3a3;" ID="Label1" runat="server" Text='<%# "تاریخ ثبت: " & GetDate(Eval("date")) %>' />
@@ -603,7 +652,7 @@
                     <asp:View ID="View" runat="server">
                         <div class="alert" role="alert">
                             تا پاسخگویی کارشناس مربوطه، امکان ارسال جواب وجود نخواهد داشت.
-                        <br />
+                            <br />
                             لطفا صبور باشید.
                         </div>
                     </asp:View>
@@ -611,7 +660,6 @@
                         <div style="font-size: 19px; padding-bottom: 15px;">
                             ارسال جوابی برای این تیکت ...
                         </div>
-
                         <div style="text-align: center; align-content: center; padding: 20px;">
                             <asp:LinkButton runat="server" Height="60" ForeColor="#606060"
                                 ID="btnEnableResponseText"
@@ -621,8 +669,7 @@
 <asp:Label runat="server" Text="ارسال متن" style="margin:20px 0px 50px 5px; float:left;"/>
                             <asp:Image runat="server"
                                 ImageUrl="~/files/images/icons/clientmethod_text.png" Height="50" style="float:left;"/>
-                            </asp:LinkButton>
-                            <asp:LinkButton runat="server" Height="60" ForeColor="#606060"
+                            </asp:LinkButton><asp:LinkButton runat="server" Height="60" ForeColor="#606060"
                                 ID="btnEnableResponseVoice"
                                 CssClass="linkbtnMethod"
                                 Style="padding: 10px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;">
@@ -630,9 +677,7 @@
 <asp:Label runat="server" Text="ارسال ویس (امکان جدید)" style="margin:20px 0px 50px 5px; float:left;"/>
                             <asp:Image runat="server" ImageUrl="~/files/images/icons/clientmethod_record.png" Height="50" style="float:left;"/>
                             </asp:LinkButton>
-
                         </div>
-
                     </asp:View>
                     <asp:View ID="View7" runat="server">
 
@@ -640,7 +685,6 @@
                             <asp:TextBox ID="txtResponse" Font-Names="Samim" Style="padding: 10px; font-size: 15px;" runat="server" TextMode="MultiLine"
                                 placeholder="متن خود را وارد کنید ..." Height="250px" Width="100%"></asp:TextBox>
                         </div>
-
                         <div style="padding-top: 15px;">
                             <asp:Button CssClass="cmdCss" ID="btnResponse" Font-Names="Samim" runat="server" Style="padding: 7px; cursor: pointer;" Text="ثبت" />
                         </div>
@@ -676,8 +720,6 @@
                     <audio id="recorder" muted hidden></audio>
                     <img src="../../files/images/icons/ic_record.png"
                         style="cursor: pointer;" onclick="StatusRec()" width="100" id="start" />
-
-
                     <ul class='waveUl' style="display: none;">
                         <li></li>
                         <li></li>
@@ -687,10 +729,8 @@
                         <li></li>
                     </ul>
                     <hr />
-                    <button type='button' class="btnStop" id="stop" onclick="StatusRec()">توقف و ارسال ویس</button>
-                    <hr />
-                    <span id="lblRecord" style="font-family: Samim; display: none; color: gray;">صدای شما در حال ضبط می‌باشد ...
-                    </span>
+                    <button type='button' class="btnStop" id="stop" onclick="StatusRec()">توقف و ارسال ویس</button><hr />
+                    <span id="lblRecord" style="font-family: Samim; display: none; color: gray;">صدای شما در حال ضبط می‌باشد ... </span>
                     <hr />
                     <div id="countup">
                         <span id="minutes"></span>
