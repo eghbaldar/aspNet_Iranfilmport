@@ -160,8 +160,8 @@ Partial Class CMS_Pages_addBolg
     End Sub
     Function RemoveWhitespace(fullString As String) As String
         Dim PreText = System.Text.RegularExpressions.Regex.Replace(fullString.Trim(), "\s+", " ")
-        If PreText.Split(" ").Count > 3 Then
-            ScriptManager.RegisterStartupScript(Me, GetType(String), "key", "myAlert('" + "تعداد سیلاب های هر تگ باید کمتر 3 باشد." + "');", True)
+        If PreText.Split(" ").Count > 6 Then
+            ScriptManager.RegisterStartupScript(Me, GetType(String), "key", "myAlert('" + "تعداد سیلاب های هر تگ باید کمتر 6 باشد." + "');", True)
             Return ""
         Else
             Return PreText.Replace(" ", "_")

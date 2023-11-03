@@ -113,6 +113,7 @@ Partial Class PanelTicketNew
     End Sub
 
     Private Sub SendEmail(customerid As Long, Text As String)
+        'توجه ارسال ایمیل در حالت لوکال کار نمیکند
         Try
             Email.SendMail("iranfilmportdistributor@gmail.com",
                       "کاربر: " & DL_Panel.GetNameCustomer(customerid) & "<br/>" & "<strong>" & Text & "</strong>",

@@ -230,11 +230,16 @@
         <h4>تیکت های مشتریان
         </h4>
     </div>
+
     <div>
         <div style="padding-top: 10px;">
             <asp:MultiView ID="MultiView1" ActiveViewIndex="0" runat="server">
                 <asp:View ID="View1" runat="server">
-
+                        <div>
+        <asp:Button ID="btnFilterAll" CssClass="tabBtn" runat="server" Text="نمایش همه" />
+        <asp:Button ID="btnFilterunRead" CssClass="tabBtn" runat="server" Text="نمایش جواب نداده ها" />
+    </div>
+    <hr />
                     <asp:GridView ID="dgComments" runat="server"
                         Font-Size="13px"
                         AutoGenerateColumns="False" DataSourceID="SDS_Comments" AllowPaging="True" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" PageSize="20" Width="100%">
@@ -340,7 +345,8 @@
                     </asp:GridView>
                     <asp:SqlDataSource ID="SDS_Comments" runat="server"
                         ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
-                        SelectCommand="SELECT * FROM [tbl_Comment_clients] WHERE id_client<>0 and id_parent=0 ORDER BY flag asc,[date] DESC"></asp:SqlDataSource>
+                        SelectCommand="SELECT * FROM [tbl_Comment_clients]
+                         WHERE id_client<>0 and flag=1 and id_parent=0 ORDER BY flag asc,[date] DESC"></asp:SqlDataSource>
                 </asp:View>
                 <asp:View ID="View2" runat="server">
                     <div id="PnlWarning" class="warning" runat="server" visible="false" style="text-align: center;">

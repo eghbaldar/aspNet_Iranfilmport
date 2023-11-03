@@ -178,6 +178,7 @@ Partial Class CMS_Pages_commentClients
     Public Sub UpdateReadFlag(sender As Object, e As CommandEventArgs)
         Dim s() As String = e.CommandArgument.ToString.Split("|")
         DL_Panel.UpdateCommentClient(Val(s(0)), s(1), Val(s(2)))
+        SDS_Comments.SelectCommand = "SELECT * FROM [tbl_Comment_clients] WHERE id_client<>0 and id_parent=0 ORDER BY flag asc,[date] DESC"
         dgComments.DataBind()
     End Sub
 
@@ -201,5 +202,14 @@ Partial Class CMS_Pages_commentClients
     Public Function convertNumFatoEn(ByVal T As String) As String
         Return T.Replace("۰", "0").Replace("۱", "1").Replace("۲", "2").Replace("۳", "3").Replace("۴", "4").Replace("۵", "5").Replace("۶", "6").Replace("۷", "7").Replace("۸", "8").Replace("۹", "9").Replace("٫", "/")
     End Function
+
+    Private Sub btnFilterAll_Click(sender As Object, e As EventArgs) Handles btnFilterAll.Click
+        SDS_Comments.SelectCommand = "SELECT * FROM [tbl_Comment_clients] WHERE id_client<>0 and id_parent=0 ORDER BY flag asc,[date] DESC"
+        dgComments.DataBind()
+    End Sub
+    Private Sub btnFilterunRead_Click(sender As Object, e As EventArgs) Handles btnFilterunRead.Click
+        SDS_Comments.SelectCommand = "SELECT * FROM [tbl_Comment_clients] WHERE id_client<>0 and flag=1 and id_parent=0 ORDER BY flag asc,[date] DESC"
+        dgComments.DataBind()
+    End Sub
 
 End Class
