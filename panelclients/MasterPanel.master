@@ -19,6 +19,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="apple-touch-icon" sizes="128x128" href="<%= ResolveUrl("~/files/images/icons/iconScreen.png")%>">
     <link href="<%= ResolveUrl("~/files/css/stylePanel.css")%>" rel="stylesheet" type="text/css" />
+    <link href="<%= ResolveUrl("~/files/css/button/style1/style1.css")%>" rel="stylesheet" />
     <!-- -->
     <link rel="shortcut icon" href="<%= ResolveUrl("~/files/images/icons/icon.png")%>" />
     <title>درگاه فیلم ایران - پنل گزارش وضعیت فستیوال ها</title>

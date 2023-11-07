@@ -1,0 +1,20 @@
+﻿.button-92 {
+    font-weight: bold;
+    font-size: 2rem;
+    margin: 0;
+    cursor: pointer;
+    padding: 0.1em 0.3em;
+    font-family:Samim;
+    font-size:18px;
+}
+
+.button-92 {
+    --c: #fff;
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f1e767+0,feb645+100;Yellow+3D */
+    background: linear-gradient(135deg, #f1e767 0%,#feb645 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    color: #0000;
+    border: none;   
+    text-shadow: calc(var(--_i,-1)* 0.08em) -0.01em 0 var(--c), calc(var(--_i,-1)*-0.08em) 0.01em 2px #0004;
+    outline-offset: 0.1em;
+    transition: 0.3s;
+}

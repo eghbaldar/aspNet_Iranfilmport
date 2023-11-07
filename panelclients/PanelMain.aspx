@@ -83,18 +83,17 @@
                 border: 1px solid #3AC0F2;
             }
     </style>
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <uc1:ClientEmailModal ID="ClientEmailModal" runat="server" Visible="false" />
-   
-    <asp:ScriptManager ID="ScriptManager1" runat="server" ></asp:ScriptManager>
-    <asp:UpdatePanel ID="UpdatePanelNewestUpdated" runat="server" >
-      
+
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <asp:UpdatePanel ID="UpdatePanelNewestUpdated" runat="server">
+
         <ContentTemplate>
 
-             <asp:HiddenField ID="HiddenField_CustomerID" runat="server" />
-    <asp:HiddenField ID="HiddenField_FilmID" runat="server" />
+            <asp:HiddenField ID="HiddenField_CustomerID" runat="server" />
+            <asp:HiddenField ID="HiddenField_FilmID" runat="server" />
 
             <div class="warning">
                 <ul>
@@ -238,7 +237,7 @@
 
 
                         <asp:GridView ID="dgNewUpdated" Width="100%" runat="server" EmptyDataRowStyle-CssClass="cssEmpty"
-                               EnableViewState="False"
+                            EnableViewState="False"
                             Font-Size="12px" AutoGenerateColumns="False" BackColor="White" BorderColor="#848484"
                             DataKeyNames="id"
                             BorderStyle="None" BorderWidth="1px" CellPadding="4" DataSourceID="SDS_NotNewUpdated" AllowPaging="True">
@@ -434,10 +433,12 @@
                         در این قسمت، لیست تمامی فستیوال‌هایی را خواهید دید که برای فیلم شما به ثبت رسیده
                 است.
                     </div>
+                    <asp:LinkButton ID="btnReport" runat="server">
+<button type="button" class="button-92" role="button">گزارش گیری</button></asp:LinkButton>
                     <br />
                     <div style="overflow-x: scroll; width: 100%;">
                         <asp:GridView ID="dgAll" Width="100%" runat="server" AutoGenerateColumns="False"
-                             EnableViewState="False"
+                            EnableViewState="False"
                             BackColor="White" BorderColor="#848484" BorderStyle="None" BorderWidth="1px"
                             Font-Size="12px" CellPadding="4" DataSourceID="SqlDataSource_All" AllowPaging="True">
                             <Columns>
@@ -609,6 +610,9 @@
             </asp:UpdateProgress>
 
         </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="btnReport" />
+        </Triggers>
     </asp:UpdatePanel>
 
 

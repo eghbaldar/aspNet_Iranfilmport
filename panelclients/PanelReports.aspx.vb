@@ -1,20 +1,18 @@
 ﻿
 Imports System.Net
 
-Partial Class PanelMain
+Partial Class panelclients_PanelReports
     Inherits System.Web.UI.Page
-    Dim Dll As New DLL_Panel
-    Public Sub ShowSubmissions(sender As Object, e As CommandEventArgs)
-        HiddenField_FilmID.Value = e.CommandArgument.ToString
-        MultiView.ActiveViewIndex = 1
-        If Dll.GetNumberOfNotChecked(HiddenField_FilmID.Value) > 0 Then
-            btnNewUpdated.Visible = True
-            lblReceipt.Visible = True
-        Else
-            btnNewUpdated.Visible = False
-        End If
-        dgNewUpdated.DataBind()
+
+    Private Sub panelclients_PanelReports_Load(sender As Object, e As EventArgs) Handles Me.Load
+        HiddenField_FilmID.Value = Page.RouteData.Values("IdFilm")
+        HiddenField_CustomerID.Value = Page.RouteData.Values("id")
     End Sub
+
+    Public Function GetDateShamsi(e As Object) As String
+        Return ShamsiDate.Miladi2Shamsi(e, ShamsiDate.ShowType.ShortDate)
+    End Function
+
     Public Function GetAccept(e As Object) As String
         Select Case e.ToString
             Case "0"
@@ -37,6 +35,9 @@ Partial Class PanelMain
                 Return "جایزه گرفته"
         End Select
     End Function
+    Public Function GetNotification(e As Object) As String
+        Return Convert.ToDateTime(e)
+    End Function
     Public Function GetFee(e As Object) As String
         Select Case e.ToString
             Case "0"
@@ -49,21 +50,6 @@ Partial Class PanelMain
                 Return "پرداخت شده"
         End Select
     End Function
-    Public Function GetFeeValue(e As Object) As String
-        Select Case e.ToString
-            Case "1"
-                Return "-"
-            Case Else
-                Return e.ToString + " - دلار"
-        End Select
-    End Function
-
-    Public Function GetNotification(e As Object) As String
-        Return Convert.ToDateTime(e)
-    End Function
-    Public Function GetDateShamsi(e As Object) As String
-        Return ShamsiDate.Miladi2Shamsi(e, ShamsiDate.ShowType.ShortDate)
-    End Function
     Public Function GetFeeValueBackground(e As Object) As Boolean
         Select Case e.ToString
             Case "1"
@@ -72,43 +58,14 @@ Partial Class PanelMain
                 Return True
         End Select
     End Function
-
-    Protected Sub btnBacktoFilms_Click(sender As Object, e As System.EventArgs) Handles btnBacktoFilms.Click
-        MultiView.ActiveViewIndex = 0
-        lblReceipt.Visible = False
-    End Sub
-
-    Protected Sub btnNewUpdated_Click(sender As Object, e As System.EventArgs) Handles btnNewUpdated.Click
-
-        Dim dl As New DLL
-        Dll.UpdateSubmissionAfterNotifiedFestival(Val(HiddenField_FilmID.Value))
-        dgNewUpdated.DataBind()
-        btnNewUpdated.Visible = False
-
-    End Sub
-
-    Public Function EnableProfile() As Boolean
-        Dim DL As New DLL_Panel
-        Dim LeftDays As Integer = DL.GetLastLeftDaysOfInstallment(Convert.ToInt64(Page.RouteData.Values("id")))
-        If LeftDays < 0 Then
-            If Math.Abs(LeftDays) > 10 Then
-                Return False
-            End If
-        End If
-        Return True
+    Public Function GetFeeValue(e As Object) As String
+        Select Case e.ToString
+            Case "1"
+                Return "-"
+            Case Else
+                Return e.ToString + " - دلار"
+        End Select
     End Function
-
-    Public Sub ShowStrategyReport(sender As Object, e As CommandEventArgs)
-        Response.Redirect("~/panel/panelStrategyReports/" & Page.RouteData.Values("id") & "/" & e.CommandArgument.ToString)
-    End Sub
-
-    Private Sub PanelMain_Load(sender As Object, e As EventArgs) Handles Me.Load
-
-        If Not IsPostBack And String.IsNullOrEmpty(Dll.GetEmailClient(Val(Page.RouteData.Values("id")))) Then
-            ClientEmailModal.Visible = True
-        End If
-
-    End Sub
 
     Public Sub PublicSetClick(sender As Object, e As CommandEventArgs)
 
@@ -122,20 +79,6 @@ Partial Class PanelMain
         CType(grdrow.FindControl("lblStatusReceipt"), Label).Text = GetStatusReceipt(IdSubmission, receipt)
 
     End Sub
-
-    Public Sub PublicSetClickAll(sender As Object, e As CommandEventArgs)
-
-        CType(sender, Button).Visible = False
-
-        Dim grdrow As GridViewRow = CType(CType(sender, Button).NamingContainer, GridViewRow)
-
-        Dim IdSubmission As String = CType(grdrow.FindControl("lblIdSubmissionAll"), Label).Text
-        Dim receipt As String = CType(grdrow.FindControl("lblReceiptAll"), Label).Text
-
-        CType(grdrow.FindControl("lblStatusReceiptAll"), Label).Text = GetStatusReceipt(IdSubmission, receipt)
-
-    End Sub
-
     Public Function GetStatusReceipt(id As Object, receipt As Object) As String
         Dim msg_not_found_physical_file As String = "این رسید در سرور موجود نیست و قبلا برای شما بصورت فیزیکی ارسال شده است. در صورت نیاز از طریق تیکت درخواست خود را ارسال کنید. با تشکر"
         Dim msg_not_uploaded_physical_file As String = "رسید این ارسال هنوز توسط دپارتمان پخش شرکت بارگزاری نشده است. بارگزاری این رسید به زودی اتفاق خواهد افتاد. لطفا صبور باشد. با تشکر"
@@ -160,7 +103,6 @@ Partial Class PanelMain
                 Return "<img style='cursor:pointer'  width='25px'  src='..\..\files\images\icons\ban.png' title='" & msg_not_found_physical_file & "' />"
         End Select
     End Function
-
     Private Function GetStatusExistedFileOnServer(filename As String) As Boolean
 
         ServicePointManager.Expect100Continue = True ''Just for HTTPS (ssl)
@@ -192,25 +134,4 @@ Partial Class PanelMain
         'End Try
 
     End Function
-
-    Private Sub dgAll_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles dgAll.RowDataBound
-        If Convert.ToInt16(DataBinder.Eval(e.Row.DataItem, "receipt")) = 2 _
-            And Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "date_of_entryData")) >= "2023-04-22 00:00:00.000" Then
-            'WHY "2023-04-22 00:00:00.000" ? Because after this date, we got started uploading the physica receipts
-            e.Row.BackColor = System.Drawing.Color.FromName("#ffd6d6")
-        End If
-    End Sub
-
-    Private Sub dgNewUpdated_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles dgNewUpdated.RowDataBound
-        If Convert.ToInt16(DataBinder.Eval(e.Row.DataItem, "receipt")) = 2 _
-            And Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "date_of_entryData")) >= "2023-04-22 00:00:00.000" Then
-            'And GetStatusExistedFileOnServer(Convert.ToString(DataBinder.Eval(e.Row.DataItem, "id")) & ".jpg") Then
-            e.Row.BackColor = System.Drawing.Color.FromName("#ffd6d6")
-        End If
-    End Sub
-
-    Private Sub btnReport_Click(sender As Object, e As EventArgs) Handles btnReport.Click
-        Response.Redirect("~/panel/panelReports/" & Page.RouteData.Values("id") & "/" & HiddenField_FilmID.Value)
-    End Sub
-
 End Class
