@@ -182,6 +182,24 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
+
+                             <asp:TemplateField ConvertEmptyStringToNull="False" ItemStyle-HorizontalAlign="left"
+                                HeaderText="گزارش گیری"
+                                HeaderStyle-HorizontalAlign="left"
+                                SortExpression="ID">
+                                <ItemTemplate>
+
+                                    <asp:ImageButton ID="ImageButton1www" Width="45px" ImageUrl="~/files/images/icons/iconreport.png"
+                                        OnCommand="ShowReport"
+                                        Enabled='<%# EnableProfile() %>'
+                                        CommandArgument='<%# Eval("id", "{0}") %>'
+                                        runat="server" />
+
+
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+
                             <asp:TemplateField ConvertEmptyStringToNull="False" ItemStyle-HorizontalAlign="left"
                                 HeaderText="استراتژی"
                                 HeaderStyle-HorizontalAlign="left"
@@ -220,6 +238,7 @@
                     </asp:SqlDataSource>
                 </asp:View>
                 <asp:View ID="View_Submissions" runat="server">
+                    <asp:Button ID="btnReportMain" runat="server" Text="گزارش گیری" Style="font-family: Samim;" />
                     <asp:Button ID="btnBacktoFilms" runat="server" Text="بازگشت »»" Style="font-family: Samim;" />
                     <hr />
                     <div style="direction: rtl; text-align: right; font-family: Titr; font-size: 15px;">

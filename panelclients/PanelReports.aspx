@@ -188,7 +188,7 @@
                     id="txtDateFrom"
                     placeholder="برای تعیین تاریخ کلیک کنید"
                     name="AnotherDate1" onclick="displayDatePicker('AnotherDate1');" style="width: 100px" />
-                <button type="button" onclick="displayDatePicker('AnotherDate1');">تا:</button>
+                <button type="button" onclick="displayDatePicker('AnotherDate1');">از:</button>
                 <asp:HiddenField ID="HiddenFieldFrom" runat="server" />
             </div>
             <div class="divSearchDate">
@@ -196,7 +196,7 @@
                     id="txtDateTo"
                     placeholder="برای تعیین تاریخ کلیک کنید"
                     name="AnotherDate2" onclick="displayDatePicker('AnotherDate2');" style="width: 100px" />
-                <button type="button" onclick="displayDatePicker('AnotherDate2');">از:</button>
+                <button type="button" onclick="displayDatePicker('AnotherDate2');">به:</button>
                 <asp:HiddenField ID="HiddenFieldTo" runat="server" />
             </div>
         </div>

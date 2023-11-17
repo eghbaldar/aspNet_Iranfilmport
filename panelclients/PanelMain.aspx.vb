@@ -213,4 +213,12 @@ Partial Class PanelMain
         Response.Redirect("~/panel/panelReports/" & Page.RouteData.Values("id") & "/" & HiddenField_FilmID.Value)
     End Sub
 
+    Private Sub btnReportMain_Click(sender As Object, e As EventArgs) Handles btnReportMain.Click
+        Response.Redirect("~/panel/panelReports/" & Page.RouteData.Values("id") & "/" & HiddenField_FilmID.Value)
+    End Sub
+
+    Public Sub ShowReport(sender As Object, e As CommandEventArgs)
+        Response.Redirect("~/panel/panelReports/" & Page.RouteData.Values("id") & "/" & e.CommandArgument.ToString())
+    End Sub
+
 End Class
