@@ -1,18 +1,13 @@
 ﻿
+Imports System.Globalization
 Imports System.Net
 
 Partial Class panelclients_PanelReports
     Inherits System.Web.UI.Page
 
-    Private Sub panelclients_PanelReports_Load(sender As Object, e As EventArgs) Handles Me.Load
-        HiddenField_FilmID.Value = Page.RouteData.Values("IdFilm")
-        HiddenField_CustomerID.Value = Page.RouteData.Values("id")
-    End Sub
-
     Public Function GetDateShamsi(e As Object) As String
         Return ShamsiDate.Miladi2Shamsi(e, ShamsiDate.ShowType.ShortDate)
     End Function
-
     Public Function GetAccept(e As Object) As String
         Select Case e.ToString
             Case "0"
@@ -66,7 +61,6 @@ Partial Class panelclients_PanelReports
                 Return e.ToString + " - دلار"
         End Select
     End Function
-
     Public Sub PublicSetClick(sender As Object, e As CommandEventArgs)
 
         CType(sender, Button).Visible = False
@@ -75,7 +69,6 @@ Partial Class panelclients_PanelReports
 
         Dim IdSubmission As String = CType(grdrow.FindControl("lblIdSubmission"), Label).Text
         Dim receipt As String = CType(grdrow.FindControl("lblReceipt"), Label).Text
-
         CType(grdrow.FindControl("lblStatusReceipt"), Label).Text = GetStatusReceipt(IdSubmission, receipt)
 
     End Sub
@@ -85,22 +78,22 @@ Partial Class panelclients_PanelReports
         Select Case receipt
             Case "2" ' means the receipt was sent but the user has not opened it yet
                 If GetStatusExistedFileOnServer(id.ToString & ".jpg") Then 'check whether receipt is existed or not!
-                    Return "<div class='divGiveReceipt'><a style='text-decoration:none' target='_blank' href='../PanelReceipt/" & Page.RouteData.Values("id") & "/" & id.ToString & "#receipt'>دریافت رسید</a></div>"
+                    Return "<div class='divGiveReceipt'><a style='text-decoration:none' target='_blank' href='../../PanelReceipt/" & Page.RouteData.Values("IdFilm") & "/" & id.ToString & "#receipt'>دریافت رسید</a></div>"
                 Else
                     ScriptManager.RegisterStartupScript(Me, Me.GetType(), "عدم یافت رسید", "alert('" & msg_not_found_physical_file & "');", True)
-                    Return "<img style='cursor:pointer' width='25px'  src='..\..\files\images\icons\ban.png' title='" & msg_not_found_physical_file & "'/>"
+                    Return "<img style='cursor:pointer' width='25px'  src='..\..\..\files\images\icons\ban.png' title='" & msg_not_found_physical_file & "'/>"
                 End If
             Case "3" ' means the receipt was opened by user in the past and now he/she will always be able to open/see it.
-                Return "<div class='divGiveReceipt'><a style='text-decoration:none' target='_blank' href='../PanelReceipt/" & Page.RouteData.Values("id") & "/" & id.ToString & "#receipt'>دریافت رسید</a></div>"
+                Return "<div class='divGiveReceipt'><a style='text-decoration:none' target='_blank' href='../../PanelReceipt/" & Page.RouteData.Values("IdFilm") & "/" & id.ToString & "#receipt'>دریافت رسید</a></div>"
             Case "1"
                 ScriptManager.RegisterStartupScript(Me, Me.GetType(), "عدم یافت رسید", "alert('" & msg_not_uploaded_physical_file & "');", True)
-                Return "<img style='cursor:pointer' src='..\..\files\images\icons\awating.png' title='" & msg_not_uploaded_physical_file & "' />"
+                Return "<img style='cursor:pointer' src='..\..\..\files\images\icons\awating.png' title='" & msg_not_uploaded_physical_file & "' />"
             Case "0" 'thi submission has JUST confrimed but its receipt has not created yet
                 ScriptManager.RegisterStartupScript(Me, Me.GetType(), "عدم یافت رسید", "alert('" & msg_not_uploaded_physical_file & "');", True)
-                Return "<img style='cursor:pointer' src='..\..\files\images\icons\awating.png' title='" & msg_not_uploaded_physical_file & "' />"
+                Return "<img style='cursor:pointer' src='..\..\..\files\images\icons\awating.png' title='" & msg_not_uploaded_physical_file & "' />"
             Case Else
                 ScriptManager.RegisterStartupScript(Me, Me.GetType(), "عدم یافت رسید", "alert('" & msg_not_found_physical_file & "');", True)
-                Return "<img style='cursor:pointer'  width='25px'  src='..\..\files\images\icons\ban.png' title='" & msg_not_found_physical_file & "' />"
+                Return "<img style='cursor:pointer'  width='25px'  src='..\..\..\files\images\icons\ban.png' title='" & msg_not_found_physical_file & "' />"
         End Select
     End Function
     Private Function GetStatusExistedFileOnServer(filename As String) As Boolean
@@ -134,4 +127,40 @@ Partial Class panelclients_PanelReports
         'End Try
 
     End Function
+
+    Private Sub dgNewUpdated_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles dgNewUpdated.RowDataBound
+        If Convert.ToInt16(DataBinder.Eval(e.Row.DataItem, "receipt")) = 2 _
+            And Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "date_of_entryData")) >= "2023-04-22 00:00:00.000" Then
+            'And GetStatusExistedFileOnServer(Convert.ToString(DataBinder.Eval(e.Row.DataItem, "id")) & ".jpg") Then
+            e.Row.BackColor = System.Drawing.Color.FromName("#ffd6d6")
+        End If
+    End Sub
+
+    Dim ds As New DLL_Panel
+    Dim _from As String = ""
+    Dim _to As String = ""
+    Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+        HiddenField_FilmID.Value = Page.RouteData.Values("IdFilm")
+        If HiddenFieldFrom.Value <> "" Then _from = DateTime.Parse(HiddenFieldFrom.Value, New CultureInfo("fa-IR"))
+        If HiddenFieldTo.Value <> "" Then _to = DateTime.Parse(HiddenFieldTo.Value, New CultureInfo("fa-IR"))
+        dgNewUpdated.DataSource = ds.GetPanelReport(HiddenField_FilmID.Value, txtSearchFestivalName.Text.Trim, _from, _to)
+        dgNewUpdated.DataBind()
+    End Sub
+    Private Sub panelclients_PanelReports_Load(sender As Object, e As EventArgs) Handles Me.Load
+        If IsPostBack Then
+            dgNewUpdated.DataSource = ds.GetPanelReport(Page.RouteData.Values("IdFilm"), txtSearchFestivalName.Text.Trim, _from, _to)
+            dgNewUpdated.DataBind()
+        End If
+    End Sub
+
+    Private Sub dgNewUpdated_PageIndexChanging(sender As Object, e As GridViewPageEventArgs) Handles dgNewUpdated.PageIndexChanging
+        dgNewUpdated.PageIndex = e.NewPageIndex
+        dgNewUpdated.DataBind()
+    End Sub
+
+    Private Sub dgNewUpdated_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles dgNewUpdated.RowCommand
+        dgNewUpdated.DataSource = ds.GetPanelReport(Page.RouteData.Values("IdFilm"), txtSearchFestivalName.Text.Trim, _from, _to)
+    End Sub
+
 End Class
+

@@ -2,6 +2,64 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style>
+        .GridPager {
+            background-color: #d6fcff;
+        }
+
+            .GridPager a, .GridPager span {
+                display: block;
+                height: 30px;
+                width: 30px;
+                font-weight: bold;
+                text-align: center;
+                font-size: 20px;
+                text-decoration: none;
+            }
+
+            .GridPager a {
+                background-color: #f5f5f5;
+                color: #969696;
+                border: 1px solid #969696;
+            }
+
+            .GridPager span {
+                background-color: #A1DCF2;
+                color: #000;
+                border: 1px solid #3AC0F2;
+            }
+    </style>
+    <style>
+                .divGiveReceipt {
+            padding: 4px;
+            background-color: #9efffc;
+            border: 1px solid gray;
+            color: black;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+        }
+        .cmdCss {
+            padding: 10px;
+            text-align: center;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: orange;
+            border: 0;
+            font-family: Samim;
+            margin-top: 4px;
+            margin-bottom: 2px;
+            color: white;
+            text-shadow: 1px 1px 2px #3a3a3a;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .cmdCss {
+                width: 100%;
+            }
+        }
+
         .warning {
             padding: 10px;
             background-color: #f2fff6;
@@ -17,7 +75,55 @@
             width: 100%;
             box-sizing: border-box;
             padding: 10px;
+            font-family: Samim;
+            text-align: center;
         }
+    </style>
+    <style>
+        .divSearch {
+            padding: 20px;
+            background-color: #f1f1f1;
+        }
+
+        .divSearchDate {
+            direction: ltr;
+            flex-direction: row;
+            border: 1px solid grey;
+            padding: 1px;
+            display: flex;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 20px;
+            margin-left: 4px;
+            -moz-border-radius: 10px;
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+        }
+
+            .divSearchDate input {
+                flex-grow: 2;
+                border: none;
+                font-size: 20px;
+                text-align: center;
+                font-family: Samim;
+            }
+
+                .divSearchDate input:focus {
+                    outline: none;
+                }
+
+            .divSearchDate:focus-within {
+                outline: 1px solid orange;
+            }
+
+            .divSearchDate button {
+                cursor: pointer;
+                font-family: Samim;
+                font-size: 16px;
+                border: 0;
+                padding: 10px;
+                direction: rtl;
+                margin: 2px;
+            }
     </style>
     <%--JQuery--%>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -36,18 +142,11 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
-    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-    <asp:UpdatePanel ID="UpdatePanelNewestUpdated" runat="server">
-
-        <ContentTemplate>
-
-            <asp:HiddenField ID="HiddenField_CustomerID" runat="server" />
-            <asp:HiddenField ID="HiddenField_FilmID" runat="server" />
-            <div class="warning">
-                <ul>
-                    <li>جهت دانلود فایل آموزشی
+    <div class="warning">
+        <ul>
+            <li>جهت دانلود فایل آموزشی
                 <strong>(تیکت گذاری)</strong>
-                        روی لینک زیر کلیک کنید:
+                روی لینک زیر کلیک کنید:
                 <ul>
                     <li>
                         <a href="http://www.iranfilmport.com/files/uploadFiles/tickets.pdf">www.iranfilmport.com/files/uploadfiles/tickets.pdf
@@ -55,36 +154,68 @@
                     </li>
                 </ul>
 
-                    </li>
+            </li>
 
 
 
-                </ul>
+        </ul>
+    </div>
+    <div class="TitleTitle">
+        گزارش گیری
+    </div>
+
+    <div class="divSearch">
+        <div>
+            <div class="my-text" style="text-align: right;">
+                نام فستیوال را به انگلیسی وارد کنید
             </div>
-            <div class="TitleTitle">
-                گزارش گیری
+            <asp:TextBox
+                CssClass="my-text" ID="txtSearchFestivalName"
+                placeholder="Festival Name"
+                Width="100%"
+                runat="server"></asp:TextBox>
+            <div class="my-text" style="text-align: right;">
+                بازه‌ی تاریخ مد نظر را مشخص کنید:
             </div>
 
-            <div>
-                <div>
-                    <asp:TextBox
-                        CssClass="my-text" ID="txtSearchFestivalName"
-                        placeholder="نام فستیوال به انگلیسی"
-                        Width="100%"
-                        runat="server"></asp:TextBox>
-                    <img src="../../../files/plugins/persianCalendar/Images/calendar.JPG" onclick="displayDatePicker('AnotherDate1');" />
-        <input name="AnotherDate1" onclick="displayDatePicker('AnotherDate1');" style="width: 100px">
+        </div>
 
-                    <img src="../../../files/plugins/persianCalendar/Images/calendar.JPG" onclick="displayDatePicker('AnotherDate2');" />
-        <input name="AnotherDate2" onclick="displayDatePicker('AnotherDate2');" style="width: 100px">
-                </div>
+        <div>
+
+
+            <div class="divSearchDate">
+                <input
+                    id="txtDateFrom"
+                    placeholder="برای تعیین تاریخ کلیک کنید"
+                    name="AnotherDate1" onclick="displayDatePicker('AnotherDate1');" style="width: 100px" />
+                <button type="button" onclick="displayDatePicker('AnotherDate1');">تا:</button>
+                <asp:HiddenField ID="HiddenFieldFrom" runat="server" />
             </div>
+            <div class="divSearchDate">
+                <input
+                    id="txtDateTo"
+                    placeholder="برای تعیین تاریخ کلیک کنید"
+                    name="AnotherDate2" onclick="displayDatePicker('AnotherDate2');" style="width: 100px" />
+                <button type="button" onclick="displayDatePicker('AnotherDate2');">از:</button>
+                <asp:HiddenField ID="HiddenFieldTo" runat="server" />
+            </div>
+        </div>
+    </div>
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <asp:UpdatePanel ID="UpdatePanelNewestUpdated" runat="server">
+        <ContentTemplate>
+
+            <asp:Button ID="btnSearch"
+                OnClientClick="setDates()"
+                CssClass="cmdCss" runat="server" Text="جستجو کن" />
+
+            <asp:HiddenField ID="HiddenField_FilmID" runat="server" />
 
             <asp:GridView ID="dgNewUpdated" Width="100%" runat="server" EmptyDataRowStyle-CssClass="cssEmpty"
                 EnableViewState="False"
                 Font-Size="12px" AutoGenerateColumns="False" BackColor="White" BorderColor="#848484"
                 DataKeyNames="id"
-                BorderStyle="None" BorderWidth="1px" CellPadding="4" DataSourceID="SDS_NotNewUpdated" AllowPaging="True">
+                BorderStyle="None" BorderWidth="1px" CellPadding="4" AllowPaging="True">
                 <Columns>
 
                     <asp:BoundField DataField="id"
@@ -206,7 +337,7 @@
                     <asp:TemplateField>
                         <ItemTemplate>
 
-                            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                            <asp:UpdatePanel ID="UpdatePanel1" runat="server" >
                                 <ContentTemplate>
 
                                     <div style="text-align: center;">
@@ -215,6 +346,7 @@
                                             Text='<%# Eval("id") %>'
                                             runat="server"></asp:Label>
                                         <br />
+
                                         <asp:Button ID="btnStatusReceipt"
                                             OnCommand="PublicSetClick" runat="server" Font-Names="Samim"
                                             Width="100%"
@@ -244,7 +376,7 @@
                 </Columns>
 
                 <EmptyDataTemplate>
-                    فستیوالی بروزرسانی نشده است.
+                    فستیوالی جهت نمایش وجود ندارد.
                 </EmptyDataTemplate>
                 <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
                 <HeaderStyle BackColor="#CCCCCC" Font-Bold="True" ForeColor="#848484" />
@@ -257,14 +389,16 @@
                 <SortedDescendingHeaderStyle BackColor="#7E0000" />
             </asp:GridView>
 
-            <asp:SqlDataSource ID="SDS_NotNewUpdated" runat="server" ConnectionString="<%$ ConnectionStrings:DesktopConnectionString %>"
-                SelectCommand="SELECT * FROM [tbSubmission] WHERE ChangeAccept=1
-                        and [id_film] = @id_film and valid=1 ORDER BY [date_of_entryData] DESC">
-                <SelectParameters>
-                    <asp:ControlParameter ControlID="HiddenField_FilmID" Name="id_film" PropertyName="Value"
-                        Type="Int32" />
-                </SelectParameters>
-            </asp:SqlDataSource>
+            <script>
+                function setDates() {
+                    var dates = {
+                        "date1": $("#txtDateFrom").val(),
+                        "date2": $("#txtDateTo").val(),
+                    };
+                    document.getElementById('<%= HiddenFieldFrom.ClientID %>').value = dates.date1;
+                    document.getElementById('<%= HiddenFieldTo.ClientID %>').value = dates.date2;
+                }
+            </script>
 
             <asp:UpdateProgress AssociatedUpdatePanelID="UpdatePanelNewestUpdated" ID="updateProgress" runat="server">
                 <ProgressTemplate>
@@ -279,7 +413,6 @@
         </ContentTemplate>
 
     </asp:UpdatePanel>
-
 
 </asp:Content>
 

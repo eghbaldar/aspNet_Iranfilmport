@@ -450,4 +450,24 @@ Public Class DLL_Panel
 
     End Function
 
+    Public Function GetPanelReport(ByVal id_film As Long, festival As String, _from As String, _to As String) As DataTable
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            Dim sqlda As New SqlDataAdapter
+            Dim dt As New DataTable
+            Dim command As String = "exec [spPanelReport] " + id_film.ToString + ",'" + festival + "','" + _from + "','" + _to + "'"
+            'Dim command As String = "exec [spPanelReport] 3332,'','',''"
+            Dim sqlcom As New SqlCommand(command, sqlconn)
+            sqlda.SelectCommand = sqlcom
+            sqlda.Fill(dt)
+            Return dt
+            sqlconn.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+
+    End Function
+
 End Class
