@@ -128,14 +128,14 @@
     <span class="closeADV">&times;</span>
 
     <!-- Modal Content (The Image) -->
-
+    <a id="anchorImg">
         <img class="modalaDs-content" id="img01">
-
+        </a>
     <br />
 
     <!-- Modal Caption (Image Text) -->
     <div id="caption">
-       
+        
     </div>
 
 </div>
@@ -197,16 +197,17 @@
         var img = document.getElementById("myImg");
         var modalImg = document.getElementById("img01");
         var captionText = document.getElementById("caption");
+        var linkRef = "<%= ResolveUrl("~/advertiseModalInterface/") %>" + "?ref=" + LinkSubTitle1 + "&id=" + id;
 
         document.getElementById("caption").style.backgroundColor = "#" + Color;
         myModaladv.style.display = "block";
         modalImg.src = "<%= ResolveUrl("~/files/uploadFiles/ModaAdvertisement/") %>" + Photo;
         captionText.innerHTML = title + "</br>" + "<span class='blink'>" +
             blinkText + "</span>" + "</br>"
-            + "<a href='" + LinkSubTitle1 + "'>" + subTitle1 + "</a>"
+            + "<a href='" + linkRef + "'>" + subTitle1 + "</a>"
             + "<a style='color:red;' href='" + LinkSubTitle12 + "'></br>" +
             subTitle2 + "</a>";
-
+        document.getElementById("anchorImg").href = linkRef;
 
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("closeADV")[0];

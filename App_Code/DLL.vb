@@ -305,4 +305,17 @@ Public Class DLL
         End Try
     End Function
 
+    Public Function IncreaseVisitAdvertModal(IdAdvert As Long) As Boolean
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            Dim sqlcom As New SqlCommand("update [tbl_ModalAdvertisement] set visit=visit+1  where id=" + IdAdvert.ToString, sqlconn)
+            sqlcom.ExecuteNonQuery()
+            sqlconn.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+    End Function
+
 End Class

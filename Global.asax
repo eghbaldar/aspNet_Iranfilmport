@@ -95,7 +95,7 @@
         routes.MapPageRoute("tempcontract", "contract/{id}", "~/contract.aspx")
         routes.MapPageRoute("GeneralDetails", "GeneralDetails/{type}", "~/GeneralDetails.aspx")
         routes.MapPageRoute("RevisingScreenplay", "نگارش-بازنویسی-فیلمنامه-کوتاه-بلند", "~/RevisingScreenplay.aspx")
-
+        routes.MapPageRoute("advertiseModalInterface", "advertiseModalInterface", "~/advertiseModalInterface.aspx")
         '----------------------------------------------------------------------------------------
         routes.MapPageRoute("panel", "panel/", "~/panelclients/panel.aspx")
         routes.MapPageRoute("panelClient", "panel/client/{id}", "~/panelclients/PanelMain.aspx")
