@@ -3,6 +3,49 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+
+
+        <div class="TITLE" style="color: Black; font-size: 20px;">
+        آدرس آخرین ورژن نرم افزار داخلی شرکت
+    </div>
+    <div>
+        <div>
+            <asp:GridView ID="GridView1" runat="server" 
+                DataSourceID="SqlDataSourceWinApp" BackColor="White" BorderColor="White" 
+                BorderStyle="Ridge" BorderWidth="2px" CellPadding="3" CellSpacing="1" 
+                GridLines="None" ShowHeader="False">
+                <Columns>
+                    <asp:CommandField ShowEditButton="True" />
+                    <asp:TemplateField HeaderText="winApp" SortExpression="winApp">
+                        <ItemTemplate>
+                            <a href='<%# Eval("winApp") %>'>
+
+                                <asp:Label ID="Lab131el1" runat="server"
+                                    Text="Download Staff's WinApp"></asp:Label>
+                            </a>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+ 
+                </Columns>
+                <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
+                <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#E7E7FF" />
+                <PagerStyle BackColor="#C6C3C6" ForeColor="Black" HorizontalAlign="Right" />
+                <RowStyle BackColor="#DEDFDE" ForeColor="Black" />
+                <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                <SortedAscendingHeaderStyle BackColor="#594B9C" />
+                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                <SortedDescendingHeaderStyle BackColor="#33276A" />
+            </asp:GridView>
+            <asp:SqlDataSource ID="SqlDataSourceWinApp" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
+                SelectCommand="SELECT [winApp] FROM [tbl_setting]" UpdateCommand="UPDATE tbl_setting SET winApp = @winApp">
+                <UpdateParameters>
+                    <asp:Parameter Name="winApp" />
+                </UpdateParameters>
+            </asp:SqlDataSource>
+        </div>
+
+    </div>
     <div class="TITLE" style="color: Black; font-size: 20px;">
         ورژن اندروید کارمندان
     </div>
