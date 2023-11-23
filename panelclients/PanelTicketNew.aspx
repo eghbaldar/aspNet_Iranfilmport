@@ -13,6 +13,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <%--Main Style--%>
     <style type="text/css">
+div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled {
+   font-family:Samim !important;
+}
         #countup {
             direction: ltr;
         }
@@ -477,7 +480,34 @@
     <asp:Label runat="server" Text="ارسال متن" style="margin:20px 0px 50px 5px; float:left;"/>
                                     <asp:Image runat="server"
                                         ImageUrl="~/files/images/icons/clientmethod_text.png" Height="50" style="float:left;"/>
-                            </asp:LinkButton><asp:LinkButton runat="server" Height="60" ForeColor="#606060"
+                            </asp:LinkButton>
+
+                          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                           <asp:LinkButton runat="server" Height="60" ForeColor="#606060"
                                 ID="btnMethodRecord"
                                 CssClass="linkbtnMethod"
                                 Style="padding: 10px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;">
@@ -485,6 +515,23 @@
     <asp:Label runat="server" Text="ارسال ویس (امکان جدید)" style="margin:20px 0px 50px 5px; float:left;"/>
                                     <asp:Image runat="server" ImageUrl="~/files/images/icons/clientmethod_record.png" Height="50" style="float:left;"/>
                             </asp:LinkButton>
+                              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         </div>
                     </asp:View>
                     <asp:View ID="View5" runat="server">
@@ -502,18 +549,26 @@
                     </asp:View>
                     <asp:View ID="View6" runat="server">
 
+                        <div style="  
+                         display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: center;">
 
+                        
                         <button type="button" data-toggle="modal"
                             class="linkbtnMethod"
-                            style="width: 100%; text-align: center; cursor: pointer;"
-                            data-target=".bd-example-modal-sm">
+                            style="text-align: center; cursor: pointer;"
+                            data-target=".bd-example-modal-sm"
+                           >
 
 
                             <asp:Image runat="server"
                                 ImageUrl="~/files/images/icons/clientmethod_record.png" CssClass="blink" Height="50" />
 
                         </button>
-
+                        </div>
 
 
                     </asp:View>
@@ -715,11 +770,20 @@
     <!-- Small modal -->
     <div id="myModal" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm">
-            <div class="modal-content">
+            <div class="modal-content"
+                style=" display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;width:200px;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius:5px;">
+                <span>
+                        
+                </span>
                 <div style="text-align: center; display: grid; place-items: center;">
                     <audio id="recorder" muted hidden></audio>
                     <img src="../../files/images/icons/ic_record.png"
-                        style="cursor: pointer;" onclick="StatusRec()" width="100" id="start" />
+                        style="cursor: pointer;" onclick="StatusRec()" width="70" id="start" />
                     <ul class='waveUl' style="display: none;">
                         <li></li>
                         <li></li>
@@ -735,6 +799,12 @@
                     <div id="countup">
                         <span id="minutes"></span>
                         <span id="seconds"></span>
+                    </div>
+                    <div style="padding:2px;border:1px solid #d0d0d0;background-color:#ebebeb;text-align:center;font-family:Samim;font-size:10px;color:gray;
+-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius:5px;">
+                        <span>
+                            پس از توقف و ارسال ویس، تا آپلود کامل صبر کرده و صفحه را رفرش نکنید.
+                        </span>
                     </div>
                 </div>
             </div>
@@ -1050,6 +1120,14 @@
             form.append("Id_Submission", Id_Submission);
             var xhttp = new XMLHttpRequest();
 
+            Swal.fire({
+                title: 'در حال بارگزاری ویس',
+                icon: 'info',
+                html: "<img src='../../../files/images/icons/loading.svg'><br/> لطفا تا نمایش پیام موفقیت ارسال ویس، صبر کرده و به هیچ عنوان صفحه را نبندید و یا صفحه را رفرش نکنید",
+                showCancelButton: false,
+                showConfirmButton: false
+            })
+
             xhttp.onreadystatechange = (e) => {
                 if (xhttp.readyState !== 4) {
                     return;
@@ -1058,7 +1136,7 @@
                     Swal.fire({
                         title: 'پیام!',
                         text: 'تیکت شما از طریق «وُیس» با موفقیت ثبت شد. لطفا منتظر پاسخ کارشناس مربوطه بمانید.',
-                        icon: 'info',
+                        icon: 'success',
                         confirmButtonColor: '#ff9100',
                         confirmButtonText: 'متوجه شدم'
                     }).then((result) => {
@@ -1076,7 +1154,8 @@
                         icon: 'error',
                         confirmButtonColor: '#ff9100',
                         confirmButtonText: 'متوجه شدم'
-                    })
+                    });
+                    location.href = '../../panel/tickets/' + Id_Client;
                 }
             };
 

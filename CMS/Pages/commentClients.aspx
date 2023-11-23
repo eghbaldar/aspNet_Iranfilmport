@@ -855,6 +855,15 @@
             form.append("Id_Submission", "0");
             var xhttp = new XMLHttpRequest();
 
+
+            Swal.fire({
+                title: 'در حال بارگزاری ویس',
+                icon: 'info',
+                html: "<img src='../../../files/images/icons/loading.svg'><br/> لطفا تا نمایش پیام موفقیت ارسال ویس، صبر کرده و به هیچ عنوان صفحه را نبندید و یا صفحه را رفرش نکنید",
+                showCancelButton: false,
+                showConfirmButton: false
+            })
+
             xhttp.onreadystatechange = (e) => {
                 if (xhttp.readyState !== 4) {
                     return;
