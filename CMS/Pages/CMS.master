@@ -404,7 +404,8 @@
                                         <a href="DesktopSubmissionList">
                                             <asp:Label ID="Label24" runat="server" Text="لیست ثبت نام ها" /></a>
                                           <a href="calendar">
-                                            <asp:Label ID="Label31" runat="server" Text="تقویم خبرها" /></a>
+                                            <asp:Label ID="Label31" runat="server" Text="تقویم خبرها" /></a>   <a href="activities">
+                                            <asp:Label ID="La23bel31" runat="server" Text="گزارشات" /></a>
                                     </ul>
                                 </li>
                                 <li>
@@ -432,7 +433,10 @@
                                         <a href="aboutus">
                                             <asp:Label ID="Label27" runat="server" Text="درباره ی ما" /></a>
                                          <a href="modalAdvert">
-                                            <asp:Label ID="Label34" runat="server" Text="مودال تبلیغاتی" /></a>
+                                            <asp:Label ID="Label34" runat="server" Text="مودال تبلیغاتی" /></a> 
+                                        
+                                        <a href="testimonials">
+                                            <asp:Label ID="Lasadadbel34" runat="server" Text="تصدیق نامه ها" /></a>
                                     </ul>
                                 </li>
                                 <li></li>

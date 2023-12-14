@@ -1194,4 +1194,70 @@ Public Class DLL_CMS
         End Try
     End Function
 
+    Public Sub InsertTestimonial(ByVal filmmakername As String,
+                                ByVal filename As String,
+                                ByVal type As String)
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            Dim sqlcom As New SqlCommand("exec dbo.sp_InsertTestimonial '" + filmmakername + "','" + filename + "','" + type + "'", sqlconn)
+            sqlcom.ExecuteNonQuery()
+            sqlconn.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+    End Sub
+
+    Public Function GetContactAlphabet() As DataTable
+        Try
+            If sqlconnDesktop.State = ConnectionState.Open Then sqlconnDesktop.Close()
+            sqlconnDesktop.Open()
+            Dim sqlda As New SqlDataAdapter
+            Dim dt As New DataTable
+            Dim sqlcom As New SqlCommand("select distinct(substring(trim(name),1,1)) name from [dbo].[tbPhoneBook] order by name asc", sqlconnDesktop)
+            sqlda.SelectCommand = sqlcom
+            sqlda.Fill(dt)
+            Return dt
+            sqlconnDesktop.Close()
+        Catch ex As Exception
+        Finally
+            sqlconnDesktop.Close()
+        End Try
+    End Function
+
+    Public Function GetContactFromDesktop() As DataTable
+        Try
+            If sqlconnDesktop.State = ConnectionState.Open Then sqlconnDesktop.Close()
+            sqlconnDesktop.Open()
+            Dim sqlda As New SqlDataAdapter
+            Dim dt As New DataTable
+            Dim sqlcom As New SqlCommand("select top 100 t.*,p.name from [dbo].[tbToDoList] t,[dbo].[tbPhoneBook] p where type=1 and t.userid=p.id order by datetime desc", sqlconnDesktop)
+            sqlda.SelectCommand = sqlcom
+            sqlda.Fill(dt)
+            Return dt
+            sqlconnDesktop.Close()
+        Catch ex As Exception
+        Finally
+            sqlconnDesktop.Close()
+        End Try
+    End Function
+
+    Public Function GetContactFromDesktopByContactId(id As Long) As DataTable
+        Try
+            If sqlconnDesktop.State = ConnectionState.Open Then sqlconnDesktop.Close()
+            sqlconnDesktop.Open()
+            Dim sqlda As New SqlDataAdapter
+            Dim dt As New DataTable
+            Dim sqlcom As New SqlCommand("select top 100 t.*,p.name from [dbo].[tbToDoList] t,[dbo].[tbPhoneBook] p where type=1 and t.userid=p.id and p.id=" + id.ToString() + " order by datetime desc", sqlconnDesktop)
+            sqlda.SelectCommand = sqlcom
+            sqlda.Fill(dt)
+            Return dt
+            sqlconnDesktop.Close()
+        Catch ex As Exception
+        Finally
+            sqlconnDesktop.Close()
+        End Try
+    End Function
+
 End Class
