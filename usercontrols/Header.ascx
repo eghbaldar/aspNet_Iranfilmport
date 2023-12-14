@@ -60,7 +60,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
                 <div class="item">
                     <div class="contact-info-item">
                         <img height="30" width="30"
-                            src="../files/images/icons/envelope.svg" />
+                            src='<%= Page.ResolveUrl("~/files/images/icons/envelope.svg") %>'/>
                     </div>
                     <div class="contact-info-item">
                         <strong>
@@ -79,7 +79,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
                     <div>
                          <a href="tel:+989216343320">
                         <img height="30" width="30"
-                            src="../files/images/icons/call.svg" class="contact-info-item-call-and-email" />
+                            src='<%= Page.ResolveUrl("~/files/images/icons/call.svg") %>'
+                            class="contact-info-item-call-and-email" />
                              </a>
                     </div>
                     <div class="contact-info-item">

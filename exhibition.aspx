@@ -78,23 +78,23 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7abcff', end
                 <div style="text-align:center;">
                 </div>
                 <table>
-                <tr><td class="td1">نام فیلم: </td><td>آتش / FIRE (POZAR)</td></tr>
-                <tr><td class="td1">نام کارگردان: </td><td>David Lynch</td></tr>
-                <tr><td class="td1">محصول: </td><td>2015</td></tr>
-                <tr><td class="td1">کشور سازنده: </td><td>آمریکا</td></tr>
+                <tr><td class="td1">نام فیلم: </td><td>او هم نفس می‌کشد / That Also Breathes</td></tr>
+                <tr><td class="td1">نام کارگردان: </td><td>Bahman Radan</td></tr>
+                <tr><td class="td1">نام تهیه کننده: </td><td>AD1 Film Company</td></tr>
+                <tr><td class="td1">محصول: </td><td>2023</td></tr>
+                <tr><td class="td1">کشور سازنده: </td><td>ترکیه</td></tr>
                 <tr><td class="td1">اطلاعات کلی: </td>
                 <td>
                 
-دیوید لینچ هدیه‌ایی که طرفداران او مدت‌ها منتظرش بودند را به آن‌ها داد؛
- تماشای آنلاین و رایگان انیمیشن کوتاه او به نام (Fire (Pozar از سال ۲۰۱۵ تا به امروز، امکان‌پذیر نبود. 
-دیوید لینچ در ابتدا اعلام کرد که این 
-انیمیشن در سال ۲۰۱۵ محصول همکاری بین او و موسیقی‌دان لهستانی آمریکایی، مارک زبروفسکی، است .
-زبروفسکی و لینچ قبلا در ساخت آلبوم موسیقی «Polish Night Music» که در سال ۲۰۰۷ منتشر شد، همکاری داشته‌اند. این دو یک سال قبل از آن با یکدیگر آشنا شدند؛ زمانی‌که دیوید لینچ او را به‌عنوان مترجم خود در زمان فیلم‌برداری فیلم «‌Inland Empire»، در شهر لادز لهستان استخدام کرد. دیوید لینچ نخستین اطلاعات انیمیشن (Fire (Pozar را در سال ۲۰۱۵ در دانشگاه موسیقی در اختیار طرفداران قرار داد و گفت: تمام برنامه‌ی ما این بود که من از اهداف و اطلاعات این پروژه چیزی را با شما در میان نگذارم و مارک هم به شیوه‌ی خودش تصاویری را برای شما خلق کند ولی به شما میگویم که این یک تجربه‌ی بسیار عالی و موفقیت آمیز بود و من عاشق موسیقی‌هایی هستم که مارک برای گروه ارکستر پندرسچی، ساخته است. همچنین مارک زبروفسکی درباره‌ی این انیمیشن صحبت کرد و گفت: من فکر می‌کردم که این انیمیشن به یک اثر بسیار غمگین و شاعرانه تبدیل شود، من به‌صورت غیر صریح تلاش می‌کردم که کارهایی که دیوید درحال انجام آن‌ها بود را به بیننده نشان دهم؛ برای مثال در لحظاتی از انیمیشن شما با چیزی مانند طوفان تگرگ روبه‌رو می‌شوید که من سعی کردم با نت‌های بسیار آرام آن را همراهی کنم و رفته رفته این نت‌های آرام را با نت‌‌های در حال افزایش تلفیق کردم که مدام درحال بالا رفتن هستند.
-(به نقل از زومجی)
-                
+به گزارش «درگاه فیلم ایران» فیلم کوتاه داستانی «او هم نفس می‌کشد» به کارگردانی «بهمن رادان» و تهیه‌کنندگی «کمپانی فیلم AD1» و پخش‌کنندگی «درگاه فیلم ایران» به مدیریت «علیمحمد اقبالدار» به مناسبت روز جهانی «حمایت از حیوانات» اکران می شود.
+
+<div style="direction:ltr;">
+    IRAN FILM PORT (An Iranian Films Agency and Distribution) announces formally and proudly that distribution of "That Also Breathes" short film, directed by "Bahman Radan" and produced by "AD1 Film Company" has started. This film is being distributed by "IRAN FILM PORT" company, under the supervision of "ALIMOHAMMAD EGHBALDAR".
+
+</div>
                 
                 </td></tr>
-                <tr><td class="td1">لینک فیلم: </td><td>https://www.youtube.com/watch?v=BXTLsQBJSVc&list=PLTPQcjlcvvXHSVp-ehnxbD9i4wQ9C_qMO</td></tr>
+                <tr><td class="td1">لینک فیلم: </td><td>https://www.aparat.com/v/PEiJj</td></tr>
                 </table class="T">
 
                 </div>
@@ -102,21 +102,21 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7abcff', end
                 <h4>نمایش فیلم</h4>
                 </div>
                     <video controls poster="files/video/poster.jpg" width="100%" height="100%" onClick="playPause();">
-                    <source src="files/video/film.mp4"    type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"'/>
+                    <source src="files/video/thatalsobreathe.mp4"    type='video/mp4;codecs="avc1.42E01E, mp4a.40.2"'/>
                     </video>
 
                     <div>
                     <br />
-                    <p>آرشیو فیلم ها:</p>
+                    <p>افتخارات:</p>
                     <ul style="list-style-type:circle;">
                         <il>
-                        <span>Shadow Animals / Jerry Carlsson</span>
-                        <span><a target="_blank" href="https://vimeo.com/386352766">Link</a></span>
+                        <span>حضور در جشنواره بین المللی «Vegan Ciftlik Short Film Fest» ترکیه - 2023</span>
+                        <span><a target="_blank" href="http://iranfilmport.com/1932">لینک خبر</a></span>
                         </il>
-                        <li><br /></li>
+                        <li></li>
                         <il>
-                        <span>FIRE (POZAR) / David Lynch</span>
-                        <span><a target="_blank" href="https://www.youtube.com/watch?v=BXTLsQBJSVc&list=PLTPQcjlcvvXHSVp-ehnxbD9i4wQ9C_qMO">Link</a></span>
+                        <span>حضور در 13 امین دوره جشنواره بین المللی «Mostra Animal» برزیل - 2023</span>
+                        <span><a target="_blank" href="http://iranfilmport.com/1951">لینک خبر</a></span>
                         </il>
                     </ul>
                     </div>

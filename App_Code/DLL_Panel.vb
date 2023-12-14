@@ -470,4 +470,31 @@ Public Class DLL_Panel
 
     End Function
 
+    Public Function GetSumFeeValue(ByVal idFilm As Long) As String
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            Dim sqlcom As New SqlCommand("select sum(cast([feevalue] as int)) from [dbo].[tbSubmission] where cast([feevalue] as int)<>1 and id_film=" & idFilm.ToString, sqlconn)
+            Return sqlcom.ExecuteScalar
+            sqlconn.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+
+    End Function
+    Public Function GetSumFeeValueAllFilm(ByVal idClient As Long) As String
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            Dim sqlcom As New SqlCommand("select sum(cast(CONVERT(int, replace([feevalue],'.1',''))as int)) from [dbo].[tbSubmission] where id_film in (select [id] from [dbo].[tbFilms] where customerId=" + idClient.ToString + ") and cast(CONVERT(int, replace([feevalue],'.1',''))as int)<>1", sqlconn)
+            Return sqlcom.ExecuteScalar
+            sqlconn.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+
+    End Function
+
 End Class

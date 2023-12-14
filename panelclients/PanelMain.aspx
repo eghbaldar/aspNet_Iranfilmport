@@ -16,6 +16,18 @@
             font-size: 12px;
         }
 
+        .alert-danger {
+            padding: 10px;
+            background-color: #F8D7DA;
+            border: 1px solid red;
+            border-radius: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            color: red;
+            font-size: 12px;
+            text-align: center;
+        }
+
         .receipt {
             padding: 10px;
             background-color: #fff4cf;
@@ -108,11 +120,16 @@
                 </ul>
 
                     </li>
-
-
-
                 </ul>
             </div>
+
+            <div class="alert-danger">
+                <asp:Label ID="lblSumFeeTitle" runat="server"></asp:Label>
+                <br />
+                <asp:Label ID="lblSumFee" runat="server"></asp:Label>
+            </div>
+
+
             <div class="receipt" runat="server" visible="false" id="lblReceipt">
                 <ul>
                     <li>در بروزرسانی جدید، امکان رویت همه ارسال ها در یک صفحه وجود ندارد و باید از «شماره های درج شده زیر جدول» برای رویت همه رسیدها استفاده کنید.
@@ -166,11 +183,21 @@
                                 Visible="False" />
                             <asp:BoundField DataField="strategy" HeaderText="strategy" SortExpression="strategy"
                                 Visible="False" />
-                            <asp:BoundField HeaderStyle-HorizontalAlign="Right" DataField="count" HeaderText="تعداد ارسال ها" />
+                            <asp:BoundField HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" DataField="count" HeaderText="تعداد ارسال ها" />
 
 
 
-
+                            <asp:TemplateField ConvertEmptyStringToNull="False" ItemStyle-HorizontalAlign="Center"
+                                HeaderText="مجموع ورودی"
+                                HeaderStyle-HorizontalAlign="Center"
+                                ItemStyle-VerticalAlign="Middle"
+                                SortExpression="ID">
+                                <ItemTemplate>
+                                    <asp:Label ID="La123bel3"
+                                        Style="color: red; font-weight: bold"
+                                        runat="server" Text='<%# GetSumFee(Eval("id", "{0}")) %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
 
                             <asp:TemplateField ConvertEmptyStringToNull="False" ItemStyle-HorizontalAlign="left"
                                 SortExpression="ID">
@@ -183,7 +210,7 @@
                             </asp:TemplateField>
 
 
-                             <asp:TemplateField ConvertEmptyStringToNull="False" ItemStyle-HorizontalAlign="left"
+                            <asp:TemplateField ConvertEmptyStringToNull="False" ItemStyle-HorizontalAlign="left"
                                 HeaderText="گزارش گیری"
                                 HeaderStyle-HorizontalAlign="left"
                                 SortExpression="ID">

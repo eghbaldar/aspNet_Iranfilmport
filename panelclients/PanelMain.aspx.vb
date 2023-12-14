@@ -5,6 +5,7 @@ Partial Class PanelMain
     Inherits System.Web.UI.Page
     Dim Dll As New DLL_Panel
     Public Sub ShowSubmissions(sender As Object, e As CommandEventArgs)
+
         HiddenField_FilmID.Value = e.CommandArgument.ToString
         MultiView.ActiveViewIndex = 1
         If Dll.GetNumberOfNotChecked(HiddenField_FilmID.Value) > 0 Then
@@ -13,7 +14,12 @@ Partial Class PanelMain
         Else
             btnNewUpdated.Visible = False
         End If
+
+        lblSumFeeTitle.Text = "مجموع ورودی های اعتباری صفر شده توسط «درگاه فیلم ایران» برای این فیلم تا این لحظه به دلار روز، برابر است با:"
+        lblSumFee.Text = "<span style='font-size:50px'>" + (Val(Dll.GetSumFeeValue(HiddenField_FilmID.Value)) * 53000).ToString("N0") + " تومان" + "</span>"
+
         dgNewUpdated.DataBind()
+
     End Sub
     Public Function GetAccept(e As Object) As String
         Select Case e.ToString
@@ -107,7 +113,11 @@ Partial Class PanelMain
         If Not IsPostBack And String.IsNullOrEmpty(Dll.GetEmailClient(Val(Page.RouteData.Values("id")))) Then
             ClientEmailModal.Visible = True
         End If
-
+        FillFeeValue()
+    End Sub
+    Private Sub FillFeeValue()
+        lblSumFeeTitle.Text = "مجموع ورودی های اعتباری صفر شده توسط «درگاه فیلم ایران» برای تمامی فیلم‌های شما، تا این لحظه به دلار روز، برابر است با:"
+        lblSumFee.Text = "<span style='font-size:50px'>" + (Dll.GetSumFeeValueAllFilm(Val(Page.RouteData.Values("id"))) * 53000).ToString("N0") + " تومان" + "</span>"
     End Sub
 
     Public Sub PublicSetClick(sender As Object, e As CommandEventArgs)
@@ -220,5 +230,9 @@ Partial Class PanelMain
     Public Sub ShowReport(sender As Object, e As CommandEventArgs)
         Response.Redirect("~/panel/panelReports/" & Page.RouteData.Values("id") & "/" & e.CommandArgument.ToString())
     End Sub
+
+    Public Function GetSumFee(idFilm As Integer) As String
+        Return (Val(Dll.GetSumFeeValue(idFilm)) * 53000).ToString("N0")
+    End Function
 
 End Class

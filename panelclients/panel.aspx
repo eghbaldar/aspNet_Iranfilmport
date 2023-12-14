@@ -78,6 +78,30 @@
             text-align: -o-center;
             text-align: -ms-center;
         }
+
+        .buttonEnter {
+            font-family:Samim;
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #F9DF46;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.buttonEnter:hover {background-color: #FFC278}
+
+.buttonEnter:active {
+  background-color: #E5DA00;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
     </style>
     <style>
         /* The Modal (background) */
@@ -211,8 +235,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
                     </div>
                 </div>
                 <br />
-                <asp:Button Style="padding: 12px;font-family:Koodak;cursor:pointer;border:1px solid #3457b6;
--moz-border-radius: 5px;	-webkit-border-radius: 5px;	 border-radius:5px;background-color:#a6e0dc" CssClass="btn btn-warning" ID="btnLogin" runat="server"
+                <asp:Button CssClass="buttonEnter" ID="btnLogin" runat="server"
                     Text="ورود " ValidationGroup="1"/>
             </div>
         </div>
