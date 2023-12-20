@@ -45,6 +45,14 @@
                 <li><a class="menuSubNode" href="http://iranfilmport.com/420">فستیوال‌های کوتاه و بلند ایرانی</a></li>
             </ul>
         </li>
+
+        <li><a class="menuMainNode" href='<%= Page.ResolveUrl("~/courses/دوره-های-آموزش-فیلمسازی-آنلاین-سینمایی-فیلم-کوتاه") %>'>دوره‌های آموزشی</a>
+<%--            <ul>
+                <li><a class="menuSubNode" href='<%= Page.ResolveUrl("~/course/1/آموزش-فیلمنامه-نویسی-آنلاین") %>'>دوره آنلاین فیلمنامه نویسی</a></li>
+                <li><a class="menuSubNode" href='<%= Page.ResolveUrl("~/course/2/آموزش-تدوین-سینمایی-فیلم-کوتاه-آنلاین") %>'>دوره آنلاین تدوین</a></li>
+            </ul>--%>
+        </li>
+
         <li><a href="" class="menuMainNode">درباره‌ی درگاه فیلم ایران</a>
             <ul>
                 <li><a class="menuSubNode" href='<%= Page.ResolveUrl("~/درباره-درگاه-فیلم-ایران") %>'>درباره ی درگاه</a></li>

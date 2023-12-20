@@ -41,6 +41,12 @@
                 <li><a class="menuSubNode" href="http://iranfilmport.com/420">IRANIAN FILM FESTIVALS</a></li>
             </ul>
         </li>
+                <li><a class="menuMainNode" href='<%= Page.ResolveUrl("~/courses/دوره-های-آموزش-فیلمسازی-آنلاین-سینمایی-فیلم-کوتاه") %>'>Online Courses</a>
+<%--            <ul>
+                <li><a class="menuSubNode" href='<%= Page.ResolveUrl("~/course/1/آموزش-فیلمنامه-نویسی-آنلاین") %>'>Learning Short & Feature Script Writing</a></li>
+                <li><a class="menuSubNode" href='<%= Page.ResolveUrl("~/course/2/آموزش-تدوین-سینمایی-فیلم-کوتاه-آنلاین") %>'>Learning Film Editing</a></li>
+            </ul>--%>
+        </li>
         <li><a href="" class="menuMainNode">About Us</a>
             <ul>
                 <li><a class="menuSubNode" href='<%= Page.ResolveUrl("~/درباره-درگاه-فیلم-ایران?lang=en") %>'>ABOUT US</a></li>

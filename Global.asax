@@ -96,6 +96,8 @@
         routes.MapPageRoute("GeneralDetails", "GeneralDetails/{type}", "~/GeneralDetails.aspx")
         routes.MapPageRoute("RevisingScreenplay", "نگارش-بازنویسی-فیلمنامه-کوتاه-بلند", "~/RevisingScreenplay.aspx")
         routes.MapPageRoute("advertiseModalInterface", "advertiseModalInterface", "~/advertiseModalInterface.aspx")
+        routes.MapPageRoute("onlinecourses", "courses/{title}", "~/courses.aspx")
+        routes.MapPageRoute("eachonlinecourses", "course/{id}/{title}", "~/course.aspx")
         '----------------------------------------------------------------------------------------
         routes.MapPageRoute("panel", "panel/", "~/panelclients/panel.aspx")
         routes.MapPageRoute("panelClient", "panel/client/{id}", "~/panelclients/PanelMain.aspx")
