@@ -1,24 +1,21 @@
-.menuMainNode {
-	font-family: irsans;
-	font-family: 8px
-}
-
-.menuSubNode {
-	font-family: irsans
+.menuMainNode ,.menuSubNode {
+    font-family: Samim !important;
+    font-family: 8px
 }
 
 #menu,
 #menu ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	direction: rtl
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    direction: rtl;
+    
 }
 
 #menu {
 	direction: rtl;
 	width: 960px;
-	margin: 0 auto
+	margin: 0 auto;
 }
 
 #menu:before,

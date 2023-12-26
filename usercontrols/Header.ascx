@@ -38,11 +38,7 @@
 
 
 
-<section class="header-uper" style="/* permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#000000+0,ffee00+100&0+0,0.65+100 */
-background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(255,238,0,0.65) 100%); /* ff3.6-15 */
-background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(255,238,0,0.65) 100%); /* chrome10-25,safari5.1-6 */
-background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(255,238,0,0.65) 100%); /* w3c, ie10+, ff16+, chrome26+, opera12+, safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6ffee00',GradientType=0 ); /* ie6-9 */">
+<section class="header-uper">
 
     <uc1:advertiseModal ID="advertiseModal" runat="server" />
 
@@ -50,10 +46,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
         <div class="logo">
             <figure>
                 <a href='<%= Page.ResolveUrl("~/") %>'>
-                    <img alt="لوگوی درگاه فیلم ایران" src='<%= Page.ResolveUrl("~/files/images/logos/logo_movibeta.png") %>'
+                    <img alt="لوگوی درگاه فیلم ایران" src='<%= Page.ResolveUrl("~/files/images/logos/iranfilmport_logo.png") %>'
                         class="imgMainLogoTop" />
                 </a>
-            </figure>
+            </figure>            
         </div>
         <div class="right-side">
             <div class="contact-info">
@@ -112,4 +108,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
             </div>
         </div>
     </div>
+    <marquee style="position: absolute;">
+        <asp:Image ID="Image1" Width="130" ImageUrl="~/files/images/marquee/marquee_santa.gif" runat="server"></asp:Image>
+    </marquee>
 </section>

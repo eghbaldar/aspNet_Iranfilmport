@@ -6,4 +6,5 @@ Partial Class courses
         Title = "دوره های آموزش فیلمسازی آنلاین - فیلم های کوتاه و بلند"
         lblTopTitle.Text = "دوره های آموزش فیلمسازی آنلاین - فیلم های کوتاه و بلند"
     End Sub
+
 End Class
