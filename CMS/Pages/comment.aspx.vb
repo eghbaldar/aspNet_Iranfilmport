@@ -27,11 +27,11 @@ Partial Class CMS_Pages_Default2
 
     Public Sub SetEnable(sender As Object, e As CommandEventArgs)
         DL_CMS.UpdateEnableDisableComment(True, Val(e.CommandArgument.ToString))
-        dgList.DataBind()
+        DataListSubComment.DataBind()
     End Sub
     Public Sub SetDsiable(sender As Object, e As CommandEventArgs)
         DL_CMS.UpdateEnableDisableComment(False, Val(e.CommandArgument.ToString))
-        dgList.DataBind()
+        DataListSubComment.DataBind()
     End Sub
 
     Public Function getSection(section As Object, id_post As Object) As String
@@ -90,7 +90,7 @@ Partial Class CMS_Pages_Default2
 
         em.SendMail(Request.QueryString("Email"), msg, "پاسخ به کامنت", Sec)
         dl.InsertComment(Request.QueryString("Sections"), Request.QueryString("idPost"),
-                         Request.QueryString("id"), txtCommentAdmin.Text.Trim.Replace(ControlChars.Lf, "<br/>"), "", "", True, 0)
+                         Request.QueryString("id"), txtCommentAdmin.Text.Trim.Replace(ControlChars.Lf, "<br/>"), "", "", True, 1)
         txtCommentAdmin.Text = ""
         DataListSubComment.DataBind()
 
@@ -109,5 +109,14 @@ Partial Class CMS_Pages_Default2
         DL_CMS.DeleteComment(Val(e.CommandArgument.ToString))
         DataListSubComment.DataBind()
     End Sub
+
+    Public Function ReadUnread(id As Object, idPost As Object) As System.Drawing.Color
+        If (DL_CMS.GetReadUnReadComments(id, idPost)) Then
+            Return System.Drawing.Color.Red
+        Else
+            Return System.Drawing.Color.Green
+        End If
+
+    End Function
 
 End Class

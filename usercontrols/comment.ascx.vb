@@ -50,9 +50,8 @@ Partial Class usercontrols_comment
             txtEmail.Text = ""
             txtName.Text = ""
             txtText.Text = ""
-            Div_success.Visible = True
-            Div_comment.Visible = False
             dgComment.DataBind()
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myJsFn", "successAlert();", True)
             lblWrongCapthca.Text = ""
         Else
             lblWrongCapthca.Text = "کد امنیتی شما اشتباه وارد شده است."
@@ -80,9 +79,8 @@ Partial Class usercontrols_comment
             Next
         DL.InsertComment(_Section, _Id_POST, Val(e.CommandArgument.ToString),
                          convertNumFatoEn(text.Trim.Replace(ControlChars.Lf, "<br/>")), name.Trim, email.Trim, False, 0)
+        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myJsFn", "successAlert();", True)
         dgComment.DataBind()
-            Div_success.Visible = True
-            Div_comment.Visible = False
 
     End Sub
 

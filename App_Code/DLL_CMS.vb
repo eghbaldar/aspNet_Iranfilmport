@@ -1260,4 +1260,21 @@ Public Class DLL_CMS
         End Try
     End Function
 
+    Public Function GetReadUnReadComments(id As Integer, idPost As Integer) As Boolean
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            Dim sqlcom As New SqlCommand("SELECT count(*) FROM [tbl_Comment] WHERE ([Id_parent] = " + id.ToString + " OR [Id] = " + id.ToString + ") AND ([Id_post] = " + idPost.ToString() + ") AND flag=0", sqlconn)
+            If Val(sqlcom.ExecuteScalar) > 0 Then
+                Return True
+            Else
+                Return False
+            End If
+            sqlconn.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+    End Function
+
 End Class
