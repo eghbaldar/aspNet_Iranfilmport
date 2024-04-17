@@ -137,7 +137,7 @@
 from dbo.tbl_Projects p,dbo.tbl_Projects_photos pp
 where p.ID=pp.ProjectID and pp.status=0"></asp:SqlDataSource>
     </div>
-    <div class="TITLE">
+  <%--  <div class="TITLE">
         <h4>
             آمار کلی صورت حساب ها
         </h4>
@@ -166,8 +166,8 @@ where p.ID=pp.ProjectID and pp.status=0"></asp:SqlDataSource>
         <asp:SqlDataSource ID="SDS_Invoice" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
             SelectCommand="SELECT (select COUNT(*) from dbo.tbl_invoice where (payment_code is  null or payment_code ='') AND (transaction_code is null or transaction_code ='') ) 'فقط ایجاد فاکتور شده', (select COUNT(*) from dbo.tbl_invoice where (payment_code is null or payment_code ='') AND (transaction_code is not null or transaction_code <>'') ) 'به بانک رفته ولی پرداخت نشده', (select COUNT(*) from dbo.tbl_invoice where (payment_code is not null or payment_code <>''))  'پرداخت شده'">
         </asp:SqlDataSource>
-    </div>
-    <div class="TITLE">
+    </div>--%>
+    <%--<div class="TITLE">
         <h4>
             پروژه هایی که پول آن واریز شده و باید ارسال شوند
         </h4>
@@ -192,7 +192,7 @@ where p.ID=pp.ProjectID and pp.status=0"></asp:SqlDataSource>
         <asp:SqlDataSource ID="SDS_ReadyForSubmit" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
             SelectCommand="select COUNT(*) 'تعداد' from dbo.tbl_invoice where (payment_code is not null or payment_code <> '') AND (transaction_code is not null or transaction_code <> '') AND send_status=1">
         </asp:SqlDataSource>
-    </div>
+    </div>--%>
     <div class="TITLE">
         <h4>
             کامنت و تماس با ما
@@ -237,7 +237,7 @@ where p.ID=pp.ProjectID and pp.status=0"></asp:SqlDataSource>
             select
             (select COUNT(*) from dbo.tbl_Contact where [read]=0) as 'تماس با ما'
             ,
-            (select COUNT(*) from dbo.tbl_Comment where [read]=0) as 'کامنت' 
+            (select COUNT(*) from dbo.tbl_Comment where [read]=0 and Id_parent=0) as 'کامنت' 
 	"></asp:SqlDataSource>
     </div>
     <div class="TITLE">

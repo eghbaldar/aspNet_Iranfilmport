@@ -78,13 +78,13 @@ Partial Class panelclients_PanelReports
         Select Case receipt
             Case "2" ' means the receipt was sent but the user has not opened it yet
                 If GetStatusExistedFileOnServer(id.ToString & ".jpg") Then 'check whether receipt is existed or not!
-                    Return "<div class='divGiveReceipt'><a style='text-decoration:none' target='_blank' href='../../PanelReceipt/" & Page.RouteData.Values("IdFilm") & "/" & id.ToString & "#receipt'>دریافت رسید</a></div>"
+                    Return "<div class='divGiveReceipt'><a style='text-decoration:none' target='_blank' href='../../PanelReceipt/" & Page.RouteData.Values("id") & "/" & id.ToString & "#receipt'>دریافت رسید</a></div>"
                 Else
                     ScriptManager.RegisterStartupScript(Me, Me.GetType(), "عدم یافت رسید", "alert('" & msg_not_found_physical_file & "');", True)
                     Return "<img style='cursor:pointer' width='25px'  src='..\..\..\files\images\icons\ban.png' title='" & msg_not_found_physical_file & "'/>"
                 End If
             Case "3" ' means the receipt was opened by user in the past and now he/she will always be able to open/see it.
-                Return "<div class='divGiveReceipt'><a style='text-decoration:none' target='_blank' href='../../PanelReceipt/" & Page.RouteData.Values("IdFilm") & "/" & id.ToString & "#receipt'>دریافت رسید</a></div>"
+                Return "<div class='divGiveReceipt'><a style='text-decoration:none' target='_blank' href='../../PanelReceipt/" & Page.RouteData.Values("id") & "/" & id.ToString & "#receipt'>دریافت رسید</a></div>"
             Case "1"
                 ScriptManager.RegisterStartupScript(Me, Me.GetType(), "عدم یافت رسید", "alert('" & msg_not_uploaded_physical_file & "');", True)
                 Return "<img style='cursor:pointer' src='..\..\..\files\images\icons\awating.png' title='" & msg_not_uploaded_physical_file & "' />"

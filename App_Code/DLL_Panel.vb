@@ -474,7 +474,7 @@ Public Class DLL_Panel
         Try
             If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
             sqlconn.Open()
-            Dim sqlcom As New SqlCommand("select sum(cast([feevalue] as int)) from [dbo].[tbSubmission] where cast([feevalue] as int)<>1 and id_film=" & idFilm.ToString, sqlconn)
+            Dim sqlcom As New SqlCommand("select sum(cast([feevalue] as int)) from [dbo].[tbSubmission] where cast([feevalue] as int)<>1 and valid=1 and id_film=" & idFilm.ToString, sqlconn)
             Return sqlcom.ExecuteScalar
             sqlconn.Close()
         Catch ex As Exception
@@ -487,7 +487,7 @@ Public Class DLL_Panel
         Try
             If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
             sqlconn.Open()
-            Dim sqlcom As New SqlCommand("select sum(cast(CONVERT(int, replace([feevalue],'.1',''))as int)) from [dbo].[tbSubmission] where id_film in (select [id] from [dbo].[tbFilms] where customerId=" + idClient.ToString + ") and cast(CONVERT(int, replace([feevalue],'.1',''))as int)<>1", sqlconn)
+            Dim sqlcom As New SqlCommand("select sum(cast(CONVERT(int, replace([feevalue],'.1',''))as int)) from [dbo].[tbSubmission] where valid=1 and id_film in (select [id] from [dbo].[tbFilms] where customerId=" + idClient.ToString + ") and cast(CONVERT(int, replace([feevalue],'.1',''))as int)<>1", sqlconn)
             Return sqlcom.ExecuteScalar
             sqlconn.Close()
         Catch ex As Exception

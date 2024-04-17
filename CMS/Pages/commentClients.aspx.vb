@@ -7,6 +7,7 @@ Partial Class CMS_Pages_commentClients
 
     Dim DL_Panel As New DLL_Panel
     Dim Email As New Email
+    Dim sms As New SMS
 
     Public Function GetFilmFestival(id_submission As Object) As String
         Return DL_Panel.GetFilmFestival(id_submission)
@@ -92,32 +93,7 @@ Partial Class CMS_Pages_commentClients
         End If
     End Sub
     Private Sub SendSMS(PaternId As String, customerid As Long)
-
-        'Dim cell As String = DL_Panel.GetPhoneCustomer(customerid)
-        'Dim url As String = "http://login.parsgreen.com/UrlService/sendSMS.ashx?from=" +
-        '"10009332300598" +
-        '"&to=" + cell +
-        '"&text=" + text +
-        '"&signature=" + "9D57838D-3935-4724-BB71-5A5FCB2EA579"
-
-        'Dim req As HttpWebRequest = CType(WebRequest.Create(url), HttpWebRequest)
-        'Dim resp As Net.WebResponse = req.GetResponse()
-        'Dim st = resp.GetResponseStream()
-        'Dim sr = New StreamReader(st, Encoding.UTF8)
-        'Dim _responseStr As String = sr.ReadToEnd()
-        'sr.Close()
-        'resp.Close()
-
-        Dim url As String = "http://ippanel.com:8080/?apikey=XVU06zwUg1yXY1Dl7gGXQJPIm2o0b9Rq5hytsI2FkFQ=&pid=" & PaternId & "&fnum=" & SMS.numberHamkaran & "&tnum=" & DL_Panel.GetPhoneCustomer(customerid) & " &p1=name&v1=" & DL_Panel.GetNameCustomer(customerid)
-
-        Dim req As HttpWebRequest = CType(WebRequest.Create(url), HttpWebRequest)
-        Dim resp As Net.WebResponse = req.GetResponse()
-        Dim st = resp.GetResponseStream()
-        Dim sr = New StreamReader(st, Encoding.UTF8)
-        Dim _responseStr As String = sr.ReadToEnd()
-        sr.Close()
-        resp.Close()
-
+        sms.SendSms(DL_Panel.GetPhoneCustomer(customerid), PaternId, "name", DL_Panel.GetNameCustomer(customerid))
     End Sub
 
     Private Sub btnResponse_Click(sender As Object, e As EventArgs) Handles btnResponse.Click

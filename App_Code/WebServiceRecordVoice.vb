@@ -16,6 +16,7 @@ Public Class WebServiceRecordVoice
     Inherits System.Web.Services.WebService
 
     Dim DL_PANEL As New DLL_Panel
+    Dim sms As New SMS
 
     <WebMethod()>
     Public Sub RecordVoice()
@@ -96,15 +97,7 @@ Public Class WebServiceRecordVoice
     Private Sub SendSMS_ToAdmin(PaternId As String, customerid As Long)
 
         Try
-            Dim url As String = SMS.ApiLink & PaternId & "&fnum=" & SMS.numberHamkaran & "&tnum=" & "09111380846" & " &p1=name&v1=" & DL_PANEL.GetNameCustomer(customerid)
-
-            Dim req As HttpWebRequest = CType(WebRequest.Create(url), HttpWebRequest)
-            Dim resp As Net.WebResponse = req.GetResponse()
-            Dim st = resp.GetResponseStream()
-            Dim sr = New StreamReader(st, Encoding.UTF8)
-            Dim _responseStr As String = sr.ReadToEnd()
-            sr.Close()
-            resp.Close()
+            sms.SendSms("09111380846", PaternId, "name", DL_PANEL.GetNameCustomer(customerid))
         Catch ex As Exception
 
         End Try
@@ -114,22 +107,7 @@ Public Class WebServiceRecordVoice
     Private Sub SendSMS_ToClient(PaternId As String, customerid As Long)
 
         Try
-            'Dim cell As String = DL_Panel.GetPhoneCustomer(customerid)
-            'Dim url As String = "http://login.parsgreen.com/UrlService/sendSMS.ashx?from=" +
-            '"10009332300598" +
-            '"&to=" + cell +
-            '"&text=" + text +
-            '"&signature=" + "9D57838D-3935-4724-BB71-5A5FCB2EA579"
-            '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-            Dim url As String = SMS.ApiLink & PaternId & "&fnum=" & SMS.numberHamkaran & "&tnum=" & DL_PANEL.GetPhoneCustomer(customerid) & " &p1=name&v1=" & DL_PANEL.GetNameCustomer(customerid)
-
-            Dim req As HttpWebRequest = CType(WebRequest.Create(url), HttpWebRequest)
-            Dim resp As Net.WebResponse = req.GetResponse()
-            Dim st = resp.GetResponseStream()
-            Dim sr = New StreamReader(st, Encoding.UTF8)
-            Dim _responseStr As String = sr.ReadToEnd()
-            sr.Close()
-            resp.Close()
+            sms.SendSms(DL_PANEL.GetPhoneCustomer(customerid), PaternId, "name", DL_PANEL.GetNameCustomer(customerid))
         Catch ex As Exception
 
         End Try

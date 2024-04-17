@@ -45,6 +45,11 @@
             width: 18px;
         }
     </style>
+     <%--SweetAlert--%>
+        <link href="<%= ResolveUrl("~/files/sweetalert/sweetalert2.min.css")%>" rel="stylesheet" type="text/css" />       
+        <script src="<%= ResolveUrl("~/files/sweetalert/sweetalert2.min.js")%>"></script>
+        <script src="<%= ResolveUrl("~/files/sweetalert/sweetalert2.all.min.js")%>"></script>
+    <%--End SweetAlert--%>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -211,6 +216,8 @@
                                             <asp:Label ID="Label28" runat="server" Text="مدیریت apk ها" /></a>
                                         <a href="agents">
                                             <asp:Label ID="Label30" runat="server" Text="نماینده‌های شرکت" /></a>
+                                         <a href="sms">
+                                            <asp:Label ID="Label35" runat="server" Text="اس ام اس" /></a>
                                     </ul>
                                 </li>
                                 <li>

@@ -216,6 +216,7 @@
         routes.MapPageRoute("modalAdvert", "cms/pages/modalAdvert", "~/cms/pages/modalAdvert.aspx")
         routes.MapPageRoute("testimonialsCms", "cms/pages/testimonials", "~/cms/pages/testimonials.aspx")
         routes.MapPageRoute("activities", "cms/pages/activities", "~/cms/pages/activities.aspx")
+        routes.MapPageRoute("sms", "cms/pages/sms", "~/cms/pages/sms.aspx")
 
     End Sub
 

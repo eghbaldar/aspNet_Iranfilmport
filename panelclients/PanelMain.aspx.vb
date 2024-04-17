@@ -4,6 +4,8 @@ Imports System.Net
 Partial Class PanelMain
     Inherits System.Web.UI.Page
     Dim Dll As New DLL_Panel
+    Private DollarMsg As String = "مجموع ورودی های اعتباری صفر شده توسط «درگاه فیلم ایران» برای تمامی فیلم‌های شما، تا این لحظه به دلار میانیگن روز <span style='background-color:black;color:white;padding:2px;width:70px'>(59.000 تومان)</span>، برابر است با:"
+
     Public Sub ShowSubmissions(sender As Object, e As CommandEventArgs)
 
         HiddenField_FilmID.Value = e.CommandArgument.ToString
@@ -15,8 +17,8 @@ Partial Class PanelMain
             btnNewUpdated.Visible = False
         End If
 
-        lblSumFeeTitle.Text = "مجموع ورودی های اعتباری صفر شده توسط «درگاه فیلم ایران» برای این فیلم تا این لحظه به دلار روز، برابر است با:"
-        lblSumFee.Text = "<span style='font-size:50px'>" + (Val(Dll.GetSumFeeValue(HiddenField_FilmID.Value)) * 53000).ToString("N0") + " تومان" + "</span>"
+        lblSumFeeTitle.Text = DollarMsg
+        lblSumFee.Text = "<span style='font-size:50px'>" + (Val(Dll.GetSumFeeValue(HiddenField_FilmID.Value)) * GeneralConstants.Dollar).ToString("N0") + " تومان" + "</span>"
 
         dgNewUpdated.DataBind()
 
@@ -115,9 +117,10 @@ Partial Class PanelMain
         End If
         FillFeeValue()
     End Sub
+
     Private Sub FillFeeValue()
-        lblSumFeeTitle.Text = "مجموع ورودی های اعتباری صفر شده توسط «درگاه فیلم ایران» برای تمامی فیلم‌های شما، تا این لحظه به دلار روز، برابر است با:"
-        lblSumFee.Text = "<span style='font-size:50px'>" + (Dll.GetSumFeeValueAllFilm(Val(Page.RouteData.Values("id"))) * 53000).ToString("N0") + " تومان" + "</span>"
+        lblSumFeeTitle.Text = DollarMsg
+        lblSumFee.Text = "<span style='font-size:50px'>" + (Dll.GetSumFeeValueAllFilm(Val(Page.RouteData.Values("id"))) * GeneralConstants.Dollar).ToString("N0") + " تومان" + "</span>"
     End Sub
 
     Public Sub PublicSetClick(sender As Object, e As CommandEventArgs)
@@ -232,7 +235,7 @@ Partial Class PanelMain
     End Sub
 
     Public Function GetSumFee(idFilm As Integer) As String
-        Return (Val(Dll.GetSumFeeValue(idFilm)) * 53000).ToString("N0")
+        Return (Val(Dll.GetSumFeeValue(idFilm)) * GeneralConstants.Dollar).ToString("N0")
     End Function
 
 End Class

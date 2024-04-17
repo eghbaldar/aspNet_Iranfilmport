@@ -51,32 +51,16 @@
 
         gtag('config', 'UA-118348858-1');
     </script>
-    <%--MENU--%>
-    <%--  <style>
-        .fixedElement
-        {
-            background-color: red;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            z-index: 100;
-        }
-    </style>
-    <script>
-        $(window).scroll(function (e) {
-            var $el = $('.fixedElement');
-            var isPositionFixed = ($el.css('position') == 'fixed');
-            if ($(this).scrollTop() > 200 && !isPositionFixed) {
-                $('.fixedElement').css({ 'position': 'fixed', 'top': '0px' });
-            }
-            if ($(this).scrollTop() < 200 && isPositionFixed) {
-                $('.fixedElement').css({ 'position': 'static', 'top': '0px' });
-            }
-        });
-    </script>--%>
+<!-- Google Tag Manager -->
+<script>(function (w, d, s, l, i) {
+    w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+            new Date().getTime(), event: 'gtm.js'
+    }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-M9GLMJM5');</script>
+<!-- End Google Tag Manager -->
     <%--SCHEMA--%>
     <script type="application/ld+json">
         {

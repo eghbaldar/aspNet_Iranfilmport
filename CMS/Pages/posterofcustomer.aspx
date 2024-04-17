@@ -224,7 +224,7 @@
                     <td>تصویر:
                     </td>
                     <td>&nbsp;
-                        <asp:FileUpload ID="FileInsert" runat="server" />
+                        <asp:FileUpload ID="FileInsert" runat="server" onchange="checkFileSize()" />
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="FileInsert"
                             ErrorMessage="*" Font-Size="Medium" ForeColor="Red" ValidationGroup="1"></asp:RequiredFieldValidator>
                     </td>
@@ -313,7 +313,7 @@
                         </td>
                         <td>&nbsp;
                             <asp:Image ID="Image" runat="server" />
-                            <asp:FileUpload ID="FileUpdate" runat="server" />
+                            <asp:FileUpload ID="FileUpdate" runat="server"  onchange="checkFileSize()" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ControlToValidate="txtPageOfName"
                                 ErrorMessage="*" Font-Size="Medium" ForeColor="Red" ValidationGroup="2"></asp:RequiredFieldValidator>
                         </td>
@@ -339,4 +339,23 @@
             </div>
         </asp:Panel>
     </div>
+
+
+    <script>
+        function checkFileSize() {
+            var fileUpload = document.getElementById('<%= FileInsert.ClientID %>');
+            var file = fileUpload.files[0]; // Get the selected file
+
+            if (file) {
+                var fileSize = file.size; // Get the file size in bytes
+                var maxSize = 0.5 * 1024 * 1024; // 500 kb (adjust this as needed)
+
+                if (fileSize > maxSize) {
+                    swal.fire('File size exceeds the maximum allowed limit (500 kb).');
+                    // Clear the file upload control if needed
+                    fileUpload.value = '';
+                }
+            }
+        }
+</script>
 </asp:Content>

@@ -129,9 +129,11 @@ Public Class DLL
 
     Public Function InsertComment(sections As Byte, ID_post As Long, ID_Parent As Long, text As String, name As String, email As String, ADMIN As Boolean, flag As Byte) As Integer
         Try
+            Dim DLCMS As New DLL_CMS
             If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
             sqlconn.Open()
             Dim sqlcom As New SqlCommand("insert into tbl_Comment (sections,id_post,id_parent,text,name,email,admin,flag) values (" + sections.ToString + "," + ID_post.ToString + "," + ID_Parent.ToString + ",N'" + text + "','" + name + "','" + email + "','" + ADMIN.ToString + "','" + flag.ToString + "')", sqlconn)
+            DLCMS.UpdateMakeReadCommentByPostId(ID_post, 0)
             Return sqlcom.ExecuteNonQuery()
             sqlconn.Close()
         Catch ex As Exception

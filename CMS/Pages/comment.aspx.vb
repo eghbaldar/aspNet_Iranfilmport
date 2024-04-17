@@ -13,6 +13,7 @@ Partial Class CMS_Pages_Default2
                 divList.Visible = False
                 divFestival.Visible = True
 
+                DL_CMS.UpdateMakeReadCommentByPostId(Request.QueryString("idPost"), 1)
                 lblText.Text = DL_CMS.getTextComment(Request.QueryString("id"))
 
             Case Else

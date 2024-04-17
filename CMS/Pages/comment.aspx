@@ -13,7 +13,7 @@
             GridLines="Horizontal" AllowPaging="True" DataKeyNames="id">
             <AlternatingRowStyle BackColor="#F7F7F7" />
             <Columns>
-                   <asp:TemplateField HeaderText="Admin" SortExpression="Admin">
+                <asp:TemplateField HeaderText="Admin" SortExpression="Admin">
                     <ItemTemplate>
                         <asp:Panel ID="Panel1" runat="server" Style="padding: 5px;" BackColor='<%# IIF(Eval("Admin")="True",System.Drawing.Color.Green,System.Drawing.Color.Red) %>'>
                             <asp:Label ID="Label1" Style="color: White;" runat="server" Text='<%# IIf(Eval("Admin") = "True", "ادمین", "کاربر") %>'></asp:Label>
@@ -42,7 +42,7 @@
                         <asp:Label ID="La97979bel2" runat="server" Text='<%# getSection(Eval("Sections"), Eval("id_post")) %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                  <%--  <asp:TemplateField HeaderText="flag" SortExpression="flag">
+                <%--  <asp:TemplateField HeaderText="flag" SortExpression="flag">
                         <ItemTemplate>
 
                             <asp:Panel ID="Pan543534el2" runat="server" Style="padding: 5px;" BackColor='<%# IIF(Eval("flag") = "True", System.Drawing.Color.Green, System.Drawing.Color.Red) %>'>
@@ -58,8 +58,8 @@
 
                         </ItemTemplate>
                     </asp:TemplateField>--%>
-              
-             
+
+
                 <asp:TemplateField ShowHeader="False">
                     <ItemTemplate>
                         <asp:Panel ID="Panel3" runat="server">
@@ -70,7 +70,7 @@
                         </asp:Panel>
                     </ItemTemplate>
                 </asp:TemplateField>
-              
+
 
 
 
@@ -79,19 +79,19 @@
 
                         <asp:Panel ID="Panel1112" runat="server" Style="padding: 5px;"
                             BackColor='<%# ReadUnread(Eval("id"), Eval("id_post")) %>'>
-<span style="color:white">STATUS</span>
+                            <span style="color: white">STATUS</span>
 
                         </asp:Panel>
 
                     </ItemTemplate>
                 </asp:TemplateField>
-                 
-                  <asp:TemplateField HeaderText="date" SortExpression="date">
+
+                <asp:TemplateField HeaderText="date" SortExpression="date">
                     <ItemTemplate>
                         <asp:Label ID="Label11" runat="server" Text='<%# getDate(Eval("date")) %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                 <asp:TemplateField ShowHeader="False">
+                <asp:TemplateField ShowHeader="False">
                     <ItemTemplate>
                         <asp:LinkButton ID="LinkButton1" runat="server" OnClientClick="return confirm('آیا مطمئن هستید؟');"
                             CausesValidation="False" CommandName="Delete" Text="Delete"></asp:LinkButton>
@@ -157,16 +157,16 @@
                                 CommandArgument='<%# Eval("id") %>'
                                 Text="Delete" OnClientClick="return confirm('sure?');" />
                             <hr />
-                                                   <asp:Panel ID="Pan543534el2" runat="server" Style="padding: 5px;" BackColor='<%# IIf(Eval("flag") = "True", System.Drawing.Color.Green, System.Drawing.Color.Red) %>'>
+                            <asp:Panel ID="Pan543534el2" runat="server" Style="padding: 5px;" BackColor='<%# IIf(Eval("flag") = "True", System.Drawing.Color.Green, System.Drawing.Color.Red) %>'>
 
 
-                            <asp:CheckBox ID="Che22ckBox1" runat="server" Checked='<%# Bind("flag") %>' Enabled="false" />
-                            <asp:Button ID="But5to3n1" runat="server" CommandArgument='<%# Eval("id") %>' OnCommand="SetEnable"
-                                Text="E" ForeColor="Green" />
-                            <asp:Button ID="Bu2tton22" runat="server" CommandArgument='<%# Eval("id") %>' OnCommand="SetDsiable"
-                                Text="D" ForeColor="Red" />
+                                <asp:CheckBox ID="Che22ckBox1" runat="server" Checked='<%# Bind("flag") %>' Enabled="false" />
+                                <asp:Button ID="But5to3n1" runat="server" CommandArgument='<%# Eval("id") %>' OnCommand="SetEnable"
+                                    Text="E" ForeColor="Green" />
+                                <asp:Button ID="Bu2tton22" runat="server" CommandArgument='<%# Eval("id") %>' OnCommand="SetDsiable"
+                                    Text="D" ForeColor="Red" />
 
-                        </asp:Panel>
+                            </asp:Panel>
                         </ItemTemplate>
                         <SelectedItemStyle BackColor="#738A9C" Font-Bold="True" ForeColor="#F7F7F7" />
                     </asp:DataList>

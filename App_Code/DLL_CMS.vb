@@ -638,6 +638,19 @@ Public Class DLL_CMS
         End Try
     End Sub
 
+    Public Function UpdateMakeReadCommentByPostId(ID As Long, read As Byte) As Boolean
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            Dim sqlcom As New SqlCommand("update tbl_Comment set [read]=" + read.ToString + " where Id_post=" + ID.ToString, sqlconn)
+            sqlcom.ExecuteNonQuery()
+            sqlconn.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+    End Function
+
     Public Function UpdateEnableDisableComment(ED As Boolean, ID As Long) As Boolean
         Try
             If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
