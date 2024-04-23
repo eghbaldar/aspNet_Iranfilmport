@@ -10,14 +10,21 @@ Partial Class panel
     Dim Dll As New DLL_Panel
 
     Protected Sub btnLogin_Click(sender As Object, e As System.EventArgs) Handles btnLogin.Click
-        If Session("randomStr").ToString.Trim.ToLower = txtCaptcha.Text.Trim.ToLower Then
-            Dim IDUSER As Long = Dll.GetValid(txtUser.Text.Trim, txtPass.Text.Trim)
-            If IDUSER > 0 Then
-                Dll.UpdateVisitCounter(IDUSER)
-                FormsAuthentication.SetAuthCookie(IDUSER, True)
-                Response.Redirect("~/panel/client/" & IDUSER)
+
+        If (String.IsNullOrEmpty(Session("randomStr"))) Then
+            ScriptManager.RegisterStartupScript(Me, GetType(String), "key", "myAlert('تظیمات امنیتی مرورگر شما با اختلال مواجه است، لطفا کد امنیتی را دوباره وارد کرده و ورود کنید');", True)
+            ImageCaptacha.ImageUrl = "~/captcha"
+        Else
+            If Session("randomStr").ToString.Trim.ToLower = txtCaptcha.Text.Trim.ToLower Then
+                Dim IDUSER As Long = Dll.GetValid(txtUser.Text.Trim, txtPass.Text.Trim)
+                If IDUSER > 0 Then
+                    Dll.UpdateVisitCounter(IDUSER)
+                    FormsAuthentication.SetAuthCookie(IDUSER, True)
+                    Response.Redirect("~/panel/client/" & IDUSER)
+                End If
             End If
         End If
+
     End Sub
 
     Protected Sub Page_Load(sender As Object, e As System.EventArgs) Handles Me.Load

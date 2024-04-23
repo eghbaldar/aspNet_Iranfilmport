@@ -12,17 +12,24 @@ public partial class MasterPanel : System.Web.UI.MasterPage
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        // check user in all pages based on cookie! 
-        HttpCookie decryptedCookie = Context.Request.Cookies[FormsAuthentication.FormsCookieName];
-        FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(decryptedCookie.Value);
-        var identity = new GenericIdentity(ticket.Name);
-        var principal = new GenericPrincipal(identity, null);
-        HttpContext.Current.User = principal;
-        if (principal.Identity.Name != Page.RouteData.Values["id"].ToString())
+        try
+        {
+            // check user in all pages based on cookie! 
+            HttpCookie decryptedCookie = Context.Request.Cookies[FormsAuthentication.FormsCookieName];
+            FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(decryptedCookie.Value);
+            var identity = new GenericIdentity(ticket.Name);
+            var principal = new GenericPrincipal(identity, null);
+            HttpContext.Current.User = principal;
+            if (principal.Identity.Name != Page.RouteData.Values["id"].ToString())
+            {
+                Response.Redirect("~/panel");
+            }
+            //
+        }
+        catch(Exception ex)
         {
             Response.Redirect("~/panel");
         }
-        //
 
         lblPanelVersion.Text = "Version: " + PanelVersion.Version;
         DLL_Panel DL = new DLL_Panel();

@@ -1290,4 +1290,32 @@ Public Class DLL_CMS
         End Try
     End Function
 
+    Public Function GetMarquee() As String
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            Dim sqlcom As New SqlCommand("select [marquee] from tbl_setting", sqlconn)
+            Return sqlcom.ExecuteScalar
+            sqlconn.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+    End Function
+
+    Public Sub UpdateMarquee(marquee As String)
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            Dim input As String
+            input = "update tbl_setting set [marquee]='" + marquee + "'"
+            Dim sqlcom As New SqlCommand(input, sqlconn)
+            sqlcom.ExecuteNonQuery()
+            sqlconn.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+    End Sub
+
 End Class

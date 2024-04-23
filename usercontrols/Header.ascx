@@ -108,7 +108,5 @@
             </div>
         </div>
     </div>
-    <marquee style="position: absolute;">
-        <asp:Image ID="Image1" Width="170" ImageUrl="~/files/images/marquee/marquee_nowroz.png" runat="server"></asp:Image>
-    </marquee>
+    <asp:Literal ID="litMarquee" runat="server"></asp:Literal>
 </section>

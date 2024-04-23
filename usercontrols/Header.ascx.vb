@@ -27,6 +27,11 @@ Partial Class usercontrols_Header
             End If
 
             advertiseModal.Visible = DL.GetStatusModalOnAllPage
+
+            If DLLCMSS.GetMarquee().Trim().Length > 0 Then
+                litMarquee.Text = "<marquee style='position: absolute;'> <img id='Image1' Width='170' src='/files/images/marquee/" + DLLCMSS.GetMarquee().Trim() + "' runat='server'></asp:Image> </marquee>"
+            End If
+
         Catch ex As Exception
 
         End Try

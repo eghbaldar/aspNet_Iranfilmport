@@ -18,6 +18,11 @@
     <!-- -->
     <link rel="shortcut icon" href="<%= ResolveUrl("~/files/images/icons/icon.png")%>" />
     <title>درگاه فیلم ایران - پنل گزارش وضعیت فستیوال ها</title>
+     
+    <link href="../files/sweetalert/sweetalert2.min.css" />
+    <script type="text/javascript" src="../files/sweetalert/sweetalert2.all.min.js"></script>
+    <script type="text/javascript" src="../files/sweetalert/sweetalert2.min.js"></script>
+
     <style>
         @font-face
         {
@@ -147,6 +152,20 @@
             cursor: pointer;
         }
     </style>
+
+            <script type="text/javascript">
+
+                function myAlert(text) {
+                    Swal.fire({
+                        title: 'پیام سیستمی!',
+                        text: text,
+                        icon: 'error',
+                        confirmButtonColor: '#ffa200',
+                        confirmButtonText: 'متوجه شدم!',
+                    });
+                }
+    </script>
+
 </head>
 <body>
     <form id="form1" runat="server">

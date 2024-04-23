@@ -98,8 +98,8 @@ Partial Class panelclients_PanelReports
     End Function
     Private Function GetStatusExistedFileOnServer(filename As String) As Boolean
 
-        ServicePointManager.Expect100Continue = True ''Just for HTTPS (ssl)
-        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 ''Just for HTTPS (ssl)
+        'ServicePointManager.Expect100Continue = True ''Just for HTTPS (ssl)
+        'ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 ''Just for HTTPS (ssl)
         Dim webRequest As System.Net.WebRequest = System.Net.WebRequest.Create("https://files.iranfilmport.com/receipts/" & filename)
         webRequest.Method = "HEAD"
         Try

@@ -176,40 +176,22 @@ Partial Class PanelMain
 
     Private Function GetStatusExistedFileOnServer(filename As String) As Boolean
 
-        ServicePointManager.Expect100Continue = True ''Just for HTTPS (ssl)
-        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 ''Just for HTTPS (ssl)
+        'ServicePointManager.Expect100Continue = True ''Just for HTTPS (ssl)
+        'ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 ''Just for HTTPS (ssl)
         Dim webRequest As System.Net.WebRequest = System.Net.WebRequest.Create("https://files.iranfilmport.com/receipts/" & filename)
         webRequest.Method = "HEAD"
         Try
             Dim response As System.Net.HttpWebResponse = CType(webRequest.GetResponse, System.Net.HttpWebResponse)
-            'If (response.StatusCode.ToString = "OK") Then
             Return True
-            'End If
-            'Return False
         Catch
             Return False
         End Try
-
-        'Another way to check the file on server is:
-        'Try
-        '    ServicePointManager.Expect100Continue = True
-        '    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
-        '    Dim webClient As Net.WebClient = New Net.WebClient()
-        '    Dim url = "https://files.iranfilmport.com/" & filename
-        '    Dim bytes As Byte() = webClient.DownloadData(url)
-        '    If bytes.Length > 0 Then
-        '        Return True
-        '    End If
-        'Catch ex As Exception
-        '    Return False
-        'End Try
 
     End Function
 
     Private Sub dgAll_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles dgAll.RowDataBound
         If Convert.ToInt16(DataBinder.Eval(e.Row.DataItem, "receipt")) = 2 _
             And Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "date_of_entryData")) >= "2023-04-22 00:00:00.000" Then
-            'WHY "2023-04-22 00:00:00.000" ? Because after this date, we got started uploading the physica receipts
             e.Row.BackColor = System.Drawing.Color.FromName("#ffd6d6")
         End If
     End Sub
@@ -217,7 +199,6 @@ Partial Class PanelMain
     Private Sub dgNewUpdated_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles dgNewUpdated.RowDataBound
         If Convert.ToInt16(DataBinder.Eval(e.Row.DataItem, "receipt")) = 2 _
             And Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "date_of_entryData")) >= "2023-04-22 00:00:00.000" Then
-            'And GetStatusExistedFileOnServer(Convert.ToString(DataBinder.Eval(e.Row.DataItem, "id")) & ".jpg") Then
             e.Row.BackColor = System.Drawing.Color.FromName("#ffd6d6")
         End If
     End Sub
