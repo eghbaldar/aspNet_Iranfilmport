@@ -29,39 +29,39 @@ Partial Class CMS_Pages_addFest
 
         If txtTitleEn.Text.Trim <> "" _
             And txtTitleFa.Text.Trim <> "" _
-            And txtCalStartTakePlace.Text.Trim <> "" _
-            And txtCalEndTakePlace.Text <> "" _
+            And CalStartTakePlace.SelectedDate.ToShortDateString <> "" _
+            And CalEndTakePlace.SelectedDate.ToShortDateString <> "" _
             And txtWeb.Text.Trim <> "" _
             And txtDetail.Value.Trim <> "" _
             And txtAttribute.Value.Trim <> "" _
             And FileLogo.FileName <> "" _
-            And txt_date_completiondate.Text.Trim <> "" _
-            And txt_date_opening.Text.Trim <> "" _
+            And Cal_date_completiondate.SelectedDate.ToShortDateString() <> "" _
+            And Cal_date_opening.SelectedDate.ToShortDateString() <> "" _
             And txtRules.Value.Trim <> "" _
             And txtSubmitWay.Value.Trim <> "" Then
 
             Dim FN As String = Guid.NewGuid.ToString + Path.GetExtension(FileLogo.FileName)
 
-            DLL.InsertFestival( _
-            Val(cmd_level.SelectedValue), _
-            genreStr, _
-            sfStr, _
-            txtTitleEn.Text.Trim, _
-            txtTitleFa.Text.Trim, _
-            txtAddress.Text.Trim, Val(cmd_country.SelectedValue), _
-            Convert.ToDateTime(IIf(txtCalStartTakePlace.Text.Trim <> "", txtCalStartTakePlace.Text, CType(Nothing, DateTime))), _
-            Convert.ToDateTime(IIf(txtCalEndTakePlace.Text.Trim <> "", txtCalEndTakePlace.Text, CType(Nothing, DateTime))), _
-            txtWeb.Text.Trim, _
-            convertNumFatoEn(txtDetail.Value.ToString), _
-            convertNumFatoEn(txtAttribute.Value.ToString), _
-            FN, _
-            Convert.ToDateTime(IIf(txtNotification.Text.Trim <> "", txtNotification.Text, CType(Nothing, DateTime))), _
-            Val(cmd_premiere.SelectedValue.ToString), _
-            TxtPremeire.Text.Trim, _
-            Convert.ToDateTime(IIf(txt_date_opening.Text.Trim <> "", txt_date_opening.Text, CType(Nothing, DateTime))), _
-            Convert.ToDateTime(IIf(txt_date_completiondate.Text.Trim <> "", txt_date_completiondate.Text, CType(Nothing, DateTime))), _
-            convertNumFatoEn(txtRules.Value.ToString), _
-            Val(cmdPlatform.SelectedValue), _
+            DLL.InsertFestival(
+            Val(cmd_level.SelectedValue),
+            genreStr,
+            sfStr,
+            txtTitleEn.Text.Trim,
+            txtTitleFa.Text.Trim,
+            txtAddress.Text.Trim, Val(cmd_country.SelectedValue),
+            Convert.ToDateTime(IIf(CalStartTakePlace.SelectedDate.ToShortDateString <> "", CalStartTakePlace.SelectedDate.ToShortDateString, CType(Nothing, DateTime))),
+            Convert.ToDateTime(IIf(CalEndTakePlace.SelectedDate.ToShortDateString <> "", CalEndTakePlace.SelectedDate.ToShortDateString, CType(Nothing, DateTime))),
+            txtWeb.Text.Trim,
+            convertNumFatoEn(txtDetail.Value.ToString),
+            convertNumFatoEn(txtAttribute.Value.ToString),
+            FN,
+            Convert.ToDateTime(IIf(CalNotification.SelectedDate.ToShortDateString <> "", CalNotification.SelectedDate.ToShortDateString, CType(Nothing, DateTime))),
+            Val(cmd_premiere.SelectedValue.ToString),
+            TxtPremeire.Text.Trim,
+            Convert.ToDateTime(IIf(Cal_date_opening.SelectedDate.ToShortDateString() <> "", Cal_date_opening.SelectedDate.ToShortDateString(), CType(Nothing, DateTime))),
+            Convert.ToDateTime(IIf(Cal_date_completiondate.SelectedDate.ToShortDateString() <> "", Cal_date_completiondate.SelectedDate.ToShortDateString(), CType(Nothing, DateTime))),
+            convertNumFatoEn(txtRules.Value.ToString),
+            Val(cmdPlatform.SelectedValue),
             convertNumFatoEn(txtSubmitWay.Value.ToString))
 
             FileLogo.SaveAs(MapPath("~/files/UploadFiles/festival/" + FN))
@@ -82,20 +82,20 @@ Partial Class CMS_Pages_addFest
         Return T.Replace("۰", "0").Replace("۱", "1").Replace("۲", "2").Replace("۳", "3").Replace("۴", "4").Replace("۵", "5").Replace("۶", "6").Replace("۷", "7").Replace("۸", "8").Replace("۹", "9").Replace("٫", "/")
     End Function
 
-    Protected Sub CalStartTakePlace_SelectionChanged(sender As Object, e As Telerik.Web.UI.Calendar.SelectedDatesEventArgs) Handles CalStartTakePlace.SelectionChanged
-        txtCalStartTakePlace.Text = CalStartTakePlace.SelectedDate.Date.ToShortDateString
-    End Sub
-    Protected Sub CalEndTakePlace_SelectionChanged(sender As Object, e As System.EventArgs) Handles CalEndTakePlace.SelectionChanged
-        txtCalEndTakePlace.Text = CalEndTakePlace.SelectedDate.Date.ToShortDateString
-    End Sub
-    Protected Sub CalNotification_SelectionChanged(sender As Object, e As System.EventArgs) Handles CalNotification.SelectionChanged
-        txtNotification.Text = CalNotification.SelectedDate.Date.ToShortDateString
-    End Sub
-    Protected Sub Cal_date_opening_SelectionChanged(sender As Object, e As System.EventArgs) Handles Cal_date_opening.SelectionChanged
-        txt_date_opening.Text = Cal_date_opening.SelectedDate.Date.ToShortDateString
-    End Sub
-    Protected Sub Cal_date_completiondate_SelectionChanged(sender As Object, e As System.EventArgs) Handles Cal_date_completiondate.SelectionChanged
-        txt_date_completiondate.Text = Cal_date_completiondate.SelectedDate.Date.ToShortDateString
-    End Sub
+    'Protected Sub CalStartTakePlace_SelectionChanged(sender As Object, e As Telerik.Web.UI.Calendar.SelectedDatesEventArgs) Handles CalStartTakePlace.SelectionChanged
+    '    txtCalStartTakePlace.Text = CalStartTakePlace.SelectedDate.Date.ToShortDateString
+    'End Sub
+    'Protected Sub CalEndTakePlace_SelectionChanged(sender As Object, e As System.EventArgs) Handles CalEndTakePlace.SelectionChanged
+    '    txtCalEndTakePlace.Text = CalEndTakePlace.SelectedDate.Date.ToShortDateString
+    'End Sub
+    'Protected Sub CalNotification_SelectionChanged(sender As Object, e As System.EventArgs) Handles CalNotification.SelectionChanged
+    '    txtNotification.Text = CalNotification.SelectedDate.Date.ToShortDateString
+    'End Sub
+    'Protected Sub Cal_date_opening_SelectionChanged(sender As Object, e As System.EventArgs) Handles Cal_date_opening.SelectionChanged
+    '    txt_date_opening.Text = Cal_date_opening.SelectedDate.Date.ToShortDateString
+    'End Sub
+    'Protected Sub Cal_date_completiondate_SelectionChanged(sender As Object, e As System.EventArgs) Handles Cal_date_completiondate.SelectionChanged
+    '    txt_date_completiondate.Text = Cal_date_completiondate.SelectedDate.Date.ToShortDateString
+    'End Sub
 
 End Class

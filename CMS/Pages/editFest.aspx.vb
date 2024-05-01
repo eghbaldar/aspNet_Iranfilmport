@@ -96,9 +96,13 @@ Partial Class CMS_Pages_editFest
                 ''''''''''''''''''''''''''
                 cmd_country.SelectedValue = Dset.Tables(0).Rows(0)("country_code")
                 ''''''''''''''''''''''''''
-                txtCalStartTakePlace.Text = Dset.Tables(0).Rows(0)("date_start_takeplace")
+                Dim dateStartTakePlace As DateTime = Convert.ToDateTime(Dset.Tables(0).Rows(0)("date_start_takeplace"))
+                CalStartTakePlace.SelectedDate = dateStartTakePlace
+                CalStartTakePlace.VisibleDate = dateStartTakePlace
                 ''''''''''''''''''''''''''
-                txtCalEndTakePlace.Text = Dset.Tables(0).Rows(0)("date_end_takeplace")
+                Dim dateCallEndTakePlace As DateTime = Convert.ToDateTime(Dset.Tables(0).Rows(0)("date_end_takeplace"))
+                CallEndTakePlace.SelectedDate = dateCallEndTakePlace
+                CallEndTakePlace.VisibleDate = dateCallEndTakePlace
                 ''''''''''''''''''''''''''
                 txtWeb.Text = Dset.Tables(0).Rows(0)("web")
                 ''''''''''''''''''''''''''
@@ -109,15 +113,21 @@ Partial Class CMS_Pages_editFest
                 imgLogo.ImageUrl = "~\files\uploadFiles\festival\" + Dset.Tables(0).Rows(0)("logo")
                 PreLogoPath = Dset.Tables(0).Rows(0)("logo").ToString.Trim
                 ''''''''''''''''''''''''''
-                txtNotification.Text = Dset.Tables(0).Rows(0)("date_notification")
+                Dim dateCalNotification As DateTime = Convert.ToDateTime(Dset.Tables(0).Rows(0)("date_notification"))
+                CalNotification.SelectedDate = dateCalNotification
+                CalNotification.VisibleDate = dateCalNotification
                 ''''''''''''''''''''''''''
                 cmd_premiere.SelectedValue = Dset.Tables(0).Rows(0)("premiere")
                 ''''''''''''''''''''''''''
                 TxtPremeire.Text = Dset.Tables(0).Rows(0)("premiere_text")
                 ''''''''''''''''''''''''''
-                txt_date_opening.Text = Dset.Tables(0).Rows(0)("date_opening")
+                Dim dateCal_date_opening As DateTime = Convert.ToDateTime(Dset.Tables(0).Rows(0)("date_opening"))
+                Cal_date_opening.SelectedDate = dateCal_date_opening
+                Cal_date_opening.VisibleDate = dateCal_date_opening
                 ''''''''''''''''''''''''''
-                txt_date_completiondate.Text = Dset.Tables(0).Rows(0)("date_completion")
+                Dim dateCal_date_completiondate As DateTime = Convert.ToDateTime(Dset.Tables(0).Rows(0)("date_completion"))
+                Cal_date_completiondate.SelectedDate = dateCal_date_completiondate
+                Cal_date_completiondate.VisibleDate = dateCal_date_completiondate
                 ''''''''''''''''''''''''''
                 txtRules.Value = Dset.Tables(0).Rows(0)("rules")
                 ''''''''''''''''''''''''''
@@ -161,7 +171,8 @@ Partial Class CMS_Pages_editFest
         Catch ex As Exception
         End Try
         ''''''''''''''''''''''''''''''''''
-        If txtTitleEn.Text.Trim <> "" And txtTitleFa.Text.Trim <> "" And txtCalStartTakePlace.Text.Trim <> "" And txtCalEndTakePlace.Text <> "" And txtWeb.Text.Trim <> "" And txtDetail.Value.Trim <> "" And txtAttribute.Value.Trim <> "" And txt_date_completiondate.Text.Trim <> "" And txt_date_opening.Text.Trim <> "" And txtRules.Value.Trim <> "" And txtSubmitWay.Value.Trim <> "" Then
+        If txtTitleEn.Text.Trim <> "" And txtTitleFa.Text.Trim <> "" And CalStartTakePlace.SelectedDate.ToShortDateString <> "" _
+            And CallEndTakePlace.SelectedDate.ToShortDateString <> "" And txtWeb.Text.Trim <> "" And txtDetail.Value.Trim <> "" And txtAttribute.Value.Trim <> "" And Cal_date_completiondate.SelectedDate.ToShortDateString <> "" And Cal_date_opening.SelectedDate.ToShortDateString <> "" And txtRules.Value.Trim <> "" And txtSubmitWay.Value.Trim <> "" Then
 
             Dim FN As String
             If FileLogo.FileName.Trim <> "" Then
@@ -171,28 +182,26 @@ Partial Class CMS_Pages_editFest
                 FN = PreLogoPath
             End If
 
-
-
-            DL.UpdateFestival(Val(Request.QueryString("id").ToString), _
-            Val(cmd_level.SelectedValue), _
-            genreStr, _
-            sfStr, _
-            txtTitleEn.Text.Trim, txtTitleFa.Text.Trim, _
-            txtAddress.Text.Trim, Val(cmd_country.SelectedValue), _
-            Convert.ToDateTime(IIf(txtCalStartTakePlace.Text.Trim <> "", txtCalStartTakePlace.Text, CType(Nothing, DateTime))), _
-            Convert.ToDateTime(IIf(txtCalEndTakePlace.Text.Trim <> "", txtCalEndTakePlace.Text, CType(Nothing, DateTime))), _
-            txtWeb.Text.Trim, _
-            convertNumFatoEn(txtDetail.Value.ToString), _
-            convertNumFatoEn(txtAttribute.Value.ToString), _
-            FN, _
-            Convert.ToDateTime(IIf(txtNotification.Text.Trim <> "", txtNotification.Text, CType(Nothing, DateTime))), _
-            Val(cmd_premiere.SelectedValue.ToString), _
-            TxtPremeire.Text.Trim, _
-            Convert.ToDateTime(IIf(txt_date_opening.Text.Trim <> "", txt_date_opening.Text, CType(Nothing, DateTime))), _
-            Convert.ToDateTime(IIf(txt_date_completiondate.Text.Trim <> "", txt_date_completiondate.Text, CType(Nothing, DateTime))), _
-            convertNumFatoEn(txtRules.Value.ToString), _
+            DL.UpdateFestival(Val(Request.QueryString("id").ToString),
+            Val(cmd_level.SelectedValue),
+            genreStr,
+            sfStr,
+            txtTitleEn.Text.Trim, txtTitleFa.Text.Trim,
+            txtAddress.Text.Trim, Val(cmd_country.SelectedValue),
+            Convert.ToDateTime(IIf(CalStartTakePlace.SelectedDate.ToShortDateString <> "", CalStartTakePlace.SelectedDate.ToShortDateString, CType(Nothing, DateTime))),
+            Convert.ToDateTime(IIf(CallEndTakePlace.SelectedDate.ToShortDateString <> "", CallEndTakePlace.SelectedDate.ToShortDateString, CType(Nothing, DateTime))),
+            txtWeb.Text.Trim,
+            convertNumFatoEn(txtDetail.Value.ToString),
+            convertNumFatoEn(txtAttribute.Value.ToString),
+            FN,
+            Convert.ToDateTime(IIf(CalNotification.SelectedDate.ToShortDateString <> "", CalNotification.SelectedDate.ToShortDateString, CType(Nothing, DateTime))),
+            Val(cmd_premiere.SelectedValue.ToString),
+            TxtPremeire.Text.Trim,
+            Convert.ToDateTime(IIf(Cal_date_opening.SelectedDate.ToShortDateString <> "", Cal_date_opening.SelectedDate.ToShortDateString, CType(Nothing, DateTime))),
+            Convert.ToDateTime(IIf(Cal_date_completiondate.SelectedDate.ToShortDateString <> "", Cal_date_completiondate.SelectedDate.ToShortDateString, CType(Nothing, DateTime))),
+            convertNumFatoEn(txtRules.Value.ToString),
             Val(cmdPlatform.SelectedValue),
-            convertNumFatoEn(txtSubmitWay.Value.ToString), _
+            convertNumFatoEn(txtSubmitWay.Value.ToString),
             rbEnableDisable.SelectedItem.Value)
 
             lblNotify.Text = "فستیوال ویرایش شده است، بررسی کنید."
@@ -258,23 +267,23 @@ Partial Class CMS_Pages_editFest
     End Sub
 
     Protected Sub CalStartTakePlace_SelectionChanged(sender As Object, e As System.EventArgs) Handles CalStartTakePlace.SelectionChanged
-        txtCalStartTakePlace.Text = CalStartTakePlace.SelectedDate.Date.ToShortDateString
+        CalStartTakePlace.SelectedDate = CalStartTakePlace.SelectedDate.Date.ToShortDateString
     End Sub
 
     Protected Sub CallEndTakePlace_SelectionChanged(sender As Object, e As System.EventArgs) Handles CallEndTakePlace.SelectionChanged
-        txtCalEndTakePlace.Text = CallEndTakePlace.SelectedDate.Date.ToShortDateString
+        CallEndTakePlace.SelectedDate = CallEndTakePlace.SelectedDate.Date.ToShortDateString
     End Sub
 
     Protected Sub CalNotification_SelectionChanged(sender As Object, e As System.EventArgs) Handles CalNotification.SelectionChanged
-        txtNotification.Text = CalNotification.SelectedDate.Date.ToShortDateString
+        CalNotification.SelectedDate = CalNotification.SelectedDate.Date.ToShortDateString
     End Sub
 
     Protected Sub Cal_date_completiondate_SelectionChanged(sender As Object, e As System.EventArgs) Handles Cal_date_completiondate.SelectionChanged
-        txt_date_completiondate.Text = Cal_date_completiondate.SelectedDate.Date.ToShortDateString
+        Cal_date_completiondate.SelectedDate = Cal_date_completiondate.SelectedDate.Date.ToShortDateString
     End Sub
 
-    Protected Sub Cal_date_opening_SelectionChanged(sender As Object, e As Telerik.Web.UI.Calendar.SelectedDatesEventArgs) Handles Cal_date_opening.SelectionChanged
-        txt_date_opening.Text = Cal_date_opening.SelectedDate.Date.ToShortDateString
+    Protected Sub Cal_dateSelectedDate_opening_SelectionChanged(sender As Object, e As Telerik.Web.UI.Calendar.SelectedDatesEventArgs) Handles Cal_date_opening.SelectionChanged
+        Cal_date_opening.SelectedDate = Cal_date_opening.SelectedDate.Date.ToShortDateString
     End Sub
 
     Protected Sub btnBacktoFest_Click(sender As Object, e As System.EventArgs) Handles btnBacktoFest.Click
@@ -294,8 +303,11 @@ Partial Class CMS_Pages_editFest
         Dim s() As String = e.CommandArgument.ToString.Split("|")
 
         lblDeadID.Text = s(0)
-        CalcDeadEdit.FocusedDate = System.DateTime.Parse(Convert.ToDateTime(s(1)).Date)
-        CalcDeadEdit.SelectedDate = System.DateTime.Parse(Convert.ToDateTime(s(1)).Date)
+
+        Dim dateCalcDeadEdit As DateTime = Convert.ToDateTime(s(1)).Date
+        CalcDeadEdit.SelectedDate = dateCalcDeadEdit
+        CalcDeadEdit.VisibleDate = dateCalcDeadEdit
+
         txtEditFee.Text = s(2)
     End Sub
 

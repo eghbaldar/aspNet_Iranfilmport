@@ -1,7 +1,7 @@
-﻿<%@ Page Title="" Language="VB" MasterPageFile="~/CMS/Pages/CMS.master" AutoEventWireup="false"
+﻿<%@ Page Title="" Language="VB" MasterPageFile="~/CMS/Pages/CMS.master" AutoEventWireup="false"    
     ValidateRequest="false" CodeFile="addFest.aspx.vb" Inherits="CMS_Pages_addFest" %>
 
-<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+<%--<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>--%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <script src="../../files/ckeditor/ckeditor.js"></script>
@@ -278,15 +278,15 @@
             <tr>
                 <td>
                     شروع مراسم:
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtCalStartTakePlace"
-                        ErrorMessage="الزامی است" ForeColor="Red" ValidationGroup="btn"></asp:RequiredFieldValidator>
+<%--                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtCalStartTakePlace"
+                        ErrorMessage="الزامی است" ForeColor="Red" ValidationGroup="btn"></asp:RequiredFieldValidator>--%>
                 </td>
                 <td>
                     <asp:UpdatePanel id="UP" runat="server" UpdateMode="Conditional">
                         <contenttemplate>
                         <div class="DivCal">
-
-                        <telerik:RadCalendar ID="CalStartTakePlace" 
+                             <asp:Calendar ID="CalStartTakePlace" runat="server"></asp:Calendar>
+                       <%-- <telerik:RadCalendar ID="CalStartTakePlace" 
                          
                         ShowColumnHeaders="true" ShowDayCellToolTips="true" 
                         AutoPostBack="true"
@@ -294,15 +294,14 @@
                         Runat="server">
                          <FastNavigationSettings EnableTodayButtonSelection="true">
                     </FastNavigationSettings>
-                        </telerik:RadCalendar>
+                        </telerik:RadCalendar>--%>
 
-                    <%--<asp:Calendar ID="CalStartTakePlace" runat="server"></asp:Calendar>--%>
-                    <asp:TextBox ID="txtCalStartTakePlace" runat="server" ValidationGroup="1" MaxLength="10"
+<%--                    <asp:TextBox ID="txtCalStartTakePlace" runat="server" ValidationGroup="1" MaxLength="10"
                         CssClass="txtEn" ></asp:TextBox>
                     <span style="color: Red; border: 1px solid #ccc;">MM / DD / YYYY</span>
                     <asp:RegularExpressionValidator ID="regexpDate" runat="server" ControlToValidate="txtCalStartTakePlace"
                         ErrorMessage="فرمت صحیح (09/12/2006) را وارد کنید." ValidationExpression="^(0[1-9]|1[012])[-/.](0[1-9]|[12][0-9]|3[01])[-/.](19|20)\d\d$"
-                        ValidationGroup="1"></asp:RegularExpressionValidator>
+                        ValidationGroup="1"></asp:RegularExpressionValidator>--%>
                         </div>
                     </contenttemplate>
                     </asp:UpdatePanel>
@@ -311,16 +310,15 @@
             <tr>
                 <td>
                     پایان مراسم:
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtCalEndTakePlace"
-                        ErrorMessage="الزامی است" ForeColor="Red" ValidationGroup="btn"></asp:RequiredFieldValidator>
+<%--                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtCalEndTakePlace"
+                        ErrorMessage="الزامی است" ForeColor="Red" ValidationGroup="btn"></asp:RequiredFieldValidator>--%>
                 </td>
                 <td>
                     <asp:UpdatePanel id="UP1" runat="server" UpdateMode="Conditional">
                         <contenttemplate>
                         <div class="DivCal">
-                                                 <%--<asp:Calendar ID="CalEndTakePlace" runat="server"></asp:Calendar>--%>
-
-                       <telerik:RadCalendar ID="CalEndTakePlace" 
+                            <asp:Calendar ID="CalEndTakePlace" runat="server"></asp:Calendar>
+                       <%--<telerik:RadCalendar ID="CalEndTakePlace" 
                          
                         ShowColumnHeaders="true" ShowDayCellToolTips="true" 
                         AutoPostBack="true"
@@ -328,14 +326,14 @@
                         Runat="server">
                          <FastNavigationSettings EnableTodayButtonSelection="true">
                     </FastNavigationSettings>
-                        </telerik:RadCalendar>
+                        </telerik:RadCalendar>--%>
 
-                    <asp:TextBox ID="txtCalEndTakePlace" runat="server" ValidationGroup="2" MaxLength="10"
+<%--                    <asp:TextBox ID="txtCalEndTakePlace" runat="server" ValidationGroup="2" MaxLength="10"
                         CssClass="txtEn"></asp:TextBox>
                     <span style="color: Red; border: 1px solid #ccc;">MM / DD / YYYY</span>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtCalEndTakePlace"
                         ErrorMessage="فرمت صحیح (09/12/2006) را وارد کنید." ValidationExpression="^(0[1-9]|1[012])[-/.](0[1-9]|[12][0-9]|3[01])[-/.](19|20)\d\d$"
-                        ValidationGroup="2"></asp:RegularExpressionValidator>
+                        ValidationGroup="2"></asp:RegularExpressionValidator>--%>
                         </div>
                     </contenttemplate>
                     </asp:UpdatePanel>
@@ -392,9 +390,8 @@
                     <asp:UpdatePanel id="UP2" runat="server" UpdateMode="Conditional">
                         <contenttemplate>
                         <div class="DivCal">
-                                                 <%--<asp:Calendar ID="CalNotification" runat="server"></asp:Calendar>--%>
-
-                                                 <telerik:RadCalendar ID="CalNotification" 
+                             <asp:Calendar ID="CalNotification" runat="server"></asp:Calendar>
+<%--                                                 <telerik:RadCalendar ID="CalNotification" 
                          
                         ShowColumnHeaders="true" ShowDayCellToolTips="true" 
                         AutoPostBack="true"
@@ -402,14 +399,14 @@
                         Runat="server">
                          <FastNavigationSettings EnableTodayButtonSelection="true">
                     </FastNavigationSettings>
-                        </telerik:RadCalendar>
+                        </telerik:RadCalendar>--%>
 
-                    <asp:TextBox ID="txtNotification" runat="server" ValidationGroup="3" MaxLength="10"
+<%--                    <asp:TextBox ID="txtNotification" runat="server" ValidationGroup="3" MaxLength="10"
                         CssClass="txtEn"></asp:TextBox>
                     <span style="color: Red; border: 1px solid #ccc;">MM / DD / YYYY</span>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="txtNotification"
                         ErrorMessage="فرمت صحیح (09/12/2006) را وارد کنید." ValidationExpression="^(0[1-9]|1[012])[-/.](0[1-9]|[12][0-9]|3[01])[-/.](19|20)\d\d$"
-                        ValidationGroup="3"></asp:RegularExpressionValidator>
+                        ValidationGroup="3"></asp:RegularExpressionValidator>--%>
                         </div>
                     </contenttemplate>
                     </asp:UpdatePanel>
@@ -448,9 +445,8 @@
                     <asp:UpdatePanel id="UP4" runat="server" UpdateMode="Conditional">
                         <contenttemplate>
                         <div class="DivCal">
-                                                 <%--<asp:Calendar ID="Cal_date_opening" runat="server"></asp:Calendar>--%>
-
-                                                 <telerik:RadCalendar ID="Cal_date_opening" 
+                               <asp:Calendar ID="Cal_date_opening" runat="server"></asp:Calendar>
+                                             <%--    <telerik:RadCalendar ID="Cal_date_opening" 
                          
                         ShowColumnHeaders="true" ShowDayCellToolTips="true" 
                         AutoPostBack="true"
@@ -458,19 +454,22 @@
                         Runat="server">
                          <FastNavigationSettings EnableTodayButtonSelection="true">
                     </FastNavigationSettings>
-                        </telerik:RadCalendar>
+                        </telerik:RadCalendar>--%>
                     
-                    <asp:TextBox ID="txt_date_opening" runat="server" ValidationGroup="9" MaxLength="10"
+   <%--                 <asp:TextBox ID="txt_date_opening" runat="server" ValidationGroup="9" MaxLength="10"
                         CssClass="txtEn" ></asp:TextBox>
                     <span style="color: Red; border: 1px solid #ccc;">MM / DD / YYYY</span>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator8" runat="server" ControlToValidate="txt_date_opening"
                         ErrorMessage="فرمت صحیح (09/12/2006) را وارد کنید." ValidationExpression="^(0[1-9]|1[012])[-/.](0[1-9]|[12][0-9]|3[01])[-/.](19|20)\d\d$"
-                        ValidationGroup="9"></asp:RegularExpressionValidator>
+                        ValidationGroup="9"></asp:RegularExpressionValidator>--%>
                         </div>
                     </contenttemplate>
                     </asp:UpdatePanel>
                 </td>
             </tr>
+
+
+
             <tr>
                 <td>
                     از این تاریخ به بعد فیلم پذیرفته می شود:
@@ -479,29 +478,30 @@
                     <asp:UpdatePanel id="UP5" runat="server" UpdateMode="Conditional">
                         <contenttemplate>
                         <div class="DivCal">
-                                                 <%--<asp:Calendar ID="Cal_date_completiondate" runat="server"></asp:Calendar>--%>
-
-                                                 <telerik:RadCalendar ID="Cal_date_completiondate" 
-                         
+                            <asp:Calendar ID="Cal_date_completiondate" runat="server"></asp:Calendar>
+                   <%-- <telerik:RadCalendar ID="Cal_date_completiondate"                          
                         ShowColumnHeaders="true" ShowDayCellToolTips="true" 
                         AutoPostBack="true"
                         EnableMultiSelect="false" EnableKeyboardNavigation="true"
                         Runat="server">
-                         <FastNavigationSettings EnableTodayButtonSelection="true">
-                    </FastNavigationSettings>
-                        </telerik:RadCalendar>
+                            <FastNavigationSettings EnableTodayButtonSelection="true">
+                            </FastNavigationSettings>
+                        </telerik:RadCalendar>--%>
 
-                    <asp:TextBox ID="txt_date_completiondate" runat="server" ValidationGroup="10" MaxLength="10"
+<%--                    <asp:TextBox ID="txt_date_completiondate" runat="server" ValidationGroup="10" MaxLength="10"
                         CssClass="txtEn" ></asp:TextBox>
                     <span style="color: Red; border: 1px solid #ccc;">MM / DD / YYYY</span>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator9" runat="server" ControlToValidate="txt_date_completiondate"
                         ErrorMessage="فرمت صحیح (09/12/2006) را وارد کنید." ValidationExpression="^(0[1-9]|1[012])[-/.](0[1-9]|[12][0-9]|3[01])[-/.](19|20)\d\d$"
-                        ValidationGroup="10"></asp:RegularExpressionValidator>
+                        ValidationGroup="10"></asp:RegularExpressionValidator>--%>
                         </div>
                     </contenttemplate>
                     </asp:UpdatePanel>
                 </td>
             </tr>
+
+
+
             <tr>
                 <td>
                     قوانین (می تواند لینک باشد):
