@@ -282,9 +282,9 @@ Partial Class CMS_Pages_editFest
         Cal_date_completiondate.SelectedDate = Cal_date_completiondate.SelectedDate.Date.ToShortDateString
     End Sub
 
-    Protected Sub Cal_dateSelectedDate_opening_SelectionChanged(sender As Object, e As Telerik.Web.UI.Calendar.SelectedDatesEventArgs) Handles Cal_date_opening.SelectionChanged
-        Cal_date_opening.SelectedDate = Cal_date_opening.SelectedDate.Date.ToShortDateString
-    End Sub
+    'Protected Sub Cal_dateSelectedDate_opening_SelectionChanged(sender As Object, e As Telerik.Web.UI.Calendar.SelectedDatesEventArgs) Handles Cal_date_opening.SelectionChanged
+    '    Cal_date_opening.SelectedDate = Cal_date_opening.SelectedDate.Date.ToShortDateString
+    'End Sub
 
     Protected Sub btnBacktoFest_Click(sender As Object, e As System.EventArgs) Handles btnBacktoFest.Click
         Response.Redirect("~\cms\pages\EditFestival?id=" + Request.QueryString("id") + "&type=fest")
@@ -320,5 +320,35 @@ Partial Class CMS_Pages_editFest
 
     Protected Sub btnSearch_Click(sender As Object, e As System.EventArgs) Handles btnSearch.Click
         DgSearch.DataBind()
+    End Sub
+
+    Private Sub btnSet_Cal_date_opening_Click(sender As Object, e As EventArgs) Handles btnSet_Cal_date_opening.Click
+        Cal_date_opening.SelectedDate = Date.Today
+        Cal_date_opening.VisibleDate = Date.Today
+    End Sub
+
+    Private Sub btnSet_Cal_date_completiondate_Click(sender As Object, e As EventArgs) Handles btnSet_Cal_date_completiondate.Click
+        Cal_date_completiondate.SelectedDate = Date.Today
+        Cal_date_completiondate.VisibleDate = Date.Today
+    End Sub
+
+    Private Sub btnSet_Calendar_Click(sender As Object, e As EventArgs) Handles btnSet_Calendar.Click
+        Calendar.SelectedDate = Date.Today
+        Calendar.VisibleDate = Date.Today
+    End Sub
+
+    Private Sub btnSet_CalStartTakePlace_Click(sender As Object, e As EventArgs) Handles btnSet_CalStartTakePlace.Click
+        CalStartTakePlace.SelectedDate = Date.Today
+        CalStartTakePlace.VisibleDate = Date.Today
+    End Sub
+
+    Private Sub btnSet_CallEndTakePlace_Click(sender As Object, e As EventArgs) Handles btnSet_CallEndTakePlace.Click
+        CallEndTakePlace.SelectedDate = Date.Today
+        CallEndTakePlace.VisibleDate = Date.Today
+    End Sub
+
+    Private Sub btnSet_CalNotification_Click(sender As Object, e As EventArgs) Handles btnSet_CalNotification.Click
+        CalNotification.SelectedDate = Date.Today
+        CalNotification.VisibleDate = Date.Today
     End Sub
 End Class

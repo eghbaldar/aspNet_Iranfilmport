@@ -238,7 +238,7 @@ Public Class DLL
         Try
             If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
             sqlconn.Open()
-            Dim sqlcom As New SqlCommand("select count(*) from tbl_articles where visible=1 and id=" + PostCode.ToString, sqlconn)
+            Dim sqlcom As New SqlCommand("select count(*) from tbl_articles where date_time <= getdate() and visible=1 and id=" + PostCode.ToString, sqlconn)
             If Val(sqlcom.ExecuteScalar) = 1 Then
                 Return False 'پست موجود است و یا فعال است
             Else

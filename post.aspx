@@ -144,7 +144,7 @@
                                             
                                             <div style="padding-top: 5px;">
                                                 <span class="zoomout" style="font-size:20px;" runat="server" visible='<%# GetEditPermission() %>'>
-                                                    <a href='<%# Eval("id", "../cms/pages/EditPost?type=article&id={0}") %>' target="_blank">Enlighten Me!</a>
+                                                    <a href='<%# Eval("id", "../cms/pages/EditPost?type=article&id={0}") %>' target="_blank">ویرایش این پست</a>
                                                     <br />
                                                 </span>
                                                 

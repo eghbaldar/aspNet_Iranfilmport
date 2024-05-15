@@ -7,6 +7,8 @@ Imports System.Web.Services
 Partial Class CMS_Pages_editArticle
     Inherits System.Web.UI.Page
 
+    Dim DL As New DLL
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         'PrePhotoPath = ""
@@ -392,5 +394,8 @@ Partial Class CMS_Pages_editArticle
         End Using
     End Function
 
+    Public Function GetTitle(id As Object) As String
+        Return DL.GetClearString(DL.GetTitleBlog(Val(id)))
+    End Function
 
 End Class

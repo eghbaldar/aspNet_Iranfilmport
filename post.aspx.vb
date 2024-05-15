@@ -12,27 +12,33 @@ Partial Class post
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-        Dim DL As New DLL
-
-        'بررسی وجود و یا فعال بدون پست
-        If DL.IsEnablePost(RouteData.Values("id")) Then Response.Redirect("~/عدم-دسترسی")
-
-        lblGetPostTitle.Text = DL.GetTitleBlog(RouteData.Values("id"))
-        Title = DL.GetTitleBlog(RouteData.Values("id"))
-        Try
-            ''''''''''' آیا از URL بدون عنوان استفاده کرده است؟
-            If String.IsNullOrWhiteSpace(RouteData.Values("title")) Then
-                Response.Redirect("~/" + RouteData.Values("id") + "/" + DL.GetClearString(DL.GetTitleBlog(Val(RouteData.Values("id")))))
+        ' اگر ادمین لاگین کرده بود و کوئری استرین مثبت ارسال شده بود میتواند ببیند
+        ' اگر تاریخ پست نرسیده بود کاربر عادی نمیتواند ببند
+        If (Not (String.IsNullOrEmpty(Request.QueryString("preview")))) And GetEditPermission() Then
+            If Not (Request.QueryString("preview").ToLower = "true") Then
+                'بررسی وجود و یا فعال بدون پست
+                If DL.IsEnablePost(RouteData.Values("id")) Then Response.Redirect("~/عدم-دسترسی")
             End If
-            ' '''''''''''
-            DL.IncreaseViwerArticle(Val(RouteData.Values("id")))
-            setTages()
-            ''''''''''''' کامنت
-            comment.Section = 0
-            comment.IDPOST = Val(RouteData.Values("id"))
-            '''''''''''''
-        Catch ex As Exception
-        End Try
+        Else
+            If DL.IsEnablePost(RouteData.Values("id")) Then Response.Redirect("~/عدم-دسترسی")
+        End If
+        ''''''''''''
+        lblGetPostTitle.Text = DL.GetTitleBlog(RouteData.Values("id"))
+            Title = DL.GetTitleBlog(RouteData.Values("id"))
+            Try
+                ''''''''''' آیا از URL بدون عنوان استفاده کرده است؟
+                If String.IsNullOrWhiteSpace(RouteData.Values("title")) Then
+                    Response.Redirect("~/" + RouteData.Values("id") + "/" + DL.GetClearString(DL.GetTitleBlog(Val(RouteData.Values("id")))))
+                End If
+                ' '''''''''''
+                DL.IncreaseViwerArticle(Val(RouteData.Values("id")))
+                setTages()
+                ''''''''''''' کامنت
+                comment.Section = 0
+                comment.IDPOST = Val(RouteData.Values("id"))
+                '''''''''''''
+            Catch ex As Exception
+            End Try
 
     End Sub
 

@@ -112,7 +112,9 @@
                         <asp:BoundField DataField="visit" HeaderText="بازدید" SortExpression="visit" />
                         <asp:TemplateField SortExpression="id">
                             <ItemTemplate>
-                                <a style="color: Red;" href='<%# String.Format("EditPost?type=article&id={0}", Eval("id")) %>'>ویرایش پست </a><a target="_blank" href='<%# ResolveUrl(String.Format("../../{0}", Eval("id"))) %>'>مشاهده پست </a>
+                                <a style="color: Red;" href='<%# String.Format("EditPost?type=article&id={0}", Eval("id")) %>'>ویرایش پست </a>
+                                <a target="_blank" href='<%# ResolveUrl(String.Format("../../{0}", Eval("id"))) %>'>مشاهده پست </a>
+                                <a target="_blank" href='<%# ResolveUrl(String.Format("../../{0}/{1}/preview=true", Eval("id"), Eval("title"))) %>'>پیش نمایش</a>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:CheckBoxField DataField="visible" HeaderText="visible" SortExpression="visible" />
@@ -215,6 +217,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', end
                             <a style="color: Red;" href='<%# String.Format("EditPost?type=article&id={0}", Eval("id")) %>'>ویرایش پست </a>
                             <br />
                             <a target="_blank" href='<%# ResolveUrl(String.Format("../../{0}", Eval("id"))) %>'>مشاهده پست </a>
+                            <br />
+                            <a target="_blank" href='<%# ResolveUrl(String.Format("../../{0}/{1}?preview=true", Eval("id"), GetTitle(Eval("id")))) %>'>پیش نمایش</a>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField>
