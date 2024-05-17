@@ -105,7 +105,7 @@
                 </ItemTemplate>
             </asp:Repeater>
             <asp:SqlDataSource ID="SDS_Master" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
-                SelectCommand="SELECT top 10 * FROM [tbl_articles] WHERE [visible] = 1 and id in (SELECT top 20 [id] FROM [tbl_articles] order by [date_time] desc) order by date_time desc"></asp:SqlDataSource>
+                SelectCommand="SELECT top 10 * FROM [tbl_articles] WHERE [visible] = 1 and date_time<=getdate() and id in (SELECT top 20 [id] FROM [tbl_articles] order by [date_time] desc) order by date_time desc"></asp:SqlDataSource>
         </div>
     </div>
 </div>

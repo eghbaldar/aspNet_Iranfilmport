@@ -12,12 +12,25 @@ Partial Class post
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-        ' اگر ادمین لاگین کرده بود و کوئری استرین مثبت ارسال شده بود میتواند ببیند
+        ' اگر ادمین لاگین کرده بود و کوئری استرینگ ادمین (به انگلیسی) ارسال شده بود میتواند ببیند
+        ' اگر ادمین قصد داشت ببیند کوئری استرینگ یوزر (به انگلیسی) ارسال شده بود صفحه کدر شده و باید پسورد که همان کد خبر است وارد کند
         ' اگر تاریخ پست نرسیده بود کاربر عادی نمیتواند ببند
-        If (Not (String.IsNullOrEmpty(Request.QueryString("preview")))) And GetEditPermission() Then
-            If Not (Request.QueryString("preview").ToLower = "true") Then
-                'بررسی وجود و یا فعال بدون پست
-                If DL.IsEnablePost(RouteData.Values("id")) Then Response.Redirect("~/عدم-دسترسی")
+        If (Not (String.IsNullOrEmpty(Request.QueryString("preview")))) Then
+            Select Case Request.QueryString("preview").ToLower
+                Case "admin"
+                    If Not GetEditPermission() Then
+                        If DL.IsEnablePost(RouteData.Values("id")) Then Response.Redirect("~/عدم-دسترسی")
+                    End If
+                Case "user"
+                    If DL.IsEnablePost(RouteData.Values("id")) Then
+                        Dim jsCode As String = "$('body').css('filter', 'blur(10px)');setTimeout(function(){checkUserPreview('" + RouteData.Values("id") + "')},2000);;"
+                        ClientScript.RegisterStartupScript(Me.GetType(), "checkUserPreview()", jsCode, True)
+                    End If
+                Case Else
+                    If DL.IsEnablePost(RouteData.Values("id")) Then Response.Redirect("~/عدم-دسترسی")
+            End Select
+            If Not (Request.QueryString("preview").ToLower = "admin") Then
+                'بررسی وجود و یا فعال بدون پست                
             End If
         Else
             If DL.IsEnablePost(RouteData.Values("id")) Then Response.Redirect("~/عدم-دسترسی")

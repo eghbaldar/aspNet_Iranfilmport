@@ -218,7 +218,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', end
                             <br />
                             <a target="_blank" href='<%# ResolveUrl(String.Format("../../{0}", Eval("id"))) %>'>مشاهده پست </a>
                             <br />
-                            <a target="_blank" href='<%# ResolveUrl(String.Format("../../{0}/{1}?preview=true", Eval("id"), GetTitle(Eval("id")))) %>'>پیش نمایش</a>
+                            <a target="_blank"
+                                style="cursor:pointer;"
+                                onclick ="copyTextToClipboard('<%# ResolveUrl(String.Format("https://iranfilmport.com/{0}/{1}?preview=admin", Eval("id"), GetTitle(Eval("id")))) %>')"
+                                >پیش نمایش ادمین</a>
+                            <br />
+                            <a target="_blank" 
+                                style="cursor:pointer;"
+                                onclick ="copyTextToClipboard('<%# ResolveUrl(String.Format("https://iranfilmport.com/{0}/{1}?preview=user", Eval("id"), GetTitle(Eval("id")))) %>')"
+                                >پیش نمایش کاربر</a>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField>
@@ -730,6 +738,30 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', end
         function myAlert(text) {
             Swal.fire({
                 title: 'پیام سیستمی!',
+                text: text,
+                icon: 'error',
+                confirmButtonColor: '#ffa200',
+                confirmButtonText: 'متوجه شدم!',
+            });
+        }
+        function copyTextToClipboard(text) {
+            // Create a temporary textarea element
+            var textarea = document.createElement("textarea");
+            textarea.value = text;
+
+            // Append the textarea to the document
+            document.body.appendChild(textarea);
+
+            // Select the text in the textarea
+            textarea.select();
+
+            // Copy the selected text to the clipboard
+            document.execCommand("copy");
+
+            // Remove the temporary textarea element
+            document.body.removeChild(textarea);
+            Swal.fire({
+                title: 'متن کپی شد!',
                 text: text,
                 icon: 'error',
                 confirmButtonColor: '#ffa200',

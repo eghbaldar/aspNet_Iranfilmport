@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Master_Main.master" AutoEventWireup="false"
     CodeFile="post.aspx.vb" Inherits="post" %>
+
 <%@ Register Src="usercontrols/RightSide.ascx" TagName="RightSide" TagPrefix="uc1" %>
 <%@ Register Src="usercontrols/comment.ascx" TagName="comment" TagPrefix="uc3" %>
 <%@ Register Src="usercontrols/Navigation.ascx" TagName="Navigation" TagPrefix="uc4" %>
@@ -286,4 +287,14 @@
             </div>
         </div>
     </section>
+    <script>
+        function checkUserPreview(postId) {
+            var userInput = prompt("Please enter 'OK':");
+            // Check if the input is equal to "OK"
+            if (userInput.toLowerCase() === postId) {
+                // If input is valid, load the desired page
+                $("body").css("filter", "none");
+            }
+        };
+    </script>
 </asp:Content>
