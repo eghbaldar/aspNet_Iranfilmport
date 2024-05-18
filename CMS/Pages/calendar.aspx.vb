@@ -13,9 +13,9 @@ Partial Class CMS_Pages_calendar
                 cmdyears.Items.Add(j.ToString)
             Next
 
-            cmdDays.Text = Convert.ToDateTime(ShamsiDate.Miladi2Shamsi(Now, ShamsiDate.ShowType.ShortDate)).Day
-            cmdMonths.SelectedValue = Convert.ToDateTime(ShamsiDate.Miladi2Shamsi(Now, ShamsiDate.ShowType.ShortDate)).Month
-            cmdyears.Text = Convert.ToDateTime(ShamsiDate.Miladi2Shamsi(Now, ShamsiDate.ShowType.ShortDate)).Year
+            cmdDays.Text = ShamsiDate.Miladi2Shamsi(Now, ShamsiDate.ShowType.ShortDate).ToString().Split("/")(2)
+            cmdMonths.SelectedValue = ShamsiDate.Miladi2Shamsi(Now, ShamsiDate.ShowType.ShortDate).ToString().Split("/")(1)
+            cmdyears.Text = ShamsiDate.Miladi2Shamsi(Now, ShamsiDate.ShowType.ShortDate).ToString().Split("/")(0)
 
             lblShamsiToMiladi.Text = GetShamsi()
             dgCalendar.DataBind()
