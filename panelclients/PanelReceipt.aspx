@@ -2,17 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style>
-        .warning {
-            padding: 10px;
-            background-color: #f2fff6;
-            border: 1px solid #8affab;
-            border-radius: 10px;
-            margin-top: 10px;
-            margin-bottom: 10px;
-            color: #2f8f4d;
-            font-size: 12px;
-        }
-
         #receipt {
             text-align: center;
         }

@@ -351,6 +351,7 @@
                                             OnCommand="PublicSetClick" runat="server" Font-Names="Samim"
                                             Width="100%"
                                             Height="100%"
+                                             CssClass="panelbtn"
                                             Style="cursor: help"
                                             Text="استعلام رسید" />
 

@@ -108,6 +108,8 @@
         routes.MapPageRoute("panelReceipt", "panel/PanelReceipt/{id}/{idSubmission}/", "~/panelclients/PanelReceipt.aspx")
         routes.MapPageRoute("panelTicketVoice", "panel/ticket/voice/{file}", "~/panelclients/playvoice.aspx")
         routes.MapPageRoute("PanelReports", "panel/PanelReports/{id}/{IdFilm}", "~/panelclients/PanelReports.aspx")
+        routes.MapPageRoute("PanelSuggestedFestival", "panel/PanelSuggestedFestival/{id}/", "~/panelclients/PanelSuggestedFestival.aspx")
+        routes.MapPageRoute("PanelSuggestedFestivalUploadReceipt", "panel/PanelSuggestedFestivalUploadReceipt/{id}/{festivalId}", "~/panelclients/PanelSuggestedFestivalUploadReceipt.aspx")
         '----------------------------------------------------------------------------------------
         'ساخت لینک داینامیک
         'routes.MapPageRoute("dynamicLink", "link/d/{randomString}", "~/files/images/background/banner_1.jpg")
@@ -217,6 +219,7 @@
         routes.MapPageRoute("testimonialsCms", "cms/pages/testimonials", "~/cms/pages/testimonials.aspx")
         routes.MapPageRoute("activities", "cms/pages/activities", "~/cms/pages/activities.aspx")
         routes.MapPageRoute("sms", "cms/pages/sms", "~/cms/pages/sms.aspx")
+        routes.MapPageRoute("requestedfestivalsclient", "cms/pages/requestedfestivalsclient", "~/cms/pages/requestedfestivalsclient.aspx")
 
     End Sub
 

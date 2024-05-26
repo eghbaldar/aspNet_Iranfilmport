@@ -113,6 +113,19 @@ Public Class DLL_Panel
         End Try
     End Function
 
+    Public Function GetUsernameCustomer(ByVal customerid As Long) As String
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            Dim sqlcom As New SqlCommand("select [username] from tbCustomers where id=" + customerid.ToString, sqlconn)
+            Return sqlcom.ExecuteScalar
+            sqlconn.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+    End Function
+
     Public Function GetVisitCounterCustomer(ByVal customerid As Long) As String
         Try
             If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
@@ -214,6 +227,31 @@ Public Class DLL_Panel
             sqlconn.Close()
         End Try
     End Function
+    Public Function GetCountry(ByVal idCountry As Long) As String
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            Dim sqlcom As New SqlCommand("select [name_en] from tbCountry where id=" + idCountry.ToString, sqlconn)
+            Return sqlcom.ExecuteScalar
+            sqlconn.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+    End Function
+
+    Public Sub SeenAllSuggestedFestival(ByVal userid As Long)
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            Dim sqlcom As New SqlCommand("update tbFestivalSuggestion set seen=1 where targetUserUsername=(select top 1 [username] from tbCustomers where id=" + userid.ToString() + ")", sqlconn)
+            sqlcom.ExecuteNonQuery()
+            sqlconn.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+    End Sub
 
     Public Function GetLeftoverSubmissionOfLimitedFilm(ByVal idFilm As Long) As String
         Try
@@ -422,6 +460,20 @@ Public Class DLL_Panel
 
     End Function
 
+    Public Function GetUnseenFestivalSuggestion(ByVal targetUserUsername As String) As String
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn_Site.Close()
+            sqlconn.Open()
+            Dim sqlcom As New SqlCommand("select count(*) from tbFestivalSuggestion where targetUserUsername='" + targetUserUsername + "' and [seen]=0", sqlconn)
+            Return sqlcom.ExecuteScalar
+            sqlconn.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+
+    End Function
+
     Public Function GetEmailClient(ByVal idClient As Long) As String
         Try
             If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
@@ -483,6 +535,7 @@ Public Class DLL_Panel
         End Try
 
     End Function
+
     Public Function GetSumFeeValueAllFilm(ByVal idClient As Long) As String
         Try
             If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
@@ -497,4 +550,41 @@ Public Class DLL_Panel
 
     End Function
 
+    Public Function UpdateFestivalSuggestionAgree(ByVal festivalSuggestionId As Long, agree As Char) As Integer
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            ' agree = 0 nothing
+            ' agree = 1 regquested
+            ' agree = 2 receitp is uploaded
+            ' agree = 3 festival is sent
+            ' agree = 4 rejected and money is back
+            Dim sqlcom As New SqlCommand("update tbFestivalSuggestion set agree='" + agree + "' where  id=" + festivalSuggestionId.ToString(), sqlconn)
+            Return sqlcom.ExecuteNonQuery()
+            sqlconn.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+
+    End Function
+
+    Public Function UpdateFestivalSuggestionReceipt(ByVal festivalSuggestionId As Long, filename As String) As Integer
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            ' agree = 0 nothing
+            ' agree = 1 regquested
+            ' agree = 2 receitp is uploaded
+            ' agree = 3 festival is sent
+            ' agree = 4 rejected and money is back
+            Dim sqlcom As New SqlCommand("update tbFestivalSuggestion set receiptfilename='" + filename + "' where  id=" + festivalSuggestionId.ToString(), sqlconn)
+            Return sqlcom.ExecuteNonQuery()
+            sqlconn.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+
+    End Function
 End Class

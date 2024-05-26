@@ -283,6 +283,8 @@
                                     <ul>
                                        <a href="commentClients">
                                             <asp:Label ID="Label29" runat="server" Text="تیکت ها" /></a>
+                                       <a href='<%= ResolveUrl("requestedfestivalsclient") %>'
+                                            <asp:Label ID="Label23f29" runat="server" Text="فستیوال های پولی درخواست شده" /></a>
                                     </ul>
                                 </li>
                                 

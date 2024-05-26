@@ -20,6 +20,7 @@ Partial Class panel
                 If IDUSER > 0 Then
                     Dll.UpdateVisitCounter(IDUSER)
                     FormsAuthentication.SetAuthCookie(IDUSER, True)
+                    Session.Add("username-temp", txtUser.Text.Trim)
                     Response.Redirect("~/panel/client/" & IDUSER)
                 End If
             End If

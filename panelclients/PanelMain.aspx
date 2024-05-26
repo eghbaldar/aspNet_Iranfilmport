@@ -5,17 +5,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style>
-        .warning {
-            padding: 10px;
-            background-color: #f2fff6;
-            border: 1px solid #8affab;
-            border-radius: 10px;
-            margin-top: 10px;
-            margin-bottom: 10px;
-            color: #2f8f4d;
-            font-size: 12px;
-        }
-
         .alert-danger {
             padding: 10px;
             background-color: #F8D7DA;
@@ -107,7 +96,7 @@
             <asp:HiddenField ID="HiddenField_CustomerID" runat="server" />
             <asp:HiddenField ID="HiddenField_FilmID" runat="server" />
 
-            <div class="warning">
+            <div class="information">
                 <ul>
                     <li>جهت دانلود فایل آموزشی
                 <strong>(تیکت گذاری)</strong>
@@ -202,7 +191,7 @@
                             <asp:TemplateField ConvertEmptyStringToNull="False" ItemStyle-HorizontalAlign="left"
                                 SortExpression="ID">
                                 <ItemTemplate>
-                                    <asp:Button ID="Button1" Font-Names="Samim" runat="server" OnCommand="ShowSubmissions"
+                                    <asp:Button ID="Button1" Font-Names="Samim" runat="server" CssClass="panelbtn" OnCommand="ShowSubmissions"
                                         Enabled='<%# EnableProfile() %>'
                                         CommandArgument='<%# Eval("id", "{0}") %>' Font-Size="11px" Style="cursor: pointer;"
                                         Text="مشاهده فستیوال‌ها" />
@@ -422,6 +411,7 @@
                                                         Width="100%"
                                                         Height="100%"
                                                         Style="cursor: help"
+                                                         CssClass="panelbtn"
                                                         Text="استعلام رسید" />
 
                                                     <asp:Label ID="lblStatusReceipt"
@@ -597,6 +587,7 @@
                                                         Width="100%"
                                                         Height="100%"
                                                         Style="cursor: help"
+                                                         CssClass="panelbtn"
                                                         Text="استعلام رسید" />
 
                                                     <asp:Label ID="lblStatusReceiptAll"

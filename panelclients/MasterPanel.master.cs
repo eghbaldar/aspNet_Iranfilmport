@@ -26,7 +26,7 @@ public partial class MasterPanel : System.Web.UI.MasterPage
             }
             //
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Response.Redirect("~/panel");
         }
@@ -48,6 +48,27 @@ public partial class MasterPanel : System.Web.UI.MasterPage
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "Modal", "window.onload = function() { loadMODAL(); };", true);
             }
         }
+        // suggested festivals
+        DLL_Panel pnl = new DLL_Panel();
+        try
+        {
+            var unseenfestivals = pnl.GetUnseenFestivalSuggestion(Session["username-temp"].ToString());
+            if (Convert.ToUInt32(unseenfestivals) > 0)
+            {
+                Session.Remove("username-temp");
+                string msg = "<img src='../../../files/images/icons/panel_festivals.png'/>";
+                msg += "<br>";
+                msg += string.Format("<span style='font-size:22px;'>از طرف دپارتمان پخش «درگاه فیلم ایران»، {0} فستیوال به شما پیشنهاد شده است. </span>", "<b style='color:red;'>" + unseenfestivals + "</b>");
+                msg += "<br>";
+                msg += "لطفا به لینک زیر ورود کرده و در صورت علاقه اقدام به ثبت کنید.";
+                msg += "<br>";
+                msg += "<a style='text-decoration:none;color:blue;font-weight:bold;' href='../../../panel/PanelSuggestedFestival/"+ Page.RouteData.Values["id"] + "' style='color:blue;'>«ورود به بخش پیشنهادات»</a>";
+                lblWarningInstallment.Text = msg;
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "Modal", "window.onload = function() { loadMODAL(); };", true);
+            }
+        }
+        catch { }
+
     }
 
 }

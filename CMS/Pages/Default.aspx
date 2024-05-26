@@ -13,11 +13,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
        <div class="TITLE">
         <h4>
-            تیکت های مشتریان
+            تیکت ها و پیشنهادات فستیوال های ورودی دار
         </h4>
     </div>
     <div>
-                     <asp:GridView ID="GridView6" runat="server" BackColor="LightGoldenrodYellow"
+        <asp:GridView ID="GridView6" runat="server" BackColor="LightGoldenrodYellow"
             BorderColor="Tan" BorderWidth="1px" CellPadding="2" DataSourceID="SqlDataSourceUnderConstruction"
             AutoGenerateColumns="False" ForeColor="Black" GridLines="None">
             <AlternatingRowStyle BackColor="PaleGoldenrod" />
@@ -45,12 +45,39 @@
             SelectCommand="
            Select count(*) as 'UnderConstruction' from [tbl_Comment_clients] where flag=1 and Id_parent=0
 	"></asp:SqlDataSource> 
+                <asp:GridView ID="GridViewSuggestedFestival" runat="server" BackColor="LightGoldenrodYellow"
+            BorderColor="Tan" BorderWidth="1px" CellPadding="2" DataSourceID="SqlDataSourceFestivalSuggestion"
+            AutoGenerateColumns="False" ForeColor="Black" GridLines="None">
+            <AlternatingRowStyle BackColor="PaleGoldenrod" />
+            <Columns>
+                <asp:TemplateField HeaderText="فستیوال های درخواست شده" >
+                    <ItemTemplate>
+                        <a href="requestedfestivalsclient">
+                            <div style="padding: 10px;">
+                                <asp:Label ID="Lab12el11" Font-Size="20px" runat="server" Text='<%# Bind("[UnderConstruction]") %>'></asp:Label>
+                            </div>
+                        </a>
+                    </ItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+            <FooterStyle BackColor="Tan" />
+            <HeaderStyle BackColor="Tan" Font-Bold="True" />
+            <PagerStyle BackColor="PaleGoldenrod" ForeColor="DarkSlateBlue" HorizontalAlign="Center" />
+            <SelectedRowStyle BackColor="DarkSlateBlue" ForeColor="GhostWhite" />
+            <SortedAscendingCellStyle BackColor="#FAFAE7" />
+            <SortedAscendingHeaderStyle BackColor="#DAC09E" />
+            <SortedDescendingCellStyle BackColor="#E1DB9C" />
+            <SortedDescendingHeaderStyle BackColor="#C2A47B" />
+        </asp:GridView>
+        <asp:SqlDataSource ID="SqlDataSourceFestivalSuggestion" runat="server" ConnectionString="<%$ ConnectionStrings:DesktopConnectionString %>"
+            SelectCommand="
+           Select count(*) as 'UnderConstruction' from [tbFestivalSuggestion] where agree=2"></asp:SqlDataSource> 
         </div>
     <div class="TITLE">
         <h4>
             فیلمسازان
         </h4>
-    </div>کامنت
+    </div>
     <div>
         <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataSourceID="SDSStatisticalProfile"
             BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px"

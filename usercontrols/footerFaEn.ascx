@@ -56,6 +56,9 @@
         </div>
     </div>
     <div style="text-align: center; padding-bottom: 10px;">
+
+<a referrerpolicy='origin' target='_blank' href='https://trustseal.enamad.ir/?id=492756&Code=9bnsj3VPxLi1wOnrKxZa3UcWur4ahkmo'><img referrerpolicy='origin' src='https://trustseal.enamad.ir/logo.aspx?id=492756&Code=9bnsj3VPxLi1wOnrKxZa3UcWur4ahkmo' alt='' style='cursor:pointer' code='9bnsj3VPxLi1wOnrKxZa3UcWur4ahkmo'></a>
+
         <span><a href="https://cinando.com/en/Company/iran_film_port_245260/Detail" target="_blank">
             <img alt="سیناندو - Cinando" style="text-shadow: 3px 1px 1px #000;" width="150" src='<%= Page.ResolveUrl("~/files/images/logos/cinando.png") %>' />
         </a></span><span><a href="../">

@@ -8,15 +8,23 @@ Partial Class usercontrols_Panel_Menu_Right
         lblCustomerVisitCounter.Text = Dl.GetVisitCounterCustomer(Convert.ToInt64(Page.RouteData.Values("id")))
         lblCustomerPhone.Text = Dl.GetPhoneCustomer(Convert.ToInt64(Page.RouteData.Values("id")))
         lblEmail.Text = IIf(Dl.GetEmailClient(Convert.ToInt64(Page.RouteData.Values("id"))) <> "",
-Dl.GetEmailClient(Convert.ToInt64(Page.RouteData.Values("id"))), "وارد نشده")
+        Dl.GetEmailClient(Convert.ToInt64(Page.RouteData.Values("id"))), "وارد نشده")
+        lblUsername.Text = Dl.GetUsernameCustomer(Convert.ToInt64(Page.RouteData.Values("id")))
         Installment()
         unread()
+        festivalsuggestion()
     End Sub
 
     Private Sub unread()
         Dim pnl As New DLL_Panel
         lblCountUnread.Text = pnl.GetUnreadComment(Convert.ToInt64(Page.RouteData.Values("id")))
         HolderLblCountUnread.Visible = IIf(Val(lblCountUnread.Text) > 0, True, False)
+    End Sub
+
+    Private Sub festivalsuggestion()
+        Dim pnl As New DLL_Panel
+        lblCountFestivalSuggestion.Text = pnl.GetUnseenFestivalSuggestion(lblUsername.Text)
+        HolderLblSuggestedFestival.Visible = IIf(Val(lblCountFestivalSuggestion.Text) > 0, True, False)
     End Sub
 
     Protected Sub btnMnuHome_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnMnuHome.Click
@@ -50,6 +58,10 @@ Dl.GetEmailClient(Convert.ToInt64(Page.RouteData.Values("id"))), "وارد نش�
 
     Private Sub btnMnuTicket_Click(sender As Object, e As ImageClickEventArgs) Handles btnMnuTicket.Click
         Response.Redirect("~/panel/tickets/" & Page.RouteData.Values("id"))
+    End Sub
+
+    Private Sub btnMnuSuggestedFestival_Click(sender As Object, e As ImageClickEventArgs) Handles btnMnuSuggestedFestival.Click
+        Response.Redirect("~/panel/PanelSuggestedFestival/" & Page.RouteData.Values("id"))
     End Sub
 
 End Class

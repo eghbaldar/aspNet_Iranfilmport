@@ -61,7 +61,7 @@
                     </asp:SqlDataSource>
                 </td>
                 <td>
-                    <asp:Button CssClass="cmdCss"  ID="btnShowInfo" Font-Names="Samim" runat="server" style="padding:7px;cursor:pointer;" Text="نمایش" />
+                    <asp:Button CssClass="panelbtn"  ID="btnShowInfo" Font-Names="Samim" runat="server" style="padding:7px;cursor:pointer;" Text="نمایش" />
                 </td>
             </tr>
         </table>

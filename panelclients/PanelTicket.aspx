@@ -2,17 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style>
-        .warning {
-            padding: 10px;
-            background-color: #f2fff6;
-            border: 1px solid #8affab;
-            border-radius: 10px;
-            margin-top: 10px;
-            margin-bottom: 10px;
-            color: #2f8f4d;
-            font-size: 12px;
-        }
-
         .btn {
             font-family: Samim;
             font-size: 13px;
@@ -46,7 +35,7 @@
         </ul>
     </div>
     <div style="padding-bottom: 10px;">
-        <asp:Button CssClass="cmdCss" ID="btnNewTicket" Font-Names="Samim" runat="server" Style="padding: 7px; cursor: pointer;"
+        <asp:Button CssClass="panelbtn" ID="btnNewTicket" Font-Names="Samim" runat="server" Style="padding: 7px; cursor: pointer;"
             Text="تیکت جدید ..." />
     </div>
     <div class="TitleTitle">
@@ -108,7 +97,7 @@
                             <asp:Button ID="Button1"
                                 CommandArgument='<%# Eval("Id") & "|" & Eval("flag") & "|" & Eval("sections") & "|" & Eval("id_submission") %>'
                                 OnCommand="Ticket"
-                                CssClass="btn" runat="server" Text="مشاهده" Width="100%" />
+                                CssClass="panelbtn" runat="server" Text="مشاهده" Width="100%" />
                         </div>
                     </ItemTemplate>
                     <HeaderStyle HorizontalAlign="Right" />

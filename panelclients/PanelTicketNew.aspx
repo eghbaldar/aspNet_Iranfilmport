@@ -2,15 +2,15 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <%--JQuery--%>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src='<%= ResolveUrl("~/files/js/recordvoice/jquery.min.js") %>'></script>
     <%--Sweet ALert--%>
     <script src="../../files/sweetalert/sweetalert2.all.min.js"></script>
     <link href="../../files/sweetalert/sweetalert2.min.css" rel="stylesheet" />
     <script src="../../files/sweetalert/sweetalert2.min.js"></script>
     <%--Modal--%>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src='<%= ResolveUrl("~/files/js/recordvoice/jquery-3.2.1.slim.min.js") %>' integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src='<%= ResolveUrl("~/files/js/recordvoice/popper.min.js") %>' integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src='<%= ResolveUrl("~/files/js/recordvoice/bootstrap.min.js") %>' integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <%--Main Style--%>
     <style type="text/css">
 div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled {
@@ -505,7 +505,7 @@ div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2
 
 
 
-
+                           
 
                            <asp:LinkButton runat="server" Height="60" ForeColor="#606060"
                                 ID="btnMethodRecord"
@@ -544,11 +544,12 @@ div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2
                                 placeholder="متن خود را وارد کنید ..." Height="250px" Width="100%"></asp:TextBox>
                         </div>
                         <div style="padding-top: 15px;">
-                            <asp:Button CssClass="cmdCss" ID="btnInsert" Font-Names="Samim" runat="server" Style="padding: 7px; cursor: pointer;" Text="ثبت" />
+                            <asp:Button  CssClass="panelbtn" ID="btnInsert" Font-Names="Samim" runat="server" Style="padding: 7px; cursor: pointer;" Text="ثبت" />
                         </div>
                     </asp:View>
                     <asp:View ID="View6" runat="server">
-
+                        <div style="background-color:#ffdede;padding:20px;">
+                         <div style="padding-bottom:10px; width:100%;text-align:center;font-size:20px;color:red;" class="blink">جهت رکورد ویس خود روی شکل زیر کلیک/تاچ کنید:</div>
                         <div style="  
                          display: flex;
    flex-direction: row;
@@ -569,7 +570,7 @@ div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2
 
                         </button>
                         </div>
-
+                            </div>
 
                     </asp:View>
                 </asp:MultiView>
@@ -813,7 +814,8 @@ div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2
 
     <script>
         // All wavesurfer options in one place: https://wavesurfer-js.org/examples/#all-options.js 
-        import WaveSurfer from 'https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js'
+        //import WaveSurfer from 'https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js'
+        import WaveSurfer from 'https://iranfilmport.com/files/js/recordvoice/wavesurfer.esm.js'
 
         const audio = new Audio()
         audio.controls = true
