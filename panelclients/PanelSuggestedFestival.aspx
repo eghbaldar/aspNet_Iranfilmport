@@ -61,6 +61,8 @@
                 </li>
                 <li>«آخرین تاریخ موافقت»، ارتباطی با ددلاین فستیوال نداشته و صرفا زمان و مهلت درخواست شما
                     را مشخص میکند که قاعدتا چندین روز زودتر از زمان نهایی اتمام پذیرش فستیوال است.</li>
+                <li>علت پیشنهاد این فستیوال (ها) یا براساس تم فیلم/فیلمنامه شما بوده است و یا به علت موضوع 
+                    آزاد بودن فستیوال، لطفا در این خصوص سوال نفرمائید.</li>
             </ul>
         </div>
         <asp:GridView ID="DG_SuggestedFestivals" runat="server" DataSourceID="SDS_SuggestedFestivals" Width="100%" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" PageSize="30">
@@ -68,8 +70,17 @@
             <Columns>
                 <asp:BoundField DataField="id" HeaderText="id" InsertVisible="False" ReadOnly="True" SortExpression="id" Visible="False" />
                 <asp:BoundField DataField="festivalName" HeaderText="نام فستیوال" SortExpression="festivalName">
-                    <ItemStyle HorizontalAlign="Center" Width="40%" />
+                    <ItemStyle HorizontalAlign="Center" Width="30%" />
                 </asp:BoundField>
+                <asp:BoundField DataField="festivalLevel" HeaderText="لول" SortExpression="festivalLevel">
+                    <ItemStyle HorizontalAlign="Center"/>
+                </asp:BoundField>
+                <asp:TemplateField HeaderText="پیشنهاد برای" SortExpression="filmname">
+                    <ItemTemplate>
+                        <asp:Label ID="La1bel1fes" runat="server" Text='<%# Eval("filmname") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle HorizontalAlign="Center" />
+                </asp:TemplateField>
                 <asp:TemplateField HeaderText="مقدار ورودی" SortExpression="festivalFee">
                     <ItemTemplate>
                         <asp:Label ID="La1bel1" runat="server" Text='<%# String.Format("{0}{1}", Eval("festivalFee").ToString(), "<span style=""color:red""> دلار</span>") %>'></asp:Label>
@@ -113,7 +124,9 @@
             <SortedDescendingCellStyle BackColor="#CAC9C9" />
             <SortedDescendingHeaderStyle BackColor="#000065" />
         </asp:GridView>
-        <asp:SqlDataSource ID="SDS_SuggestedFestivals" runat="server" ConnectionString="<%$ ConnectionStrings:DesktopConnectionString %>" SelectCommand="SELECT * FROM [tbFestivalSuggestion] WHERE ([targetUserUsername] = (select top 1 [username] from tbCustomers where id=@id)) ORDER BY [insertdate] DESC">
+        <asp:SqlDataSource ID="SDS_SuggestedFestivals" runat="server" 
+            ConnectionString="<%$ ConnectionStrings:DesktopConnectionString %>" 
+            SelectCommand="SELECT *,(select [film] from tbFilms where id=fg.filmid) as 'filmname' FROM [tbFestivalSuggestion] fg WHERE ([targetUserUsername] = (select top 1 [username] from tbCustomers where id=@id)) ORDER BY [insertdate] DESC">
             <SelectParameters>
                 <asp:ControlParameter Name="id" ControlID="hiddenUsername" PropertyName="Value" Type="String" />
             </SelectParameters>

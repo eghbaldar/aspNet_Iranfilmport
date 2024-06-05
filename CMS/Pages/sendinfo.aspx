@@ -22,13 +22,23 @@
                 <asp:TemplateField HeaderText="Link" SortExpression="Link">
                     <ItemTemplate>
                     <a href='<%# eval("Link") %>' target="_blank">
-                        <asp:Label ID="Label1" runat="server" Text='<%# iif(eval("Link")<>"","LINK","") %>'></asp:Label>
+                        <asp:Label ID="Label1" runat="server" Text='<%# iif(eval("Link") <> "", "LINK", "") %>'></asp:Label>
                         </a>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="datetime" SortExpression="datetime">
                     <ItemTemplate>
                         <asp:Label ID="Label2" runat="server" Text='<%# getdate(eval("datetime")) %>'></asp:Label>
+                    </ItemTemplate>
+ 
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="datetime" SortExpression="datetime">
+                    <ItemTemplate>
+                            <asp:Panel ID="Pan543534el2" runat="server" Style="padding: 5px;" BackColor='<%# IIf(Eval("flag") = "True", System.Drawing.Color.Green, System.Drawing.Color.Red) %>'>
+
+                                <asp:Button ID="But5to3n1" runat="server" CommandArgument='<%# Eval("id") %>' OnCommand="SetSeen" Text='<%# IIf(Eval("flag"), "Seen", "Unseen") %>' ForeColor="Green" />
+
+                            </asp:Panel>
                     </ItemTemplate>
  
                 </asp:TemplateField>

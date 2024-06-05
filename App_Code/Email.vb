@@ -32,6 +32,7 @@ Public Class Email
             DLL_CMS.InsertMessage(to_, subject_, TEXT + "</br>" + link_)
 
         Catch ex As FormatException
+            DLL_CMS.InsertErrorLogs("", "Email", Err.Number, ex.Message)
         End Try
     End Sub
 

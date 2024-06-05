@@ -17,31 +17,42 @@ public partial class panelclients_Default : System.Web.UI.Page
 
 
             // Check if the file extension is .jpg
-            if (fileExtension == ".jpg")
+            byte[][] allowedSignatures = {
+    new byte[] { 0xFF, 0xD8, 0xFF, 0xE0 },
+    new byte[] { 0xFF, 0xD8, 0xFF, 0xE1 },
+    new byte[] { 0x89, 0x50, 0x4E, 0x47 },
+    new byte[] { 0x47, 0x49, 0x46, 0x38 },
+    new byte[] { 0x42, 0x4D }
+};
+
+            string[] allowedExtensions = { ".jpg", ".jpeg", ".png", ".gif", ".bmp" };
+
+            if (allowedExtensions.Contains(Path.GetExtension(FileUpload.PostedFile.FileName).ToLower()))
             {
                 // Check the file signature
-                byte[] fileBytes = new byte[10];
-                FileUpload.PostedFile.InputStream.Read(fileBytes, 0, 10);
-                if (fileBytes[0] == 0xFF && fileBytes[1] == 0xD8 && fileBytes[2] == 0xFF && (fileBytes[3] == 0xE0 || fileBytes[3] == 0xE1))
+                byte[] fileBytes = new byte[4];
+                FileUpload.PostedFile.InputStream.Read(fileBytes, 0, 4);
+
+                if (allowedSignatures.Any(sig => sig.SequenceEqual(fileBytes)))
                 {
                     // Check the file size (less than 1 MB)
                     if (FileUpload.PostedFile.ContentLength < 1024 * 1024)
                     {
-                        string randomfilename = Guid.NewGuid().ToString();
-                        string savePath = Server.MapPath("~/files/uploadFiles/clientfestivalsuggestedreceipt/" + randomfilename + fileExtension);
+                        string randomFileName = Guid.NewGuid().ToString();
+                        string savePath = Path.Combine(Server.MapPath("~/files/uploadFiles/clientfestivalsuggestedreceipt/"), randomFileName + Path.GetExtension(FileUpload.PostedFile.FileName));
 
                         try
                         {
                             DLL_Panel dl = new DLL_Panel();
-                            FileUpload.SaveAs(savePath);
+                            FileUpload.PostedFile.SaveAs(savePath);
                             string message = "رسید با موفقیت آپلود شد. لطفا منتظر تماس کارشناسان شرکت بمانید.";
-                            string jsFunction = "MyAlert('" + message + "|" +Page.RouteData.Values["id"].ToString() + "|4000|True');";
+                            string jsFunction = "MyAlert('" + message + "|" + Page.RouteData.Values["id"].ToString() + "|4000|True');";
                             dl.UpdateFestivalSuggestionAgree(Convert.ToInt64(Page.RouteData.Values["festivalId"]), '2');
-                            dl.UpdateFestivalSuggestionReceipt(Convert.ToInt64(Page.RouteData.Values["festivalId"]), randomfilename + fileExtension);
+                            dl.UpdateFestivalSuggestionReceipt(Convert.ToInt64(Page.RouteData.Values["festivalId"]), Path.GetFileName(savePath));
                             ClientScript.RegisterStartupScript(this.GetType(), "YourKey", jsFunction, true);
                         }
                         catch (Exception ex)
-                        {                            
+                        {
                             string message = "خطایی رخ داده است.";
                             string jsFunction = "MyAlert('" + message + "| |2000|false')";
                             ClientScript.RegisterStartupScript(this.GetType(), "YourKey", jsFunction, true);

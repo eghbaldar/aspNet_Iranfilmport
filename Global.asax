@@ -220,6 +220,7 @@
         routes.MapPageRoute("activities", "cms/pages/activities", "~/cms/pages/activities.aspx")
         routes.MapPageRoute("sms", "cms/pages/sms", "~/cms/pages/sms.aspx")
         routes.MapPageRoute("requestedfestivalsclient", "cms/pages/requestedfestivalsclient", "~/cms/pages/requestedfestivalsclient.aspx")
+        routes.MapPageRoute("errorLogs", "cms/pages/errorLogs", "~/cms/pages/errorLogs.aspx")
 
     End Sub
 

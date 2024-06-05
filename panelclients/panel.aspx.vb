@@ -47,11 +47,21 @@ Partial Class panel
         End Try
 
         ImageCaptacha.ImageUrl = "~/captcha"
+        ImageCaptchaPhone.ImageUrl = "~/captcha"
         If Not Dll.Version.Trim = Nothing Then
             lblVersion.Text = Dll.Version.Replace("ي", "ی")
             If Not IsPostBack Then ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Modal", "window.onload = function() { loadMODAL(); };", True)
         End If
 
+        If Not IsPostBack Then
+            txtPhone3.Attributes.Add("onkeyup", "txtInputChanged(this.value);")
+        End If
+
     End Sub
+
+    Private Sub btnChangeToPhone_Click(sender As Object, e As EventArgs) Handles btnChangeToPhone.Click
+        MultiView.ActiveViewIndex = 1
+    End Sub
+
 
 End Class

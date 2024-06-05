@@ -18,7 +18,7 @@
                 <b>رسید خود را انتخاب کنید:</b>
                 <ul>
                     <li>حجم کمتر از 1 مگابایت</li>
-                    <li>تنها پسوند JPG قابل قابل قبول است</li>
+                    <li>تنها پسوند JPG,JPEG,BMP,GIF,PNG قابل قابل قبول است</li>
                 </ul>
             </div>
             <asp:FileUpload ID="FileUpload" runat="server" />

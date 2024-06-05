@@ -218,6 +218,8 @@
                                             <asp:Label ID="Label30" runat="server" Text="نماینده‌های شرکت" /></a>
                                          <a href="sms">
                                             <asp:Label ID="Label35" runat="server" Text="اس ام اس" /></a>
+                                         <a href="errorLogs">
+                                            <asp:Label ID="Labefdl35" runat="server" Text="لاگ خطاها" /></a>
                                     </ul>
                                 </li>
                                 <li>

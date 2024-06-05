@@ -1,5 +1,8 @@
 ﻿
+Imports System.IO
 Imports System.Net
+Imports System.Net.Security
+Imports System.Security.Cryptography.X509Certificates
 
 Partial Class PanelMain
     Inherits System.Web.UI.Page
@@ -154,7 +157,7 @@ Partial Class PanelMain
         Dim msg_not_uploaded_physical_file As String = "رسید این ارسال هنوز توسط دپارتمان پخش شرکت بارگزاری نشده است. بارگزاری این رسید به زودی اتفاق خواهد افتاد. لطفا صبور باشد. با تشکر"
         Select Case receipt
             Case "2" ' means the receipt was sent but the user has not opened it yet
-                If GetStatusExistedFileOnServer(id.ToString & ".jpg") Then 'check whether receipt is existed or not!
+                If FileExistsOnRemoteServer(id.ToString & ".jpg") Then 'check whether receipt is existed or not!
                     Return "<div class='divGiveReceipt'><a style='text-decoration:none' target='_blank' href='../PanelReceipt/" & Page.RouteData.Values("id") & "/" & id.ToString & "#receipt'>دریافت رسید</a></div>"
                 Else
                     ScriptManager.RegisterStartupScript(Me, Me.GetType(), "عدم یافت رسید", "alert('" & msg_not_found_physical_file & "');", True)
@@ -174,20 +177,48 @@ Partial Class PanelMain
         End Select
     End Function
 
-    Private Function GetStatusExistedFileOnServer(filename As String) As Boolean
-
-        'ServicePointManager.Expect100Continue = True ''Just for HTTPS (ssl)
-        'ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 ''Just for HTTPS (ssl)
-        Dim webRequest As System.Net.WebRequest = System.Net.WebRequest.Create("https://files.iranfilmport.com/receipts/" & filename)
-        webRequest.Method = "HEAD"
+    '==================================== CHECK FILE ON SERVER
+    Public Function FileExistsOnRemoteServer(ByVal filename As String) As Boolean
         Try
-            Dim response As System.Net.HttpWebResponse = CType(webRequest.GetResponse, System.Net.HttpWebResponse)
-            Return True
-        Catch
+            ' Create a new WebClient instance and set the security protocol
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 Or SecurityProtocolType.Tls11 Or SecurityProtocolType.Tls
+            ServicePointManager.ServerCertificateValidationCallback = AddressOf ValidateRemoteCertificate
+
+            Using client As New WebClient()
+                ' Check if the file exists on the remote server
+                Dim fileBytes As Byte() = client.DownloadData("https://files.iranfilmport.com/receipts/" & filename)
+                Return fileBytes.Length > 0
+            End Using
+        Catch ex As Exception
+            ' If any exception occurs, assume the file does not exist
             Return False
         End Try
-
     End Function
+
+    Private Function ValidateRemoteCertificate(ByVal sender As Object,
+                                           ByVal certificate As X509Certificate,
+                                           ByVal chain As X509Chain,
+                                           ByVal sslPolicyErrors As SslPolicyErrors) As Boolean
+        ' Always return true to bypass certificate validation
+        Return True
+    End Function
+    'NEW WAY
+    'OLD WAY
+    'Private Function GetStatusExistedFileOnServer(filename As String) As Boolean
+
+    '    'ServicePointManager.Expect100Continue = True ''Just for HTTPS (ssl)
+    '    'ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 ''Just for HTTPS (ssl)
+    '    Dim webRequest As System.Net.WebRequest = System.Net.WebRequest.Create("https://files.iranfilmport.com/receipts/" & filename)
+    '    webRequest.Method = "HEAD"
+    '    Try
+    '        Dim response As System.Net.HttpWebResponse = CType(webRequest.GetResponse, System.Net.HttpWebResponse)
+    '        Return True
+    '    Catch
+    '        Return False
+    '    End Try
+
+    'End Function
+    '====================================
 
     Private Sub dgAll_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles dgAll.RowDataBound
         If Convert.ToInt16(DataBinder.Eval(e.Row.DataItem, "receipt")) = 2 _

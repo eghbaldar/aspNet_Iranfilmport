@@ -1318,4 +1318,32 @@ Public Class DLL_CMS
         End Try
     End Sub
 
+    Public Function InsertErrorLogs(user As String, sectionTitle As String, errornumber As String, errormsg As String)
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            Dim sqlcom As New SqlCommand("insert into [tbl_ErrorLogs] ([user],[sectionTitle],[errornumber],[errormsg]) values ('" + user + "','" + sectionTitle + "',N'" + errornumber + "','" + errormsg + "') ", sqlconn)
+            sqlcom.ExecuteNonQuery()
+            sqlconn.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+    End Function
+
+    Public Sub UpdateSeenSendInfo(Id As Long)
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            Dim input As String
+            input = "update tbl_SendInformation set [flag]= ~[flag] where id=" + Id.ToString
+            Dim sqlcom As New SqlCommand(input, sqlconn)
+            sqlcom.ExecuteNonQuery()
+            sqlconn.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+    End Sub
+
 End Class
