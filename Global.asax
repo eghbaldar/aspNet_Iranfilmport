@@ -111,6 +111,14 @@
         routes.MapPageRoute("PanelSuggestedFestival", "panel/PanelSuggestedFestival/{id}/", "~/panelclients/PanelSuggestedFestival.aspx")
         routes.MapPageRoute("PanelSuggestedFestivalUploadReceipt", "panel/PanelSuggestedFestivalUploadReceipt/{id}/{festivalId}", "~/panelclients/PanelSuggestedFestivalUploadReceipt.aspx")
         '----------------------------------------------------------------------------------------
+        '----------------------------------------------------------------------------------------
+        '----------------------------------------------------------------------------------------
+        '                                       Temp
+        routes.MapPageRoute("test", "test/", "~/default2.aspx")
+        '----------------------------------------------------------------------------------------
+        '----------------------------------------------------------------------------------------
+        '----------------------------------------------------------------------------------------
+        '----------------------------------------------------------------------------------------
         'ساخت لینک داینامیک
         'routes.MapPageRoute("dynamicLink", "link/d/{randomString}", "~/files/images/background/banner_1.jpg")
         '----------------------------------------------------------------------------------------

@@ -1,0 +1,109 @@
+﻿.kingYellow, .search_field {
+    background-color: #ECCE01 !important;
+}
+    .search_field{
+        width:150px !important;
+    }
+    .kingMediumGray {
+        background-color: #D9D9D9 !important;
+    }
+
+.kingLightGray {
+    background-color: #EFEFEF !important;
+}
+.kingHeader {
+margin-top:2px;
+}
+.kingTextJustify {
+    text-align: justify !important;
+}
+.kingHeaderShadow {
+    -webkit-box-shadow: 0px 10px 43px -21px rgba(0,0,0,1);
+    -moz-box-shadow: 0px 10px 43px -21px rgba(0,0,0,1);
+    box-shadow: 0px 10px 43px -21px rgba(0,0,0,1);  
+}
+.scroll-progress {
+    height: 3px;
+    width: 0px;
+    z-index: 9999999;
+    position: absolute;
+    bottom: -10px;
+}
+.gradient-bg-1 {
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#9b9b9b+0,ffe100+100 */
+    background: linear-gradient(to right, #9b9b9b 0%,#ffe100 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    height: 10px;
+}
+.main-menu > li {
+    padding:0 5px !important;
+}
+.main-header .main-nav ul li a {
+    font-size:12px !important;
+}
+.main-menu > li a:hover {
+    color: #ECCE01 !important;
+}
+.main-menu .menu-item-has-children.show > .dropdown-toggle {
+    color: #ECCE01 !important;
+}
+    .sentence-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    position: relative;
+    overflow: hidden;
+}
+
+.sentence {
+    position: absolute;
+    opacity: 0;
+    font-size: 1.5rem;
+    text-align: center;
+    animation: fade 50s linear infinite;
+}
+    .sentence b {
+        color: #FFD700;
+    }
+    .sentence:nth-child(1) {
+        animation-delay: 0s;
+    }
+
+    .sentence:nth-child(2) {
+        animation-delay: 10s;
+    }
+
+    .sentence:nth-child(3) {
+        animation-delay: 20s;
+    }
+
+    .sentence:nth-child(4) {
+        animation-delay: 30s;
+    }
+
+    .sentence:nth-child(5) {
+        animation-delay: 40s;
+    }
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    30% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
