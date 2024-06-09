@@ -1,5 +1,5 @@
 ﻿
-Partial Class MasterPageKing
+Partial Class KingMaster
     Inherits System.Web.UI.MasterPage
 End Class
 

@@ -1,36 +1,36 @@
-﻿<%@ Page Title="" Language="VB" MasterPageFile="~/MasterPageKing.master" AutoEventWireup="false" CodeFile="Default2.aspx.vb" Inherits="Default2" %>
+﻿<%@ Page Title="" Language="VB" MasterPageFile="~/KingMaster.master" AutoEventWireup="false" CodeFile="Default2.aspx.vb" Inherits="Default2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-            <div class="container">
-            <!--Featured Grid-->
-            <div class="mb-20 sentence-container">
+    <div class="container">
+        <!--Featured Grid-->
+        <div class="mb-20 sentence-container">
 
-    <p class="sentence">
-    پخش و ارسال فیلم و فیلمنامه به فستیوال‌های بین‌المللی با
+            <p class="sentence">
+                پخش و ارسال فیلم و فیلمنامه به فستیوال‌های بین‌المللی با
     <b>12 سال </b>سابقه
-    </p>
+            </p>
 
-                <p class="sentence">
-                    اولین پخش کننده با حضور در لیست نهایی <b>اسکار </b>
-                    </p>
+            <p class="sentence">
+                اولین پخش کننده با حضور در لیست نهایی <b>اسکار </b>
+            </p>
 
-                                <p class="sentence">
-                    تنها پخش کننده با <b>پنل اختصاصی</b> فول امکانات برای فیلمساز
-                    </p>
+            <p class="sentence">
+                تنها پخش کننده با <b>پنل اختصاصی</b> فول امکانات برای فیلمساز
+            </p>
 
-                                <p class="sentence">
-                    تنها پخش کننده با <b>استراتژی</b> پخش تخصصی
-                    </p>
+            <p class="sentence">
+                تنها پخش کننده با <b>استراتژی</b> پخش تخصصی
+            </p>
 
-                                <p class="sentence">
-                    تنها پخش کننده با <b> کارنامه‌ای  قابل دسترس</b> و قابل استناد
-                    </p>
+            <p class="sentence">
+                تنها پخش کننده با <b>کارنامه‌ای  قابل دسترس</b> و قابل استناد
+            </p>
 
 
 
-    </div>
+        </div>
     </div>
     <main class="position-relative">
         <div class="container">
@@ -41,99 +41,89 @@
                     <div class="featured-post featured-post-grid ">
                         <div class="featured-slider-1 border-radius-10">
                             <div class="featured-slider-1-items">
-                                <div class="slider-single p-10 kingLightGray">
-                                    <div class="img-hover-slide border-radius-15 mb-30 position-relative overflow-hidden">
-                                        <span class="top-right-icon bg-dark"><i class="mdi mdi-camera-alt"></i></span>
-                                        <a href="single.html">
-                                            <img src="files/kingMaterials/imgs/news-9.jpg" alt="post-slider">
-                                        </a>
-                                    </div>
-                                    <div class="pr-10 pl-10">
-                                        <div class="entry-meta mb-20">
-                                            <a class="entry-meta meta-0" href="category.html"><span class="post-in background1 text-danger font-x-small">اقتصاد</span></a>
-                                            <div class="float-left font-small">
-                                                <span><span class="ml-10 text-muted"><i class="fa fa-eye" aria-hidden="true"></i></span>5.8 هزار</span>
-                                                <span class="mr-30"><span class="ml-10 text-muted"><i class="fa fa-comment" aria-hidden="true"></i></span>2.5 هزار</span>
-                                                <span class="mr-30"><span class="ml-10 text-muted"><i class="fa fa-share-alt" aria-hidden="true"></i></span>125 هزار</span>
+
+
+                                <asp:Repeater ID="R_Slider" runat="server" DataSourceID="SDS_Slider">
+                                    <ItemTemplate>
+                                        <div class="slider-single p-10 kingLightGray">
+                                            <div class="img-hover-slide border-radius-15 mb-30 position-relative overflow-hidden">
+                                                <span class="top-right-icon bg-dark"><i class="mdi mdi-camera-alt"></i></span>
+                                                <a href="single.html">
+                                                    <img src='<%# String.Format("\files\uploadFiles\sliders\{0}", Eval("photo")) %>' alt="post-slider">
+                                                </a>
+                                            </div>
+                                            <div class="pr-10 pl-10">
+                                                <div class="entry-meta mb-20">
+                                                    <a class="entry-meta meta-0" href="category.html"><span class="post-in background1 text-danger font-x-small">اقتصاد</span></a>
+                                                    <div class="float-left font-small">
+                                                        <span><span class="ml-10 text-muted"><i class="fa fa-eye" aria-hidden="true"></i></span>5.8 هزار</span>
+                                                        <span class="mr-30"><span class="ml-10 text-muted"><i class="fa fa-comment" aria-hidden="true"></i></span>2.5 هزار</span>
+                                                        <span class="mr-30"><span class="ml-10 text-muted"><i class="fa fa-share-alt" aria-hidden="true"></i></span>125 هزار</span>
+                                                    </div>
+                                                </div>
+                                                <h4 class="post-title full-width mb-20">
+                                                    <a href='<%# String.Format("{0}",Eval("link")) %>' target="_blank">
+                                                        <h1 class="SliderUp">
+                                                            <asp:Label Visible='<%# EnFa("FA") %>' ID="Label4" runat="server" CssClass="SliderUp"
+                                                                Text='<%# Eval("text").Replace("ي", "ی") %>'></asp:Label>
+                                                            <asp:Label Visible='<%# EnFa("EN") %>' ID="Label12" runat="server" CssClass="SliderUpEn"
+                                                                Text='<%# Eval("textEn")%>'></asp:Label>
+                                                        </h1>
+                                                    </a><a href='<%# String.Format("{0}",Eval("link")) %>' target="_blank">
+                                                        <p class="tag-text mb-5" style="font-family: Koodak; margin-top: 5px;">
+                                                            <asp:Label ID="Label1" Visible='<%# EnFa("FA") %>' CssClass="SliderDown" runat="server"
+                                                                Text='<%# Eval("subtext").Replace("ي", "ی") %>'></asp:Label>
+                                                        </p>
+                                                    </a>
+                                                </h4>
                                             </div>
                                         </div>
-                                        <h4 class="post-title full-width mb-20"><a href="#">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده</a></h4>
-                                    </div>
-                                </div>
-                                <div class="slider-single p-10">
-                                    <div class="img-hover-slide border-radius-15 mb-30 position-relative overflow-hidden">
-                                        <span class="top-right-icon bg-dark"><i class="mdi mdi-flash-on"></i></span>
-                                        <a href="single.html">
-                                            <img src="files/kingMaterials/imgs/news-4.jpg" alt="post-slider">
-                                        </a>
-                                    </div>
-                                    <div class="pr-10 pl-10">
-                                        <div class="entry-meta mb-20">
-                                            <a class="entry-meta meta-0" href="category.html"><span class="post-in background2 text-primary font-x-small">تکنولوژیکی</span></a>
-                                            <div class="float-left font-small">
-                                                <span><span class="ml-10 text-muted"><i class="fa fa-eye" aria-hidden="true"></i></span>5.8 هزار</span>
-                                                <span class="mr-30"><span class="ml-10 text-muted"><i class="fa fa-comment" aria-hidden="true"></i></span>2.5 هزار</span>
-                                                <span class="mr-30"><span class="ml-10 text-muted"><i class="fa fa-share-alt" aria-hidden="true"></i></span>125 هزار</span>
-                                            </div>
-                                        </div>
-                                        <h4 class="post-title full-width mb-20"><a href="#">تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی</a></h4>
-                                    </div>
-                                </div>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                                <asp:SqlDataSource ID="SDS_Slider" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
+                                    SelectCommand="SELECT * FROM [tbl_slider] WHERE ([visible] = @visible) ORDER BY [ID] DESC">
+                                    <SelectParameters>
+                                        <asp:Parameter DefaultValue="true" Name="visible" Type="Boolean" />
+                                    </SelectParameters>
+                                </asp:SqlDataSource>
+
+
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="row">
-                        <div class="col-md-6">
+
+                                                    <asp:Repeater ID="gv_master" runat="server" DataSourceID="SDS_Master">
+                                <ItemTemplate>
+                                     <div class="col-md-6">
                             <div class="slider-single mb-30 bg-white p-10 border-radius-15 kingYellow">
                                 <div class="img-hover-scale border-radius-10">
                                     <span class="top-right-icon background10"><i class="mdi mdi-share"></i></span>
                                     <a href="single.html">
-                                        <img class="border-radius-10" src="files/kingMaterials/imgs/news-5.jpg" alt="post-slider">
+<asp:Image AlternateText='<%# Eval("title").Replace("ي", "ی") %>' Width="100%" Style="-moz-border-radius: 5px;
+                                                            -webkit-border-radius: 5px; border-radius: 5px;" ID="Image1" runat="server" ImageUrl='<%# "~\convertToUnscale\?photo=" + String.Format("files\uploadFiles\article\{0}", Eval("photo")) + "&w=400&h=236" %>' />
                                     </a>
                                 </div>
                                 <h6 class="post-title pr-5 pl-5 mb-10 mt-15 text-limit-2-row">
-                                    <a href="single.html">طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد</a>
-                                </h6>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="slider-single mb-30 bg-white p-10 border-radius-15 kingLightGray">
-                                <div class="img-hover-scale border-radius-10">
                                     <a href="single.html">
-                                        <img class="border-radius-10" src="files/kingMaterials/imgs/news-6.jpg" alt="post-slider">
+                                        <h6 style="font-size: 12px;">
+                                                        <asp:Label Visible='<%# EnFa("FA") %>' ID="La1bel11" runat="server" CssClass="TitleNews"
+                                                            Text='<%# Eval("title").Replace("ي", "ی") %>'></asp:Label>
+                                                        <asp:Label Visible='<%# EnFa("EN") %>' ID="Label1" Style="font-size: 14px;" runat="server"
+                                                            Text='<%# Bind("titleEn") %>'></asp:Label>
+                                                    </h6>
                                     </a>
-                                </div>
-                                <h6 class="post-title pr-5 pl-5 mb-10 mt-15 text-limit-2-row">
-                                    <a href="single.html">سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای</a>
                                 </h6>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="slider-single bg-white p-10 border-radius-15 kingLightGray">
-                                <div class="img-hover-scale border-radius-10">
-                                    <a href="single.html">
-                                        <img class="border-radius-10" src="files/kingMaterials/imgs/news-7.jpg" alt="post-slider">
-                                    </a>
-                                </div>
-                                <h6 class="post-title pr-5 pl-5 mb-10 mt-15 text-limit-2-row">
-                                    <a href="single.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</a>
-                                </h6>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="slider-single bg-white p-10 border-radius-15 kingYellow">
-                                <div class="img-hover-scale border-radius-10">
-                                    <a href="single.html">
-                                        <img class="border-radius-10" src="files/kingMaterials/imgs/news-8.jpg" alt="post-slider">
-                                    </a>
-                                </div>
-                                <h6 class="post-title pr-5 pl-5 mb-10 mt-15 text-limit-2-row">
-                                    <a href="single.html">طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت</a>
-                                </h6>
-                            </div>
-                        </div>
+                                    </ItemTemplate>
+                            </asp:Repeater>
+
+                        <asp:SqlDataSource ID="SDS_Master" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
+                            SelectCommand="SELECT top 4 * FROM [tbl_articles] WHERE [visible] = 1 and  [date_time] <= getdate() and id in (SELECT top 20 [id] FROM [tbl_articles] order by [date_time] desc) order by date_time desc"></asp:SqlDataSource>
+
                     </div>
                 </div>
             </div>
@@ -163,19 +153,19 @@
                                         <li><span class="font-small">
                                             <a class="text-primary" href="#">تهران</a><br>
                                             <i class="wi wi-day-sunny ml-5"></i>32ºc
-                                                </span>
+                                        </span>
                                             <p>آفتابی</p>
                                         </li>
                                         <li><span class="font-small">
                                             <a class="text-danger" href="#">کرج</a><br>
                                             <i class="wi wi-day-cloudy ml-5"></i>28ºc
-                                                </span>
+                                        </span>
                                             <p>ابری</p>
                                         </li>
                                         <li><span class="font-small">
                                             <a class="text-success" href="#">رشت</a><br>
                                             <i class="wi wi-rain-mix ml-5"></i>25ºc
-                                                </span>
+                                        </span>
                                             <p>بارانی</p>
                                         </li>
                                     </ul>
@@ -191,42 +181,42 @@
                                     <span class="ml-10">
                                         <ion-icon name="earth-outline"></ion-icon>
                                     </span>بین المللی
-                                    </a>
+                                </a>
                             </li>
                             <li class="cat-item cat-item-3">
                                 <a href="#">
                                     <span class="ml-10">
                                         <ion-icon name="trending-up-outline"></ion-icon>
                                     </span>کسب و کار
-                                    </a>
+                                </a>
                             </li>
                             <li class="cat-item cat-item-4">
                                 <a href="#">
                                     <span class="ml-10">
                                         <ion-icon name="glasses-outline"></ion-icon>
                                     </span>سرگرمی
-                                    </a>
+                                </a>
                             </li>
                             <li class="cat-item cat-item-5">
                                 <a href="#">
                                     <span class="ml-10">
                                         <ion-icon name="bicycle-outline"></ion-icon>
                                     </span>اخبار ورزشی
-                                    </a>
+                                </a>
                             </li>
                             <li class="cat-item cat-item-6">
                                 <a href="#">
                                     <span class="ml-10">
                                         <ion-icon name="fitness-outline"></ion-icon>
                                     </span>سلامتی
-                                    </a>
+                                </a>
                             </li>
                             <li class="cat-item cat-item-2">
                                 <a href="#">
                                     <span class="ml-10">
                                         <ion-icon name="book-outline"></ion-icon>
                                     </span>مجله
-                                    </a>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -896,4 +886,6 @@
         </div>
     </main>
 </asp:Content>
+
+
 
