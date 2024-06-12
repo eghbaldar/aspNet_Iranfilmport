@@ -1,4 +1,20 @@
-﻿.kingYellow, .search_field {
+﻿.widget_categories_2 li > a > span {
+    background-color:white;
+
+}
+.widget_categories_2 li.active > a > span, .widget_categories_2 li:hover > a > span {
+    background-color: white;
+}
+.widget_categories_2 li.hover > a > span, .widget_categories_2 li:hover > a > span {
+    color: #DFC912;
+}
+.widget_categories_2 li {
+    padding:5px 0;
+}
+    .kingYellowForeColor {
+    color: #ECCE01 !important;
+}
+.kingYellow, .search_field {
     background-color: #ECCE01 !important;
 }
     .search_field{
