@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="VB" MasterPageFile="~/KingMaster.master" AutoEventWireup="false" CodeFile="Default2.aspx.vb" Inherits="Default2" %>
 
 <%@ Register Src="usercontrols/KingPostCategories.ascx" TagName="KingPostCategories" TagPrefix="uc1" %>
+<%@ Register Src="usercontrols/KingMoviePosterCarausel.ascx" TagName="KingMoviePosterCarausel" TagPrefix="uc2" %>
+<%@ Register Src="usercontrols/KingLastAccolades.ascx" TagName="KingLastAccolades" TagPrefix="uc3" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -130,6 +132,8 @@
                     </div>
                 </div>
             </div>
+            <!--Widget Movies Poster -->
+                    <uc2:KingMoviePosterCarausel ID="KingMoviePosterCarausel" runat="server" />
             <!--Ads-->
             <div class="row">
                 <div class="col-12 text-center mb-20">
@@ -145,7 +149,7 @@
                     <!-- Widget Categories -->
                     <div class="sidebar-widget widget_categories_2 border-radius-10 bg-white mb-30">
                         <div class="widget-header position-relative mb-15">
-                            <h5 class="widget-title"><strong>مهمترین‌ها </strong></h5>
+                            <h5 class="widget-title"><strong>باید از ما بدانید ...</strong></h5>
                         </div>
                         <ul class="font-small text-muted">
                             <li class="cat-item cat-item-2 ">
@@ -175,7 +179,7 @@
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                             <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z" />
                                         </svg>
-                                    </span>مشاوره و بازتویسی فیلمنامه کوتاه و بلند
+                                    </span>مشاوره و بازنویسی فیلمنامه کوتاه و بلند
                                 </a>
                             </li>
                             <li class="cat-item cat-item-5">
@@ -224,14 +228,11 @@
                                 <h4 class="widget-title mb-0">فستیوال‌های معتبر <span>در حال بسته شدن</span></h4>
                             </div>
                             <div class="post-carausel-2 post-module-1 row">
-
-
-
                                 <asp:Repeater ID="Repeater2" DataSourceID="SDS_LastFestivals" runat="server">
                                     <ItemTemplate>
                                         <div class="col">
-                                    <div class="post-thumb position-relative">
-                                        <div class="thumb-overlay img-hover-slide border-radius-15 position-relative" 
+                                        <div class="post-thumb position-relative">
+                                            <div class="thumb-overlay img-hover-slide border-radius-15 position-relative" 
                                             style="background-image: url('<%# String.Format("/files/uploadFiles/festival/{0}", Eval("logo")) %>')">
                                             <a class="img-link" href="single.html"></a>
                                             <div class="post-content-overlay">
@@ -404,230 +405,18 @@ ORDER BY newid()"></asp:SqlDataSource>
                                     <img class="border-radius-10" src="files/kingMaterials/imgs/ads-3.png" alt="">
                                 </a>
                             </div>
-                            <!--Videos-->
-                            <div class="sidebar-widget">
-                                <div class="widget-header position-relative mb-20">
-                                    <div class="row">
-                                        <div class="col-7">
-                                            <h5 class="widget-title mb-0">اخبار <span>ویدیوها</span></h5>
-                                        </div>
-                                        <div class="col-5 text-left">
-                                            <h6 class="font-medium pl-15">
-                                                <a class="text-muted font-small" href="#">مشاهده همه</a>
-                                            </h6>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="block-tab-item post-module-1 post-module-4">
-                                    <div class="row">
-                                        <div class="slider-single col-md-6 mb-30">
-                                            <div class="img-hover-scale border-radius-10">
-                                                <span class="top-right-icon background10"><i class="mdi mdi-share"></i></span>
-                                                <a href="single.html">
-                                                    <img class="border-radius-10" src="files/kingMaterials/imgs/news-17.jpg" alt="post-slider">
-                                                </a>
-                                                <div class="play_btn play_btn_small">
-                                                    <a class="play-video" href="https://aparat.com" data-animate="zoomIn" data-duration="1.5s" data-delay="0.1s">
-                                                        <i class="fa fa-play"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <h5 class="post-title pr-5 pl-5 mb-10 mt-15 text-limit-2-row">
-                                                <a href="single.html">طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد</a>
-                                            </h5>
-                                            <div class="entry-meta meta-1 font-x-small mt-10 pr-5 pl-5 text-muted">
-                                                <span><span class="ml-5"><i class="fa fa-eye" aria-hidden="true"></i></span>30 هزار</span>
-                                                <span class="mr-15"><span class="ml-5 text-muted"><i class="fa fa-comment" aria-hidden="true"></i></span>1.5 هزار</span>
-                                                <span class="mr-15"><span class="ml-5 text-muted"><i class="fa fa-share-alt" aria-hidden="true"></i></span>15 هزار</span>
-                                                <a class="float-left" href="#"><i class="ti-bookmark"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="slider-single col-md-6 mb-30">
-                                            <div class="img-hover-scale border-radius-10">
-                                                <a href="single.html">
-                                                    <img class="border-radius-10" src="files/kingMaterials/imgs/news-18.jpg" alt="post-slider">
-                                                </a>
-                                                <div class="play_btn play_btn_small">
-                                                    <a class="play-video" href="https://aparat.com" data-animate="zoomIn" data-duration="1.5s" data-delay="0.1s">
-                                                        <i class="fa fa-play"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <h5 class="post-title pr-5 pl-5 mb-10 mt-15 text-limit-2-row">
-                                                <a href="single.html">سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای</a>
-                                            </h5>
-                                            <div class="entry-meta meta-1 font-x-small mt-10 pr-5 pl-5 text-muted">
-                                                <span><span class="ml-5"><i class="fa fa-eye" aria-hidden="true"></i></span>5.8 هزار</span>
-                                                <span class="mr-15"><span class="ml-5 text-muted"><i class="fa fa-comment" aria-hidden="true"></i></span>2.5 هزار</span>
-                                                <span class="mr-15"><span class="ml-5 text-muted"><i class="fa fa-share-alt" aria-hidden="true"></i></span>125 هزار</span>
-                                                <a class="float-left" href="#"><i class="ti-bookmark"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="slider-single col-md-6 mb-30">
-                                            <div class="img-hover-scale border-radius-10">
-                                                <a href="single.html">
-                                                    <img class="border-radius-10" src="files/kingMaterials/imgs/news-19.jpg" alt="post-slider">
-                                                </a>
-                                                <div class="play_btn play_btn_small">
-                                                    <a class="play-video" href="https://aparat.com" data-animate="zoomIn" data-duration="1.5s" data-delay="0.1s">
-                                                        <i class="fa fa-play"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <h5 class="post-title pr-5 pl-5 mb-10 mt-15 text-limit-2-row">
-                                                <a href="single.html">تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای</a>
-                                            </h5>
-                                            <div class="entry-meta meta-1 font-x-small mt-10 pr-5 pl-5 text-muted">
-                                                <span><span class="ml-5"><i class="fa fa-eye" aria-hidden="true"></i></span>5.8 هزار</span>
-                                                <span class="mr-15"><span class="ml-5 text-muted"><i class="fa fa-comment" aria-hidden="true"></i></span>2.5 هزار</span>
-                                                <span class="mr-15"><span class="ml-5 text-muted"><i class="fa fa-share-alt" aria-hidden="true"></i></span>125 هزار</span>
-                                                <a class="float-left" href="#"><i class="ti-bookmark"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="slider-single col-md-6 mb-30">
-                                            <div class="img-hover-scale border-radius-10">
-                                                <a href="single.html">
-                                                    <img class="border-radius-10" src="files/kingMaterials/imgs/news-20.jpg" alt="post-slider">
-                                                </a>
-                                                <div class="play_btn play_btn_small">
-                                                    <a class="play-video" href="https://aparat.com" data-animate="zoomIn" data-duration="1.5s" data-delay="0.1s">
-                                                        <i class="fa fa-play"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <h5 class="post-title pr-5 pl-5 mb-10 mt-15 text-limit-2-row">
-                                                <a href="single.html">طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان</a>
-                                            </h5>
-                                            <div class="entry-meta meta-1 font-x-small mt-10 pr-5 pl-5 text-muted">
-                                                <span><span class="ml-5"><i class="fa fa-eye" aria-hidden="true"></i></span>5.8 هزار</span>
-                                                <span class="mr-15"><span class="ml-5 text-muted"><i class="fa fa-comment" aria-hidden="true"></i></span>2.5 هزار</span>
-                                                <span class="mr-15"><span class="ml-5 text-muted"><i class="fa fa-share-alt" aria-hidden="true"></i></span>125 هزار</span>
-                                                <a class="float-left" href="#"><i class="ti-bookmark"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <div class="col-lg-4 col-md-12 sidebar-right">
                             <!--Post aside style 1-->
-                            <div class="sidebar-widget mb-30">
-                                <div class="widget-header position-relative mb-30">
-                                    <div class="row">
-                                        <div class="col-7">
-                                            <h4 class="widget-title mb-0">از دست <span>ندهید</span></h4>
-                                        </div>
-                                        <div class="col-5 text-left">
-                                            <h6 class="font-medium pl-15">
-                                                <a class="text-muted font-small" href="#">مشاهده همه</a>
-                                            </h6>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="post-aside-style-1 border-radius-10 p-20 bg-white">
-                                    <ul class="list-post">
-                                        <li class="mb-20">
-                                            <div class="d-flex">
-                                                <div class="post-thumb d-flex ml-15 border-radius-5 img-hover-scale">
-                                                    <a class="color-white" href="single.html">
-                                                        <img src="files/kingMaterials/imgs/thumbnail-4.jpg" alt="">
-                                                    </a>
-                                                </div>
-                                                <div class="post-content media-body">
-                                                    <h6 class="post-title mb-10 text-limit-2-row"><a href="single.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</a></h6>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="mb-20">
-                                            <div class="d-flex">
-                                                <div class="post-thumb d-flex ml-15 border-radius-5 img-hover-scale">
-                                                    <a class="color-white" href="single.html">
-                                                        <img src="files/kingMaterials/imgs/thumbnail-15.jpg" alt="">
-                                                    </a>
-                                                </div>
-                                                <div class="post-content media-body">
-                                                    <h6 class="post-title mb-10 text-limit-2-row"><a href="single.html">سه درصد گذشته، حال و آینده شناخت فراوان</a></h6>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="mb-20">
-                                            <div class="d-flex">
-                                                <div class="post-thumb d-flex ml-15 border-radius-5 img-hover-scale">
-                                                    <a class="color-white" href="single.html">
-                                                        <img src="files/kingMaterials/imgs/thumbnail-16.jpg" alt="">
-                                                    </a>
-                                                </div>
-                                                <div class="post-content media-body">
-                                                    <h6 class="post-title mb-10 text-limit-2-row"><a href="single.html">سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی</a></h6>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="d-flex">
-                                                <div class="post-thumb d-flex ml-15 border-radius-5 img-hover-scale">
-                                                    <a class="color-white" href="single.html">
-                                                        <img src="files/kingMaterials/imgs/thumbnail-15.jpg" alt="">
-                                                    </a>
-                                                </div>
-                                                <div class="post-content media-body">
-                                                    <h6 class="post-title mb-10 text-limit-2-row"><a href="single.html">سه درصد گذشته، حال و آینده شناخت فراوان</a></h6>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                            <uc3:KingLastAccolades ID="KingLastAccolades1" runat="server" />
                             <!--Top authors-->
-                            <div class="sidebar-widget mb-30">
-                                <div class="widget-top-auhor border-radius-10 p-20 bg-white">
-                                    <div class="widget-header widget-header-style-1 position-relative mb-15">
-                                        <h5 class="widget-title pl-5">نویسندگان <span>برتر</span></h5>
-                                    </div>
-                                    <a class="red-tooltip active" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="الناز - 1034 پست">
-                                        <img src="files/kingMaterials/imgs/authors/author-2.png" alt=""></a>
-                                    <a class="red-tooltip" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="مسعود - 245 پست">
-                                        <img src="files/kingMaterials/imgs/authors/author-3.png" alt=""></a>
-                                    <a class="red-tooltip" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="مریم - 356 پست">
-                                        <img src="files/kingMaterials/imgs/authors/author-4.png" alt=""></a>
-                                    <a class="red-tooltip active" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="مجید - 152 پست">
-                                        <img src="files/kingMaterials/imgs/authors/author-5.png" alt=""></a>
-                                    <a class="red-tooltip" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="بهمن - 245 پست">
-                                        <img src="files/kingMaterials/imgs/authors/author-17.png" alt=""></a>
-                                    <a class="red-tooltip" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="حامد - 758 پست">
-                                        <img src="files/kingMaterials/imgs/authors/author-7.png" alt=""></a>
-                                    <a class="red-tooltip" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="نادیا - 231 پست">
-                                        <img src="files/kingMaterials/imgs/authors/author-8.png" alt=""></a>
-                                    <a class="red-tooltip active" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="فردین - 256 پست">
-                                        <img src="files/kingMaterials/imgs/authors/author-9.png" alt=""></a>
-                                    <a class="red-tooltip" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="ستاره - 652 پست">
-                                        <img src="files/kingMaterials/imgs/authors/author-10.png" alt=""></a>
-                                    <a class="red-tooltip active" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="حمید - 125 پست">
-                                        <img src="files/kingMaterials/imgs/authors/author-11.png" alt=""></a>
-                                    <a class="red-tooltip" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="مهتاب - 452 پست">
-                                        <img src="files/kingMaterials/imgs/authors/author-12.png" alt=""></a>
-                                    <a class="red-tooltip" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="ناصر - 124 پست">
-                                        <img src="files/kingMaterials/imgs/authors/author-13.png" alt=""></a>
-                                    <a class="red-tooltip" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="مرجان - 1245 پست">
-                                        <img src="files/kingMaterials/imgs/authors/author-14.png" alt=""></a>
-                                    <a class="red-tooltip active" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="مرتضی - 1325 پست">
-                                        <img src="files/kingMaterials/imgs/authors/author-15.png" alt=""></a>
-                                    <a class="red-tooltip" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="نیلوفر - 562 پست">
-                                        <img src="files/kingMaterials/imgs/authors/author-16.png" alt=""></a>
-                                    <a class="red-tooltip active" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="رضا - 256 پست">
-                                        <img src="files/kingMaterials/imgs/authors/author-17.png" alt=""></a>
-                                    <a class="red-tooltip" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="یکتا - 652 پست">
-                                        <img src="files/kingMaterials/imgs/authors/author-18.png" alt=""></a>
-                                    <a class="red-tooltip active" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="فرانک - 125 پست">
-                                        <img src="files/kingMaterials/imgs/authors/author-20.png" alt=""></a>
-                                </div>
-                            </div>
                             <!--Newsletter-->
-                            <div class="sidebar-widget widget_newsletter border-radius-10 p-20 bg-white mb-30">
+                            <div class="sidebar-widget widget_newsletter border-radius-10 p-20 kingYellowBackColor mb-30">
                                 <div class="widget-header widget-header-style-1 position-relative mb-15">
                                     <h5 class="widget-title">خبرنامه</h5>
                                 </div>
                                 <div class="newsletter">
-                                    <p class="font-medium">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</p>
+                                    <p class="font-medium">از مهمترین اخبار و رویدادهای سینمایی و مدیوم فیلم کوتاه مطلع شوید:</p>
                                     <form target="_blank" action="#" method="get" class="subscribe_form relative mail_part">
                                         <div class="form-newsletter-cover">
                                             <div class="form-newsletter position-relative">
@@ -643,7 +432,7 @@ ORDER BY newid()"></asp:SqlDataSource>
                             <!--Post aside style 2-->
                             <div class="sidebar-widget mb-30">
                                 <div class="widget-header mb-30">
-                                    <h5 class="widget-title">پرطرفدارترین ها</h5>
+                                    <h5 class="widget-title">پر بازدیدترین پست‌ها</h5>
                                 </div>
                                 <div class="post-aside-style-2">
                                     <ul class="list-post">
@@ -698,46 +487,7 @@ ORDER BY newid()"></asp:SqlDataSource>
                                     </ul>
                                 </div>
                             </div>
-                            <div class="sidebar-widget mb-30">
-                                <div class="widget-header mb-30">
-                                    <h5 class="widget-title">محبوب ترین</h5>
-                                </div>
-                                <div class="post-aside-style-3">
-                                    <article class="bg-white border-radius-15 mb-30 p-10 wow fadeIn animated">
-                                        <div class="post-thumb d-flex mb-15 border-radius-15 img-hover-scale">
-                                            <a href="single.html">
-                                                <video autoplay="" class="photo-item__video" loop="" muted="" preload="none">
-                                                    <source src="#" type="video/mp4">
-                                                </video>
-                                            </a>
-
-                                        </div>
-                                        <div class="pl-10 pr-10">
-                                            <h5 class="post-title mb-15"><a href="single.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</a></h5>
-                                            <div class="entry-meta meta-1 font-x-small color-grey float-right text-uppercase mb-10">
-                                                <span class="post-in">در <a href="category.html">جهان</a></span>
-                                                <span class="post-by">توسط <a href="author.html">الناز روستایی</a></span>
-                                                <span class="post-on">4 دقیقه پیش</span>
-                                            </div>
-                                        </div>
-                                    </article>
-                                    <article class="bg-white border-radius-15 mb-30 p-10 wow fadeIn animated">
-                                        <div class="post-thumb d-flex mb-15 border-radius-15 img-hover-scale">
-                                            <a href="single.html">
-                                                <img class="border-radius-15" src="files/kingMaterials/imgs/news-22.jpg" alt="">
-                                            </a>
-                                        </div>
-                                        <div class="pl-10 pr-10">
-                                            <h5 class="post-title mb-15"><a href="single.html">لورم ایپسوم متن ساختگی با تولید</a></h5>
-                                            <div class="entry-meta meta-1 font-x-small color-grey float-right text-uppercase mb-10">
-                                                <span class="post-in">در <a href="category.html">سلامت</a></span>
-                                                <span class="post-by">توسط <a href="author.html">رضا کیمیا</a></span>
-                                                <span class="post-on">14 دقیقه پیش</span>
-                                            </div>
-                                        </div>
-                                    </article>
-                                </div>
-                            </div>
+                            
                             <div class="sidebar-widget p-20 border-radius-15 bg-white widget-latest-comments wow fadeIn animated">
                                 <div class="widget-header mb-30">
                                     <h5 class="widget-title">آخرین <span>نظرات</span></h5>
@@ -773,7 +523,6 @@ ORDER BY newid()"></asp:SqlDataSource>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

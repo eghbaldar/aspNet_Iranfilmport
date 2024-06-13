@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="files/kingMaterials/css/color.css">
     <link rel="stylesheet" href="files/kingMaterials/css/responsive.css">
     <link rel="stylesheet" href="files/kingMaterials/css/custome.css" />
+    <!-- SweetAlert-->
+    <link href="files/sweetalert/sweetalert2.min.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -249,7 +251,11 @@
     <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
     <!-- NewsViral JS -->
     <script src="/files/kingMaterials/js/main.js"></script>
+    <!-- King JS -->
     <script src="/files/kingMaterials/js/kingGeneral.js"></script>
+    <!-- SweetAlert-->
+    <script src="files/sweetalert/sweetalert2.all.min.js"></script>
+    <script src="files/sweetalert/sweetalert2.min.js"></script>
 </body>
 
 </html>

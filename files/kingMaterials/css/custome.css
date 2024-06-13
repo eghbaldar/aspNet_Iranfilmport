@@ -1,6 +1,18 @@
-﻿.widget_categories_2 li > a > span {
-    background-color:white;
-
+﻿
+/*========sweetalert===========*/
+.swal2-title{
+    font-size:15px !important;
+    line-height:30px !important;
+}
+.swal2-confirm {
+    background-color: #EDCE01 !important;
+}
+.swal2-popup .swal2-styled:focus {
+    box-shadow: none !important;
+}
+    /*===================*/
+    .widget_categories_2 li > a > span {
+    background-color: white;
 }
 .widget_categories_2 li.active > a > span, .widget_categories_2 li:hover > a > span {
     background-color: white;
@@ -13,6 +25,8 @@
 }
     .kingYellowForeColor {
     color: #ECCE01 !important;
+}  .kingYellowBackColor {
+    background-color: #ECCE01 !important;
 }
 .kingYellow, .search_field {
     background-color: #ECCE01 !important;
