@@ -1,8 +1,10 @@
 ﻿
+/*========footer===========*/
+
 /*========sweetalert===========*/
-.swal2-title{
-    font-size:15px !important;
-    line-height:30px !important;
+.swal2-title {
+    font-size: 15px !important;
+    line-height: 30px !important;
 }
 .swal2-confirm {
     background-color: #EDCE01 !important;

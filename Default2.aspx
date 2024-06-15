@@ -3,6 +3,8 @@
 <%@ Register Src="usercontrols/KingPostCategories.ascx" TagName="KingPostCategories" TagPrefix="uc1" %>
 <%@ Register Src="usercontrols/KingMoviePosterCarausel.ascx" TagName="KingMoviePosterCarausel" TagPrefix="uc2" %>
 <%@ Register Src="usercontrols/KingLastAccolades.ascx" TagName="KingLastAccolades" TagPrefix="uc3" %>
+<%@ Register Src="usercontrols/KingPopularNews.ascx" TagName="KingPopularNews" TagPrefix="uc4" %>
+<%@ Register Src="usercontrols/KingLastComments.ascx" TagName="KingLastComments" TagPrefix="uc5" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -409,7 +411,6 @@ ORDER BY newid()"></asp:SqlDataSource>
                         <div class="col-lg-4 col-md-12 sidebar-right">
                             <!--Post aside style 1-->
                             <uc3:KingLastAccolades ID="KingLastAccolades1" runat="server" />
-                            <!--Top authors-->
                             <!--Newsletter-->
                             <div class="sidebar-widget widget_newsletter border-radius-10 p-20 kingYellowBackColor mb-30">
                                 <div class="widget-header widget-header-style-1 position-relative mb-15">
@@ -429,98 +430,10 @@ ORDER BY newid()"></asp:SqlDataSource>
                                     </form>
                                 </div>
                             </div>
-                            <!--Post aside style 2-->
-                            <div class="sidebar-widget mb-30">
-                                <div class="widget-header mb-30">
-                                    <h5 class="widget-title">پر بازدیدترین پست‌ها</h5>
-                                </div>
-                                <div class="post-aside-style-2">
-                                    <ul class="list-post">
-                                        <li class="mb-30 wow fadeIn animated">
-                                            <div class="d-flex">
-                                                <div class="post-thumb d-flex ml-15 border-radius-5 img-hover-scale">
-                                                    <a class="color-white" href="single.html">
-                                                        <img src="files/kingMaterials/imgs/thumbnail-2.jpg" alt="">
-                                                    </a>
-                                                </div>
-                                                <div class="post-content media-body">
-                                                    <h6 class="post-title mb-10 text-limit-2-row"><a href="single.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</a></h6>
-                                                    <div class="entry-meta meta-1 font-x-small color-grey float-right text-uppercase">
-                                                        <span class="post-by">توسط <a href="author.html">رضا کیمیا</a></span>
-                                                        <span class="post-on">4 دقیقه پیش</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="mb-30 wow fadeIn animated">
-                                            <div class="d-flex">
-                                                <div class="post-thumb d-flex ml-15 border-radius-5 img-hover-scale">
-                                                    <a class="color-white" href="single.html">
-                                                        <img src="files/kingMaterials/imgs/thumbnail-3.jpg" alt="">
-                                                    </a>
-                                                </div>
-                                                <div class="post-content media-body">
-                                                    <h6 class="post-title mb-10 text-limit-2-row"><a href="single.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت</a></h6>
-                                                    <div class="entry-meta meta-1 font-x-small color-grey float-right text-uppercase">
-                                                        <span class="post-by">توسط <a href="author.html">سعید شمس</a></span>
-                                                        <span class="post-on">3 ساعت پیش</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="mb-30 wow fadeIn animated">
-                                            <div class="d-flex">
-                                                <div class="post-thumb d-flex ml-15 border-radius-5 img-hover-scale">
-                                                    <a class="color-white" href="single.html">
-                                                        <img src="files/kingMaterials/imgs/thumbnail-5.jpg" alt="">
-                                                    </a>
-                                                </div>
-                                                <div class="post-content media-body">
-                                                    <h6 class="post-title mb-10 text-limit-2-row"><a href="single.html">سه درصد گذشته، حال و آینده شناخت فراوان</a></h6>
-                                                    <div class="entry-meta meta-1 font-x-small color-grey float-right text-uppercase">
-                                                        <span class="post-by">توسط <a href="author.html">الناز روستایی</a></span>
-                                                        <span class="post-on">4 ساعت پیش</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            
-                            <div class="sidebar-widget p-20 border-radius-15 bg-white widget-latest-comments wow fadeIn animated">
-                                <div class="widget-header mb-30">
-                                    <h5 class="widget-title">آخرین <span>نظرات</span></h5>
-                                </div>
-                                <div class="post-block-list post-module-6">
-                                    <div class="last-comment mb-20 d-flex wow fadeIn animated">
-                                        <span class="item-count vertical-align">
-                                            <a class="red-tooltip author-avatar" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="مرجان - 985 پست">
-                                                <img src="files/kingMaterials/imgs/authors/author-14.png" alt=""></a>
-                                        </span>
-                                        <div class="alith_post_title_small">
-                                            <p class="font-medium mb-10"><a href="single.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان.</a></p>
-                                            <div class="entry-meta meta-1 font-x-small color-grey float-right text-uppercase mb-10">
-                                                <span class="post-by">توسط <a href="author.html">مرجان همتی</a></span>
-                                                <span class="post-on">4 دقیقه پیش</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="last-comment d-flex wow fadeIn animated">
-                                        <span class="item-count vertical-align">
-                                            <a class="red-tooltip author-avatar" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="بهمن - 1245 پست">
-                                                <img src="files/kingMaterials/imgs/authors/author-9.png" alt=""></a>
-                                        </span>
-                                        <div class="alith_post_title_small">
-                                            <p class="font-medium mb-10"><a href="single.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان</a></p>
-                                            <div class="entry-meta meta-1 font-x-small color-grey float-right text-uppercase mb-10">
-                                                <span class="post-by">توسط <a href="author.html">بهمن راستی</a></span>
-                                                <span class="post-on">4 دقیقه پیش</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <!--Popular News-->                            
+                            <uc4:KingPopularNews ID="KingPopularNews1" runat="server" />
+                            <!--Last Comments-->    
+                            <uc5:KingLastComments ID="KingLastComments1" runat="server" />                            
                         </div>
                     </div>
                 </div>
