@@ -1,4 +1,4 @@
-﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="advertiseModal.ascx.vb" Inherits="usercontrols_advertiseModal" %>
+﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="KingAdvertiseModal.ascx.vb" Inherits="usercontrols_advertiseModal" %>
 
 
 <style>

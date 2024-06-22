@@ -4,14 +4,8 @@
         <h5 class="widget-title">آخرین <span>نظرات</span></h5>
     </div>
     <div class="post-block-list post-module-6">
-
-
-
-
         <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SDS_LastComments">
             <ItemTemplate>
-
-
                 <div class="last-comment mb-20 d-flex wow fadeIn animated">
                     <span class="item-count vertical-align">
                         <a class="red-tooltip author-avatar" href='<%# String.Format("/{0}", Eval("id_post")) %>' target="_blank" data-toggle="tooltip" data-placement="top" title="" data-original-title="مرجان - 985 پست">
@@ -33,8 +27,5 @@
         </asp:Repeater>
         <asp:SqlDataSource ID="SDS_LastComments" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
             SelectCommand="select top 5 [id_post],[name],[text],[dbo].[MiladiTOShamsi]([date],0) 'date' from [dbo].[tbl_Comment] where [admin]=0 and id_post!=-1 and flag=1 order by [date] desc"></asp:SqlDataSource>
-
-
-
     </div>
 </div>

@@ -1,8 +1,52 @@
 ﻿
-/*========footer===========*/
+/*===================*/
+.pointer{
+    cursor:pointer;
+}
+.input-group {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-align: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    width: 100%;
+}
+.input-group-prepend {
+    margin-right: -1px;
+}
 
-/*========sweetalert===========*/
-.swal2-title {
+.input-group-append, .input-group-prepend {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+.form-control {
+    border: 1px solid #ced4da !important;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #FAFDE5 inset !important;
+    -webkit-text-fill-color: black !important;
+}
+
+input:autofill,
+input:autofill:hover,
+input:autofill:focus,
+input:autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    -webkit-text-fill-color: black !important;
+    box-shadow: 0 0 0 30px #FAFDE5 inset !important;
+    caret-color: white !important;
+    background-color: white !important;
+}
+    /*========sweetalert===========*/
+    .swal2-title {
     font-size: 15px !important;
     line-height: 30px !important;
 }

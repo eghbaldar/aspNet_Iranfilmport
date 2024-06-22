@@ -2,17 +2,29 @@
 
 <%@ Register Src="usercontrols/KingTopHeader.ascx" TagName="KingTopHeader" TagPrefix="uc1" %>
 <%@ Register Src="usercontrols/KingFooter.ascx" TagName="KingFooter" TagPrefix="uc2" %>
-
+<%@ Register Src="usercontrols/KingFlowingControls.ascx" TagName="KingFlowingControls" TagPrefix="uc3" %>
+<%@ Register Src="usercontrols/KingLoginModal.ascx" TagName="KingLoginModal" TagPrefix="uc4" %>
+<%@ Register Src="usercontrols/KingTopSearch.ascx" TagName="KingTopSearch" TagPrefix="uc5" %>
+<%@ Register Src="usercontrols/KingAdvertiseModal.ascx" TagName="KingAdvertiseModal" TagPrefix="uc6" %>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 
 <head runat="server">
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>نیوز وایرال - قالب HTML نیوز وایرال</title>
-    <meta name="description" content="">
+    <title>IranFilmPort | درگاه فیلم ایران</title>
+    <meta name="description" content="اخبار ، نقد و تحلیل فیلم کوتاه و بلند و چگونگی پخش و ارسال فیلم کوتاه و بلند به فستیوال های خارجی و بین المللی" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/imgs/favicon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- mobile Color and Status -->
+    <meta name="theme-color" content="#E5DA00">
+    <%--Andriod--%>
+    <meta name="apple-mobile-web-app-status-bar-style" content="#ffffff">
+    <meta name="msapplication-navbutton-color" content="#ffffff">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" sizes="128x128" href="<%= ResolveUrl("~/files/kingMaterials/imgs/logos/iconScreen.png")%>">
+    <link rel="shortcut icon" type="image/x-icon" href="<%= ResolveUrl("~/files/kingMaterials/imgs/logos/iconScreen.png")%>">
     <!-- NewsViral CSS  -->
     <link href="files/kingMaterials/css/vendor/fontawesome-free-6.5.2/css/all.min.css" rel="stylesheet" />
     <!-- NewsViral CSS  -->
@@ -23,19 +35,57 @@
     <link rel="stylesheet" href="files/kingMaterials/css/custome.css" />
     <!-- SweetAlert-->
     <link href="files/sweetalert/sweetalert2.min.css" rel="stylesheet" />
+    <!-- General Modal -->
+    <link href="files/kingMaterials/plugins/modal/modal.css" rel="stylesheet" />
+    <!-- Login Modal -->
+    <link href="files/kingMaterials/pagecssjs/loginModal/css.css" rel="stylesheet" />
+    <%--Google Section--%>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-118348858-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-118348858-1');
+    </script>
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-M9GLMJM5');
+
+    </script>
+    <script type="application/ld+json">
+        {
+          "@context": "http://schema.org",
+          "@type": "Organization",
+          "url": "http://www.iranfilmport.com",
+          "name": "IRAN FILM PORT - درگاه فیلم ایران",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+98-921-634-3320",
+            "contactType": "Customer service"
+          }
+        }
+    </script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 
 <body>
     <form id="form1" runat="server">
-        <div id="mySearchOverlay" class="searchOverlay">
-            <span class="closebtn" onclick="closeSearch()" title="Close Overlay">x</span>
-            <div class="search-overlay-content">
-                <button type="submit"><i class="fa fa-search"></i></button>
-                <input type="text" placeholder="جستجو ..." name="search">
-            </div>
-        </div>
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <!-- Login - Modal content -->
+        <uc4:KingLoginModal ID="Login1" runat="server" />
+        <!-- Top Search -->
+        <uc3:KingFlowingControls ID="KingFlowingControls1" runat="server" />
+        <!-- Top Search -->
+        <uc5:KingTopSearch ID="KingTopSearch1" runat="server" />
+        <!-- Advertisement Modal -->
+        <uc6:KingAdvertiseModal ID="KingAdvertiseModal1" runat="server" />
         <!-- Preloader Start -->
         <div id="preloader-active">
             <div class="preloader d-flex align-items-center justify-content-center">
@@ -54,6 +104,7 @@
         </div>
         <aside id="sidebar-wrapper" class="custom-scrollbar offcanvas-sidebar position-right">
         </aside>
+
         <!-- Main Header -->
         <header class="main-header header-style-2 mb-40 kingHeaderShadow">
             <div class="header-bottom header-sticky background-white text-center ">
@@ -63,17 +114,17 @@
                     <div class="row">
                         <div class="col-lg-2 col-md-3 ">
                             <div class="header-logo d-none d-lg-block">
-                                <a href="index.html">
+                                <a href="/">
                                     <img class="logo-img d-inline" src="/files/KingMaterials/imgs/logos/iranfilmport_movibeta_2.png" alt="">
                                 </a>
                             </div>
                             <div class="logo-tablet d-md-inline d-lg-none d-none">
-                                <a href="index.html">
+                                <a href="/">
                                     <img class="logo-img d-inline" src="assets/imgs/logo.svg" alt="">
                                 </a>
                             </div>
                             <div class="logo-mobile d-block d-md-none">
-                                <a href="index.html">
+                                <a href="/">
                                     <img class="logo-img d-inline" src="assets/imgs/favicon.svg" alt="">
                                 </a>
                             </div>
@@ -85,10 +136,10 @@
 
                             <input type="text" onclick="openSearch()" class="search_field" placeholder="جستجو ..." value="" name="s">
 
-                            <i class="fa-brands fa-x-twitter"></i>
-                            <i class="fa-brands fa-facebook"></i>
-                            <i class="fa-brands fa-instagram"></i>
-                            <i class="fa fa-lock" id="myBtn" aria-hidden="true"></i>
+                            <a href="http://twitter.com/iranfilmport" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                            <a href="http://fb.com/iranfilmport" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                            <a href="http://instagram.com/iranfilmport" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                            <a onclick="$('#loginModal').modal();"><i class="fa fa-lock pointer" id="myBtn" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
@@ -136,6 +187,8 @@
     <!-- SweetAlert-->
     <script src="files/sweetalert/sweetalert2.all.min.js"></script>
     <script src="files/sweetalert/sweetalert2.min.js"></script>
+    <!-- Login Modal -->
+    <script src="files/kingMaterials/pagecssjs/loginModal/js.js"></script>
 </body>
 
 </html>

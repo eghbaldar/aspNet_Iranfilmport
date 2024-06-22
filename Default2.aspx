@@ -47,27 +47,15 @@
                     <div class="featured-post featured-post-grid ">
                         <div class="featured-slider-1 border-radius-10">
                             <div class="featured-slider-1-items">
-
-
                                 <asp:Repeater ID="R_Slider" runat="server" DataSourceID="SDS_Slider">
                                     <ItemTemplate>
                                         <div class="slider-single p-10 kingLightGray">
                                             <div class="img-hover-slide border-radius-15 mb-30 position-relative overflow-hidden">
-                                                <span class="top-right-icon bg-dark"><i class="mdi mdi-camera-alt"></i></span>
-                                                <a href="single.html">
+                                                <a href='<%# String.Format("{0}", Eval("link")) %>' target="_blank">
                                                     <img src='<%# String.Format("\files\uploadFiles\sliders\{0}", Eval("photo")) %>' alt="post-slider">
                                                 </a>
-                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             </div>
                                             <div class="pr-10 pl-10">
-                                                <div class="entry-meta mb-20">
-                                                    <a class="entry-meta meta-0" href="category.html"><span class="post-in background1 text-danger font-x-small">اقتصاد</span></a>
-                                                    <div class="float-left font-small">
-                                                        <span><span class="ml-10 text-muted"><i class="fa fa-eye" aria-hidden="true"></i></span>5.8 هزار</span>
-                                                        <span class="mr-30"><span class="ml-10 text-muted"><i class="fa fa-comment" aria-hidden="true"></i></span>2.5 هزار</span>
-                                                        <span class="mr-30"><span class="ml-10 text-muted"><i class="fa fa-share-alt" aria-hidden="true"></i></span>125 هزار</span>
-                                                    </div>
-                                                </div>
                                                 <h4 class="post-title full-width mb-20">
                                                     <a href='<%# String.Format("{0}", Eval("link")) %>' target="_blank">
                                                         <h1 class="SliderUp">
@@ -93,8 +81,6 @@
                                         <asp:Parameter DefaultValue="true" Name="visible" Type="Boolean" />
                                     </SelectParameters>
                                 </asp:SqlDataSource>
-
-
                             </div>
                         </div>
                     </div>
@@ -107,14 +93,13 @@
                                 <div class="col-md-6">
                                     <div class="slider-single mb-30 bg-white p-10 border-radius-15 kingYellow">
                                         <div class="img-hover-scale border-radius-10">
-                                            <span class="top-right-icon background10"><i class="mdi mdi-share"></i></span>
-                                            <a href="single.html">
+                                            <a href='<%# String.Format("/{0}", Eval("id")) %>'>
                                                 <asp:Image AlternateText='<%# Eval("title").Replace("ي", "ی") %>' Width="100%" Style="-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;"
                                                     ID="Image1" runat="server" ImageUrl='<%# "~\convertToUnscale\?photo=" + String.Format("files\uploadFiles\article\{0}", Eval("photo")) + "&w=400&h=236" %>' />
                                             </a>
                                         </div>
                                         <h6 class="post-title pr-5 pl-5 mb-10 mt-15 text-limit-2-row">
-                                            <a href="single.html">
+                                            <a href='<%# String.Format("/{0}", Eval("id")) %>'>
                                                 <h6 style="font-size: 12px;">
                                                     <asp:Label Visible='<%# EnFa("FA") %>' ID="La1bel11" runat="server" CssClass="TitleNews"
                                                         Text='<%# Eval("title").Replace("ي", "ی") %>'></asp:Label>
@@ -135,7 +120,7 @@
                 </div>
             </div>
             <!--Widget Movies Poster -->
-                    <uc2:KingMoviePosterCarausel ID="KingMoviePosterCarausel" runat="server" />
+            <uc2:KingMoviePosterCarausel ID="KingMoviePosterCarausel" runat="server" />
             <!--Ads-->
             <div class="row">
                 <div class="col-12 text-center mb-20">
@@ -223,7 +208,6 @@
                 </div>
                 <!-- main content -->
                 <div class="col-lg-9 col-md-9 order-1 order-md-2">
-
                     <div class="row mb-50 mt-15">
                         <div class="col-md-12">
                             <div class="widget-header position-relative mb-30">
@@ -233,36 +217,36 @@
                                 <asp:Repeater ID="Repeater2" DataSourceID="SDS_LastFestivals" runat="server">
                                     <ItemTemplate>
                                         <div class="col">
-                                        <div class="post-thumb position-relative">
-                                            <div class="thumb-overlay img-hover-slide border-radius-15 position-relative" 
-                                            style="background-image: url('<%# String.Format("/files/uploadFiles/festival/{0}", Eval("logo")) %>')">
-                                            <a class="img-link" href="single.html"></a>
-                                            <div class="post-content-overlay">
-                                                <div class="entry-meta meta-0 font-small mb-15">
-                                                    <a href="category.html"><span class="post-cat bg-success color-white">سفر</span></a>
-                                                </div>
-                                                <h5 class="post-title">
-                                                    <a class="color-white" href="single.html">
-                                                        <a href='<%# String.Format("festival/{0}/{1}/{2}", Eval("id"),Eval("title_en").Replace(" ","-"),getLinkFest(Eval("title_fa")).Replace(" ","-").Replace("ي", "ی")) %>'>
-                                                        <asp:Label Visible='<%# EnFa("FA") %>' ID="Label2" runat="server" Style="font-size: 12px;"
-                                                            Text='<%# Eval("title_fa").Replace("ي", "ی") %>'></asp:Label>
-                                                        <asp:Label Visible='<%# EnFa("EN") %>' Style="font-size: 12px;" ID="Label1" runat="server"
-                                                            Text='<%# Bind("title_en") %>'></asp:Label>
-                                                    </a>
-                                                    </a>
-                                                </h5>
-                                                <div class="entry-meta meta-1 font-x-small mt-10 pr-5 pl-5 text-muted">
-                                                    <span><span class="ml-5"><i class="fa fa-eye" aria-hidden="true"></i></span>5.8 هزار</span>
-                                                    <span class="mr-15"><span class="ml-5 text-muted"><i class="fa fa-comment" aria-hidden="true"></i></span>2.5 هزار</span>
+                                            <div class="post-thumb position-relative">
+                                                <div class="thumb-overlay img-hover-slide border-radius-15 position-relative"
+                                                    style="background-image: url('<%# String.Format("/files/uploadFiles/festival/{0}", Eval("logo")) %>')">
+                                                    <a class="img-link" href='<%# String.Format("festival/{0}/{1}/{2}", Eval("id"), Eval("title_en").Replace(" ", "-"), getLinkFest(Eval("title_fa")).Replace(" ", "-").Replace("ي", "ی")) %>'></a>
+                                                    <div class="post-content-overlay">
+                                                        <div class="entry-meta meta-0 font-small mb-15">
+                                                            <a href="category.html"><span class="post-cat bg-success color-white"><%# Eval("RemainDays") %> روز باقیمانده</span></a>
+                                                        </div>
+                                                        <h5 class="post-title">
+                                                            <a class="color-white" href='<%# String.Format("festival/{0}/{1}/{2}", Eval("id"), Eval("title_en").Replace(" ", "-"), getLinkFest(Eval("title_fa")).Replace(" ", "-").Replace("ي", "ی")) %>'>
+                                                                <a href='<%# String.Format("festival/{0}/{1}/{2}", Eval("id"), Eval("title_en").Replace(" ", "-"), getLinkFest(Eval("title_fa")).Replace(" ", "-").Replace("ي", "ی")) %>'>
+                                                                    <asp:Label Visible='<%# EnFa("FA") %>' ID="Label2" runat="server" Style="font-size: 12px; color: white;"
+                                                                        Text='<%# Eval("title_fa").Replace("ي", "ی") %>'></asp:Label>
+                                                                    <asp:Label Visible='<%# EnFa("EN") %>' Style="font-size: 12px;" ID="Label1" runat="server"
+                                                                        Text='<%# Bind("title_en") %>'></asp:Label>
+                                                                </a>
+                                                            </a>
+                                                        </h5>
+                                                        <div class="entry-meta meta-1 font-x-small mt-10 pr-5 pl-5 text-muted">
+                                                            <span><span class="ml-5"><i class="fa fa-eye" aria-hidden="true"></i></span><%# Eval("counter") %></span>
+
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
                                     </ItemTemplate>
                                 </asp:Repeater>
-                                                        <asp:SqlDataSource ID="SDS_LastFestivals" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
-                            SelectCommand="
+                                <asp:SqlDataSource ID="SDS_LastFestivals" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
+                                    SelectCommand="
 select top 4 *,
 DATEDIFF(DAY, GETDATE(),(select top 1 [deadline] from dbo.tbl_festivalDeadline where festivalID =f.id order by deadline desc)) as 'RemainDays',
 sign(DATEDIFF(DAY, GETDATE(),(select top 1 [deadline] from dbo.tbl_festivalDeadline where festivalID =f.id order by deadline desc))) 'sign'	
@@ -278,7 +262,6 @@ ORDER BY newid()"></asp:SqlDataSource>
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-lg-8 col-md-12">
                             <div class="latest-post mb-50">
@@ -297,97 +280,83 @@ ORDER BY newid()"></asp:SqlDataSource>
                                 <div class="loop-list-style-1">
                                     <%--main article--%>
                                     <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SDS_LastArticle">
-                                            <ItemTemplate>
-                                    <article class="first-post p-10 background-white border-radius-10 mb-30 wow fadeIn  animated" style="visibility: visible; animation-name: fadeIn;">
-                                            <div class="img-hover-slide border-radius-15 mb-30 position-relative overflow-hidden">
-                                                <span class="top-right-icon bg-dark"><i class="mdi mdi-flash-on"></i></span>
-                                                <a href="single.html">
-                                                    <asp:Image AlternateText='<%# Eval("title").Replace("ي", "ی") %>' Width="100%" Style="-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;"
-                                                                        ID="Image1" runat="server" ImageUrl='<%# "~\convertToUnscale\?photo=" + String.Format("files\uploadFiles\article\{0}", Eval("photo")) + "&w=700&h=410" %>' />
-                                                               
-                                                </a>
-                                            </div>
-                                            <div class="pr-10 pl-10">
-                                                <div class="entry-meta mb-30">
-                                                    <a class="entry-meta meta-0" href="category.html"><span class="post-in background2 text-primary font-x-small">تکنولوژیکی</span></a>
-                                                    <div class="float-left font-small">
-                                                        <span><span class="ml-10 text-muted"><i class="fa fa-eye" aria-hidden="true"></i></span>5.8 هزار</span>
-                                                        <span class="mr-30"><span class="ml-10 text-muted"><i class="fa fa-comment" aria-hidden="true"></i></span>2.5 هزار</span>
-                                                        <span class="mr-30"><span class="ml-10 text-muted"><i class="fa fa-share-alt" aria-hidden="true"></i></span>125 هزار</span>
-                                                    </div>
+                                        <ItemTemplate>
+                                            <article class="first-post p-10 background-white border-radius-10 mb-30 wow fadeIn  animated" style="visibility: visible; animation-name: fadeIn;">
+                                                <div class="img-hover-slide border-radius-15 mb-30 position-relative overflow-hidden">
+                                                    <a href='<%# Eval("id", "/{0}") %>'>
+                                                        <asp:Image AlternateText='<%# Eval("title").Replace("ي", "ی") %>' Width="100%" Style="-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;"
+                                                            ID="Image1" runat="server" ImageUrl='<%# "~\convertToUnscale\?photo=" + String.Format("files\uploadFiles\article\{0}", Eval("photo")) + "&w=700&h=410" %>' />
+                                                    </a>
                                                 </div>
-                                                <h4 class="post-title mb-20">
-                                                    <span class="post-format-icon">
-                                                        <ion-icon name="headset-outline" role="img" class="md hydrated" aria-label="headset outline"></ion-icon>
-                                                    </span>
-                                                    <a href="single.html">
+                                                <div class="pr-10 pl-10">
+                                                    <div class="entry-meta mb-30">
+                                                        <a class="entry-meta meta-0" href='<%# Eval("id", "/{0}") %>'><span class="post-in background2 text-primary font-x-small">
+                                                            <%# Eval("catname").Replace("ي", "ی") %>
+                                                        </span></a>
+                                                        <div class="float-left font-small">
+                                                            <span><span class="ml-10 text-muted"><i class="fa fa-eye" aria-hidden="true"></i></span><%# Eval("visit", "{0}") %></span>
+                                                        </div>
+                                                    </div>
+                                                    <h4 class="post-title mb-20">
+                                                        <a href='<%# Eval("id", "/{0}") %>'>
                                                             <asp:Label Visible='<%# EnFa("FA") %>' ID="La1bel11" runat="server" CssClass="TitleNews"
                                                                 Text='<%# Eval("title").Replace("ي", "ی") %>'></asp:Label>
                                                             <asp:Label Visible='<%# EnFa("EN") %>' ID="Label1" Style="font-size: 14px;" runat="server"
                                                                 Text='<%# Bind("titleEn") %>'></asp:Label>
                                                         </a></h4>
-                                                <div class="mb-20 overflow-hidden">
-                                                    <div class="entry-meta meta-1 font-x-small color-grey float-right text-uppercase">
-                                                        <span class="post-by">توسط <a href="author.html">رضا کیمیا</a></span>
-                                                        <span class="post-on">ارسال در 18/9/1400 09:35</span>
-                                                        <span class="time-reading">زمان خواندن 12 دقیقه</span>
-                                                        <p class="font-x-small mt-10">به روز شده 18/9/1400 10:28</p>
-                                                    </div>
-                                                    <div class="float-left">
-                                                        <a href="single.html" class="read-more"><span class="ml-10"><i class="fa fa-thumbtack" aria-hidden="true"></i></span>انتخاب توسط ویراستار</a>
+                                                    <div class="mb-20 overflow-hidden">
+                                                        <div class="entry-meta meta-1 font-x-small color-grey float-right text-uppercase">
+                                                            <span class="post-by">توسط <a href="author.html"><%# Eval("authors").Replace("ي", "ی") %></a></span>
+                                                            <span class="post-on"><%# Eval("shamsidate") %></span>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </article>
-                                            </ItemTemplate>
-                                        </asp:Repeater>
+                                            </article>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
                                     <asp:SqlDataSource ID="SDS_LastArticle" runat="server"
                                         ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
-                                        SelectCommand="SELECT top 1 * FROM [tbl_articles] WHERE [visible] = 1 and  [date_time] <= getdate() and id in (SELECT top 20 [id] FROM [tbl_articles] order by [date_time] desc) order by date_time desc"></asp:SqlDataSource>
+                                        SelectCommand="SELECT TOP 1 a.*, cat.[name] catName, (select [dbo].[MiladiTOShamsi] (getdate(),0)) shamsidate FROM [tbl_articles] a, [dbo].[tbl_articleCategory] cat WHERE a.[visible] = 1 AND a.[date_time] <= GETDATE() AND a.id IN (SELECT TOP 20 [id] FROM [tbl_articles] ORDER BY [date_time] DESC) ORDER BY a.[date_time] DESC"></asp:SqlDataSource>
                                     <%--10 articles--%>
                                     <asp:GridView ID="GridView1" runat="server" DataSourceID="SDS_10Artciles_And_More" AutoGenerateColumns="False" GridLines="None" ShowHeader="False">
                                         <Columns>
                                             <asp:TemplateField>
                                                 <ItemTemplate>
                                                     <article class="p-10 background-white border-radius-10 mb-30 wow fadeIn animated">
-                                        <div class="d-flex">
-                                            <div class="post-thumb d-flex ml-15 border-radius-15 img-hover-scale">
-                                                <a class="color-white" href="single.html">
+                                                        <div class="d-flex">
+                                                            <div class="post-thumb d-flex ml-15 border-radius-15 img-hover-scale">
+                                                                <a class="color-white" href='<%# Eval("id", "/{0}") %>'>
 
-                                                    <asp:Image AlternateText='<%# Eval("title").Replace("ي", "ی") %>' Width="100%" CssClass="border-radius-15"
+                                                                    <asp:Image AlternateText='<%# Eval("title").Replace("ي", "ی") %>' Width="100%" CssClass="border-radius-15"
                                                                         ID="Image1" runat="server" ImageUrl='<%# "~\convertToUnscale\?photo=" + String.Format("files\uploadFiles\article\{0}", Eval("photo")) + "&w=400&h=236" %>' />
- 
-                                                </a>
-                                            </div>
-                                            <div class="post-content media-body">
-                                                <div class="entry-meta mb-15 mt-10">
-                                                    <a class="entry-meta meta-2" href="category.html"><span class="post-in text-danger font-x-small">سیاسی</span></a>
-                                                </div>
-                                                <h5 class="post-title mb-15 text-limit-2-row">
-                                                    <span class="post-format-icon">
-                                                        <ion-icon name="videocam-outline"></ion-icon>
-                                                    </span>
-                                                    <a href="single.html">
-                                                            <asp:Label Visible='<%# EnFa("FA") %>' ID="La1bel11" runat="server" CssClass="TitleNews"
-                                                                Text='<%# Eval("title").Replace("ي", "ی") %>'></asp:Label>
-                                                            <asp:Label Visible='<%# EnFa("EN") %>' ID="Label1" Style="font-size: 14px;" runat="server"
-                                                                Text='<%# Bind("titleEn") %>'></asp:Label>
-                                                        </a></h5>
-                                                <div class="entry-meta meta-1 font-x-small color-grey float-right text-uppercase">
-                                                    <span class="post-by">توسط <a href="author.html">الناز روستایی</a></span>
-                                                    <span class="post-on">ارسال در 15/9/1400 07:00</span>
-                                                    <span class="time-reading">زمان خواندن 12 دقیقه</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </article>
+
+                                                                </a>
+                                                            </div>
+                                                            <div class="post-content media-body">
+                                                                <div class="entry-meta mb-15 mt-10">
+                                                                    <a class="entry-meta meta-2" href='<%# Eval("id", "/{0}") %>'><span class="post-in text-danger font-x-small"><%# Eval("catname") %></span></a>
+                                                                </div>
+                                                                <h5 class="post-title mb-15 text-limit-2-row">
+                                                                    <a href='<%# Eval("id", "/{0}") %>'>
+                                                                        <asp:Label Visible='<%# EnFa("FA") %>' ID="La1bel11" runat="server" CssClass="TitleNews"
+                                                                            Text='<%# Eval("title").Replace("ي", "ی") %>'></asp:Label>
+                                                                        <asp:Label Visible='<%# EnFa("EN") %>' ID="Label1" Style="font-size: 14px;" runat="server"
+                                                                            Text='<%# Bind("titleEn") %>'></asp:Label>
+                                                                    </a></h5>
+                                                                <div class="entry-meta meta-1 font-x-small color-grey float-right text-uppercase">
+                                                                    <span class="post-by">توسط <a href="author.html"><%# Eval("authors").Replace("ي", "ی") %></a></span>
+                                                                    <span class="post-on"><%# Eval("shamsidate") %></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </article>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                         </Columns>
                                     </asp:GridView>
                                     <asp:SqlDataSource ID="SDS_10Artciles_And_More" runat="server"
                                         ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
-                                        SelectCommand="SELECT top 10 * FROM [tbl_articles] WHERE [visible] = 1 and  [date_time] <= getdate() and id in (SELECT top 20 [id] FROM [tbl_articles] order by [date_time] desc) order by date_time desc"></asp:SqlDataSource>
+                                        SelectCommand="SELECT a.*, cat.[name] catName, (SELECT [dbo].[MiladiTOShamsi] (GETDATE(), 0)) shamsidate FROM ( SELECT id, date_time FROM [tbl_articles] WHERE [visible] = 1 AND [date_time] <= GETDATE() ORDER BY date_time DESC OFFSET 1 ROWS FETCH NEXT 10 ROWS ONLY ) t INNER JOIN [tbl_articles] a ON t.id = a.id INNER JOIN [dbo].[tbl_articleCategory] cat ON a.CateCode = cat.ID ORDER BY a.date_time DESC"></asp:SqlDataSource>
                                 </div>
                             </div>
                             <div class="pagination-area mb-30">
@@ -418,22 +387,21 @@ ORDER BY newid()"></asp:SqlDataSource>
                                 </div>
                                 <div class="newsletter">
                                     <p class="font-medium">از مهمترین اخبار و رویدادهای سینمایی و مدیوم فیلم کوتاه مطلع شوید:</p>
-                                    <form target="_blank" action="#" method="get" class="subscribe_form relative mail_part">
-                                        <div class="form-newsletter-cover">
+
+                                    <%--<div class="form-newsletter-cover">
                                             <div class="form-newsletter position-relative">
                                                 <input type="email" name="EMAIL" placeholder="ایمیل خود را اینجا وارد کنید" required="">
-                                                <button type="submit">
+                                                <button type="button">
                                                     <i class="ti ti-email"></i>
                                                 </button>
                                             </div>
-                                        </div>
-                                    </form>
+                                        </div>--%>
                                 </div>
                             </div>
-                            <!--Popular News-->                            
+                            <!--Popular News-->
                             <uc4:KingPopularNews ID="KingPopularNews1" runat="server" />
-                            <!--Last Comments-->    
-                            <uc5:KingLastComments ID="KingLastComments1" runat="server" />                            
+                            <!--Last Comments-->
+                            <uc5:KingLastComments ID="KingLastComments1" runat="server" />
                         </div>
                     </div>
                 </div>

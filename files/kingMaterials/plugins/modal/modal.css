@@ -1,0 +1,71 @@
+﻿.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    font-family: IranYekan;
+}
+
+    .modal .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+        .modal .close:hover, .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+body.modal-open {
+    overflow: hidden !important;
+}
+
+.login-form-header {
+    text-align: center;
+}
+
+.modal .btn {
+    margin: 2px !important;
+    background-color: #ECCE01 !important;
+}
+
+    .modal .btn::before {
+        background: gray !important;
+    }
+
+.modal .modal-footer {
+    text-align: center !important;
+}
+
+.modal-footer {
+    display: block !important;
+}
+
+.modal-header .close {
+    font-size: 30px;
+}
+
+.modal-header {
+    border: 0 !important;
+}
+
+.align-items-left {
+    text-align: left !important;
+}
+
+.modal-title {
+    color: gray;
+}
+
+.modal-body {
+    padding-bottom: 5px !important;
+}

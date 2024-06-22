@@ -28,37 +28,37 @@
             <div class="row pb-30">
                 <div class="col">
                     <ul class="float-right ml-30 font-medium">
-                        <li class="cat-item cat-item-2"><a href="category.html">چگونگی پخش و ارسال فیلم</a></li>
-                        <li class="cat-item cat-item-3"><a href="category.html">تعرفه پخش  فیلم و فیلمنامه</a></li>
-                        <li class="cat-item cat-item-4"><a href="category.html">مشاوره فیلم و فیلمنامه</a></li>
+                        <li class="cat-item cat-item-2"><a href="https://iranfilmport.com/%D9%BE%D8%AE%D8%B4-%D9%88-%D8%A7%D8%B1%D8%B3%D8%A7%D9%84-%D9%81%DB%8C%D9%84%D9%85">چگونگی پخش و ارسال فیلم</a></li>
+                        <li class="cat-item cat-item-3"><a href="https://iranfilmport.com/%D9%87%D8%B2%DB%8C%D9%86%D9%87-%D9%BE%D8%AE%D8%B4-%D8%A8%DB%8C%D9%86-%D8%A7%D9%84%D9%85%D9%84%D9%84%DB%8C-%D9%81%DB%8C%D9%84%D9%85">تعرفه پخش  فیلم و فیلمنامه</a></li>
+                        <li class="cat-item cat-item-4"><a href="https://iranfilmport.com/%D9%85%D8%B4%D8%A7%D9%88%D8%B1%D9%87-%D9%BE%D8%AE%D8%B4-%D8%A8%DB%8C%D9%86-%D8%A7%D9%84%D9%85%D9%84%D9%84%DB%8C-%D9%81%DB%8C%D9%84%D9%85">مشاوره فیلم و فیلمنامه</a></li>
                     </ul>
                 </div>
                 <div class="col">
                     <ul class="float-right ml-30 font-medium">
-                        <li class="cat-item cat-item-2"><a href="category.html">اخبار درگاه فیلم ایران</a></li>
-                        <li class="cat-item cat-item-3"><a href="category.html">اخبار بین المللی</a></li>
-                        <li class="cat-item cat-item-4"><a href="category.html">اخبار داخلی</a></li>
+                        <li class="cat-item cat-item-2"><a href="https://iranfilmport.com/4/%D8%A7%D8%AE%D8%A8%D8%A7%D8%B1-%D8%AF%D8%B1%DA%AF%D8%A7%D9%87-%D9%81%DB%8C%D9%84%D9%85-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86/%D8%AF%D8%B3%D8%AA%D9%87-%D8%A7%D8%B5%D9%84%DB%8C">اخبار درگاه فیلم ایران</a></li>
+                        <li class="cat-item cat-item-3"><a href="https://iranfilmport.com/6/%D8%A7%D8%AE%D8%A8%D8%A7%D8%B1-%D8%AC%D8%B4%D9%86%D9%88%D8%A7%D8%B1%D9%87-%D8%AE%D8%A7%D8%B1%D8%AC%DB%8C/%D8%AF%D8%B3%D8%AA%D9%87-%D8%A7%D8%B5%D9%84%DB%8C">اخبار بین المللی</a></li>
+                        <li class="cat-item cat-item-4"><a href="https://iranfilmport.com/5/%D8%A7%D8%AE%D8%A8%D8%A7%D8%B1-%D8%AC%D8%B4%D9%86%D9%88%D8%A7%D8%B1%D9%87-%D8%AF%D8%A7%D8%AE%D9%84%DB%8C/%D8%AF%D8%B3%D8%AA%D9%87-%D8%A7%D8%B5%D9%84%DB%8C">اخبار داخلی</a></li>
                     </ul>
                 </div>
                 <div class="col">
                     <ul class="float-right ml-30 font-medium">
-                        <li class="cat-item cat-item-2"><a href="category.html">فراخوان‌های بین المللی</a></li>
-                        <li class="cat-item cat-item-3"><a href="category.html">فراخوان‌های داخلی</a></li>
+                        <li class="cat-item cat-item-2"><a href="https://iranfilmport.com/7/%D9%81%D8%B1%D8%A7%D8%AE%D9%88%D8%A7%D9%86-%D8%AC%D8%B4%D9%86%D9%88%D8%A7%D8%B1%D9%87/%D8%AF%D8%B3%D8%AA%D9%87-%D8%A7%D8%B5%D9%84%DB%8C">فراخوان‌های بین المللی</a></li>
+                        <li class="cat-item cat-item-3"><a href="http://iranfilmport.com/420">فستیوال‌های فیلم ایرانی</a></li>
                     </ul>
                 </div>
                 <div class="col">
                     <ul class="float-right ml-30 font-medium">
-                        <li class="cat-item cat-item-2"><a href="category.html">دوره فیلمنامه نویسی</a></li>
-                        <li class="cat-item cat-item-3"><a href="category.html">دوره کارگردانی</a></li>
-                        <li class="cat-item cat-item-4"><a href="category.html">دوره تدوین</a></li>
+                        <li class="cat-item cat-item-2"><a href="https://iranfilmport.com/courses/%D8%AF%D9%88%D8%B1%D9%87-%D9%87%D8%A7%DB%8C-%D8%A2%D9%85%D9%88%D8%B2%D8%B4-%D9%81%DB%8C%D9%84%D9%85%D8%B3%D8%A7%D8%B2%DB%8C-%D8%A2%D9%86%D9%84%D8%A7%DB%8C%D9%86-%D8%B3%DB%8C%D9%86%D9%85%D8%A7%DB%8C%DB%8C-%D9%81%DB%8C%D9%84%D9%85-%DA%A9%D9%88%D8%AA%D8%A7%D9%87">دوره فیلمنامه نویسی</a></li>
+                        <li class="cat-item cat-item-3"><a href="https://iranfilmport.com/courses/%D8%AF%D9%88%D8%B1%D9%87-%D9%87%D8%A7%DB%8C-%D8%A2%D9%85%D9%88%D8%B2%D8%B4-%D9%81%DB%8C%D9%84%D9%85%D8%B3%D8%A7%D8%B2%DB%8C-%D8%A2%D9%86%D9%84%D8%A7%DB%8C%D9%86-%D8%B3%DB%8C%D9%86%D9%85%D8%A7%DB%8C%DB%8C-%D9%81%DB%8C%D9%84%D9%85-%DA%A9%D9%88%D8%AA%D8%A7%D9%87">دوره کارگردانی</a></li>
+                        <li class="cat-item cat-item-4"><a href="https://iranfilmport.com/courses/%D8%AF%D9%88%D8%B1%D9%87-%D9%87%D8%A7%DB%8C-%D8%A2%D9%85%D9%88%D8%B2%D8%B4-%D9%81%DB%8C%D9%84%D9%85%D8%B3%D8%A7%D8%B2%DB%8C-%D8%A2%D9%86%D9%84%D8%A7%DB%8C%D9%86-%D8%B3%DB%8C%D9%86%D9%85%D8%A7%DB%8C%DB%8C-%D9%81%DB%8C%D9%84%D9%85-%DA%A9%D9%88%D8%AA%D8%A7%D9%87">دوره تدوین</a></li>
                     </ul>
                 </div>
                 <div class="col">
                     <ul class="float-right ml-30 font-medium">
-                        <li class="cat-item cat-item-2"><a href="category.html">تیم و مدیریت درگاه فیلم ایران</a></li>
-                        <li class="cat-item cat-item-3"><a href="category.html">شریک اسپانیایی شرکت</a></li>
-                        <li class="cat-item cat-item-4"><a href="category.html">ارسال خبر و تبلیغات</a></li>
-                        <li class="cat-item cat-item-5"><a href="category.html">نماینده‌های درگاه فیلم ایران</a></li>
+                        <li class="cat-item cat-item-2"><a href="https://iranfilmport.com/team">تیم و مدیریت درگاه فیلم ایران</a></li>
+                        <li class="cat-item cat-item-3"><a href="https://iranfilmport.com/movibeta">شریک اسپانیایی شرکت</a></li>
+                        <li class="cat-item cat-item-4"><a href="https://iranfilmport.com/%D8%A7%D8%B1%D8%B3%D8%A7%D9%84-%D8%AE%D8%A8%D8%B1-%D9%88-%D8%AA%D8%A8%D9%84%DB%8C%D8%BA%D8%A7%D8%AA">ارسال خبر و تبلیغات</a></li>
+                        <li class="cat-item cat-item-5"><a href="https://iranfilmport.com/agents">نماینده‌های درگاه فیلم ایران</a></li>
                     </ul>
                 </div>
                 <%-- <div class="col d-none d-lg-block">
@@ -82,11 +82,11 @@
                 <div class="row d-flex mb-15">
                     <div class="col-12">
                         <ul class="list-inline font-small">
-                            <li class="list-inline-item"><a href="category.html">صفحه نخست</a></li>
-                            <li class="list-inline-item"><a href="category.html">تماس با ما</a></li>
-                            <li class="list-inline-item"><a href="category.html">درباره ما</a></li>
-                            <li class="list-inline-item"><a href="category.html">کارنامه درگاه فیلم ایران</a></li>
-                            <li class="list-inline-item"><a href="category.html">تصدیق‌نامه‌ها</a></li>
+                            <li class="list-inline-item"><a href="/">صفحه نخست</a></li>
+                            <li class="list-inline-item"><a href="https://iranfilmport.com/%D8%AA%D9%85%D8%A7%D8%B3-%D8%A8%D8%A7-%D8%AF%D8%B1%DA%AF%D8%A7%D9%87-%D9%81%DB%8C%D9%84%D9%85-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86">تماس با ما</a></li>
+                            <li class="list-inline-item"><a href="https://iranfilmport.com/%D8%AF%D8%B1%D8%A8%D8%A7%D8%B1%D9%87-%D8%AF%D8%B1%DA%AF%D8%A7%D9%87-%D9%81%DB%8C%D9%84%D9%85-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86">درباره ما</a></li>
+                            <li class="list-inline-item"><a href="https://iranfilmport.com/%DA%A9%D8%A7%D8%B1%D9%86%D8%A7%D9%85%D9%87-%D9%BE%D8%AE%D8%B4-%D9%81%DB%8C%D9%84%D9%85-%D8%AF%D8%B1%DA%AF%D8%A7%D9%87-%D9%81%DB%8C%D9%84%D9%85-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86">کارنامه درگاه فیلم ایران</a></li>
+                            <li class="list-inline-item"><a href="https://iranfilmport.com/%D8%AA%D9%85%D8%A7%D8%B3-%D8%A8%D8%A7-%D8%AF%D8%B1%DA%AF%D8%A7%D9%87-%D9%81%DB%8C%D9%84%D9%85-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86">تصدیق‌نامه‌ها</a></li>
                         </ul>
                     </div>
                 </div>

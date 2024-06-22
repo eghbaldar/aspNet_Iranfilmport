@@ -1,0 +1,15 @@
+﻿
+.btnChoicePanel {
+    padding: 5px;
+    border: 2px solid #ededed;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+    .btnChoicePanel:hover {
+        border: 2px dotted #c9bf00;
+        cursor: pointer;
+        background-color: #f4f4f4;
+    }
