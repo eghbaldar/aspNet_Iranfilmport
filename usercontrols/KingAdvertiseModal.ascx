@@ -48,7 +48,7 @@
         color: #ccc;
         padding: 10px;
         direction: rtl;
-        font-family: Samim;
+        font-family: IranYekan;
         font-size: large;
         /*background-color: #ffe926;*/
         color: black;
@@ -93,7 +93,7 @@
 
     .blink {
         color: red;
-        font-family: 'Titr';
+        font-family: 'IranYekan';
         animation: blink-animation 1s steps(5, start) infinite;
         -webkit-animation: blink-animation 1s steps(5, start) infinite;
     }

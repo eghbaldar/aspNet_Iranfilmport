@@ -75,14 +75,16 @@
                                                     
                                                     <div style="text-align:center;">
                                                         <asp:Button ID="btnLogin" runat="server" CssClass="button" Text="ورود" ValidationGroup="20"></asp:Button>
+                                                        <asp:Button ID="btnRegister" runat="server" CssClass="button" Text="ثبت نام" ValidationGroup="20"></asp:Button>
                                                     <br />
                                                     <asp:LinkButton ID="LinkForgotPassword" CssClass="forgot-password" Style="font-size: 11px;"
                                                         runat="server">
                 کلمه عبور را فراموش کرده‌اید؟</asp:LinkButton>
                                                     </div>
                                                     
-                                                    <hr />
+                                                    
                                                     <div runat="server" id="StatusOfRegister" style="direction: rtl; text-align: justify; color: Red; font-size: 10px;">
+                                                        <hr />
                                                         به دلیل تکمیل ظرفیت، تا اطلاع ثانوی ثبت نام مقدور نیست.
                                         <br />
                                                         لطفا با شماره <span style="color: Blue; font-size: 13px;">09216343320</span> تماس
@@ -90,14 +92,20 @@
                                         <a style="color: Blue; font-size: 12px;" href="mailto:support@iranfilmport.com">support@iranfilmport.com</a>
                                                         جهت بررسی ارسال کنید.
                                                     </div>
-                                                    <asp:LinkButton ID="btnRegister" CssClass="register" runat="server">ثبت نام</asp:LinkButton>
-                                                    </a>
+                                                    
+                                                   
                                                 </asp:Panel>
                                                 <asp:Panel ID="P_Register" runat="server" Visible="false" Style="direction: ltr;">
-                                                    <div class="input-container">
-                                                        <i class="fa fa-envelope"></i>
-                                                        <asp:TextBox ID="txtEmailReg" Width="300" CssClass="input" placeholder="Email" runat="server"></asp:TextBox>
+
+
+                                                     <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                                        </div>
+                                                        <asp:TextBox ID="txtEmailReg" Width="300" CssClass="form-control kingTextEn" placeholder="Email" runat="server"></asp:TextBox>
                                                     </div>
+
+
                                                     <div style="direction: rtl; text-align: right; text-justify: inter-word; text-align: justify; font-size: 12px;">
                                                         <asp:Label ID="lblNotify" runat="server"></asp:Label>
                                                     </div>
@@ -106,17 +114,18 @@
                                                             ControlToValidate="txtEmailReg" Font-Names="tahoma" Font-Size="11px" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
                                                             ForeColor="Red" ValidationGroup="22"></asp:RegularExpressionValidator>
                                                     </p>
-                                                    <p style="text-align: right; direction: rtl;">
+                                                    <p style="text-align: center; direction: rtl;">
                                                         <asp:Label ID="lblRegister" runat="server" ForeColor="red" Font-Size="11px"></asp:Label>
                                                     </p>
-                                                    <div runat="server" id="DivbtnSendMail">
+                                                    <div runat="server" id="DivbtnSendMail" style="text-align:center;">
                                                         <asp:Button ID="btnSendMail" runat="server" CssClass="button" Text="ارسال لینک کد ثبت نام"
                                                             ValidationGroup="22"></asp:Button>
                                                     </div>
-                                                    <div runat="server" visible="false" id="DivbtnSendMailAgain">
+                                                    <br />
+                                                    <div runat="server" visible="false" id="DivbtnSendMailAgain" style="text-align:center;">
                                                         <asp:Button ID="btnSendMailAgain" CssClass="button" runat="server" Text="ارسال دوباره لینک کد ثبت نام"></asp:Button>
                                                     </div>
-                                                    <div>
+                                                    <div style="text-align:center;">
                                                         <asp:LinkButton ID="btnBackToLoginPanel" CssClass="register" runat="server">بازگشت به صحفه ورود</asp:LinkButton>
                                                     </div>
                                                 </asp:Panel>
@@ -303,10 +312,10 @@
                     </asp:View>
                 </asp:MultiView>
             </div>
-            <div class="modal-footer">
+           <%-- <div class="modal-footer">
                 <button type="button" class="btn btn-primary">پنل اختصاصی</button>
                 <button type="button" class="btn btn-primary">پنل کاربران عادی</button>
-            </div>
+            </div>--%>
         </div>
     </div>
 </div>

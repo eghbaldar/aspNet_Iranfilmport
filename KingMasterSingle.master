@@ -1,4 +1,4 @@
-﻿<%@ Master Language="VB" CodeFile="KingMaster.master.vb" Inherits="KingMaster" %>
+﻿<%@ Master Language="VB" CodeFile="KingMasterSingle.master.vb" Inherits="KingMasterSingle" %>
 
 <%@ Register Src="usercontrols/KingTopHeader.ascx" TagName="KingTopHeader" TagPrefix="uc1" %>
 <%@ Register Src="usercontrols/KingFooter.ascx" TagName="KingFooter" TagPrefix="uc2" %>
@@ -7,9 +7,15 @@
 <%@ Register Src="usercontrols/KingTopSearch.ascx" TagName="KingTopSearch" TagPrefix="uc5" %>
 <%@ Register Src="usercontrols/KingAdvertiseModal.ascx" TagName="KingAdvertiseModal" TagPrefix="uc6" %>
 <%@ Register Src="usercontrols/KingPreLoader.ascx" TagName="KingPreLoader" TagPrefix="uc7" %>
-<!DOCTYPE html>
-<html class="no-js" lang="en">
+<%@ Register Src="usercontrols/KingAdvertisementSinglePage.ascx" TagName="KingAdvertisementSinglePage" TagPrefix="uc8" %>
+<%@ Register Src="usercontrols/KingNewsletter.ascx" TagName="KingNewsletter" TagPrefix="uc9" %>
+<%@ Register Src="~/usercontrols/KingPopularNews.ascx" TagPrefix="uc1" TagName="KingPopularNews" %>
+<%@ Register Src="~/usercontrols/KingLastAccolades.ascx" TagPrefix="uc1" TagName="KingLastAccolades" %>
 
+
+<!DOCTYPE html>
+
+<html>
 <head runat="server">
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -75,7 +81,6 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-
 <body>
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
@@ -86,7 +91,7 @@
         <!-- Top Search -->
         <uc5:KingTopSearch ID="KingTopSearch1" runat="server" />
         <!-- Advertisement Modal -->
-        <uc6:KingAdvertiseModal ID="KingAdvertiseModal1" runat="server" />        
+        <uc6:KingAdvertiseModal ID="KingAdvertiseModal1" runat="server" />
         <!-- Preloader Start -->
         <uc7:KingPreLoader ID="KingPreLoader1" runat="server" />
         <aside id="sidebar-wrapper" class="custom-scrollbar offcanvas-sidebar position-right">
@@ -94,10 +99,38 @@
         <!-- Main Header -->
         <uc1:KingTopHeader ID="KingTopHeader1" runat="server" />
         <!-- Main Wrap Start -->
-        <div class="kingMasterMain">
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
-        </div>
+        <main class="position-relative kingMasterMain" style="transform: none;">
+            <div class="container" style="transform: none;">
+                <!--end entry header-->
+                <div class="row mb-50" style="transform: none;">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                    <!--End col-lg-8-->
+                    <div class="col-lg-4 col-md-12 sidebar-right sticky-sidebar" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+                        <div class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none; top: 0px; left: 74.6125px;">
+                            <div class="pl-lg-50">
+                                <!--Advertisement-->
+                                <uc8:KingAdvertisementSinglePage ID="KingAdvertisementSinglePage1" runat="server" />
+                                <!--10 Accoaldes-->
+                                <uc1:KingLastAccolades runat="server" ID="KingLastAccolades" />
+                                <!--Newsletter-->
+                                <uc9:KingNewsletter ID="KingNewsletter" runat="server" />
+                                <!--The Most Populars-->
+                                <uc1:KingPopularNews runat="server" ID="KingPopularNews" />
+                            </div>
+                        </div>
+                    </div>
+                    <!--End col-lg-4-->
+                </div>
+                <div class="row">
+                    <div class="col-12 text-center mb-50">
+                        <a href="#">
+                            <img class="border-radius-10 d-inline" src="assets/imgs/ads-3.png" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
         <!-- Footer Start-->
         <!-- footer-bottom aera -->
         <uc2:KingFooter ID="KingFooter1" runat="server" />
@@ -145,5 +178,4 @@
         })
     </script>
 </body>
-
 </html>

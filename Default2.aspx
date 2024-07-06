@@ -5,6 +5,7 @@
 <%@ Register Src="usercontrols/KingLastAccolades.ascx" TagName="KingLastAccolades" TagPrefix="uc3" %>
 <%@ Register Src="usercontrols/KingPopularNews.ascx" TagName="KingPopularNews" TagPrefix="uc4" %>
 <%@ Register Src="usercontrols/KingLastComments.ascx" TagName="KingLastComments" TagPrefix="uc5" %>
+<%@ Register Src="usercontrols/KingNewsletter.ascx" TagName="KingNewsletter" TagPrefix="uc6" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -124,7 +125,7 @@
             <!--Ads-->
             <div class="row">
                 <div class="col-12 text-center mb-20">
-                    <a href="#">
+                    <a href="https://iranfilmport.com/%D8%A7%D8%B1%D8%B3%D8%A7%D9%84-%D8%AE%D8%A8%D8%B1-%D9%88-%D8%AA%D8%A8%D9%84%DB%8C%D8%BA%D8%A7%D8%AA">
                         <img class="border-radius-10 d-inline" src="files/kingMaterials/imgs/ads.jpg" alt="post-slider">
                     </a>
                 </div>
@@ -372,8 +373,8 @@ ORDER BY newid()"></asp:SqlDataSource>
                                 </nav>
                             </div>
                             <div class="sidebar-widget widget-ads mb-30 text-center">
-                                <a href="files/kingMaterials/imgs/news-1.jpg">
-                                    <img class="border-radius-10" src="files/kingMaterials/imgs/ads-3.png" alt="">
+                                <a href="https://iranfilmport.com/%D8%A7%D8%B1%D8%B3%D8%A7%D9%84-%D8%AE%D8%A8%D8%B1-%D9%88-%D8%AA%D8%A8%D9%84%DB%8C%D8%BA%D8%A7%D8%AA">
+                                    <img class="border-radius-10" src="files/kingMaterials/imgs/ads-3.jpg" alt="">
                                 </a>
                             </div>
                         </div>
@@ -381,23 +382,7 @@ ORDER BY newid()"></asp:SqlDataSource>
                             <!--Post aside style 1-->
                             <uc3:KingLastAccolades ID="KingLastAccolades1" runat="server" />
                             <!--Newsletter-->
-                            <div class="sidebar-widget widget_newsletter border-radius-10 p-20 kingYellowBackColor mb-30">
-                                <div class="widget-header widget-header-style-1 position-relative mb-15">
-                                    <h5 class="widget-title">خبرنامه</h5>
-                                </div>
-                                <div class="newsletter">
-                                    <p class="font-medium">از مهمترین اخبار و رویدادهای سینمایی و مدیوم فیلم کوتاه مطلع شوید:</p>
-
-                                    <%--<div class="form-newsletter-cover">
-                                            <div class="form-newsletter position-relative">
-                                                <input type="email" name="EMAIL" placeholder="ایمیل خود را اینجا وارد کنید" required="">
-                                                <button type="button">
-                                                    <i class="ti ti-email"></i>
-                                                </button>
-                                            </div>
-                                        </div>--%>
-                                </div>
-                            </div>
+                            <uc6:KingNewsletter ID="KingNewsletter" runat="server" />
                             <!--Popular News-->
                             <uc4:KingPopularNews ID="KingPopularNews1" runat="server" />
                             <!--Last Comments-->

@@ -115,6 +115,7 @@
         '----------------------------------------------------------------------------------------
         '                                       Temp
         routes.MapPageRoute("test", "test/", "~/default2.aspx")
+        routes.MapPageRoute("test2", "test2/", "~/default3.aspx")
         '----------------------------------------------------------------------------------------
         '----------------------------------------------------------------------------------------
         '----------------------------------------------------------------------------------------
@@ -242,8 +243,8 @@
         '----------------------------------------------------------------------------------------
         '----------------------------------------------------------------------------------------
         routes.MapPageRoute("tags", "tag/{text}", "~/tags.aspx")
-        routes.MapPageRoute("POSTwithUnique", "{id}", "~/post.aspx")
-        routes.MapPageRoute("POST", "{id}/{title}", "~/post.aspx")
+        routes.MapPageRoute("POSTwithUnique", "{id}", "~/KingPost.aspx") 'post.aspx => KingPost.aspx
+        routes.MapPageRoute("POST", "{id}/{title}", "~/KingPost.aspx") 'post.aspx => KingPost.aspx
         routes.MapPageRoute("categories", "{id}/{title}/دسته-محتوایی", "~/categories.aspx")
         routes.MapPageRoute("types", "{type}/{title}/دسته-اصلی", "~/types.aspx")
         routes.MapPageRoute("postSearch", "post/search/{text}", "~/postSearch.aspx")
