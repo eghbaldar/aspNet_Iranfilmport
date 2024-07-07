@@ -79,6 +79,7 @@
     }
 
     .C_Sub_Date {
+        font-style:italic;
         font-family: IranYekan;
         font-size: 9px;
         color: #000;
@@ -95,10 +96,11 @@
     }
 
     .C_Sub_Content {
-        padding: 15px;
-        padding-right: 25px;
+        padding: 5px;
+        padding-right: 20px;
         border-radius: 5px;
         margin-bottom: 3px;
+        margin-right: 100px;
         width: 100%;
     }
 
@@ -144,10 +146,40 @@
         }
     }
 </style>
+<style>
+    .loading {
+        position: relative;
+    }
+
+    .loading::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 16px;
+        height: 16px;
+        border: 2px solid #ccc;
+        border-top: 2px solid #000;
+        border-radius: 50%;
+        animation: spin 0.6s linear infinite;
+        transform: translate(-50%, -50%);
+    }
+
+    @keyframes spin {
+        0% {
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
+        100% {
+            transform: translate(-50%, -50%) rotate(360deg);
+        }
+    }
+</style>
+
 <%-----------------------------------------------------%>
 <%-----------------------------------------------------%>
 <asp:Label ID="lblSection" runat="server" Visible="false"></asp:Label>
 <asp:Label ID="lblId" runat="server" Visible="false"></asp:Label>
+<asp:HiddenField ID="HiddenFieldSubCommentId" runat="server" />
 <asp:UpdatePanel runat="server" UpdateMode="Conditional">
     <ContentTemplate>
         <div runat="server" visible="true" id="Div_comment">
@@ -162,28 +194,26 @@
                                 <div class="comment-list">
                                     <div class="single-comment justify-content-between d-flex">
                                         <div class="user justify-content-between d-flex">
-                                            <div class="thumb">
-                                                <asp:Image Style="border-radius: 50%"
-                                                    Width="50"
+                                            <div class="thumb" style="width: 55px;">
+                                                <asp:Image
+                                                    Width="40"
                                                     ID="Image1" ImageUrl="~/files/images/icons/profile.png" runat="server" />
+
                                             </div>
                                             <div class="desc">
                                                 <p class="comment">
+                                                    <a href="#"><%# Eval("name").Replace("ي", "ی") %></a>
+                                                    <br />
+                                                    <p style="font-style: italic; font-size: small;"><%# getdate(Eval("date")) %> </p>
+
+                                                    <div class="reply-btn" style="width: 120px; text-align: center;">
+                                                        <a id='<%# String.Format("SubComment_{0}", Eval("Id")) %>'
+                                                            style="cursor: pointer; background-color: #F0D617 !important;"
+                                                            onclick="call('<%# Eval("Id") %>');" class="btn-reply text-uppercase">پاسخ به این نظر</a>
+                                                    </div>
+                                                    <br />
                                                     <asp:Label CssClass="C_Text" ID="Label1" runat="server" Text='<%# Eval("text").Replace("ي", "ی") %>'></asp:Label>
                                                 </p>
-                                                <div class="d-flex justify-content-between">
-                                                    <div class="d-flex align-items-center">
-                                                        <h5>
-                                                            <a href="#"><%# Eval("name").Replace("ي", "ی") %></a>
-                                                        </h5>
-                                                        <p class="date"><%# getdate(Eval("date")) %> </p>
-                                                    </div>
-                                                    <div class="reply-btn">
-                                                        <a id='<%# String.Format("SubComment_{0}", Eval("Id")) %>'
-                                                            style="cursor: pointer;"
-                                                            onclick="call(this);" class="btn-reply text-uppercase">پاسخ</a>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -215,8 +245,8 @@
                                             </tr>
                                             <tr>
                                                 <td class="C_td">
-                                                    <asp:Button CssClass="btnInsert" ID="btnSubCommentInsert" CommandArgument='<%# String.Format("{0}", Eval("Id")) %>'
-                                                        OnCommand="InsertSubComment" runat="server" Style="font-family: Samim;" Text="ثبت پاسخ برای این نظر"
+                                                    <asp:Button CssClass="btnInsert" ID="btnSubCommentInsert" 
+                                                         runat="server" Style="font-family: Samim;" Text="ثبت پاسخ برای این نظر"
                                                         ValidationGroup='<%# String.Format("RequiredFieldValidator_{0}", Eval("Id")) %>' />
                                                 </td>
                                             </tr>
@@ -225,7 +255,7 @@
                                     <table style="width: 100%; margin-bottom: 0px;">
                                         <tr>
                                             <td>
-                                                <div style="padding-right: 40px;">
+                                                <div>
                                                     <asp:Label ID="ID_Parent" runat="server" Text='<%# Eval("id") %>' Visible="false"></asp:Label>
                                                     <asp:GridView ID="dgSubComment" runat="server" DataSourceID="SDS_SubComment" GridLines="None"
                                                         ShowHeader="False" AutoGenerateColumns="False" Width="100%">
@@ -233,33 +263,32 @@
                                                             <asp:TemplateField HeaderText="name" SortExpression="name">
                                                                 <ItemTemplate>
                                                                     <asp:Panel ID="Panel1" runat="server" CssClass='<%# IIf(Eval("Admin") = "True", "C_Sub_Content C_Sub_Content_Yellow", "C_Sub_Content C_Sub_Content_GRAY") %>'>
-                                                                        <div style="display: flex;">
-                                                                            <div>
+
+
+
+
+                                                                        <div class="user d-flex">
+                                                                            <div class="thumb" style="width: 55px;">
                                                                                 <asp:Image Style="border-radius: 50%"
                                                                                     Width="50"
                                                                                     ID="Image1" ImageUrl='<%# IIf(Eval("Admin") = "True", "~/files/images/icons/iconScreen.png", "~/files/images/icons/profile.png") %>' runat="server" />
+
                                                                             </div>
-                                                                        </div>
-                                                                        <table style="width: 100%; line-height: 20px;">
-                                                                            <tr>
-                                                                                <td></td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div style="padding: 10px;">
+                                                                            <div class="desc">
+                                                                                <p class="comment">
+                                                                                    <asp:Label CssClass="C_Sub_Title" ID="Label2" runat="server" ForeColor='<%# IIf(Eval("Admin") = "True", System.Drawing.Color.Red, System.Drawing.ColorTranslator.FromHtml("#B0A800")) %>'
+                                                                                        Text='<%# IIF(Eval("Admin") = "True", "کارشناس درگاه فیلم ایران", Eval("name").Replace("ي", "ی")) %>'></asp:Label>
+                                                                                    <br />
+                                                                                    <asp:Label CssClass="C_Sub_Date" ID="Label3" runat="server" Text='<%# getdate(Eval("date")) %>'></asp:Label>
+                                                                                    <div>
                                                                                         <asp:Label CssClass="C_Sub_Text" ID="Label1" runat="server" Text='<%# Eval("text").Replace("ي", "ی") %>'></asp:Label>
                                                                                     </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <asp:Label CssClass="C_Sub_Title" ID="Label2" runat="server" ForeColor='<%# IIf(Eval("Admin") = "True", System.Drawing.Color.Red, System.Drawing.ColorTranslator.FromHtml("#B0A800")) %>'
-                                                                                        Text='<%# IIF(Eval("Admin") = "True", "", Eval("name").Replace("ي", "ی")) %>'></asp:Label>
-                                                                                    </br>
-                                                                                    <asp:Label CssClass="C_Sub_Date" ID="Label3" runat="server" Text='<%# getdate(Eval("date")) %>'></asp:Label>
-                                                                                </td>
-                                                                            </tr>
-                                                                        </table>
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+
+
+
                                                                     </asp:Panel>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
@@ -340,7 +369,7 @@
                     <div class="form-group" style="text-align: left;">
                         <asp:Button ID="btnInsert" runat="server"
                             CssClass="button button-contactForm"
-                            Font-Names="Samim" Text="ارسال نظر" ValidationGroup="c" OnClientClick="return validateForm();" />
+                            Font-Names="Samim" Text="ارسال نظر" ValidationGroup="c" OnClientClick="return validateForm(this);" />
 
                     </div>
                 </div>
@@ -351,140 +380,12 @@
         <asp:PostBackTrigger ControlID="txtCaptcha" />
     </Triggers>
 </asp:UpdatePanel>
-<script>
-    function successAlert() {
-        Swal.fire({
-            position: "center",
-            icon: "success",
-            html: 'پیام شما با موفقیت ارسال گردید و پس از تایید توسط ادمین در اسرع وقت منتشر خواهد شد.',
-            showConfirmButton: false,
-            timer: 5000
-        });
-    }
-</script>
-<script>
-    function call(sender) {
-
-        $("#exampleModalCenter").modal("show");
 
 
-        //var str = sender.id;
-        //var res = str.split("_");
-        //if (document.getElementById('DivSubComment_' + res[1]).style.display == 'none') {
-        //    document.getElementById('DivSubComment_' + res[1]).style.display = 'inline';
-        //}
-        //else {
-        //    document.getElementById('DivSubComment_' + res[1]).style.display = 'none';
-        //}
-
-    }
-
-</script>
-
-<script type="text/javascript">
-    document.addEventListener("DOMContentLoaded", function () {
-        var textBoxes = [
-            document.getElementById('<%= txtName.ClientID %>'),
-            document.getElementById('<%= txtEmail.ClientID %>'),
-            document.getElementById('<%= txtText.ClientID %>'),
-            document.getElementById('<%= txtCaptcha.ClientID %>'),
-            // Add more TextBox IDs here as needed
-        ];
-
-        textBoxes.forEach(function (textBox) {
-            textBox.addEventListener('blur', function () {
-                validateTextBox(textBox);
-            });
-        });
-    });
-
-    function validateTextBox(textBox) {
-        if (textBox.id === '<%= txtEmail.ClientID %>') {
-            // Email validation
-            var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-            if (!emailPattern.test(textBox.value.trim())) {
-                textBox.classList.add('input-validation-error');
-                return false;
-            } else {
-                textBox.classList.remove('input-validation-error');
-                return true;
-            }
-        } else {
-            // General validation for other textboxes
-            if (textBox.value.trim() === '') {
-                textBox.classList.add('input-validation-error');
-                return false;
-            } else {
-                textBox.classList.remove('input-validation-error');
-                return true;
-            }
-        }
-    }
-
-    function validateForm() {
-        var isValid = true;
-        var textBoxes = [
-            document.getElementById('<%= txtName.ClientID %>'),
-            document.getElementById('<%= txtEmail.ClientID %>'),
-            document.getElementById('<%= txtText.ClientID %>'),
-            document.getElementById('<%= txtCaptcha.ClientID %>')
-            // Add more TextBox IDs here as needed
-        ];
-
-        textBoxes.forEach(function (textBox) {
-            if (!validateTextBox(textBox)) {
-                isValid = false;
-            }
-        });
-
-        return isValid;
-    }
-    function validateTextBoxSubComment(textBox) {
-        if (textBox.id === '<%= txtEmailSubComment.ClientID %>') {
-                // Email validation
-                var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-                if (!emailPattern.test(textBox.value.trim())) {
-                    textBox.classList.add('input-validation-error');
-                    return false;
-                } else {
-                    textBox.classList.remove('input-validation-error');
-                    return true;
-                }
-            } else {
-                // General validation for other textboxes
-                if (textBox.value.trim() === '') {
-                    textBox.classList.add('input-validation-error');
-                    return false;
-                } else {
-                    textBox.classList.remove('input-validation-error');
-                    return true;
-                }
-            }
-        }
-    function validateFormSubComment() {
-        var isValid = true;
-        var textBoxes = [
-            document.getElementById('<%= txtNameSubComment.ClientID %>'),
-            document.getElementById('<%= txtEmailSubComment.ClientID %>'),
-            document.getElementById('<%= txtTextSubComment.ClientID %>'),
-            document.getElementById('<%= txtCaptchaSubComment.ClientID %>')
-            // Add more TextBox IDs here as needed
-        ];
-
-        textBoxes.forEach(function (textBox) {
-            if (!validateTextBoxSubComment(textBox)) {
-                isValid = false;
-            }
-        });
-
-        return isValid;
-    }
-</script>
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<!-- Modal - SubComment -->
+<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+    <ContentTemplate>
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="row modal-header">
@@ -535,18 +436,168 @@
                 </div>
             </div>
             <div class="modal-footer">
-                 <asp:Button ID="btnInsertSubComment" runat="server"
-                            CssClass="button button-contactForm"
-                            Font-Names="Samim" Text="ارسال نظر" ValidationGroup="c" 
-                     OnClientClick="return validateFormSubComment();" />
+                <asp:Button ID="btnInsertSubComment" runat="server"
+                    CssClass="button button-contactForm"
+                    Font-Names="Samim" Text="ارسال نظر" ValidationGroup="c"
+                    OnClientClick="return validateFormSubComment(this);" />
 
             </div>
         </div>
     </div>
 </div>
+    </ContentTemplate>
+</asp:UpdatePanel>
 
 
+<script>
+    function successAlert() {
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            html: 'پیام شما با موفقیت ارسال گردید و پس از تایید توسط ادمین در اسرع وقت منتشر خواهد شد.',
+            showConfirmButton: false,
+            timer: 4000
+        });
+        $('#exampleModalCenter').modal('hide'); // Ensure the modal is closed
+        $('.modal-backdrop').remove();
+        $('body').removeClass('modal-open'); // Remove the modal-open class from body
 
+    }
+</script>
+<script>
+    function call(id) {
+        $('#<%= HiddenFieldSubCommentId.ClientID %>').val(id);
+        $("#exampleModalCenter").modal("show");
+    }
+
+</script>
+
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        var textBoxes = [
+            document.getElementById('<%= txtName.ClientID %>'),
+            document.getElementById('<%= txtEmail.ClientID %>'),
+            document.getElementById('<%= txtText.ClientID %>'),
+            document.getElementById('<%= txtCaptcha.ClientID %>'),
+            // Add more TextBox IDs here as needed
+        ];
+
+        textBoxes.forEach(function (textBox) {
+            textBox.addEventListener('blur', function () {
+                validateTextBox(textBox);
+            });
+        });
+    });
+
+    function validateTextBox(textBox) {
+        if (textBox.id === '<%= txtEmail.ClientID %>') {
+            // Email validation
+            var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (!emailPattern.test(textBox.value.trim())) {
+                textBox.classList.add('input-validation-error');
+                return false;
+            } else {
+                textBox.classList.remove('input-validation-error');
+                return true;
+            }
+        } else {
+            // General validation for other textboxes
+            if (textBox.value.trim() === '') {
+                textBox.classList.add('input-validation-error');
+                return false;
+            } else {
+                textBox.classList.remove('input-validation-error');
+                return true;
+            }
+        }
+    }
+
+    function validateForm(sender) {
+
+        var isValid = true;
+        var textBoxes = [
+            document.getElementById('<%= txtName.ClientID %>'),
+            document.getElementById('<%= txtEmail.ClientID %>'),
+            document.getElementById('<%= txtText.ClientID %>'),
+            document.getElementById('<%= txtCaptcha.ClientID %>')
+            // Add more TextBox IDs here as needed
+        ];
+
+        textBoxes.forEach(function (textBox) {
+            if (!validateTextBox(textBox)) {
+                isValid = false;
+            }
+        });
+
+        if (isValid) disableButton(sender);
+
+        return isValid;
+    }
+    function validateTextBoxSubComment(textBox) {
+        if (textBox.id === '<%= txtEmailSubComment.ClientID %>') {
+            // Email validation
+            var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (!emailPattern.test(textBox.value.trim())) {
+                textBox.classList.add('input-validation-error');
+                return false;
+            } else {
+                textBox.classList.remove('input-validation-error');
+                return true;
+            }
+        } else {
+            // General validation for other textboxes
+            if (textBox.value.trim() === '') {
+                textBox.classList.add('input-validation-error');
+                return false;
+            } else {
+                textBox.classList.remove('input-validation-error');
+                return true;
+            }
+        }
+    }
+    function validateFormSubComment(sender) {
+        var isValid = true;
+        var textBoxes = [
+            document.getElementById('<%= txtNameSubComment.ClientID %>'),
+            document.getElementById('<%= txtEmailSubComment.ClientID %>'),
+            document.getElementById('<%= txtTextSubComment.ClientID %>'),
+            document.getElementById('<%= txtCaptchaSubComment.ClientID %>')
+            // Add more TextBox IDs here as needed
+        ];
+
+        textBoxes.forEach(function (textBox) {
+            if (!validateTextBoxSubComment(textBox)) {
+                isValid = false;
+            }
+        });
+
+        if (isValid) disableButton(sender);
+
+        return isValid;
+    }
+</script>
+
+
+<script type="text/javascript">
+    function disableButton(button) {
+        // Disable the button
+        button.disabled = true;
+
+        // Add the loading class to show the spinner
+        button.classList.add('loading');
+
+        // Optionally, change the button text to "Loading..."
+        button.value = 'صبر کنید ...';
+
+        // Ensure the form is submitted
+        setTimeout(function () {
+            __doPostBack(button.name, '');
+        }, 50);
+
+        // Prevent the default form submission to allow __doPostBack to handle it
+        //return false;
+    }
+</script>
 
 
 

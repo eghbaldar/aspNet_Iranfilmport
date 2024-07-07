@@ -53,8 +53,18 @@ Partial Class usercontrols_KingComments
             txtEmail.Text = ""
             txtName.Text = ""
             txtText.Text = ""
-            dgComment.DataBind()
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myJsFn", "successAlert();", True)
+
+            'refresh captcha
+            txtCaptcha.Text = ""
+            s = New SecurityImage(SecurityLevel.Normal)
+            s.Generate()
+            ImgCaptcha.ImageUrl = s.SecurityImageUri
+            ImgCaptcha2.ImageUrl = s.SecurityImageUri
+            ImgCaptcha.ToolTip = s.Code
+            ImgCaptcha2.ToolTip = s.Code
+
+
         End If
     End Sub
 
@@ -62,30 +72,33 @@ Partial Class usercontrols_KingComments
         Return ShamsiDate.Miladi2Shamsi(_Date, ShamsiDate.ShowType.LongDate)
     End Function
 
-    Public Sub InsertSubComment(sender As Object, e As CommandEventArgs)
-
-        Dim name, email, text As String
-        For i As Integer = 0 To dgComment.Rows.Count - 1
-            For j As Integer = 0 To dgComment.Controls.Count - 1
-                Dim txtName As String = CType(dgComment.Rows(i).Controls(j).FindControl("txtSubName"), TextBox).Text
-                If txtName <> "" Then name = txtName
-
-                Dim txtEmail As String = CType(dgComment.Rows(i).Controls(j).FindControl("txtSubEmail"), TextBox).Text
-                If txtEmail <> "" Then email = txtEmail
-
-                Dim txtText As String = CType(dgComment.Rows(i).Controls(j).FindControl("txtSubText"), TextBox).Text
-                If txtText <> "" Then text = txtText
-            Next
-        Next
-        DL.InsertComment(_Section, _Id_POST, Val(e.CommandArgument.ToString),
-                         convertNumFatoEn(text.Trim.Replace(ControlChars.Lf, "<br/>")), name.Trim, email.Trim, False, 0)
-        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myJsFn", "successAlert();", True)
-        dgComment.DataBind()
-
-    End Sub
-
     Public Function convertNumFatoEn(ByVal T As String) As String
         Return T.Replace("۰", "0").Replace("۱", "1").Replace("۲", "2").Replace("۳", "3").Replace("۴", "4").Replace("۵", "5").Replace("۶", "6").Replace("۷", "7").Replace("۸", "8").Replace("۹", "9").Replace("٫", "/")
     End Function
+
+    Private Sub btnInsertSubComment_Click(sender As Object, e As EventArgs) Handles btnInsertSubComment.Click
+        Dim name, email, text As String
+        Dim txtName As String = txtNameSubComment.Text
+        If txtName <> "" Then name = txtName
+
+        Dim txtEmail As String = txtEmailSubComment.Text
+        If txtEmail <> "" Then email = txtEmail
+
+        Dim txtText As String = txtTextSubComment.Text
+        If txtText <> "" Then text = txtText
+        DL.InsertComment(_Section, _Id_POST, Val(HiddenFieldSubCommentId.Value),
+                         convertNumFatoEn(text.Trim.Replace(ControlChars.Lf, "<br/>")), name.Trim, email.Trim, False, 0)
+        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myJsFn", "successAlert();", True)
+
+        'refresh captcha
+        txtCaptchaSubComment.Text = ""
+        s = New SecurityImage(SecurityLevel.Normal)
+        s.Generate()
+        ImgCaptcha.ImageUrl = s.SecurityImageUri
+        ImgCaptcha2.ImageUrl = s.SecurityImageUri
+        ImgCaptcha.ToolTip = s.Code
+        ImgCaptcha2.ToolTip = s.Code
+
+    End Sub
 
 End Class
