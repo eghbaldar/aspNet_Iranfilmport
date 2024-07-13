@@ -103,8 +103,10 @@
             <div class="container" style="transform: none;">
                 <!--end entry header-->
                 <div class="row mb-50" style="transform: none;">
-                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                    </asp:ContentPlaceHolder>
+                    <div class="col-lg-8 col-md-12">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
                     <!--End col-lg-8-->
                     <div class="col-lg-4 col-md-12 sidebar-right sticky-sidebar" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
                         <div class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none; top: 0px; left: 74.6125px;">

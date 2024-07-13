@@ -1,5 +1,5 @@
 ﻿
-Partial Class Default3
+Partial Class KingPost
     Inherits System.Web.UI.Page
 
     Dim DL As New DLL
@@ -9,13 +9,15 @@ Partial Class Default3
         KingComments.Section = 0
         KingComments.IDPOST = Val(RouteData.Values("id"))
     End Sub
-
     Public Function GetEditPermission() As Boolean
         If HttpContext.Current.User.Identity.Name <> "ifp2021" Then
             Return False
         Else
             Return True
         End If
+    End Function
+    Public Function getTotalComment() As String
+        Return KingComments.TotalComments
     End Function
     Public Function getCategory(id As Object)
         Return DL.Navigation(id, 3)

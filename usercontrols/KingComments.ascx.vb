@@ -7,6 +7,16 @@ Partial Class usercontrols_KingComments
     Dim s As SecurityImage
     Dim DL As New DLL
 
+    Private _totalComments As String
+    Public Property TotalComments() As String
+        Get
+            Return _totalComments
+        End Get
+        Set(ByVal value As String)
+            _totalComments = value
+        End Set
+    End Property
+
     Protected Sub Page_Load(sender As Object, e As System.EventArgs) Handles Me.Load
 
         If Not IsPostBack Then
@@ -22,6 +32,8 @@ Partial Class usercontrols_KingComments
         lblId.Text = _Id_POST
 
         lblCommentCount.Text = String.Format("نظرات {0}", dgComment.Rows.Count)
+
+        _totalComments = dgComment.Rows.Count
 
     End Sub
 

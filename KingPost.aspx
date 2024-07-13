@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="VB" MasterPageFile="~/KingMasterSingle.master" AutoEventWireup="false" CodeFile="KingPost.aspx.vb" Inherits="Default3" %>
+﻿<%@ Page Title="" Language="VB" MasterPageFile="~/KingMasterSingle.master" AutoEventWireup="false"
+    CodeFile="KingPost.aspx.vb" Inherits="KingPost" %>
 
 <%@ Register Src="usercontrols/KingNavigator.ascx" TagName="KingNavigator" TagPrefix="uc4" %>
 <%@ Register Src="~/usercontrols/KingRelatedPost.ascx" TagPrefix="uc4" TagName="KingRelatedPost" %>
@@ -28,7 +29,7 @@
     <%-- End of Change Font Size--%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <div class="col-lg-8 col-md-12">
+    
         <asp:Repeater ID="Repeater2" runat="server" DataSourceID="SDS_Master">
             <ItemTemplate>
                 <uc4:KingNavigator ID="KingNavigator1" runat="server" />
@@ -43,9 +44,7 @@
                         <span class="post-on">
                             <asp:Label ID="Label4" runat="server" Text='<%# getDate(Eval("date_time")) %>'></asp:Label></span>
                         <p class="font-x-small mt-10">
-                            <span class="hit-count"><i class="ti-comment ml-5"></i>نظرات 82</span>
-                            <span class="hit-count"><i class="ti-heart ml-5"></i>لایک 68</span>
-                            <span class="hit-count"><i class="ti-star ml-5"></i>امتیاز 8/10</span>
+                            <span class="hit-count"><i class="ti-comment ml-5"></i>نظرات <%# getTotalComment() %></span>
                         </p>
                     </div>
                 </div>
@@ -72,9 +71,7 @@
                 <div class="entry-bottom mt-50 mb-30">
                     <div class="font-weight-500 entry-meta meta-1 font-x-small color-grey">
                         <span class="update-on"><i class="ti ti-reload ml-5"></i>به روز شده 18/9/1400 10:28</span>
-                        <span class="hit-count"><i class="ti-comment"></i>نظرات 82</span>
-                        <span class="hit-count"><i class="ti-heart"></i>لایک 68</span>
-                        <span class="hit-count"><i class="ti-star"></i>امتیاز 8/10</span>
+                        <span class="hit-count"><i class="ti-comment"></i>نظرات <%# getTotalComment() %></span>
                     </div>
                     <div class="mt-2 mb-2 shortenlink entry-meta font-x-small">
                         <asp:Label ID="Label1" runat="server" Text='<%# getShortLink(Eval("id")) %>'></asp:Label>
@@ -99,7 +96,10 @@
                             <ul class="d-inline-block list-inline">
                                 <li class="list-inline-item"><span class="font-small text-muted"><i class="ti-sharethis ml-5"></i>اشتراک: </span></li>
                                 <li class="list-inline-item"><a class="social-icon facebook-icon text-xs-center" target="_blank" href='<%# getFB(Eval("id"), Eval("title")) %>'><i class="ti-facebook"></i></a></li>
-                                <li class="list-inline-item"><a class="social-icon bi bi-telegram text-xs-center" target="_blank" href='<%# getTelegram(Eval("id"), Eval("title")) %>'><i class="bi-telegram"></i></a></li>
+                                <li class="list-inline-item"><a class="social-icon bi bi-telegram text-xs-center" target="_blank" href='<%# getTelegram(Eval("id"), Eval("title")) %>'>
+                                    <svg width="24px" height="24px" viewBox="0 0 15 15" fill="#38ABD6" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M14.5 1.5L0.5 6.5L4.5 8.5L10.5 4.5L6.5 9.5L12.5 13.5L14.5 1.5Z" stroke="" stroke-linejoin="round" />
+                                    </svg></a></li>
                                 <li class="list-inline-item"><a class="social-icon twitter-icon text-xs-center" target="_blank" href='<%# getTw(Eval("id"), Eval("title")) %>'><i class="ti-twitter-alt"></i></a></li>
                             </ul>
                         </div>
@@ -110,9 +110,9 @@
         <!--author box-->
         <!--related posts-->
         <uc4:KingRelatedPost runat="server" ID="KingRelatedPost" />
-        <!--Comments-->        
+        <!--Comments-->
         <uc4:KingComments runat="server" ID="KingComments" />
-    </div>
+    
     <script>
         $('#example').FontSize({
             increaseTimes: 5,
