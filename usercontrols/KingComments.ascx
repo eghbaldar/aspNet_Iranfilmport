@@ -313,8 +313,8 @@
                         </asp:TemplateField>
                     </Columns>
                     <EmptyDataTemplate>
-                        <div style="font-family: Samim;">
-                            نظری درج نشده است.
+                        <div>
+                          اولین نظر را شما درج کنید.
                         </div>
                     </EmptyDataTemplate>
                 </asp:GridView>

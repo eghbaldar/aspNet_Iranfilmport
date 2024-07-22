@@ -241,12 +241,12 @@
     };
 
     // Nice Select
-    var niceSelectBox = function() {
-        var nice_Select = $('select');
-        if (nice_Select.length) {
-            nice_Select.niceSelect();
-        }
-    };
+    //var niceSelectBox = function() {
+    //    var nice_Select = $('select');
+    //    if (nice_Select.length) {
+    //        nice_Select.niceSelect();
+    //    }
+    //};
 
     //Header sticky
     var headerSticky = function() {

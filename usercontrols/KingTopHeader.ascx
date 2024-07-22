@@ -68,13 +68,13 @@
                                                     <li><a href="https://iranfilmport.com/%D9%BE%D8%AE%D8%B4-%D9%88-%D8%A7%D8%B1%D8%B3%D8%A7%D9%84-%D9%81%DB%8C%D9%84%D9%85">چگونگی پخش و ارسال فیلمنامه</a></li>
                                                     <li><a href="https://iranfilmport.com/%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87-%D8%A7%D8%B3%D8%AA%D8%B1%D8%A7%D8%AA%DA%98%DB%8C%DA%A9-%D9%BE%D8%AE%D8%B4-%D9%81%DB%8C%D9%84%D9%85-%D8%A8%D9%87-%D8%AC%D8%B4%D9%86%D9%88%D8%A7%D8%B1%D9%87-%D9%87%D8%A7%DB%8C-%D8%AE%D8%A7%D8%B1%D8%AC%DB%8C">پلن استراتژیک پخش فیلم</a></li>
                                                     <li><a href="https://iranfilmport.com/%D9%87%D8%B2%DB%8C%D9%86%D9%87-%D9%BE%D8%AE%D8%B4-%D8%A8%DB%8C%D9%86-%D8%A7%D9%84%D9%85%D9%84%D9%84%DB%8C-%D9%81%DB%8C%D9%84%D9%85">محاسبه هزینه پخش فیلم</a></li>
-                                                    <li><a href="https://iranfilmport.com/%D9%87%D8%B2%DB%8C%D9%86%D9%87-%D9%BE%D8%AE%D8%B4-%D8%A8%DB%8C%D9%86-%D8%A7%D9%84%D9%85%D9%84%D9%84%DB%8C-%D9%81%DB%8C%D9%84%D9%85">تعرفه ثابت</a></li>
+                                                    <li><a href="https://iranfilmport.com/%D9%87%D8%B2%DB%8C%D9%86%D9%87-%D9%BE%D8%AE%D8%B4-%D8%A8%DB%8C%D9%86-%D8%A7%D9%84%D9%85%D9%84%D9%84%DB%8C-%D9%81%DB%8C%D9%84%D9%85">تعرفه ثابت پخش فیلم</a></li>
                                                     <li><a href="https://iranfilmport.com/send">ارسال اطلاعات فیلم و فیلمنامه</a></li>
                                                 </ul>
                                                 <ul class="col-md-2">
                                                     <li><strong>مشاوره</strong></li>
                                                     <li><a href="https://iranfilmport.com/%D9%85%D8%B4%D8%A7%D9%88%D8%B1%D9%87-%D9%BE%D8%AE%D8%B4-%D8%A8%DB%8C%D9%86-%D8%A7%D9%84%D9%85%D9%84%D9%84%DB%8C-%D9%81%DB%8C%D9%84%D9%85">مشاوره پخش و ارسال فیلم</a></li>
-                                                    <li><a href="https://iranfilmport.com/%D9%85%D8%B4%D8%A7%D9%88%D8%B1%D9%87-%D9%BE%D8%AE%D8%B4-%D8%A8%DB%8C%D9%86-%D8%A7%D9%84%D9%85%D9%84%D9%84%DB%8C-%D9%81%DB%8C%D9%84%D9%85">مشاوره فیلمنامه کوتاه و بلند</a></li>
+                                                    <li><a href="/مشاوره-فیلمنامه-کوتاه-مشاوره-فیلمنامه-بلند">مشاوره فیلمنامه کوتاه و بلند</a></li>
                                                 </ul>
                                                 <ul class="col-md-2">
                                                     <li><strong>سایر موارد</strong></li>

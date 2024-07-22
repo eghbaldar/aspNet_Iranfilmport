@@ -1,4 +1,25 @@
 ﻿/*===================*/
+.changeAcnhorTag a {
+    color: #cdae2c !important;
+}
+.panel ul {
+    display: block !important;
+    list-style-type: circle !important;
+    margin-top: 1em !important;
+    margin-bottom: 1em !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-right: 40px !important;
+    font-family: IranYekan !important;
+}
+.alert {
+    font-family: IranYekan !important;
+}
+
+.first-level li {
+    list-style-type: square !important;
+}
+
 p, h1, h2, h3, h4, h5, h6,span {
     font-family: IranYekan !important;
 }

@@ -53,44 +53,44 @@
         routes.Ignore("{file}.apk")
         '---------------------------------------------
         routes.MapPageRoute("rss", "rss", "~/rss.aspx")
-        routes.MapPageRoute("rule", "قوانین-و-مقررات", "~/rules.aspx")
-        routes.MapPageRoute("howitworks", "پخش-و-ارسال-فیلم", "~/howitworks.aspx")
+        routes.MapPageRoute("rule", "قوانین-و-مقررات", "~/kingrules.aspx") 'rules.aspx
+        routes.MapPageRoute("howitworks", "پخش-و-ارسال-فیلم", "~/kingHowitworks.aspx") 'howitworks.aspx
         routes.MapPageRoute("article", "نقد-تحلیل-اخبار-فیلم-کوتاه", "~/posts.aspx")
-        routes.MapPageRoute("mediamaking", "رسانه-سازی-پخش-فیلم", "~/service_mediamaking.aspx")
+        routes.MapPageRoute("mediamaking", "رسانه-سازی-پخش-فیلم", "~/kingService_mediamaking.aspx") 'service_mediamaking
         routes.MapPageRoute("movibeta", "movibeta", "~/kingmovibeta.aspx") 'movibeta.aspx
-        routes.MapPageRoute("Services", "سرویس-های-پخش-فیلم", "~/services.aspx")
+        routes.MapPageRoute("Services", "سرویس-های-پخش-فیلم", "~/kingservices.aspx") 'services
         routes.MapPageRoute("oscars", "فستیوال-های-اسکاری-فیلم-کوتاه", "~/festivalsOscar.aspx")
         routes.MapPageRoute("festivalABC", "فستیوال-های-فیلم", "~/festivalABC.aspx")
-        routes.MapPageRoute("contact", "تماس-با-درگاه-فیلم-ایران", "~/contact.aspx")
-        routes.MapPageRoute("contactus", "contactus", "~/contact.aspx")
+        routes.MapPageRoute("contact", "تماس-با-درگاه-فیلم-ایران", "~/kingContact.aspx") 'contact.aspx
+        routes.MapPageRoute("contactus", "contactus", "~/kingContact.aspx")
         routes.MapPageRoute("aboutus", "درباره-درگاه-فیلم-ایران", "~/KingAboutUs.aspx") 'aboutus.aspx
         routes.MapPageRoute("about", "about", "~/KingAboutUs.aspx") 'aboutus.aspx
-        routes.MapPageRoute("customers", "مشتریان-درگاه-فیلم-ایران", "~/customers.aspx")
-        routes.MapPageRoute("price", "هزینه-پخش-بین-المللی-فیلم", "~/prices.aspx")
-        routes.MapPageRoute("consultation", "مشاوره-پخش-بین-المللی-فیلم", "~/consultation.aspx")
-        routes.MapPageRoute("consultationScript", "مشاوره-فیلمنامه-کوتاه-مشاوره-فیلمنامه-بلند", "~/consultationscript.aspx")
-        routes.MapPageRoute("features", "ویژگی-های-پخش-فیلم-درگاه-فیلم-ایران", "~/features.aspx")
+        routes.MapPageRoute("customers", "مشتریان-درگاه-فیلم-ایران", "~/kingOurClients.aspx") ''customers.aspx
+        routes.MapPageRoute("price", "هزینه-پخش-بین-المللی-فیلم", "~/kingprices.aspx") 'prices.aspx
+        routes.MapPageRoute("consultation", "مشاوره-پخش-بین-المللی-فیلم", "~/kingConsultation.aspx") 'consultation.aspx
+        routes.MapPageRoute("consultationScript", "مشاوره-فیلمنامه-کوتاه-مشاوره-فیلمنامه-بلند", "~/kingConsultationscript.aspx") 'consultationscript.aspx
+        routes.MapPageRoute("features", "ویژگی-های-پخش-فیلم-درگاه-فیلم-ایران", "~/kingFeatures.aspx") 'features.aspx
         routes.MapPageRoute("notallow", "عدم-دسترسی", "~/notAllow.aspx")
         routes.MapPageRoute("profileband", "پروفایل-خارج-از-دسترس", "~/outProfile.aspx")
         routes.MapPageRoute("resume", "کارنامه-پخش-فیلم-درگاه-فیلم-ایران", "~/KingAccolades.aspx") 'CV.aspx
         routes.MapPageRoute("resume2", "accolades", "~/KingAccolades.aspx")
         routes.MapPageRoute("login", "ورود-و-ثبت-نام", "~/login.aspx")
         routes.MapPageRoute("me", "me", "~/login.aspx")
-        routes.MapPageRoute("namad", "نماد-اعتماد-درگاه-فیلم-ایران", "~/namad.aspx")
-        routes.MapPageRoute("strategy", "برنامه-استراتژیک-پخش-فیلم-به-جشنواره-های-خارجی", "~/strategy.aspx")
+        routes.MapPageRoute("namad", "نماد-اعتماد-درگاه-فیلم-ایران", "~/kingNamad.aspx") 'namad.aspx
+        routes.MapPageRoute("strategy", "برنامه-استراتژیک-پخش-فیلم-به-جشنواره-های-خارجی", "~/kingStrategy.aspx") 'strategy.aspx
         routes.MapPageRoute("exhibition", "picks", "~/exhibition.aspx")
-        routes.MapPageRoute("send", "send", "~/sendfilm.aspx")
+        routes.MapPageRoute("send", "send", "~/kingSendPreInformation.aspx") 'sendfilm.aspx
         routes.MapPageRoute("team", "team", "~/kingteam.aspx") 'team.aspx
         routes.MapPageRoute("originality", "originality", "~/features.aspx")
         routes.MapPageRoute("faq", "faq", "~/camscanner.aspx")
         routes.MapPageRoute("captcha", "captcha", "~/captcha.aspx")
         routes.MapPageRoute("trailer", "trailer", "~/trailer.aspx")
-        routes.MapPageRoute("advertiseFa", "ارسال-خبر-و-تبلیغات", "~/advertise.aspx")
+        routes.MapPageRoute("advertiseFa", "ارسال-خبر-و-تبلیغات", "~/kingAdvertisement.aspx") 'advertise.aspx
         routes.MapPageRoute("advertiseEn", "advertise", "~/advertise.aspx")
         routes.MapPageRoute("sendinformation", "sendinformation", "~/sendinformation.aspx")
         routes.MapPageRoute("participationplan", "participationplan", "~/participationplan.aspx")
         routes.MapPageRoute("features2", "features", "~/features.aspx")
-        routes.MapPageRoute("testimonial", "تصدیق-نامه-فیلمسازان", "~/testimonial.aspx")
+        routes.MapPageRoute("testimonial", "تصدیق-نامه-فیلمسازان", "~/kingTestimonials.aspx") 'testimonial.aspx
         routes.MapPageRoute("agents", "agents", "~/kingagents.aspx") 'agents.aspx
         routes.MapPageRoute("tempcontract", "contract/{id}", "~/contract.aspx")
         routes.MapPageRoute("GeneralDetails", "GeneralDetails/{type}", "~/GeneralDetails.aspx")

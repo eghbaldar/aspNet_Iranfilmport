@@ -275,7 +275,6 @@ font-family:Samim;
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                         </div>
-                        <%--<uc3:comment ID="comment" runat="server" />--%>
                     </div>
                 </div>
 <uc1:RightSide ID="RightSide1" runat="server" />
