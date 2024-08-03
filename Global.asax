@@ -134,7 +134,7 @@
         '----------------------------------------------------------------------------------------
         '----------------------------------------------------------------------------------------
         '---------------- نکته ای در خصوص کد زیر وجوددارد که در پایینتر توضیح داده خواهدشد
-        routes.MapPageRoute("festival", "جشنواره-های-فیلم-کوتاه-بلند", "~/festivals.aspx")
+        routes.MapPageRoute("festival", "جشنواره-های-فیلم-کوتاه-بلند", "~/kingFestivals.aspx") 'festivals.aspx
         routes.MapPageRoute("festivalSearch", "festivals/search/{*items}", "~/festivalSearch.aspx")
         'routes.MapPageRoute("festivalEach", "festival/{id}/{name_en}/{name_fa}", "~/aFestival.aspx")                
         'دستورات زیر یعنی اگر دو پارامتر نام فارسی و انگلیسی خالی بودند خطا ندهد
