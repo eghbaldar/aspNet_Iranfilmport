@@ -358,7 +358,7 @@
                             <table style="width: 100%; text-align: center;">
                                 <tr>
                                     <td>
-                                        <asp:Image CssClass="IMG_Big" ID="Image1" AlternateText='<%# Eval("title_fa") %>'
+                                        <asp:Image CssClass="img-fluid" ID="Image1" AlternateText='<%# Eval("title_fa") %>'
                                             ImageUrl='<%# String.Format("~/files/uploadFiles/festival/{0}", Eval("logo")) %>'
                                             runat="server" />
                                     </td>
@@ -394,37 +394,40 @@ order by ID desc"></asp:SqlDataSource>
             لیست فستیوال‌ها براساس آخرین تاریخ پذیرش
         </div>
         <div>
-            <table>
-                <asp:Repeater ID="dgLastDeadlineFestival" runat="server" DataSourceID="SDS_LastFest">
-                    <ItemTemplate>
-                        <div class="row  p-5">
-                            <div class="col-1 pr-2" style="border-right:5px solid #ECCE01">
-                                <a href='<%# String.Format("festival/{0}/{1}/{2}", Eval("id"), Eval("title_en").Replace(" ", "-"), getLink(Eval("title_fa")).Replace(" ", "-").Replace("ي", "ی")) %>'>
-                                    <asp:Image CssClass="IMG" ID="Image1" ImageUrl='<%# String.Format("~/files/uploadFiles/festival/{0}", Eval("logo")) %>'
-                                        runat="server" />
-                                </a>
-                            </div>
-                            <div class="col-8">
-                                <a style="font-size:13px;"
-                                    
-                                    href='<%# String.Format("festival/{0}/{1}/{2}", Eval("id"), Eval("title_en").Replace(" ", "-"), getLink(Eval("title_fa")).Replace(" ", "-").Replace("ي", "ی")) %>'>
-                                    <asp:Label ID="Label2" runat="server" Text='<%# Eval("title_fa").Replace("ي", "ی") %>'></asp:Label>
-                                    <br />
-                                    <asp:Label ID="Label1" runat="server" style="color:#daa000;font-style:italic;" Text='<%# Bind("title_en") %>'></asp:Label>
-                                </a>
-                            </div>
-                            <div class="col-1">
-                                <asp:Label ToolTip="تعداد روز باقی ماننده به آخرین ددلاین" ID="Label3" Style="font-size: 12px;"
-                                    runat="server" Text='<%# getDeadlineStatus(Eval("sign"), Eval("RemainDays")) %>'></asp:Label>
-                            </div>
-                            <div class="col-2">
-                                <a class="button" href='<%# String.Format("festival/{0}/{1}/{2}", Eval("id"), Eval("title_en").Replace(" ", "-"), getLink(Eval("title_fa")).Replace(" ", "-").Replace("ي", "ی")) %>'>جزییات</a>
-                            </div>
-                        </div>
 
-                    </ItemTemplate>
-                </asp:Repeater>
-            </table>
+            <asp:Repeater ID="dgLastDeadlineFestival" runat="server" >
+                <ItemTemplate>
+                    <div class="row  p-5">
+                        <div class="col-1 pr-2" style="border-right: 5px solid #ECCE01">
+                            <a href='<%# String.Format("festival/{0}/{1}/{2}", Eval("id"), Eval("title_en").Replace(" ", "-"), getLink(Eval("title_fa")).Replace(" ", "-").Replace("ي", "ی")) %>'>
+                                <asp:Image CssClass="img-fluid" ID="Image1" ImageUrl='<%# String.Format("~/files/uploadFiles/festival/{0}", Eval("logo")) %>'
+                                    runat="server" />
+                            </a>
+                        </div>
+                        <div class="col-8">
+                            <a style="font-size: 13px;"
+                                href='<%# String.Format("festival/{0}/{1}/{2}", Eval("id"), Eval("title_en").Replace(" ", "-"), getLink(Eval("title_fa")).Replace(" ", "-").Replace("ي", "ی")) %>'>
+                                <asp:Label ID="Label2" runat="server" Text='<%# Eval("title_fa").Replace("ي", "ی") %>'></asp:Label>
+                                <br />
+                                <asp:Label ID="Label1" runat="server" Style="color: #daa000; font-style: italic;" Text='<%# Bind("title_en") %>'></asp:Label>
+                            </a>
+                        </div>
+                        <div class="col-1" style="text-align: center;">
+                            <asp:Label ToolTip="تعداد روز باقی ماننده به آخرین ددلاین" ID="Label3" Style="font-size: 12px;"
+                                runat="server" Text='<%# getDeadlineStatus(Eval("sign"), Eval("RemainDays")) %>'></asp:Label>
+                        </div>
+                        <div class="col-2">
+                            <a class="button"
+                                target="_blank"
+                                href='<%# String.Format("festival/{0}/{1}/{2}", Eval("id"), Eval("title_en").Replace(" ", "-"), getLink(Eval("title_fa")).Replace(" ", "-").Replace("ي", "ی")) %>'>جزییات</a>
+                        </div>
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
+            <div style="text-align:center;">
+                <asp:LinkButton ID="btnPrev" runat="server" Text="<< قبلی" CssClass="dotYellow" OnClick="btnPrev_Click" />
+                <asp:LinkButton ID="btnNext" runat="server" Text=">> بعدی" CssClass="dotYellow" OnClick="btnNext_Click" />
+            </div>
             <asp:SqlDataSource ID="SDS_LastFest" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
                 SelectCommand="select *, (select top 1 [deadline] from dbo.tbl_festivalDeadline where festivalID =f.id order by deadline desc) 'lastDeadline', DATEDIFF(DAY, GETDATE(),(select top 1 [deadline] from dbo.tbl_festivalDeadline where festivalID =f.id order by deadline desc)) as 'RemainDays', sign(DATEDIFF(DAY, GETDATE(),(select top 1 [deadline] from dbo.tbl_festivalDeadline where festivalID =f.id order by deadline desc))) 'sign' from dbo.tbl_festivals f where f.flag=1 and DATEDIFF(DAY, GETDATE(),(select top 1 [deadline] from dbo.tbl_festivalDeadline where festivalID =f.id order by deadline desc)) is not null and sign(DATEDIFF(DAY, GETDATE(),(select top 1 [deadline] from dbo.tbl_festivalDeadline where festivalID =f.id order by deadline desc))) <> -1 order by 'RemainDays' asc"></asp:SqlDataSource>
         </div>
