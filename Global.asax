@@ -140,12 +140,12 @@
         'دستورات زیر یعنی اگر دو پارامتر نام فارسی و انگلیسی خالی بودند خطا ندهد
         routes.MapPageRoute("festivalEach",
             "festival/{id}/{name_en}/{name_fa}",
-            "~/aFestival.aspx",
+            "~/kingAFestival.aspx",
             True,
-            New RouteValueDictionary(New With _
-                {.id = " ", _
-                 .name_en = " ", _
-                 .name_fa = " "}))
+            New RouteValueDictionary(New With
+                {.id = " ",
+                 .name_en = " ",
+                 .name_fa = " "})) 'aFestival.aspx
         'وقتی از کد بالا استفاده میکنید لینک که از تگ انچور بصورت زیر استفاده میکنند دچار مشکل خواهند شد
         '<a href="#"></a> 
         'برای رفع مشکل بصورت زیر بنویسید
