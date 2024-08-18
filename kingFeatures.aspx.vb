@@ -17,6 +17,10 @@ Partial Class kingFeatures
             lblTopTitle.Text = "<span style='font-family:Titr;'>" + "ویژگی‌های منحصربفرد درگاه فیلم ایران" + "</span>"
             Page.MetaDescription = "درگاه فیلم ایران - شرکت پخش و ارسال فیلم و فیلمنامه به جشنواره های بین المللی"
         End If
-
+        Try
+            Dim ds As New DLL_CMS
+            lbl.Text = ds.ShowFeatures.Replace("ي", "ی").Replace("Tahoma,Geneva,sans-serif", "Samim").Replace("Tahoma,Gene7a,sans-serif", "Samim").Replace("tahoma,geneva,sans-serif", "Samim")
+        Catch ex As Exception
+        End Try
     End Sub
 End Class

@@ -926,6 +926,25 @@ Public Class DLL_CMS
         End Try
     End Function
 
+    Public Function ShowFeatures() As String
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            Dim input As String
+            input = "select [features] from tbl_Pages"
+            Dim sqlcom As New SqlCommand(input, sqlconn)
+            Dim sqlda As New SqlDataAdapter(sqlcom)
+            Dim ds As New DataSet
+            sqlda.Fill(ds)
+            Return ds.Tables(0).Rows(0)(0).ToString.Replace("ي", "ی")
+            sqlconn.Close()
+
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+    End Function
+
     Public Sub UpdateAbout(ByVal TEXT As String, FaEn As Boolean)
         Try
             If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
@@ -937,6 +956,21 @@ Public Class DLL_CMS
                 Case False
                     input = "update tbl_Pages set aboutEn='" + TEXT + "'"
             End Select
+            Dim sqlcom As New SqlCommand(input, sqlconn)
+            sqlcom.ExecuteNonQuery()
+            sqlconn.Close()
+        Catch ex As Exception
+        Finally
+            sqlconn.Close()
+        End Try
+    End Sub
+
+    Public Sub UpdateFeatures(ByVal TEXT As String)
+        Try
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+            Dim input As String
+            input = "update tbl_Pages set features='" + TEXT + "'"
             Dim sqlcom As New SqlCommand(input, sqlconn)
             sqlcom.ExecuteNonQuery()
             sqlconn.Close()

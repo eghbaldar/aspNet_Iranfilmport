@@ -4,56 +4,23 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <asp:PlaceHolder runat="server" ID="pc"></asp:PlaceHolder>
     <style>
-        @font-face {
-            font-family: 'NazaninB';
-            src: url(../../files/font/NAZANB.TTF);
-        }
-
-        @font-face {
-            font-family: 'Titr';
-            src: url(../../files//font/TITRBD.TTF);
-        }
-
-        @font-face {
-            font-family: 'koodak';
-            src: url(../../files//font/KoodakBold.ttf);
-        }
-
-        .btn {
-            padding: 10px;
-            border: 1px solid #ccc;
-            background-color: #48BDC5;
-            cursor: pointer;
-            font-family: Samim;
-            color: White;
-            font-size: 14px;
-        }
-
-            .btn:hover {
-                background-color: #E5DA00;
-                color: Black;
-            }
 
         .DivOpenClosed {
             padding: 5px;
             border: 1px solid #ccc;
-            font-family: Samim;
             color: White;
             font-size: 14px;
             width: 100%;
-            font-style: italic;
             -moz-border-radius: 5px;
             -webkit-border-radius: 5px;
             border-radius: 5px;
         }
 
         .DivLeft {
-            padding-top: 20px;
-            width: 250px;
-            font-family: irsans;
+            padding-top: 5px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            font-size: 11px;
+            font-size: 13px;
             margin-right: 5px;
             width: 300px;
         }
@@ -82,14 +49,12 @@
             -moz-border-radius: 5px;
             -webkit-border-radius: 5px;
             border-radius: 5px;
-            font-family: tahoma;
         }
     </style>
     <style>
         .T .fr {
             direction: rtl;
             text-align: right;
-            font-family: Samim;
         }
 
         .T {
@@ -114,10 +79,6 @@
             }
 
         @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
-            .btn {
-                width: 100%;
-            }
-
             .DivRight {
                 width: 100%;
             }
@@ -175,7 +136,7 @@
         }
 
             /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-            .active, .accordion:hover {
+            .accordion:hover {
                 /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,edf9ff+100 */
                 background: rgb(255,255,255); /* Old browsers */
                 background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(237,249,255,1) 100%); /* FF3.6-15 */
@@ -209,10 +170,6 @@
             margin-left: 5px;
         }
 
-        .active:after {
-            content: '-'; /* Unicode character for "minus" sign (-) */
-            font-size: 28px;
-        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -226,22 +183,23 @@
 
         <asp:DataList ID="DataList1" CssClass="DLcss" runat="server" DataSourceID="SDS" Width="100%">
             <ItemTemplate>
-                <table class="T">
+                <table class="T" style="line-height: 30px;">
                     <tr>
                         <td style="vertical-align: top;">
                             <div class="DivRight">
-                                <div style="font-family: koodak; color: Black; text-justify: inter-word; text-align: justify; font-size: 12px; padding: 5px; margin-bottom: 5px; margin-top: 5px;">
+                                <div style="color: Black; text-justify: inter-word; text-align: justify; font-size: 12px; padding: 5px; margin-bottom: 5px; margin-top: 5px;">
                                     <table class="T">
                                         <tr>
                                             <td style="vertical-align: top; text-align: center;">
-                                                <asp:Image CssClass="IMG" ID="Image1" AlternateText='<%# Eval("title_fa").Replace("ي", "ی") %>'
+                                                <asp:Image CssClass="circular--img" ID="Image1" AlternateText='<%# Eval("title_fa").Replace("ي", "ی") %>'
                                                     ImageUrl='<%# String.Format("~/files/uploadFiles/festival/{0}", Eval("logo")) %>'
                                                     runat="server" />
                                                 <div>
                                                     <span>
                                                         <asp:Label ID="Label12" runat="server" Text='<%# Eval("counter") %>'></asp:Label></span>
                                                     <span>
-                                                        <asp:Image ImageUrl="~/files/images/icons/eye.png" Style="cursor: help" ToolTip="تعداد نمایش این فستیوال"
+                                                        <asp:Image
+                                                            ImageUrl="~/files/images/icons/eye.png" Style="cursor: help" ToolTip="تعداد نمایش این فستیوال"
                                                             ID="ImasgeButton1" runat="server" /></span> <span>
                                                                 <asp:Label ID="Label13" runat="server" Text='<%# Eval("submitted") %>'></asp:Label></span>
                                                     <span>
@@ -250,20 +208,25 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <span style="font-family: Titr; font-weight: bold; font-size: 20px; color: black;">
-                                                    <asp:Label ID="Label8" runat="server" Text='<%# Eval("title_fa").Replace("ي", "ی") %>' />
-                                                </span><span style="font-family: tahoma; font-weight: bold; font-size: 10px; color: black;">(<asp:Label ID="Label9" runat="server" Text='<%# Eval("title_en") %>' />) </span>
-                                                <div style="font-family: Samim; font-size: 12px;">
+                                                <h3 style="color: black;">
+                                                    <%# Eval("title_fa").Replace("ي", "ی") %>
+                                                </h3>
+                                                <div style="direction: ltr; text-align: left;">
+                                                    <h5 style="font-weight: bold;color: lightgray;font-style:italic;">
+                                                        <%# Eval("title_en") %>
+                                                    </h5>
+                                                </div>
+                                                <div style="font-size: 12px;">
                                                     <div>
-                                                        <asp:Label ID="short_featureLabel" Style="font-family: Samim; font-size: 11px;" runat="server"
+                                                        <asp:Label ID="short_featureLabel" Style="font-size: 11px;" runat="server"
                                                             Text='<%# getshortfeature(Eval("short_feature")) %>' />
                                                     </div>
                                                     <div>
-                                                        <asp:Label ID="genreLabel" runat="server" Style="font-family: Samim; font-size: 11px;"
+                                                        <asp:Label ID="genreLabel" runat="server" Style="font-size: 11px;"
                                                             Text='<%# getgenre(Eval("genre")) %>' />
                                                     </div>
                                                     <div style="margin-top: 3px;">
-                                                        <asp:Label ID="LevelLabel" runat="server" Style="font-family: Samim; font-size: 11px;"
+                                                        <asp:Label ID="LevelLabel" runat="server" Style="font-size: 11px;"
                                                             Text='<%# getLevel(Eval("Level")) %>' />
                                                     </div>
                                                 </div>
@@ -271,14 +234,14 @@
                                                     <a target="_blank" href='<%# ResolveUrl("پخش-و-ارسال-فیلم") %>' style="text-decoration: none; color: Blue;">چگونه فیلم من به این فستیوال ارسال خواهد شد؟</a>
                                                 </div>
                                                 <div>
-                                                    <asp:Label ID="Label1" Style="font-family: Samim; font-size: 11px; color: Gray;"
+                                                    <asp:Label ID="Label1" Style="font-size: 11px; color: Gray;"
                                                         runat="server" Text='<%# getShortLink() %>'></asp:Label>
                                                 </div>
                                                 <div>
                                                     <asp:UpdatePanel ID="UpdatePanel12" runat="server">
                                                         <ContentTemplate>
                                                             <asp:Button ID="Button1" runat="server" CommandArgument='<%# Eval("id", "{0}") %>'
-                                                                OnCommand="send" CssClass="btn" Enabled='<%# iif(Eval("sign") = 1, "True", "False") %>'
+                                                                OnCommand="send" CssClass="button" Enabled='<%# iif(Eval("sign") = 1, "True", "False") %>'
                                                                 Text='<%# iif(Eval("sign")=1,"میخواهم فیلمم را به این فستیوال بفرستم","فستیوال بسته شده است") %>' />
                                                             <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel12">
                                                                 <ProgressTemplate>
@@ -292,50 +255,56 @@
                                         </tr>
                                     </table>
                                 </div>
-                                <div style="font-family: Titr; color: black;">
-                                    توضیحات
+                                <div style="color: black;">
+                                    <h5>توضیحات</h5>
                                 </div>
-                                <div>
+                                <div class="p-5">
                                     <asp:Label ID="detailLabel" runat="server" Text='<%# Eval("detail").Replace("ي", "ی").Replace("Tahoma","Samim").Replace("tahoma","Samim") %>' />
                                 </div>
-                                <div style="font-family: Titr; color: black;">
-                                    شاخص‌های ویژه این فستیوال
+                                <div style="color: black;">
+                                    <h5>شاخص‌های ویژه این فستیوال</h5>
                                 </div>
                                 <div style="text-align: justify; padding: 5px;">
                                     <asp:Label ID="attributeLabel" runat="server" Text='<%# Eval("attribute").Replace("ي", "ی").Replace("Tahoma","Samim").Replace("tahoma","Samim") %>' />
                                 </div>
-                                <div style="font-family: Titr; color: black;">
-                                    قوانین و مقررات
+                                <div style="color: black;">
+                                    <h5>قوانین و مقررات</h5>
                                 </div>
                                 <div style="text-align: justify; padding: 5px;">
-                                    <asp:Label ID="Label11" runat="server" Text='<%# Eval("rules").Replace("ي", "ی").Replace("Tahoma","Samim").Replace("tahoma","Samim") %>' />
+                                    <asp:Label ID="Label11" runat="server" Text='<%# Eval("rules").Replace("ي", "ی").Replace("Tahoma", "Samim").Replace("tahoma", "Samim") %>' />
                                 </div>
                             </div>
                         </td>
                         <td style="vertical-align: top;">
-                            <div style="padding: 5px;">
-                                <span style="font-family: titr; color: Black;">تاریخ اتفاقات جشنواره</span>
+                            <div style="padding: 5px;" class="pb-10">
+                                <h5 style="color: Black;">تاریخ اتفاقات جشنواره</h5>
                             </div>
                             <div class="DivLeft">
                                 <div>
                                     <asp:DataList ID="DataList2" runat="server" DataSourceID="SDS_Dead">
                                         <ItemTemplate>
-                                            <div style="width: 250px;">
-                                                <asp:Button ID="Button2" runat="server" Enabled="false" Text='<%# iif(Eval("sign")=1,"فستیوال باز است","فستیوال بسته شده است") %>'
-                                                    ForeColor='<%# iif(Eval("sign")=1, Drawing.color.green, Drawing.color.red) %>'
-                                                    CssClass="DivOpenClosed" />
+                                            <div style="text-align: center;">
+                                                <div>
+                                                    <b>
+                                                        <asp:Button ID="Button2" runat="server" Enabled="false" Text='<%#IIf(Eval("sign") = 1, "فستیوال باز است", "فستیوال بسته شده است") %>'
+                                                            ForeColor='<%# iif(Eval("sign") = 1, Drawing.Color.Green, Drawing.Color.Red) %>'
+                                                            CssClass="DivOpenClosed" />
+                                                    </b>
+                                                </div>
+                                                <div style="line-height: 30px;">
+                                                    <span>تاریخ شروع پذیرش:</span><asp:Label ID="IDLabel" Style="color: Red; font-weight: bold;"
+                                                        runat="server" Text='<%# getDate(Eval("date_opening")) %>' />
+                                                    <br />
+                                                    <span>تاریخ اعلان نتایج:</span><asp:Label ID="Label2" Style="color: Red; font-weight: bold;"
+                                                        runat="server" Text='<%# getDate(Eval("date_notification")) %>' />
+                                                    <br />
+                                                    <span>تاریخ شروع مراسم:</span><asp:Label ID="Label3" Style="color: Red; font-weight: bold;"
+                                                        runat="server" Text='<%# getDate(Eval("date_start_takePlace")) %>' />
+                                                    <br />
+                                                    <span>تاریخ پایان مراسم:</span><asp:Label ID="Label4" Style="color: Red; font-weight: bold;"
+                                                        runat="server" Text='<%# getDate(Eval("date_end_takePlace")) %>' />
+                                                </div>
                                             </div>
-                                            <span>تاریخ شروع پذیرش:</span><asp:Label ID="IDLabel" Style="color: Red; font-weight: bold;"
-                                                runat="server" Text='<%# getDate(Eval("date_opening")) %>' />
-                                            <br />
-                                            <span>تاریخ اعلان نتایج:</span><asp:Label ID="Label2" Style="color: Red; font-weight: bold;"
-                                                runat="server" Text='<%# getDate(Eval("date_notification")) %>' />
-                                            <br />
-                                            <span>تاریخ شروع مراسم:</span><asp:Label ID="Label3" Style="color: Red; font-weight: bold;"
-                                                runat="server" Text='<%# getDate(Eval("date_start_takePlace")) %>' />
-                                            <br />
-                                            <span>تاریخ پایان مراسم:</span><asp:Label ID="Label4" Style="color: Red; font-weight: bold;"
-                                                runat="server" Text='<%# getDate(Eval("date_end_takePlace")) %>' />
                                         </ItemTemplate>
                                     </asp:DataList>
                                     <asp:SqlDataSource ID="SDS_Dead" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
@@ -358,8 +327,8 @@ WHERE ([ID] = @id)">
                                     </asp:SqlDataSource>
                                 </div>
                             </div>
-                            <div style="padding-right: 5px; padding-top: 5px;">
-                                <span style="font-family: titr; color: Black;">بخش‌ها و هزینه‌ها</span>
+                            <div style="padding: 5px;" class="pb-10 mb-10 mt-10">
+                                <h5 style="color: Black;">بخش‌ها و هزینه‌ها</h5>
                             </div>
                             <div class="DivLeft">
                                 <asp:GridView Width="100%" ID="dgSection" runat="server" AutoGenerateColumns="False"
@@ -379,7 +348,7 @@ WHERE ([ID] = @id)">
                                                             <Columns>
                                                                 <asp:TemplateField HeaderText="deadline" InsertVisible="False" SortExpression="deadline">
                                                                     <ItemTemplate>
-                                                                        <div style="width: 100%;">
+                                                                        <div style="width: 100%; line-height: 30px;">
                                                                             <div>
                                                                                 <asp:Label ID="Label7" runat="server" Text='<%# Eval("row") %>'></asp:Label>
                                                                             </div>
@@ -473,8 +442,9 @@ WHERE ([ID] = @id)">
         }
     </script>
     <!-- The Modal -->
-    <style>
-        .modal1 {
+  <style>
+        .modal1
+        {
             display: none; /* Hidden by default */
             position: fixed; /* Stay in place */
             z-index: 999; /* Sit on top */
@@ -487,11 +457,11 @@ WHERE ([ID] = @id)">
             background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
         }
         /* Modal Content/Box */
-        .modal-content1 {
+        .modal-content1
+        {
             -moz-border-radius: 5px;
             -webkit-border-radius: 5px;
             border-radius: 5px;
-            font-family: Samim;
             background-color: #fefefe;
             margin: 5% auto;
             padding: 20px;
@@ -500,19 +470,18 @@ WHERE ([ID] = @id)">
             direction: rtl;
             font-size: 14px;
         }
-
-        .modalDistributionTitr {
-            font-family: Titr;
+        .modalDistributionTitr
+        {
             font-size: 25px;
             color: #0096bf;
         }
-
-        .modalDistributionTitr2 {
+        .modalDistributionTitr2
+        {
             font-size: 18px;
             color: #32a2a8;
         }
-
-        .modalDistributionCell {
+        .modalDistributionCell
+        {
             font-size: 20px;
             color: black;
             padding: 5px;
@@ -527,25 +496,28 @@ WHERE ([ID] = @id)">
             background: linear-gradient(to bottom, rgba(254,252,234,1) 0%,rgba(241,218,54,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
             filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', endColorstr='#f1da36',GradientType=0 ); /* IE6-9 */
         }
-
-            .modalDistributionCell:hover {
-                /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#fefcea+0,70b9f4+100 */
-                background: rgb(254,252,234); /* Old browsers */
-                background: -moz-linear-gradient(top, rgba(254,252,234,1) 0%, rgba(112,185,244,1) 100%); /* FF3.6-15 */
-                background: -webkit-linear-gradient(top, rgba(254,252,234,1) 0%,rgba(112,185,244,1) 100%); /* Chrome10-25,Safari5.1-6 */
-                background: linear-gradient(to bottom, rgba(254,252,234,1) 0%,rgba(112,185,244,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', endColorstr='#70b9f4',GradientType=0 ); /* IE6-9 */
-            }
-
-        .close1 {
+        .modalDistributionCell:hover
+        {
+            /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#fefcea+0,70b9f4+100 */
+            background: rgb(254,252,234); /* Old browsers */
+            background: -moz-linear-gradient(top, rgba(254,252,234,1) 0%, rgba(112,185,244,1) 100%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(top, rgba(254,252,234,1) 0%,rgba(112,185,244,1) 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to bottom, rgba(254,252,234,1) 0%,rgba(112,185,244,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', endColorstr='#70b9f4',GradientType=0 ); /* IE6-9 */
+        }
+        .close1
+        {
             font-size: 20px;
             cursor: pointer;
             color: Black;
         }
-
-        .modalDistributionTClickCell {
+        .modalDistributionTClickCell
+        {
             color: #c2c2c2;
             font-size: 14px;
+        }
+        .modal-content1{
+            margin-top:10%;
         }
     </style>
     <div id="myModalDistribution" class="modal1">

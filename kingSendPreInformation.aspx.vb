@@ -45,4 +45,11 @@ Partial Class kingSendPreInformation
         End Try
     End Sub
 
+    Private Sub cmdHow_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmdHow.SelectedIndexChanged
+        If (cmdHow.SelectedIndex = 1) Then
+            DivLink.Visible = True
+        Else
+            DivLink.Visible = False
+        End If
+    End Sub
 End Class

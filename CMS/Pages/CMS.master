@@ -433,6 +433,8 @@
                                         </table>
                                     </h3>
                                     <ul>
+                                        <a href="features">
+                                            <asp:Label ID="Label36" runat="server" Text="ویژگی های درگاه" /></a>
                                         <a href="scriptconsultation">
                                             <asp:Label ID="Label32" runat="server" Text="فیلمنامه و مشاوره" /></a>
                                           <a href="calendar">
