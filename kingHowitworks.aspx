@@ -5,55 +5,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style>
-        .panel a {
-            color: blue !important;
-        }
-
-        .accordion {
-            background-color: #f2de00;
-            color: #444;
-            cursor: pointer;
-            padding: 10px;
-            width: 100%;
-            border: none;
-            outline: none;
-            transition: 0.4s;
-            text-align: right;
-            font-size: 15px;
-            -moz-border-radius: 5px;
-            -webkit-border-radius: 5px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-
-            /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-            .accordion:active, .accordion:hover {
-                background-color: #E3EBF2;
-            }
-
-        /* Style the accordion panel. Note: hidden by default */
-        .panel {
-            padding: 20px;
-            background-color: white;
-            display: none;
-            overflow: hidden;
-            color: Black;
-            text-align: justify;
-            line-height: 30px;
-        }
-
-        .accordion:after {
-            content: '\02795'; /* Unicode character for "plus" sign (+) */
-            font-size: 13px;
-            color: #777;
-            float: right;
-            margin-left: 5px;
-        }
-
-        .active:after {
-            content: "\2796"; /* Unicode character for "minus" sign (-) */
-        }
-
         @media (max-width: 767px) {
             .item-holder {
                 width: 100%;
@@ -61,6 +12,7 @@
             }
         }
     </style>
+    <link href="files/kingMaterials/js/accordian/css.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="title-text mb-3">
@@ -70,7 +22,6 @@
     </div>
     <div class="col-md-12 col-sm-12 col-xs-12 changeAcnhorTag">
         <div style="direction: rtl; color: Black; text-align: justify;">
-
             <div>
                 «پخش کنندگی» چون سایر حرفه‌های رایج در سینما یک تخصص و نیازمند توانایی‌هایی جهت انجام
                                 آن است. از این جهت درگاه فیلم ایران، تمام قد با <a target="_blank" href="http://iranfilmport.com/5">خود پخش کنندگی</a> مخالف بوده و سپردن حقوق پخش و فروش فیلم و فیلمنامه را به
@@ -80,7 +31,6 @@
                                 مقاله‌ی <a target="_blank" href="http://iranfilmport.com/ویژگی-های-پخش-فیلم-درگاه-فیلم-ایران">«چرا باید درگاه فیلم ایران را جهت پخش و ارسال فیلم و فیلمنامه‌تان انتخاب کنید؟ »</a>
                 را مطالعه کرده و سپس پخش کننده خود را انتخاب کنید.
             </div>
-
             <ul>
                 <li>
                     <br />
@@ -96,70 +46,71 @@
         </div>
         <div class="left-side mt-3">
             <div class="item-holder" style="direction: rtl;">
-                <div class="accordion">
-                    1) اولین مرحله: ارسال فیلم و فیلمنامه جهت بازبینی و ارزشگذاری
-                </div>
-                <div class="panel">
-                    <ul>
-                        <li>اثر شما باید جهت <a>پتانسیل سنجی </a>اولیه و سپس تعیین کاستبیس، توسط کار گروه ارزشیابی آژانس پخش
+                <div id="kingAccordian">
+                    <div class="kingAccordion">
+                        1) اولین مرحله: ارسال فیلم و فیلمنامه جهت بازبینی و ارزشگذاری
+                    </div>
+                    <div class="kingPanel">
+                        <ul>
+                            <li>اثر شما باید جهت <a>پتانسیل سنجی </a>اولیه و سپس تعیین کاستبیس، توسط کار گروه ارزشیابی آژانس پخش
                                         و ارسال فیلم و فیلمنامه درگاه فیلم ایران، بازبینی (فیلم) و یا خوانش (فیلمنامه)
                                         شود. از این رو شما میتوانید یکی از روش های زیر را جهت ارسال اثرتان انتخاب کنید:</li>
-                        <li>
-                            <ul class="first-level">
-                                <li>ارسال لینک از طریق وب سایت <a target="_blank" href="http://iranfilmport.com/send">(کلیک کنید)</a></li>
-                                <li>ارسال به آدرس ایمیل «درگاه فیلم ایران» به نشانی support@iranfilmport.com</li>
-                                <li><a href="https://t.me/Iranfilmportsupport" target="_blank">ارسال به تلگرام «درگاه فیلم ایران» - شماره‌ی 09216343320 (جهت باز شدن تلگرام، کلیک کنید)</a></li>
-                                <li><a href="https://t.me/Iranfilmportsupport2" target="_blank">ارسال به تلگرام «درگاه فیلم ایران» - شماره‌ی 09020763947 (جهت باز شدن تلگرام، کلیک کنید)</li>
-                                <li>ارسال به واتس اپ «درگاه فیلم ایران» - شماره‌ی 09216343320</li>
-                                <li>ارسال به واتس اپ «درگاه فیلم ایران» - شماره‌ی 09020763947</li>
-                                <li>ارسال لینک به دایرکت پیج اینستاگرام «درگاه فیلم ایران» (<a target="_blank" href="https://instagram.com/iranfilmport/">@iranfilmport</a>)</li>
-                                <li>ارسال DVD به نشانی دفتر مرکزی (<a target="_blank" href="http://iranfilmport.com/تماس-با-درگاه-فیلم-ایران">تماس
+                            <li>
+                                <ul class="first-level">
+                                    <li>ارسال لینک از طریق وب سایت <a target="_blank" href="http://iranfilmport.com/send">(کلیک کنید)</a></li>
+                                    <li>ارسال به آدرس ایمیل «درگاه فیلم ایران» به نشانی support@iranfilmport.com</li>
+                                    <li><a href="https://t.me/Iranfilmportsupport" target="_blank">ارسال به تلگرام «درگاه فیلم ایران» - شماره‌ی 09216343320 (جهت باز شدن تلگرام، کلیک کنید)</a></li>
+                                    <li><a href="https://t.me/Iranfilmportsupport2" target="_blank">ارسال به تلگرام «درگاه فیلم ایران» - شماره‌ی 09020763947 (جهت باز شدن تلگرام، کلیک کنید)</li>
+                                    <li>ارسال به واتس اپ «درگاه فیلم ایران» - شماره‌ی 09216343320</li>
+                                    <li>ارسال به واتس اپ «درگاه فیلم ایران» - شماره‌ی 09020763947</li>
+                                    <li>ارسال لینک به دایرکت پیج اینستاگرام «درگاه فیلم ایران» (<a target="_blank" href="https://instagram.com/iranfilmport/">@iranfilmport</a>)</li>
+                                    <li>ارسال DVD به نشانی دفتر مرکزی (<a target="_blank" href="http://iranfilmport.com/تماس-با-درگاه-فیلم-ایران">تماس
                                             با ما</a>)</li>
-                            </ul>
-                        </li>
-                        <li><span style="color: Red;">1. پس از ارسال اثرتان، پر کردن «فرم دیجیتالی ارسال اثر»
+                                </ul>
+                            </li>
+                            <li><span style="color: Red;">1. پس از ارسال اثرتان، پر کردن «فرم دیجیتالی ارسال اثر»
                                         الزامی است. (<a target="_blank" href="http://iranfilmport.com/send">کلیک کنید</a>)
-                        </span></li>
-                        <li><span style="color: Red;">2. جهت بازبینی نیازی به فیلم کامل و با بالاترین کیفیت
+                            </span></li>
+                            <li><span style="color: Red;">2. جهت بازبینی نیازی به فیلم کامل و با بالاترین کیفیت
                                         نبوده و می‌توانید از واترمارک استفاده کنید. </span></li>
-                    </ul>
-                </div>
-                <div class="accordion">
-                    2) دومین مرحله: بررسی توسط کارشناسان درگاه
-                </div>
-                <div class="panel">
-                    <ul>
-                        <li>فیلم و فیلمنامه شما پس از دریافت، به کار گروه پخش درگاه فیلم ایران واگذار شده و
+                        </ul>
+                    </div>
+                    <div class="kingAccordion">
+                        2) دومین مرحله: بررسی توسط کارشناسان درگاه
+                    </div>
+                    <div class="kingPanel">
+                        <ul>
+                            <li>فیلم و فیلمنامه شما پس از دریافت، به کار گروه پخش درگاه فیلم ایران واگذار شده و
                                         توسط کارشناسان درگاه بررسی و براساس شاخص‌های جدولبندی شده، ارزشگذاری می شود.</li>
-                        <li>این ارزشگذاری براساس بیش از 12 سال سابقه پخش کنندگی «درگاه فیلم ایران» و نیز افتخارات متعدد این شرکت انجام خواهد شد.
+                            <li>این ارزشگذاری براساس بیش از 12 سال سابقه پخش کنندگی «درگاه فیلم ایران» و نیز افتخارات متعدد این شرکت انجام خواهد شد.
                             <a href="https://iranfilmport.com/accolades" target="_blank">(جهت مشاهده کارنامه درگاه فیلم ایران، اینجا کلیک کنید)</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="accordion">
-                    3) سومین مرحله: تعیین کاستبیس
-                </div>
-                <div class="panel">
-                    <ul>
-                        <li>براساس امتیازی که فیلم و یا فیلمنامه کسب کرده است، مقدار حد ارزشی «کاستبیس - Costbase»
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="kingAccordion">
+                        3) سومین مرحله: تعیین کاستبیس
+                    </div>
+                    <div class="kingPanel">
+                        <ul>
+                            <li>براساس امتیازی که فیلم و یا فیلمنامه کسب کرده است، مقدار حد ارزشی «کاستبیس - Costbase»
                                         تعیین می‌شود.</li>
-                        <li style="color: Red; font-size: 13px;">واحد کاستبیس براساس ریال بوده و برای هر فیلم
+                            <li style="color: Red; font-size: 13px;">واحد کاستبیس براساس ریال بوده و برای هر فیلم
                                         و فیلمنامه با فیلم و فیلمنامه‌ای دیگر متفاوت است و علت این تفاوت، تفاوت محتوایی
                                         و کیفی فیلم هاست. متاسفانه سوءاستفاده هایی که در عرصه ی پخش فیلم بخصوص در مدیوم
                                         کوتاه آن رخ داده است، اخذ مقادیر ثابتی چون 10 هزار تومن یا 15 هزار تومن برای تمامی
                                         فیلم ها و تمامی ارسال هاست که نشان از نگاه غیر حرفه ای و سودجویانه در این عرصه دارد.</li>
-                        <li>توجه: تعیین کاستبیس تنها در دو مدل ارسال موردی و ارسال بسته‌ای قابل اعمال است و
+                            <li>توجه: تعیین کاستبیس تنها در دو مدل ارسال موردی و ارسال بسته‌ای قابل اعمال است و
                                         در مدل‌های دیگر شیوه متفاوت است. جهت کسب اطلاعات بیشتر به شیوه‌های پخش در شماره
                                         4 و یا به بخش تعرفه‌ی پخش مراجعه شود.</li>
-                        <li><a href="هزینه-پخش-بین-المللی-فیلم" style="color: Blue; text-decoration: none;">جهت اطلاع از تعرفه‌ها و آشنایی با طریقه محاسبه و ارزشگذاری پخش فیلم کلیک کنید.</a></li>
-                    </ul>
-                </div>
-                <div class="accordion">
-                    4) چهارمین مرحله: تعیین شیوه پخش اثر به فستیوال‌ها
-                </div>
-                <div class="panel">
-                    <ul>
-                        <li>براساس ساختار «درگاه فیلم ایران» که در جهت موفقیت هر چه بیشتر فرآیند پخش و ارسال
+                            <li><a href="هزینه-پخش-بین-المللی-فیلم" style="color: Blue; text-decoration: none;">جهت اطلاع از تعرفه‌ها و آشنایی با طریقه محاسبه و ارزشگذاری پخش فیلم کلیک کنید.</a></li>
+                        </ul>
+                    </div>
+                    <div class="kingAccordion">
+                        4) چهارمین مرحله: تعیین شیوه پخش اثر به فستیوال‌ها
+                    </div>
+                    <div class="kingPanel">
+                        <ul>
+                            <li>براساس ساختار «درگاه فیلم ایران» که در جهت موفقیت هر چه بیشتر فرآیند پخش و ارسال
                                         فیلم و فیلمنامه، با نگاهی حرفه‌ای تبیین شده است، 6 روش جهت ارسال فیلم و فیلمنامه
                                         به فستیوال در نظر گرفته شده است. لازم به ذکر است که <a target="_blank" href="http://iranfilmport.com/برنامه-استراتژیک-پخش-فیلم-به-جشنواره-های-خارجی">پلانِ استراتژیک و یا همان برنامه ی مدون جهت پخش</a>، تنها در ارسال‌های یکساله،
                                         دوساله، تلفیقی و حرفه‌ای لحاظ خواهد شد.
@@ -190,54 +141,54 @@
                                                 </ul>
                                             </li>
                                         </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div class="accordion">
-                    5) پنجمین مرحله: پر کردن فرم ها
-                </div>
-                <div class="panel">
-                    <ul>
-                        <li>فرم‌های مربوط به اطلاعات <strong>فیلم و مشخصات کارگردان و عوامل فیلم</strong> را
-                                        از لینک های زیر دانلود کرده و با دقت پر کنید.</li>
-                        <ul class="first-level">
-                            <li>
-
-                                <a target="_blank"
-                                    href='<%= String.Format("{0}?t={1}", "../files/uploadFiles/form_crew.docx", DateTime.Now.Ticks)  %>'>دانلود فرم خام اطلاعات کارگردان و عوامل
-                                </a>
-
-
-                            </li>
-                            <li>
-
-
-
-                                <a target="_blank"
-                                    href='<%= String.Format("{0}?t={1}", "../files/uploadFiles/form_film.docx", DateTime.Now.Ticks)  %>'>دانلود فرم خام اطلاعات فیلم
-                                </a>
-
-
                             </li>
                         </ul>
-                        <div
-                            style="color: Red; font-style: italic;">
-                            در قراردادهایی که تهیه کننده اثر امکان امضای
-                                                قرارداد را نداشته و یا شخص دیگری را بعنوان جانشین خود در امور قرارداد منصوب کرده
-                                                باشد، پر کردن فرم رضایت نامه تهیه کننده الزامی است.
-                        </div>
-                        <div>
+                    </div>
+                    <div class="kingAccordion">
+                        5) پنجمین مرحله: پر کردن فرم ها
+                    </div>
+                    <div class="kingPanel">
+                        <ul>
+                            <li>فرم‌های مربوط به اطلاعات <strong>فیلم و مشخصات کارگردان و عوامل فیلم</strong> را
+                                        از لینک های زیر دانلود کرده و با دقت پر کنید.</li>
                             <ul class="first-level">
                                 <li>
+
                                     <a target="_blank"
-                                        href='<%= String.Format("{0}?t={1}", "../files/uploadFiles/form_consentletter_producer.docx", DateTime.Now.Ticks)  %>'>دانلود فرم رضایت نامه تهیه کننده
+                                        href='<%= String.Format("{0}?t={1}", "../files/uploadFiles/form_crew.docx", DateTime.Now.Ticks)  %>'>دانلود فرم خام اطلاعات کارگردان و عوامل
+                                    </a>
+
+
+                                </li>
+                                <li>
+
+
+
+                                    <a target="_blank"
+                                        href='<%= String.Format("{0}?t={1}", "../files/uploadFiles/form_film.docx", DateTime.Now.Ticks)  %>'>دانلود فرم خام اطلاعات فیلم
                                     </a>
 
 
                                 </li>
                             </ul>
-                        </div>
-                        <li>فرم مربوط به اطلاعات <strong>فیلمنامه و مشخصات فیلمنامه‌نویس</strong> را از لینک
+                            <div
+                                style="color: Red; font-style: italic;">
+                                در قراردادهایی که تهیه کننده اثر امکان امضای
+                                                قرارداد را نداشته و یا شخص دیگری را بعنوان جانشین خود در امور قرارداد منصوب کرده
+                                                باشد، پر کردن فرم رضایت نامه تهیه کننده الزامی است.
+                            </div>
+                            <div>
+                                <ul class="first-level">
+                                    <li>
+                                        <a target="_blank"
+                                            href='<%= String.Format("{0}?t={1}", "../files/uploadFiles/form_consentletter_producer.docx", DateTime.Now.Ticks)  %>'>دانلود فرم رضایت نامه تهیه کننده
+                                        </a>
+
+
+                                    </li>
+                                </ul>
+                            </div>
+                            <li>فرم مربوط به اطلاعات <strong>فیلمنامه و مشخصات فیلمنامه‌نویس</strong> را از لینک
                                         زیر دانلود کرده و با دقت پر کنید.
                                     <ul class="first-level">
                                         <li>
@@ -248,9 +199,9 @@
 
                                         </li>
                                     </ul>
-                        </li>
+                            </li>
 
-                        <li>فرم مربوط به <strong>حق کپی رایت موسیقی</strong> را از لینک
+                            <li>فرم مربوط به <strong>حق کپی رایت موسیقی</strong> را از لینک
                                         زیر دانلود کرده و با دقت پر کنید.
                                     <ul class="first-level">
                                         <li>
@@ -261,120 +212,102 @@
 
                                         </li>
                                     </ul>
-                        </li>
+                            </li>
 
-                    </ul>
-                </div>
-                <div class="accordion">
-                    6) ششمین مرحله: پرداخت هزینه و امضای قرارداد رسمی
-                </div>
-                <div class="panel">
-                    <ul>
-                        <li>پس از انتخاب هر کدام از مدل‌های پخش و ارسال فیلم و فیلمنامه که در چهارمین مرحله
+                        </ul>
+                    </div>
+                    <div class="kingAccordion">
+                        6) ششمین مرحله: پرداخت هزینه و امضای قرارداد رسمی
+                    </div>
+                    <div class="kingPanel">
+                        <ul>
+                            <li>پس از انتخاب هر کدام از مدل‌های پخش و ارسال فیلم و فیلمنامه که در چهارمین مرحله
                                         توضیح داده شد، قرارداد توسط «دپارتمان امور قراردادهای» درگاه فیلم ایران تنظیم و پس از تائید
                                         مشتری، مبلغ قرارداد توسط تهیه کننده و یا نماینده رسمی فیلم و فیلمنامه پرداخت و نسخه‌ی
                                         قرارداد مشتری با مهر و امضای «درگاه فیلم ایران» تحویل داده خواهد شد.</li>
-                    </ul>
-                </div>
-                <div class="accordion">
-                    7) هفتمین مرحله: ارسال نسخه‌ی اصلی فیلم و سایر متریال
-                </div>
-                <div class="panel">
-                    <ul>
-                        <li>شما میتوانید از 2 روش «آنلاین» و «پستی»، فیلم و ملزومات آن را به دست کارشناسان درگاه
-                                        فیلم ایران برسانید:</li>
+                        </ul>
+                    </div>
+                    <div class="kingAccordion">
+                        7) هفتمین مرحله: ارسال نسخه‌ی اصلی فیلم و سایر متریال
+                    </div>
+                    <div class="kingPanel">
                         <ul>
-                            <li><strong style="color: Red">آنلاین</strong></li>
-                            <li>
-                                <ul>
-                                    <li>فیلم و متریال مورد نظر را در یکی از آپلودسنترهای زیر آپلود و لینک آن را ارسال کنید:</li>
-                                    <li>
-                                        <ul class="first-level">
-                                            <li><a href="https://www.mediafire.com/" target="_blank" style="text-decoration: none;">آپلودسنتر معروف Mediafire</a></li>
-                                            <li><a href="https://www.pcloud.com/" target="_blank" style="text-decoration: none;">آپلودسنتر pCloud</a></li>
-                                            <li><a href="http://uplod.ir/" target="_blank" style="text-decoration: none;">آپلودسنتر
+                            <li>شما میتوانید از 2 روش «آنلاین» و «پستی»، فیلم و ملزومات آن را به دست کارشناسان درگاه
+                                        فیلم ایران برسانید:</li>
+                            <ul>
+                                <li><strong style="color: Red">آنلاین</strong></li>
+                                <li>
+                                    <ul>
+                                        <li>فیلم و متریال مورد نظر را در یکی از آپلودسنترهای زیر آپلود و لینک آن را ارسال کنید:</li>
+                                        <li>
+                                            <ul class="first-level">
+                                                <li><a href="https://www.mediafire.com/" target="_blank" style="text-decoration: none;">آپلودسنتر معروف Mediafire</a></li>
+                                                <li><a href="https://www.pcloud.com/" target="_blank" style="text-decoration: none;">آپلودسنتر pCloud</a></li>
+                                                <li><a href="http://uplod.ir/" target="_blank" style="text-decoration: none;">آپلودسنتر
                                                             ایرانی Uplod</a></li>
-                                        </ul>
-                                    </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><strong style="color: Red">پستی</strong></li>
+                                <li>
+                                    <ul>
+                                        <li>جهت ارسال از طریق پست، با کارشناسان شرکت در ارتباط باشید <a href="https://iranfilmport.com/contactus">(کلیک کنید)</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <li>
+                                <br />
+                            </li>
+                            <li><strong>حداقل مشخصات فنی فیلم : </strong></li>
+                            <li>
+                                <ul class="first-level">
+                                    <li>Format: MP4</li>
+                                    <li>
+                                    Codec: H264<li>
+                                    <li>Resolution: Full HD (1920*1080)</li>
+                                    <li>Bitrate: More than 10.000</li>
+                                    <li>Subtitle: Burnt (HardSub)</li>
+                                    <li>Sound: Stereo</li>
                                 </ul>
                             </li>
-                            <li><strong style="color: Red">پستی</strong></li>
+                            <li><strong>لیست متریال و ملزومات مورد نیاز : </strong></li>
                             <li>
-                                <ul>
-                                    <li>جهت ارسال از طریق پست، با کارشناسان شرکت در ارتباط باشید <a href="https://iranfilmport.com/contactus">(کلیک کنید)</a></li>
+                                <ul class="first-level">
+                                    <li>تصویر کارگردان</li>
+                                    <li>5 عکس پشت صحنه</li>
+                                    <li>5 عکس صحنه</li>
+                                    <li>تریلر فیلم</li>
+                                    <li>پوستر</li>
+                                    <li>لیست دیالو‌گ‌ها بصورت تکست و اس‌آرتی</li>
+                                    <li>تصویر کارت ملی و شناسنامه</li>
+                                    <li>تصویر پاسپورت</li>
+                                    <li>رزومه کارگردان و تهیه کننده</li>
+                                    <li>فرم اطلاعات فیلم</li>
+                                    <li>فرم اطلاعات کارگردان و عوامل فیلم</li>
                                 </ul>
                             </li>
                         </ul>
-                        <li>
-                            <br />
-                        </li>
-                        <li><strong>حداقل مشخصات فنی فیلم : </strong></li>
-                        <li>
-                            <ul class="first-level">
-                                <li>Format: MP4</li>
-                                <li>
-                                Codec: H264<li>
-                                <li>Resolution: Full HD (1920*1080)</li>
-                                <li>Bitrate: More than 10.000</li>
-                                <li>Subtitle: Burnt (HardSub)</li>
-                                <li>Sound: Stereo</li>
-                            </ul>
-                        </li>
-                        <li><strong>لیست متریال و ملزومات مورد نیاز : </strong></li>
-                        <li>
-                            <ul class="first-level">
-                                <li>تصویر کارگردان</li>
-                                <li>5 عکس پشت صحنه</li>
-                                <li>5 عکس صحنه</li>
-                                <li>تریلر فیلم</li>
-                                <li>پوستر</li>
-                                <li>لیست دیالو‌گ‌ها بصورت تکست و اس‌آرتی</li>
-                                <li>تصویر کارت ملی و شناسنامه</li>
-                                <li>تصویر پاسپورت</li>
-                                <li>رزومه کارگردان و تهیه کننده</li>
-                                <li>فرم اطلاعات فیلم</li>
-                                <li>فرم اطلاعات کارگردان و عوامل فیلم</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div class="accordion">
-                    8) هشتمین مرحله: شروع فرآیند پخش
-                </div>
-                <div class="panel">
-                    <ul>
-                        <li>پس از دریافت فیلم، <a target="_blank" href="http://iranfilmport.com/برنامه-استراتژیک-پخش-فیلم-به-جشنواره-های-خارجی">پلانِ استراتژیک و یا همان برنامه ی مدون جهت پخش</a> براساس محتوای فیلم تعیین و فرآیند
+                    </div>
+                    <div class="kingAccordion">
+                        8) هشتمین مرحله: شروع فرآیند پخش
+                    </div>
+                    <div class="kingPanel">
+                        <ul>
+                            <li>پس از دریافت فیلم، <a target="_blank" href="http://iranfilmport.com/برنامه-استراتژیک-پخش-فیلم-به-جشنواره-های-خارجی">پلانِ استراتژیک و یا همان برنامه ی مدون جهت پخش</a> براساس محتوای فیلم تعیین و فرآیند
                                         پخش و ارسال فیلم و یا فیلمنامه آغاز می‌شود. </li>
-                    </ul>
-                </div>
-                <p class="mt-3">
-                    اگر پس از مطالعه موارد فوق همچنان ابهامی در چگونگی پخش و ارسال فیلم به جشنواره ها
+                        </ul>
+                    </div>
+                    <p class="mt-3">
+                        اگر پس از مطالعه موارد فوق همچنان ابهامی در چگونگی پخش و ارسال فیلم به جشنواره ها
                                 برای شما باقی مانده است <a target="_blank" href="مشاوره-پخش-بین-المللی-فیلم">مشاوره
                                     پخش و ارسال فیلم</a> درگاه فیلم ایران در خدمت شماست.
-                </p>
-                <script>
-                    var acc = document.getElementsByClassName("accordion");
-                    var i;
-
-                    for (i = 0; i < acc.length; i++) {
-                        acc[i].addEventListener("click", function () {
-                            /* Toggle between adding and removing the "active" class,
-                            to highlight the button that controls the panel */
-                            this.classList.toggle("active");
-
-                            /* Toggle between hiding and showing the active panel */
-                            var panel = this.nextElementSibling;
-                            if (panel.style.display === "block") {
-                                panel.style.display = "none";
-                            } else {
-                                panel.style.display = "block";
-                            }
-                        });
-                    }
-                </script>
+                    </p>
+                </div>
             </div>
             <uc1:KingComments runat="server" ID="KingComments" />
         </div>
     </div>
+    <script src="files/kingMaterials/js/accordian/js.js"></script>
 </asp:Content>
 

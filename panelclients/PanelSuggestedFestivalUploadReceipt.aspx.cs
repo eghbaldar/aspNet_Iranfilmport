@@ -49,6 +49,32 @@ public partial class panelclients_Default : System.Web.UI.Page
                             string jsFunction = "MyAlert('" + message + "|" + Page.RouteData.Values["id"].ToString() + "|4000|True');";
                             dl.UpdateFestivalSuggestionAgree(Convert.ToInt64(Page.RouteData.Values["festivalId"]), '2');
                             dl.UpdateFestivalSuggestionReceipt(Convert.ToInt64(Page.RouteData.Values["festivalId"]), Path.GetFileName(savePath));
+
+                            // sms
+                            SMS sms = new SMS();
+                            try
+                            {
+                                sms.SendSms("09112315480", "0jjvekuiwcgoodw", "name", dl.GetNameCustomer(Convert.ToInt64(Page.RouteData.Values["id"].ToString())));
+                            }
+                            catch (Exception)
+                            {
+                                throw;
+                            }
+                            // email
+                            try
+                            {
+                                Email email = new Email();
+                                long userId = Convert.ToInt64(Page.RouteData.Values["id"]);
+                                email.SendMail("iranfilmportdistributor@gmail.com","کاربر: " + 
+                                    dl.GetNameCustomer(userId) + "<br/>" + "<strong>" + "درخواست فستیوال پولی کرده است" + "</strong>", "درخواست فستیوال پولی: "+
+                                    dl.GetNameCustomer(userId), "https://iranfilmport.com/cms/pages/requestedfestivalsclient");                                
+                            }
+                            catch (Exception)
+                            {
+
+                                throw;
+                            }
+
                             ClientScript.RegisterStartupScript(this.GetType(), "YourKey", jsFunction, true);
                         }
                         catch (Exception ex)

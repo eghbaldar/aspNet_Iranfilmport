@@ -1,0 +1,48 @@
+﻿
+.kingPanel a {
+    color: blue !important;
+}
+
+.kingAccordion {
+    background-color: #f2de00;
+    color: #444;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    text-align: right;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+    /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+    .kingAccordion:active, .kingAccordion:hover {
+        background-color: #E3EBF2;
+    }
+
+/* Style the kingAccordion kingPanel. Note: hidden by default */
+.kingPanel {
+    padding: 20px;
+    background-color: white;
+    display: none;
+    overflow: hidden;
+    color: Black;
+    text-align: justify;
+    line-height: 30px;
+}
+
+.kingAccordion:after {
+    content: '\02795'; /* Unicode character for "plus" sign (+) */
+    font-size: 13px;
+    color: #777;
+    float: right;
+    margin-left: 5px;
+}
+
+#kingAccordian .active:after {
+    content: "\2796"; /* Unicode character for "minus" sign (-) */
+}

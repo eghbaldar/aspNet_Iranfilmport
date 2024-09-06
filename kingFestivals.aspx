@@ -419,7 +419,7 @@ order by ID desc"></asp:SqlDataSource>
                         <div class="col-2">
                             <a class="button"
                                 target="_blank"
-                                href='<%# String.Format("festival/{0}/{1}/{2}", Eval("id"), Eval("title_en").Replace(" ", "-"), getLink(Eval("title_fa")).Replace(" ", "-").Replace("ي", "ی")) %>'>جزییات</a>
+                                href='<%# String.Format("/festival/{0}/{1}/{2}", Eval("id"), Eval("title_en").Replace(" ", "-"), getLink(Eval("title_fa")).Replace(" ", "-").Replace("ي", "ی")) %>'>جزییات</a>
                         </div>
                     </div>
                 </ItemTemplate>

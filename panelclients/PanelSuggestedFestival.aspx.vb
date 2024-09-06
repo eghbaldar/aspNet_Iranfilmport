@@ -48,7 +48,8 @@ Partial Class panelclients_PanelSuggestedFestival
     End Function
     Public Sub Bank(sender As Object, e As CommandEventArgs)
         Dim pars() As String = e.CommandArgument.ToString().Split("|")
-        Dim amount = (Val(pars(1) / 2) * 60000).ToString("N0") & " تومان"
+        'Dim amount = (Val(pars(1) / 2) * 60000).ToString("N0") & " تومان"
+        Dim amount = (Val(pars(1)) * 63000).ToString("N0") & " تومان"
         Dim agree = pars(2)
         Dim festivalId = pars(0)
 

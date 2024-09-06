@@ -35,7 +35,9 @@
     color:white !important;
     cursor:pointer;
 }
-
+.left-side  a {
+    color: #cdae2c !important;
+}
 .changeAcnhorTag a {
     color: #cdae2c !important;
 }

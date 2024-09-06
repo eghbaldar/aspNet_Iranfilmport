@@ -10,7 +10,16 @@ Partial Class CMS_Pages_msgTOusers
         If txtLink.Text.Trim <> "" And txtSendAll.Text.Trim <> "" And txtSubject.Text.Trim <> "" Then
             Dim DLL As New DLL_CMS
             DLL.SendEmailForAllMembers(txtSendAll.Text.ToString.Trim, txtSubject.Text.Trim, txtLink.Text.Trim)
-        End If        
+        End If
+    End Sub
+
+    Private Sub btnSingleSend_Click(sender As Object, e As EventArgs) Handles btnSingleSend.Click
+        Dim Email As New Email
+        Email.SendMail(txtSignleEmail.Text, txtSingleText.Text, txtSingleSubject.Text, txtSingleLink.Text)
+        txtSignleEmail.Text = ""
+        txtSingleText.Text = ""
+        txtSingleSubject.Text = ""
+        txtSingleLink.Text = ""
     End Sub
 
 End Class

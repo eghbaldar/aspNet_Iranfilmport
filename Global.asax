@@ -78,26 +78,25 @@
         routes.MapPageRoute("me", "me", "~/login.aspx") '****
         routes.MapPageRoute("namad", "نماد-اعتماد-درگاه-فیلم-ایران", "~/kingNamad.aspx") 'namad.aspx
         routes.MapPageRoute("strategy", "برنامه-استراتژیک-پخش-فیلم-به-جشنواره-های-خارجی", "~/kingStrategy.aspx") 'strategy.aspx
-        routes.MapPageRoute("exhibition", "picks", "~/exhibition.aspx")
+        routes.MapPageRoute("exhibition", "picks", "~/kingExhibition.aspx") 'exhibition.aspx
         routes.MapPageRoute("send", "send", "~/kingSendPreInformation.aspx") 'sendfilm.aspx
         routes.MapPageRoute("team", "team", "~/kingteam.aspx") 'team.aspx
         routes.MapPageRoute("originality", "originality", "~/kingfeatures.aspx") 'features.aspx
-        routes.MapPageRoute("faq", "faq", "~/camscanner.aspx")
-        routes.MapPageRoute("captcha", "captcha", "~/captcha.aspx")
-        routes.MapPageRoute("trailer", "trailer", "~/trailer.aspx")
+        routes.MapPageRoute("faq", "faq", "~/kingfaq.aspx") 'camscanner.aspx
+        routes.MapPageRoute("captcha", "captcha", "~/captcha.aspx") '****
+        routes.MapPageRoute("trailer", "trailer", "~/trailer.aspx") '****
         routes.MapPageRoute("advertiseFa", "ارسال-خبر-و-تبلیغات", "~/kingAdvertisement.aspx") 'advertise.aspx
-        routes.MapPageRoute("advertiseEn", "advertise", "~/advertise.aspx")
-        routes.MapPageRoute("sendinformation", "sendinformation", "~/sendinformation.aspx")
-        routes.MapPageRoute("participationplan", "participationplan", "~/participationplan.aspx")
+        routes.MapPageRoute("advertiseEn", "advertise", "~/kingadvertise.aspx") 'advertise.aspx
+        routes.MapPageRoute("sendinformation", "sendinformation", "~/sendinformation.aspx") '****
+        routes.MapPageRoute("participationplan", "participationplan", "~/kingparticipationplan.aspx") 'participationplan.aspx
         routes.MapPageRoute("features2", "features", "~/kingfeatures.aspx") 'features.aspx
         routes.MapPageRoute("testimonial", "تصدیق-نامه-فیلمسازان", "~/kingTestimonials.aspx") 'testimonial.aspx
         routes.MapPageRoute("agents", "agents", "~/kingagents.aspx") 'agents.aspx
-        routes.MapPageRoute("tempcontract", "contract/{id}", "~/contract.aspx")
-        routes.MapPageRoute("GeneralDetails", "GeneralDetails/{type}", "~/GeneralDetails.aspx")
-        routes.MapPageRoute("RevisingScreenplay", "نگارش-بازنویسی-فیلمنامه-کوتاه-بلند", "~/RevisingScreenplay.aspx")
-        routes.MapPageRoute("advertiseModalInterface", "advertiseModalInterface", "~/advertiseModalInterface.aspx")
-        routes.MapPageRoute("onlinecourses", "courses/{title}", "~/courses.aspx")
-        routes.MapPageRoute("eachonlinecourses", "course/{id}/{title}", "~/course.aspx")
+        routes.MapPageRoute("tempcontract", "contract/{id}", "~/kingcontract.aspx") 'contract
+        routes.MapPageRoute("GeneralDetails", "GeneralDetails/{type}", "~/GeneralDetails.aspx") '****
+        routes.MapPageRoute("RevisingScreenplay", "نگارش-بازنویسی-فیلمنامه-کوتاه-بلند", "~/kingRevisingScreenplay.aspx") 'RevisingScreenplay
+        routes.MapPageRoute("advertiseModalInterface", "advertiseModalInterface", "~/advertiseModalInterface.aspx") '****
+        routes.MapPageRoute("onlinecourses", "courses/{title}", "~/kingcourses.aspx") 'courses.aspx
         '----------------------------------------------------------------------------------------
         routes.MapPageRoute("panel", "panel/", "~/panelclients/panel.aspx")
         routes.MapPageRoute("panelClient", "panel/client/{id}", "~/panelclients/PanelMain.aspx")
@@ -113,9 +112,6 @@
         '----------------------------------------------------------------------------------------
         '----------------------------------------------------------------------------------------
         '----------------------------------------------------------------------------------------
-        '                                       Temp
-        routes.MapPageRoute("test", "test/", "~/default2.aspx")
-        routes.MapPageRoute("test2", "test2/", "~/default3.aspx")
         '----------------------------------------------------------------------------------------
         '----------------------------------------------------------------------------------------
         '----------------------------------------------------------------------------------------
@@ -135,17 +131,17 @@
         '----------------------------------------------------------------------------------------
         '---------------- نکته ای در خصوص کد زیر وجوددارد که در پایینتر توضیح داده خواهدشد
         routes.MapPageRoute("festival", "جشنواره-های-فیلم-کوتاه-بلند", "~/kingFestivals.aspx") 'festivals.aspx
-        routes.MapPageRoute("festivalSearch", "festivals/search/{*items}", "~/festivalSearch.aspx")
+        routes.MapPageRoute("festivalSearch", "festivals/search/{*items}", "~/kingfestivalSearch.aspx") 'festivalSearch.aspx
         'routes.MapPageRoute("festivalEach", "festival/{id}/{name_en}/{name_fa}", "~/aFestival.aspx")                
         'دستورات زیر یعنی اگر دو پارامتر نام فارسی و انگلیسی خالی بودند خطا ندهد
         routes.MapPageRoute("festivalEach",
-            "festival/{id}/{name_en}/{name_fa}",
-            "~/kingAFestival.aspx",
-            True,
-            New RouteValueDictionary(New With
-                {.id = " ",
-                 .name_en = " ",
-                 .name_fa = " "})) 'aFestival.aspx
+        "festival/{id}/{name_en}/{name_fa}",
+        "~/kingAFestival.aspx",
+        True,
+        New RouteValueDictionary(New With
+            {.id = " ",
+             .name_en = " ",
+             .name_fa = " "})) 'aFestival.aspx
         'وقتی از کد بالا استفاده میکنید لینک که از تگ انچور بصورت زیر استفاده میکنند دچار مشکل خواهند شد
         '<a href="#"></a> 
         'برای رفع مشکل بصورت زیر بنویسید
@@ -243,12 +239,12 @@
         '----------------------------------------------------------------------------------------
         '----------------------------------------------------------------------------------------
         '----------------------------------------------------------------------------------------
-        routes.MapPageRoute("tags", "tag/{text}", "~/tags.aspx")
+        routes.MapPageRoute("tags", "tag/{text}", "~/kingtags.aspx") 'tags.aspx
         routes.MapPageRoute("POSTwithUnique", "{id}", "~/KingPost.aspx") 'post.aspx => KingPost.aspx
         routes.MapPageRoute("POST", "{id}/{title}", "~/KingPost.aspx") 'post.aspx => KingPost.aspx
-        routes.MapPageRoute("categories", "{id}/{title}/دسته-محتوایی", "~/categories.aspx")
-        routes.MapPageRoute("types", "{type}/{title}/دسته-اصلی", "~/types.aspx")
-        routes.MapPageRoute("postSearch", "post/search/{text}", "~/postSearch.aspx")
+        routes.MapPageRoute("categories", "{id}/{title}/دسته-محتوایی", "~/kingcategories.aspx") 'categories.aspx
+        routes.MapPageRoute("types", "{type}/{title}/دسته-اصلی", "~/kingmaincategories.aspx") 'types.aspx
+        'routes.MapPageRoute("postSearch", "post/search/{text}", "~/postSearch.aspx")
         '----------------------------------------------------------------------------------------
         '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
         '                                          webservice

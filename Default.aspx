@@ -1,169 +1,253 @@
-﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Master_Main.master" AutoEventWireup="false"
-    CodeFile="Default.aspx.vb" Inherits="_Default" %>
+﻿<%@ Page Title="" Language="VB" MasterPageFile="~/KingMaster.master" AutoEventWireup="false" CodeFile="Default2.aspx.vb" Inherits="Default2" %>
+
+<%@ Register Src="usercontrols/KingPostCategories.ascx" TagName="KingPostCategories" TagPrefix="uc1" %>
+<%@ Register Src="usercontrols/KingMoviePosterCarausel.ascx" TagName="KingMoviePosterCarausel" TagPrefix="uc2" %>
+<%@ Register Src="usercontrols/KingLastAccolades.ascx" TagName="KingLastAccolades" TagPrefix="uc3" %>
+<%@ Register Src="usercontrols/KingPopularNews.ascx" TagName="KingPopularNews" TagPrefix="uc4" %>
+<%@ Register Src="usercontrols/KingLastComments.ascx" TagName="KingLastComments" TagPrefix="uc5" %>
+<%@ Register Src="usercontrols/KingNewsletter.ascx" TagName="KingNewsletter" TagPrefix="uc6" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-    <link href="<%= ResolveUrl("~/files/css/default.css")%>" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <!--===   Page Slider   =========-->
-    <div class="hero-slider">
-        <!-- Slider Item -->
-        <asp:Repeater ID="R_Slider" runat="server" DataSourceID="SDS_Slider">
-            <ItemTemplate>
-                <asp:Panel ID="Panel1" runat="server" CssClass="slider-item" BackImageUrl='<%# String.Format("~\files\uploadFiles\sliders\{0}",Eval("photo")) %>'>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                <!-- Slide Content Start -->
-                                <%--Style="color: white; font-size: 35px; font-family: Titr;"--%>
-                                <div class="content style text-center" style="direction: rtl;">
-                                    <a href='<%# String.Format("{0}",Eval("link")) %>' target="_blank">
-                                        <h1 class="SliderUp">
-                                            <asp:Label Visible='<%# EnFa("FA") %>' ID="Label4" runat="server" CssClass="SliderUp"
-                                                Text='<%# Eval("text").Replace("ي", "ی") %>'></asp:Label>
-                                            <asp:Label Visible='<%# EnFa("EN") %>' ID="Label12" runat="server" CssClass="SliderUpEn"
-                                                Text='<%# Eval("textEn")%>'></asp:Label>
-                                        </h1>
-                                    </a><a href='<%# String.Format("{0}",Eval("link")) %>' target="_blank">
-                                        <p class="tag-text mb-5" style="font-family: Koodak; margin-top: 5px;">
-                                            <asp:Label ID="Label1" Visible='<%# EnFa("FA") %>' CssClass="SliderDown" runat="server"
-                                                Text='<%# Eval("subtext").Replace("ي", "ی") %>'></asp:Label>
-                                        </p>
-                                    </a>
-                                    <%--<a href='<%# String.Format("{0}",Eval("link")) %>' class="btn btn-main btn-white">...بیشتر
-                                        بدانید</a>--%>
-                                </div>
-                                <!-- Slide Content End -->
+    <div class="container">
+        <!--Featured Grid-->
+        <div class="mb-20 sentence-container">
+
+            <p class="sentence">
+                پخش و ارسال فیلم و فیلمنامه به فستیوال‌های بین‌المللی با
+    <b>12 سال </b>سابقه
+            </p>
+
+            <p class="sentence">
+                اولین پخش کننده با حضور در لیست نهایی <b>اسکار </b>
+            </p>
+
+            <p class="sentence">
+                تنها پخش کننده با <b>پنل اختصاصی</b> فول امکانات برای فیلمساز
+            </p>
+
+            <p class="sentence">
+                تنها پخش کننده با <b>استراتژی</b> پخش تخصصی
+            </p>
+
+            <p class="sentence">
+                تنها پخش کننده با <b>کارنامه‌ای  قابل دسترس</b> و قابل استناد
+            </p>
+
+
+
+        </div>
+    </div>
+    <main class="position-relative">
+        <div class="container">
+            <!--Featured Grid-->
+            <div class="row mb-50">
+                <div class="col-lg-6">
+                    <!-- Featured posts -->
+                    <div class="featured-post featured-post-grid ">
+                        <div class="featured-slider-1 border-radius-10">
+                            <div class="featured-slider-1-items">
+                                <asp:Repeater ID="R_Slider" runat="server" DataSourceID="SDS_Slider">
+                                    <ItemTemplate>
+                                        <div class="slider-single p-10 kingLightGray">
+                                            <div class="img-hover-slide border-radius-15 mb-30 position-relative overflow-hidden">
+                                                <a href='<%# String.Format("{0}", Eval("link")) %>' target="_blank">
+                                                    <img src='<%# String.Format("\files\uploadFiles\sliders\{0}", Eval("photo")) %>' alt="post-slider">
+                                                </a>
+                                            </div>
+                                            <div class="pr-10 pl-10">
+                                                <h4 class="post-title full-width mb-20">
+                                                    <a href='<%# String.Format("{0}", Eval("link")) %>' target="_blank">
+                                                        <h1 class="SliderUp">
+                                                            <asp:Label Visible='<%# EnFa("FA") %>' ID="Label4" runat="server" CssClass="SliderUp"
+                                                                Text='<%# Eval("text").Replace("ي", "ی") %>'></asp:Label>
+                                                            <asp:Label Visible='<%# EnFa("EN") %>' ID="Label12" runat="server" CssClass="SliderUpEn"
+                                                                Text='<%# Eval("textEn")%>'></asp:Label>
+                                                        </h1>
+                                                    </a><a href='<%# String.Format("{0}", Eval("link")) %>' target="_blank">
+                                                        <p class="tag-text mb-5" style="font-family: Koodak; margin-top: 5px;">
+                                                            <asp:Label ID="Label1" Visible='<%# EnFa("FA") %>' CssClass="SliderDown" runat="server"
+                                                                Text='<%# Eval("subtext").Replace("ي", "ی") %>'></asp:Label>
+                                                        </p>
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                                <asp:SqlDataSource ID="SDS_Slider" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
+                                    SelectCommand="SELECT * FROM [tbl_slider] WHERE ([visible] = @visible) ORDER BY [ID] DESC">
+                                    <SelectParameters>
+                                        <asp:Parameter DefaultValue="true" Name="visible" Type="Boolean" />
+                                    </SelectParameters>
+                                </asp:SqlDataSource>
                             </div>
-                        </div>
-                    </div>
-                </asp:Panel>
-            </ItemTemplate>
-        </asp:Repeater>
-        <asp:SqlDataSource ID="SDS_Slider" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
-            SelectCommand="SELECT * FROM [tbl_slider] WHERE ([visible] = @visible) ORDER BY [ID] DESC">
-            <SelectParameters>
-                <asp:Parameter DefaultValue="true" Name="visible" Type="Boolean" />
-            </SelectParameters>
-        </asp:SqlDataSource>
-        <%--            <div class="slider-item" style="background-image: url(files/images/slider/slider-bg-1.jpg)">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <!-- Slide Content Start -->
-                            <div class="content style text-center">
-                                <h2 class="text-white text-bold mb-2">
-                                    Opening of IranFilmPort (IFP)</h2>
-                                <p class="tag-text mb-5"  style="font-family:Titr;">
-                                    بزرگترین و حرفه‌ای‌ترین درگاه ارسال فیلم به فستیوال‌های بین المللی افتتاح
-                                    شد
-                                    <br>
-                                    </p>
-                                <a href="#" class="btn btn-main btn-white">...بیشتر بدانید</a>
-                            </div>
-                            <!-- Slide Content End -->
                         </div>
                     </div>
                 </div>
-            </div>--%>
-    </div>
-    <!--====  End of Page Slider  ====-->
-    <%--    <section class="cta">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="cta-block">
-                    <div class="emmergency item" >
-                        <i class="fa fa-phone1"></i>
-                        <h1 style="color:White;text-align:center;">Advice on Distribution</h1>
-                        <div class="top-doctor item"
-                        style="background-color:transparent;direction:rtl;font-family:NazaninB;text-align:center;">
-                        <h2 style="font-family:Titr;color:White;">مشاوره در پخش</h2>
-                        <div style="color:White;">
-                        مهترین و اولین قدم به منظور داشتن یک پخش صحیح و کارآمد داشتن اطلاعات کافی و گرفتن مشاوره های متناسب با موقعیت و محتوای فیلم می‌باشد. فرصت و پول خود را از دست ندهید.
-                        </div>                         
-                        <a href="http://iranfilmport.com/2/%D9%85%D9%88%D9%81%D9%82%D9%8A%D8%AA-%D8%AF%D8%B1-%D9%81%D8%B3%D8%AA%D9%8A%D9%88%D8%A7%D9%84-%D9%87%D8%A7%D9%8A-%D9%81%D9%8A%D9%84%D9%85-%D9%88-%D8%A7%D8%B1%D8%B3%D8%A7%D9%84-%D9%85%D9%88%D9%81%D9%82" class="btn btn-main" style="font-size:11px;color:black;">بیشتر بدانید</a>
-                        </div>
-                    </div>
-                    <div class="working-time item">
+                <div class="col-lg-6">
+                    <div class="row">
 
-                       <i class="fa fa-phone1" style="color:White;"></i>
-                        <h1 style="color:White;text-align:center;">Select of Festivals</h1>
-                        <div class="top-doctor item"
-                        style="background-color:transparent;direction:rtl;font-family:NazaninB;color:Black;
-                            text-align:center;">
-                        <h2 style="font-family:Titr;color:White;">انتخاب جشنواره‌ها</h2>
-                        <div style="color:White;">
-                        پس از مشاوره صحیح در خصوص جایگاه فیلم شما و میزان موفقیت آن در فستیوال‌های بین المللی، گروه فنی پخش درگاه فیلم ایران به چند روش متفاوت و متنوع فستیوال‌های مورد نظر را به شما معرفی خواهد کرد.
-                        </div>                         
-                        <a href="http://iranfilmport.com/2/%D9%85%D9%88%D9%81%D9%82%D9%8A%D8%AA-%D8%AF%D8%B1-%D9%81%D8%B3%D8%AA%D9%8A%D9%88%D8%A7%D9%84-%D9%87%D8%A7%D9%8A-%D9%81%D9%8A%D9%84%D9%85-%D9%88-%D8%A7%D8%B1%D8%B3%D8%A7%D9%84-%D9%85%D9%88%D9%81%D9%82" class="btn btn-main" style="font-size:11px;color:black;">بیشتر بدانید</a>
-                        </div>
+                        <asp:Repeater ID="gv_master" runat="server" DataSourceID="SDS_Master">
+                            <ItemTemplate>
+                                <div class="col-md-6">
+                                    <div class="slider-single mb-30 bg-white p-10 border-radius-15 kingYellow">
+                                        <div class="img-hover-scale border-radius-10">
+                                            <a href='<%# String.Format("/{0}", Eval("id")) %>'>
+                                                <asp:Image AlternateText='<%# Eval("title").Replace("ي", "ی") %>' Width="100%" Style="-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;"
+                                                    ID="Image1" runat="server" ImageUrl='<%# "~\convertToUnscale\?photo=" + String.Format("files\uploadFiles\article\{0}", Eval("photo")) + "&w=400&h=236" %>' />
+                                            </a>
+                                        </div>
+                                        <h6 class="post-title pr-5 pl-5 mb-10 mt-15 text-limit-2-row">
+                                            <a href='<%# String.Format("/{0}", Eval("id")) %>'>
+                                                <h6 style="font-size: 12px;">
+                                                    <asp:Label Visible='<%# EnFa("FA") %>' ID="La1bel11" runat="server" CssClass="TitleNews"
+                                                        Text='<%# Eval("title").Replace("ي", "ی") %>'></asp:Label>
+                                                    <asp:Label Visible='<%# EnFa("EN") %>' ID="Label1" Style="font-size: 14px;" runat="server"
+                                                        Text='<%# Bind("titleEn") %>'></asp:Label>
+                                                </h6>
+                                            </a>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </ItemTemplate>
+                        </asp:Repeater>
 
-                    </div>
-                    <div class="top-doctor2 item">
-                        
-                         <i class="fa fa-phone1"></i>
-                        <h1 style="color:White;text-align:center;">Success in festivals</h1>
-                        <div class="top-doctor item"
-                        style="background-color:transparent;direction:rtl;font-family:NazaninB;text-align:center;color:White;">
-                        <h2 style="font-family:Titr;color:White;">موفقیت در جشنواره‌ها</h2>
-                        <div>
-                        موفقیت در جشنواره‌ها متغیرهای وابسته و غیروابسته زیادی دارد که از جمله مهمترین آنها، انتخاب و در اختیار گرفتن پخش کننده ایست که تجربه ی لازم را در این زمینه داشته باشد. لطفا در انتخاب خود دفت کنید.
-                        </div>                         
-                        <a href="http://iranfilmport.com/2/%D9%85%D9%88%D9%81%D9%82%D9%8A%D8%AA-%D8%AF%D8%B1-%D9%81%D8%B3%D8%AA%D9%8A%D9%88%D8%A7%D9%84-%D9%87%D8%A7%D9%8A-%D9%81%D9%8A%D9%84%D9%85-%D9%88-%D8%A7%D8%B1%D8%B3%D8%A7%D9%84-%D9%85%D9%88%D9%81%D9%82" class="btn btn-main" style="font-size:11px;color:black;">بیشتر بدانید</a>
-                        </div>
+                        <asp:SqlDataSource ID="SDS_Master" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
+                            SelectCommand="SELECT top 4 * FROM [tbl_articles] WHERE [visible] = 1 and  [date_time] <= getdate() and id in (SELECT top 20 [id] FROM [tbl_articles] order by [date_time] desc) order by date_time desc"></asp:SqlDataSource>
 
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>--%>
-    <section class="containerMother">
-        <div class="container">
+            <!--Widget Movies Poster -->
+            <uc2:KingMoviePosterCarausel ID="KingMoviePosterCarausel" runat="server" />
+            <!--Ads-->
             <div class="row">
-                <div id="divLastFestival" class="col-md-6 col-sm-12 col-xs-12">
-                    <div class="divPost">
-                        <span><a style="color: #848484;" href="../جشنواره-های-فیلم-کوتاه-بلند">
-                            <asp:Label ID="lblTitleFestivals" runat="server"></asp:Label>
-                        </a></span>
-                        <asp:GridView ID="dgLastDeadlineFestival" runat="server" AutoGenerateColumns="False"
-                            DataSourceID="SDS_Last" GridLines="None" ShowHeader="False" AllowPaging="True"
-                            PageSize="50">
-                            <Columns>
-                                <asp:TemplateField HeaderText="rules" SortExpression="rules">
+                <div class="col-12 text-center mb-20">
+                    <a href="https://iranfilmport.com/%D8%A7%D8%B1%D8%B3%D8%A7%D9%84-%D8%AE%D8%A8%D8%B1-%D9%88-%D8%AA%D8%A8%D9%84%DB%8C%D8%BA%D8%A7%D8%AA">
+                        <img class="border-radius-10 d-inline" src="files/kingMaterials/imgs/ads.jpg" alt="post-slider">
+                    </a>
+                </div>
+            </div>
+            <!--Content-->
+            <div class="row">
+                <!-- sidebar-left -->
+                <div class="col-lg-3 col-md-3 primary-sidebar sticky-sidebar sidebar-left order-2 order-md-1">
+                    <!-- Widget Categories -->
+                    <div class="sidebar-widget widget_categories_2 border-radius-10 bg-white mb-30">
+                        <div class="widget-header position-relative mb-15">
+                            <h5 class="widget-title"><strong>باید از ما بدانید ...</strong></h5>
+                        </div>
+                        <ul class="font-small text-muted">
+                            <li class="cat-item cat-item-2 ">
+                                <a target="_blank" href="https://iranfilmport.com/%D9%BE%D8%AE%D8%B4-%D9%88-%D8%A7%D8%B1%D8%B3%D8%A7%D9%84-%D9%81%DB%8C%D9%84%D9%85">
+                                    <span class="ml-10">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-film" viewBox="0 0 16 16">
+                                            <path d="M0 1a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm4 0v6h8V1zm8 8H4v6h8zM1 1v2h2V1zm2 3H1v2h2zM1 7v2h2V7zm2 3H1v2h2zm-2 3v2h2v-2zM15 1h-2v2h2zm-2 3v2h2V4zm2 3h-2v2h2zm-2 3v2h2v-2zm2 3h-2v2h2z" />
+                                        </svg>
+                                    </span>شیوه پخش و ارسال فیلم و فیلمنامه
+                                </a>
+                            </li>
+                            <li class="cat-item cat-item-3">
+                                <a target="_blank" href="https://iranfilmport.com/%D9%87%D8%B2%DB%8C%D9%86%D9%87-%D9%BE%D8%AE%D8%B4-%D8%A8%DB%8C%D9%86-%D8%A7%D9%84%D9%85%D9%84%D9%84%DB%8C-%D9%81%DB%8C%D9%84%D9%85">
+                                    <span class="ml-10">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cash-coin" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8m5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0" />
+                                            <path d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195z" />
+                                            <path d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083q.088-.517.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1z" />
+                                            <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 6 6 0 0 1 3.13-1.567" />
+                                        </svg>
+                                    </span>تعرفه و هزینه‌های پخش چگونه است؟
+                                </a>
+                            </li>
+                            <li class="cat-item cat-item-4">
+                                <a target="_blank" href="https://iranfilmport.com/%D9%85%D8%B4%D8%A7%D9%88%D8%B1%D9%87-%D9%81%DB%8C%D9%84%D9%85%D9%86%D8%A7%D9%85%D9%87-%DA%A9%D9%88%D8%AA%D8%A7%D9%87-%D9%85%D8%B4%D8%A7%D9%88%D8%B1%D9%87-%D9%81%DB%8C%D9%84%D9%85%D9%86%D8%A7%D9%85%D9%87-%D8%A8%D9%84%D9%86%D8%AF">
+                                    <span class="ml-10">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                                            <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z" />
+                                        </svg>
+                                    </span>مشاوره و بازنویسی فیلمنامه کوتاه و بلند
+                                </a>
+                            </li>
+                            <li class="cat-item cat-item-5">
+                                <a target="_blank" href="https://iranfilmport.com/2188">
+                                    <span class="ml-10">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bullseye" viewBox="0 0 16 16">
+                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                                            <path d="M8 13A5 5 0 1 1 8 3a5 5 0 0 1 0 10m0 1A6 6 0 1 0 8 2a6 6 0 0 0 0 12" />
+                                            <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8" />
+                                            <path d="M9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
+                                        </svg>
+                                    </span>فروش فیلمنامه کوتاه و بلند
+                                </a>
+                            </li>
+                            <li class="cat-item cat-item-6">
+                                <a target="_blank" href="https://iranfilmport.com/accolades">
+                                    <span class="ml-10">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-layers-fill" viewBox="0 0 16 16">
+                                            <path d="M7.765 1.559a.5.5 0 0 1 .47 0l7.5 4a.5.5 0 0 1 0 .882l-7.5 4a.5.5 0 0 1-.47 0l-7.5-4a.5.5 0 0 1 0-.882z" />
+                                            <path d="m2.125 8.567-1.86.992a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882l-1.86-.992-5.17 2.756a1.5 1.5 0 0 1-1.41 0z" />
+                                        </svg>
+                                    </span>کارنامه پر افتخار و اسکاری «درگاه»
+                                </a>
+                            </li>
+                            <li class="cat-item cat-item-2">
+                                <a target="_blank" href="https://iranfilmport.com/team">
+                                    <span class="ml-10">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-person" viewBox="0 0 16 16">
+                                            <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                                            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2v9.255S12 12 8 12s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h5.5z" />
+                                        </svg>
+                                    </span>مدیریت و تیم «درگاه فیلم ایران»
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Widget Categories -->
+                    <uc1:KingPostCategories ID="KingPostCategories1" runat="server" />
+                </div>
+                <!-- main content -->
+                <div class="col-lg-9 col-md-9 order-1 order-md-2">
+                    <div class="row mb-50 mt-15">
+                        <div class="col-md-12">
+                            <div class="widget-header position-relative mb-30">
+                                <h4 class="widget-title mb-0">فستیوال‌های معتبر <span>در حال بسته شدن</span></h4>
+                            </div>
+                            <div class="post-carausel-2 post-module-1 row">
+                                <asp:Repeater ID="Repeater2" DataSourceID="SDS_LastFestivals" runat="server">
                                     <ItemTemplate>
-                                        <tr>
-                                            <td>
-                                                <a href='<%# String.Format("festival/{0}/{1}/{2}", Eval("id"),Eval("title_en").Replace(" ","-"),getLinkFest(Eval("title_fa")).Replace(" ","-").Replace("ي", "ی")) %>'>
-                                                    <asp:Image CssClass="IMG"
-                                                        AlternateText='<%# Eval("title_fa").Replace("ي", "ی") %>'
-                                                        ID="Image1" ImageUrl='<%# String.Format("~/files/uploadFiles/festival/{0}", Eval("logo")) %>'
-                                                        runat="server" />
-                                                </a>
-                                            </td>
-                                            <td style="padding: 5px;">
-                                                <div>
-                                                    <a href='<%# String.Format("festival/{0}/{1}/{2}", Eval("id"),Eval("title_en").Replace(" ","-"),getLinkFest(Eval("title_fa")).Replace(" ","-").Replace("ي", "ی")) %>'>
-                                                        <asp:Label Visible='<%# EnFa("FA") %>' ID="Label2" runat="server" Style="font-size: 12px;"
-                                                            Text='<%# Eval("title_fa").Replace("ي", "ی") %>'></asp:Label>
-                                                        <asp:Label Visible='<%# EnFa("EN") %>' Style="font-size: 12px;" ID="Label1" runat="server"
-                                                            Text='<%# Bind("title_en") %>'></asp:Label>
-                                                    </a>
+                                        <div class="col">
+                                            <div class="post-thumb position-relative">
+                                                <div class="thumb-overlay img-hover-slide border-radius-15 position-relative"
+                                                    style="background-image: url('<%# String.Format("/files/uploadFiles/festival/{0}", Eval("logo")) %>')">
+                                                    <a class="img-link" href='<%# String.Format("festival/{0}/{1}/{2}", Eval("id"), Eval("title_en").Replace(" ", "-"), getLinkFest(Eval("title_fa")).Replace(" ", "-").Replace("ي", "ی")) %>'></a>
+                                                    <div class="post-content-overlay">
+                                                        <div class="entry-meta meta-0 font-small mb-15">
+                                                            <a href="category.html"><span class="post-cat bg-success color-white"><%# Eval("RemainDays") %> روز باقیمانده</span></a>
+                                                        </div>
+                                                        <h5 class="post-title">
+                                                            <a class="color-white" href='<%# String.Format("festival/{0}/{1}/{2}", Eval("id"), Eval("title_en").Replace(" ", "-"), getLinkFest(Eval("title_fa")).Replace(" ", "-").Replace("ي", "ی")) %>'>
+                                                                <a href='<%# String.Format("festival/{0}/{1}/{2}", Eval("id"), Eval("title_en").Replace(" ", "-"), getLinkFest(Eval("title_fa")).Replace(" ", "-").Replace("ي", "ی")) %>'>
+                                                                    <asp:Label Visible='<%# EnFa("FA") %>' ID="Label2" runat="server" Style="font-size: 12px; color: white;"
+                                                                        Text='<%# Eval("title_fa").Replace("ي", "ی") %>'></asp:Label>
+                                                                    <asp:Label Visible='<%# EnFa("EN") %>' Style="font-size: 12px;" ID="Label1" runat="server"
+                                                                        Text='<%# Bind("title_en") %>'></asp:Label>
+                                                                </a>
+                                                            </a>
+                                                        </h5>
+                                                        <div class="entry-meta meta-1 font-x-small mt-10 pr-5 pl-5 text-muted">
+                                                            <span><span class="ml-5"><i class="fa fa-eye" aria-hidden="true"></i></span><%# Eval("counter") %></span>
+
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div>
-                                                    <asp:Label ToolTip="تعداد روز باقی ماننده به آخرین ددلاین" ID="Label3" Style="font-family: Samim;
-                                                        font-size: 10px;" runat="server" Text='<%# getDeadlineStatus(Eval("sign"),Eval("RemainDays")) %>'></asp:Label>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                            </div>
+                                        </div>
                                     </ItemTemplate>
-                                </asp:TemplateField>
-                            </Columns>
-                            <PagerStyle CssClass="gridview"></PagerStyle>
-                        </asp:GridView>
-                        <asp:SqlDataSource ID="SDS_Last" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
-                            SelectCommand="
+                                </asp:Repeater>
+                                <asp:SqlDataSource ID="SDS_LastFestivals" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
+                                    SelectCommand="
 select top 4 *,
 DATEDIFF(DAY, GETDATE(),(select top 1 [deadline] from dbo.tbl_festivalDeadline where festivalID =f.id order by deadline desc)) as 'RemainDays',
 sign(DATEDIFF(DAY, GETDATE(),(select top 1 [deadline] from dbo.tbl_festivalDeadline where festivalID =f.id order by deadline desc))) 'sign'	
@@ -175,620 +259,141 @@ sign(DATEDIFF(DAY, GETDATE(),(select top 1 [deadline] from dbo.tbl_festivalDeadl
 and
 sign(DATEDIFF(DAY, GETDATE(),(select top 1 [deadline] from dbo.tbl_festivalDeadline where festivalID =f.id order by deadline desc)))=1
 ORDER BY newid()"></asp:SqlDataSource>
-                    </div>
-                </div>
-                <div id="divLastNews" class="col-md-6 col-sm-12 col-xs-12">
-                    <div>
-                        <div class="divPost">
-                            <span><a style="color: #848484;" href="../نقد-تحلیل-اخبار-فیلم-کوتاه">
-                                <asp:Label ID="lblTitleNews" runat="server"></asp:Label>
-                            </a></span>
-                            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SDS_LastNews"
-                                AllowPaging="True" GridLines="None" ShowHeader="False">
-                                <Columns>
-                                    <asp:TemplateField HeaderText="ID" InsertVisible="False" SortExpression="ID">
-                                        <ItemTemplate>
-                                            <h2>
-                                                <a style="text-decoration: none;" href='<%# ResolveUrl(getLink(Eval("id"),Eval("title")))%>'>
-                                                    <asp:Label Visible='<%# EnFa("FA") %>' ID="La1bel11" runat="server" CssClass="TitleNews"
-                                                        Text='<%# Eval("title").Replace("ي", "ی") %>'></asp:Label>
-                                                    <asp:Label Visible='<%# EnFa("EN") %>' ID="Label1" Style="font-size: 14px;" runat="server"
-                                                        Text='<%# Bind("titleEn") %>'></asp:Label>
-                                                </a>
-                                            </h2>
-                                            <!-- end entry -->
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                </Columns>
-                                <PagerStyle CssClass="gridview"></PagerStyle>
-                            </asp:GridView>
-                        </div>
-                        <asp:SqlDataSource ID="SDS_LastNews" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
-                            SelectCommand="SELECT top 10 * FROM [tbl_articles] WHERE [visible] = 1 and [date_time] <= getdate() ORDER BY [date_time] DESC">
-                        </asp:SqlDataSource>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section style="padding: 15px;">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 col-xs-12">
-                    <div class="image-content">
-                        <div class="row">
-                            <asp:Repeater ID="gv_master" runat="server" DataSourceID="SDS_Master">
-                                <ItemTemplate>
-                                    <div class="col-sm-3" style="direction: rtl; text-align: center;">
-                                        <div class="divPost">
-                                            <a style="text-decoration: none; color: Black;" href='<%# ResolveUrl(getLink(Eval("id"),Eval("title")))%>'>
-                                                <div>
-                                                    <figure>
-                                                        <asp:Image AlternateText='<%# Eval("title").Replace("ي", "ی") %>' Width="100%" Style="-moz-border-radius: 5px;
-                                                            -webkit-border-radius: 5px; border-radius: 5px;" ID="Image1" runat="server" ImageUrl='<%# "~\convertToUnscale\?photo=" + String.Format("files\uploadFiles\article\{0}", Eval("photo")) + "&w=400&h=236" %>' />
-                                                    </figure>
-                                                </div>
-                                                <div class="DivNewsLidBox">
-                                                    <h6 style="font-size: 12px;">
-                                                        <asp:Label Visible='<%# EnFa("FA") %>' ID="La1bel11" runat="server" CssClass="TitleNews"
-                                                            Text='<%# Eval("title").Replace("ي", "ی") %>'></asp:Label>
-                                                        <asp:Label Visible='<%# EnFa("EN") %>' ID="Label1" Style="font-size: 14px;" runat="server"
-                                                            Text='<%# Bind("titleEn") %>'></asp:Label>
-                                                    </h6>
-                                                    <h6 style="text-align: center;">
-                                                        <asp:Label Style="font-family: traffic; font-size: 13px; color: Gray;" ID="Label3"
-                                                            runat="server" Text='<%# Server.HtmlDecode(Regex.Replace(Eval("lid"), "<(.|\\n)*?>", string.Empty)) %>'>
-                                                        </asp:Label>
-                                                    </h6>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </ItemTemplate>
-                            </asp:Repeater>
-                            <asp:SqlDataSource ID="SDS_Master" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
-                                SelectCommand="SELECT top 4 * FROM [tbl_articles] WHERE [visible] = 1 and  [date_time] <= getdate() and id in (SELECT top 20 [id] FROM [tbl_articles] order by [date_time] desc) order by date_time desc">
-                                <%--With Random--%>
-                                <%--SELECT top 4 * FROM [tbl_articles] WHERE id in (
-            SELECT top 20 [id] FROM [tbl_articles] order by id desc
-            ) AND [visible] = 1 ORDER BY newid()--%>
-                            </asp:SqlDataSource>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <div id="divFeature">
-        <a target="_blank" href='<%= Page.ResolveUrl("~/ویژگی-های-پخش-فیلم-درگاه-فیلم-ایران") %>'
-            style="color: Blue; font-size: 9px;" target="_blank">
-            <img src="files/images/background/bestFeature.jpg" alt="برتری های درگاه فیلم ایران"
-                style="width: 100%; height: auto;" />
-        </a>
-    </div>
-    <!--about section-->
-    <%--    <section class="feature-section section bg-gray" style="background-color: #eeeeee;">
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-12 col-xs-12">
-				<div class="image-content">
-					<div class="section-title text-center">
-						<h3>Best Features
-							<span>of Our Port</span>
-						</h3>
-                        <h4>
-						<span style="color:Black;font-family:traffic;">گروه‌ها و افراد زیادی بصورت حقیقی و حقوقی با دانش و بی دانش اقدام به پخش فیلم‌ها می‌کنند. آیا شما تفاوت آنها را می دانید؟</span>
-                        </h4>
-                        <h4>
-                        <span style="color:blue;font-family:traffic;">درگاه فیلم ایران با دارا بودن شاخص های منحصربفرد زیر فاصله ای زیاد با رقیبان خود گرفته است</span>
-                        </h4>
-					</div>
-					<div class="row">
-						<div class="col-sm-6" style="direction:rtl;text-align:center;">
-							<div class="item">
-								<div class="icon-box">
-									<figure>
-										<a href='<%= Page.ResolveUrl("~/ویژگی-های-پخش-فیلم-درگاه-فیلم-ایران") %>'>
-											<img alt="ویژگی های اختصاصی درگاه فیلم ایران" src='<%= Page.ResolveUrl("files/images/resource/1.png")%>' alt="">
-										</a>
-									</figure>
-								</div>
-								<h3 style="font-family:traffic;"><span style="font-family:Tahoma;">Contract</span> | قرارداد کاری</h3>
-								<p>درگاه فیلم ایران به دلیل برخورد حرفه‌ای و با دارا بودن ساختار مدون و از پیش تعریف شده برای هر پخش، با نماینده رسمی فیلم قرارداد کاری را منعقد خواهد کرد.</p>
-                                <p><a href='<%= Page.ResolveUrl("~/ویژگی-های-پخش-فیلم-درگاه-فیلم-ایران") %>' style="color:Blue;font-size:9px;" target="_blank">با تفاوت های ما بیشتر آشنا شوید...</a></p>
-							</div>
-						</div>
-						<div class="col-sm-6" style="direction:rtl;text-align:center;">
-							<div class="item">
-								<div class="icon-box">
-									<figure>
-										<a target="_blank" href='<%= Page.ResolveUrl("~/ویژگی-های-پخش-فیلم-درگاه-فیلم-ایران") %>'>
-											<img alt="ویژگی های اختصاصی درگاه فیلم ایران" src='<%= Page.ResolveUrl("files/images/resource/2.png") %>' alt="">
-										</a>
-									</figure>
-								</div>
-                                <h3 style="font-family:traffic;"><span style="font-family:Tahoma;">Media-Making</span> | رسانه سازی</h3>
-								<p style="color:red;">درگاه فیلم ایران برای اولین بار در ایران به پشتوانه ی متخصصین بخش رسانه ای خود، تمامی اقدامات لازم جهت معرفی فیلم ، فیلمساز و عوامل به دنیای عظیم و تاثیرگذار رسانه (MEDIA) را انجام خواهد داد. امکانی که در یک پخش موفق بسیار تاثیرگذار است. </p>
-                                <p><a target="_blank" href='<%= Page.ResolveUrl("~/ویژگی-های-پخش-فیلم-درگاه-فیلم-ایران") %>' style="color:Blue;font-size:9px;" target="_blank">با تفاوت های ما بیشتر آشنا شوید...</a></p>
-							</div>
-						</div>
-						<div class="col-sm-6" style="direction:rtl;text-align:center;">
-							<div class="item">
-								<div class="icon-box">
-									<figure>
-										<a target="_blank" href='<%= Page.ResolveUrl("~/ویژگی-های-پخش-فیلم-درگاه-فیلم-ایران") %>'>
-											<img alt="ویژگی های اختصاصی درگاه فیلم ایران" src='<%= Page.ResolveUrl("files/images/resource/3.png") %>' alt="">
-										</a>
-									</figure>
-								</div>
-                                <h3 style="font-family:traffic;"><span style="font-family:Tahoma;">Categorization</span> | طبقه بندی</h3>
-								<p>و باز هم برای اولین بار در ایران و شاید جهان! درگاه فیلم ایران در تلاش است که فستیوال‌های بین المللی را در چهار دسته اصلی A+ A B C جای دهد.</p>
-                                <p><a target="_blank" href='<%= Page.ResolveUrl("~/ویژگی-های-پخش-فیلم-درگاه-فیلم-ایران") %>' style="color:Blue;font-size:9px;" target="_blank">با تفاوت های ما بیشتر آشنا شوید...</a></p>
-							</div>
-						</div>
-						<div class="col-sm-6" style="direction:rtl;text-align:center;">
-							<div class="item">
-								<div class="icon-box">
-									<figure>
-										<a target="_blank" href='<%= Page.ResolveUrl("~/ویژگی-های-پخش-فیلم-درگاه-فیلم-ایران") %>'>
-											<img alt="ویژگی های اختصاصی درگاه فیلم ایران" src='<%= Page.ResolveUrl("files/images/resource/4.png") %>' alt="">
-										</a>
-									</figure>
-								</div>
-                                <h3 style="font-family:traffic;"><span style="font-family:Tahoma;">Identity</span> | هویت سنجی</h3>
-								<p>سازوکار پرتال درگاه فیلم ایران به گونه ایست که افراد بعنوان فیلمساز، تهیه کننده و یا نماینده رسمی هر فیلم دارای صفحه ی شخصی مخصوص به خود و فیلمشان هستند. از اینرو هر فیلمی که به درگاه معرفی بشود دارای اعتباری است که درگاه پس از تصدیق محتوا بر آن می بخشد. این تصدیق، نماد اعتماد درگاه فیلم ایران نامیده می شود.</p>
-                                <p><a target="_blank" href='<%= Page.ResolveUrl("~/ویژگی-های-پخش-فیلم-درگاه-فیلم-ایران") %>' style="color:Blue;font-size:9px;" target="_blank">با تفاوت های ما بیشتر آشنا شوید...</a></p>
-							</div>
-						</div>
-                        <div class="col-sm-6" style="direction:rtl;text-align:center;">
-							<div class="item">
-								<div class="icon-box">
-									<figure>
-										<a target="_blank" href='<%= Page.ResolveUrl("~/ویژگی-های-پخش-فیلم-درگاه-فیلم-ایران") %>'>
-											<img alt="ویژگی های اختصاصی درگاه فیلم ایران" src='<%= Page.ResolveUrl("files/images/resource/5.png") %>' alt="">
-										</a>
-									</figure>
-								</div>
-                                <h3 style="font-family:traffic;"><span style="font-family:Tahoma;">Own Page</span> | صفحه اختصاصی</h3>
-								<p>یکی از قابلیت های منحصربفرد این پرتال معرفی فیلم و فیلمساز از طریق صفحه اختصاصی است. این قابلیت نظیر امکانیست که سایت های بزرگی چون IMDb به فیلمسازان ارائه می‌دهند.</p>
-                                <p><a target="_blank" href='<%= Page.ResolveUrl("~/ویژگی-های-پخش-فیلم-درگاه-فیلم-ایران") %>' style="color:Blue;font-size:9px;" target="_blank">با تفاوت های ما بیشتر آشنا شوید...</a></p>
-							</div>
-						</div>
-                        <div class="col-sm-6" style="direction:rtl;text-align:center;">
-							<div class="item">
-								<div class="icon-box">
-									<figure>
-										<a target="_blank" href='<%= Page.ResolveUrl("~/ویژگی-های-پخش-فیلم-درگاه-فیلم-ایران") %>'>
-											<img alt="ویژگی های اختصاصی درگاه فیلم ایران" src='<%= Page.ResolveUrl("files/images/resource/6.png") %>' alt="">
-										</a>
-									</figure>
-								</div>
-                                <h3 style="font-family:traffic;"><span style="font-family:Tahoma;">Dedicated Email</span> | ایمیل اختصاصی</h3>
-								<p>و باز هم امکانی منحصربفرد!، درگاه فیلم ایران برای تمامی کاربران خود یک پست الکترونیکی با نام و مشخصات شخصی‌شان در نظر گرفته تا بتوانند از آن در تبادلات مجازی خود استفاده کنند.</p>
-                                <p><a target="_blank" href='<%= Page.ResolveUrl("~/ویژگی-های-پخش-فیلم-درگاه-فیلم-ایران") %>' style="color:Blue;font-size:9px;" target="_blank">با تفاوت های ما بیشتر آشنا شوید...</a></p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>--%>
-    <!--End about section-->
-    <!--Start about us area-->
-    <section class="team-section section">
-        <div class="container">
-            <div class="section-title text-center">
-                <h4 style="font-family: Samim;">
-                    برخی از فیلم‌هایی که توسط درگاه پخش می‌شوند</h4>
-                <hr />
-            </div>
-            <div class="row">
-                <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SDS_profilesubdomain">
-                    <ItemTemplate>
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="team-member">
-                                <%--<a href="http://leprosy.iranfilmport.com" target="_blank">--%>
-                                <asp:Image ID="Image2" CssClass="img-responsive" AlternateText='<%# Eval("nameFa") %>'
-                                    ImageUrl='<%# String.Format("~\convertToUnscale.aspx?photo=files\uploadFiles\PosterOfCustomers\{0}&w=452&h=640",Eval("photo")) %>'
-                                    runat="server" />
-                                <%-- </a>--%>
-                                <div class="contents text-center">
-                                    <p>
-                                        <asp:Label ID="Label5" runat="server" Text='<%# Eval("nameEn") %>'></asp:Label></p>
-                                    <p>
-                                        <strong style="font-size: 20px;">
-                                            <asp:Label ID="Label6" runat="server" Text='<%# Eval("nameFa") %>'></asp:Label></p>
-                                    </strong>
-                                    <p>
-                                        <asp:Label ID="Label9" runat="server" Font-Size="12px" Text='<%# IIF(Eval("type")=0 OR Eval("type")=1,"DIRECTED BY:","WRITTEN BY:") %>'></asp:Label>
-                                        <asp:Label ID="Label7" runat="server" Text='<%# Eval("directorEn") %>'></asp:Label></p>
-                                    <p>
-                                        <asp:Label ID="Label10" runat="server" Font-Size="12px" Text='<%# IIF(Eval("type")=0 OR Eval("type")=1,"کارگردان:","نویسنده:") %>'></asp:Label>
-                                        <asp:Label ID="Label8" runat="server" Text='<%# Eval("directorFa") %>'></asp:Label></p>
-                                    <%--<p><a  target="_blank" href="http://leprosy.iranfilmport.com">دیدن مشخصات فیلم</a></p>--%>
-                                </div>
+
                             </div>
                         </div>
-                    </ItemTemplate>
-                </asp:Repeater>
-                <asp:SqlDataSource ID="SDS_profilesubdomain" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
-                    SelectCommand="SELECT top 12 * FROM [tbl_PosterOfCustomer] order by datetime desc">
-                </asp:SqlDataSource>
-            </div>
-        </div>
-    </section>
-    <!--End about us area-->
-    <!--Service Section-->
-    <%--<section class="testimonial-section" style="background: url(images/testimonials/1.jpg);">
-    <div class="container">
-        <div class="section-title text-center">
-            <h3>What Our
-                <span>Patients Says</span>
-            </h3>
-        </div>
-        <div class="testimonial-carousel">
-            <!--Slide Item-->
-            <div class="slide-item">
-                <div class="inner-box text-center">
-                    <div class="image-box">
-                        <figure>
-                            <img src="images/testimonials/1.png" alt="">
-                        </figure>
                     </div>
-                    <h6>Adam Rose</h6>
-                    <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
-                </div>
-            </div>
-            <!--Slide Item-->
-            <div class="slide-item">
-                <div class="inner-box text-center">
-                    <div class="image-box">
-                        <figure>
-                            <img src="images/testimonials/2.png" alt="">
-                        </figure>
-                    </div>
-                    <h6>David Warner</h6>
-                    <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
-                </div>
-            </div>
-            <!--Slide Item-->
-            <div class="slide-item">
-                <div class="inner-box text-center">
-                    <div class="image-box">
-                        <figure>
-                            <img src="images/testimonials/3.png" alt="">
-                        </figure>
-                    </div>
-                    <h6>Amy Adams</h6>
-                    <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
-                </div>
-            </div>
-            <!--Slide Item-->
-            <div class="slide-item">
-                <div class="inner-box text-center">
-                    <div class="image-box">
-                        <figure>
-                            <img src="images/testimonials/1.png" alt="">
-                        </figure>
-                    </div>
-                    <h6>Adam Rose</h6>
-                    <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
-                </div>
-            </div>
-            <!--Slide Item-->
-            <div class="slide-item">
-                <div class="inner-box text-center">
-                    <div class="image-box">
-                        <figure>
-                            <img src="images/testimonials/2.png" alt="">
-                        </figure>
-                    </div>
-                    <h6>David Warner</h6>
-                    <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
-                </div>
-            </div>
-            <!--Slide Item-->
-            <div class="slide-item">
-                <div class="inner-box text-center">
-                    <div class="image-box">
-                        <figure>
-                            <img src="images/testimonials/3.png" alt="">
-                        </figure>
-                    </div>
-                    <h6>Amy Adams</h6>
-                    <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
-                </div>
-            </div>
-            <!--Slide Item-->
-            <div class="slide-item">
-                <div class="inner-box text-center">
-                    <div class="image-box">
-                        <figure>
-                            <img src="images/testimonials/1.png" alt="">
-                        </figure>
-                    </div>
-                    <h6>Adam Rose</h6>
-                    <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
-                </div>
-            </div>
-            <!--Slide Item-->
-            <div class="slide-item">
-                <div class="inner-box text-center">
-                    <div class="image-box">
-                        <figure>
-                            <img src="images/testimonials/2.png" alt="">
-                        </figure>
-                    </div>
-                    <h6>David Warner</h6>
-                    <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
-                </div>
-            </div>
-            <!--Slide Item-->
-            <div class="slide-item">
-                <div class="inner-box text-center">
-                    <div class="image-box">
-                        <figure>
-                            <img src="images/testimonials/3.png" alt="">
-                        </figure>
-                    </div>
-                    <h6>Amy Adams</h6>
-                    <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>--%>
-    <!--End Service Section-->
-    <!--team section-->
-    <%--    <section class="appoinment-section section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-sm-12 col-xs-12">
-                <div class="accordion-section">
-    <div class="section-title">
-        <h3>FAQ</h3>
-    </div>
-    <div class="accordion-holder">
-        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-            <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="headingOne">
-                    <h4 class="panel-title">
-                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            Why Should I choose Medical Health
-                        </a>
-                    </h4>
-                </div>
-                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                    <div class="panel-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
-                        non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-                        sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
-                        helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
-                        vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't
-                        heard of them accusamus labore sustainable VHS.
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="headingTwo">
-                    <h4 class="panel-title">
-                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false"
-                            aria-controls="collapseTwo">
-                            What are the Centre’s visiting hours?
-                        </a>
-                    </h4>
-                </div>
-                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                    <div class="panel-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
-                        non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-                        sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
-                        helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
-                        vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't
-                        heard of them accusamus labore sustainable VHS.
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="headingThree">
-                    <h4 class="panel-title">
-                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false"
-                            aria-controls="collapseThree">
-                            How many visitors are allowed?
-                        </a>
-                    </h4>
-                </div>
-                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                    <div class="panel-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
-                        non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-                        sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
-                        helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
-                        vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't
-                        heard of them accusamus labore sustainable VHS.
+                    <div class="row">
+                        <div class="col-lg-8 col-md-12">
+                            <div class="latest-post mb-50">
+                                <div class="widget-header position-relative mb-30">
+                                    <div class="row">
+                                        <div class="col-7">
+                                            <h4 class="widget-title mb-0">آخرین <span>اخبار</span></h4>
+                                        </div>
+                                        <div class="col-5 text-left">
+                                            <h6 class="font-medium pl-15">
+                                                <a class="text-muted font-small" href="#">مشاهده همه</a>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="loop-list-style-1">
+                                    <%--main article--%>
+                                    <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SDS_LastArticle">
+                                        <ItemTemplate>
+                                            <article class="first-post p-10 background-white border-radius-10 mb-30 wow fadeIn  animated" style="visibility: visible; animation-name: fadeIn;">
+                                                <div class="img-hover-slide border-radius-15 mb-30 position-relative overflow-hidden">
+                                                    <a href='<%# Eval("id", "/{0}") %>'>
+                                                        <asp:Image AlternateText='<%# Eval("title").Replace("ي", "ی") %>' Width="100%" Style="-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;"
+                                                            ID="Image1" runat="server" ImageUrl='<%# "~\convertToUnscale\?photo=" + String.Format("files\uploadFiles\article\{0}", Eval("photo")) + "&w=700&h=410" %>' />
+                                                    </a>
+                                                </div>
+                                                <div class="pr-10 pl-10">
+                                                    <div class="entry-meta mb-30">
+                                                        <a class="entry-meta meta-0" href='<%# Eval("id", "/{0}") %>'><span class="post-in background2 text-primary font-x-small">
+                                                            <%# Eval("catname").Replace("ي", "ی") %>
+                                                        </span></a>
+                                                        <div class="float-left font-small">
+                                                            <span><span class="ml-10 text-muted"><i class="fa fa-eye" aria-hidden="true"></i></span><%# Eval("visit", "{0}") %></span>
+                                                        </div>
+                                                    </div>
+                                                    <h4 class="post-title mb-20">
+                                                        <a href='<%# Eval("id", "/{0}") %>'>
+                                                            <asp:Label Visible='<%# EnFa("FA") %>' ID="La1bel11" runat="server" CssClass="TitleNews"
+                                                                Text='<%# Eval("title").Replace("ي", "ی") %>'></asp:Label>
+                                                            <asp:Label Visible='<%# EnFa("EN") %>' ID="Label1" Style="font-size: 14px;" runat="server"
+                                                                Text='<%# Bind("titleEn") %>'></asp:Label>
+                                                        </a></h4>
+                                                    <div class="mb-20 overflow-hidden">
+                                                        <div class="entry-meta meta-1 font-x-small color-grey float-right text-uppercase">
+                                                            <span class="post-by">توسط <a href="author.html"><%# Eval("authors").Replace("ي", "ی") %></a></span>
+                                                            <span class="post-on"><%# Eval("shamsidate") %></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                    <asp:SqlDataSource ID="SDS_LastArticle" runat="server"
+                                        ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
+                                        SelectCommand="SELECT TOP 1 a.*, cat.[name] catName, (select [dbo].[MiladiTOShamsi] (getdate(),0)) shamsidate FROM [tbl_articles] a, [dbo].[tbl_articleCategory] cat WHERE a.[visible] = 1 AND a.[date_time] <= GETDATE() AND a.id IN (SELECT TOP 20 [id] FROM [tbl_articles] ORDER BY [date_time] DESC) ORDER BY a.[date_time] DESC"></asp:SqlDataSource>
+                                    <%--10 articles--%>
+                                    <asp:GridView ID="GridView1" runat="server" DataSourceID="SDS_10Artciles_And_More" AutoGenerateColumns="False" GridLines="None" ShowHeader="False">
+                                        <Columns>
+                                            <asp:TemplateField>
+                                                <ItemTemplate>
+                                                    <article class="p-10 background-white border-radius-10 mb-30 wow fadeIn animated">
+                                                        <div class="d-flex">
+                                                            <div class="post-thumb d-flex ml-15 border-radius-15 img-hover-scale">
+                                                                <a class="color-white" href='<%# Eval("id", "/{0}") %>'>
+
+                                                                    <asp:Image AlternateText='<%# Eval("title").Replace("ي", "ی") %>' Width="100%" CssClass="border-radius-15"
+                                                                        ID="Image1" runat="server" ImageUrl='<%# "~\convertToUnscale\?photo=" + String.Format("files\uploadFiles\article\{0}", Eval("photo")) + "&w=400&h=236" %>' />
+
+                                                                </a>
+                                                            </div>
+                                                            <div class="post-content media-body">
+                                                                <div class="entry-meta mb-15 mt-10">
+                                                                    <a class="entry-meta meta-2" href='<%# Eval("id", "/{0}") %>'><span class="post-in text-danger font-x-small"><%# Eval("catname") %></span></a>
+                                                                </div>
+                                                                <h5 class="post-title mb-15 text-limit-2-row">
+                                                                    <a href='<%# Eval("id", "/{0}") %>'>
+                                                                        <asp:Label Visible='<%# EnFa("FA") %>' ID="La1bel11" runat="server" CssClass="TitleNews"
+                                                                            Text='<%# Eval("title").Replace("ي", "ی") %>'></asp:Label>
+                                                                        <asp:Label Visible='<%# EnFa("EN") %>' ID="Label1" Style="font-size: 14px;" runat="server"
+                                                                            Text='<%# Bind("titleEn") %>'></asp:Label>
+                                                                    </a></h5>
+                                                                <div class="entry-meta meta-1 font-x-small color-grey float-right text-uppercase">
+                                                                    <span class="post-by">توسط <a href="author.html"><%# Eval("authors").Replace("ي", "ی") %></a></span>
+                                                                    <span class="post-on"><%# Eval("shamsidate") %></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </article>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </asp:GridView>
+                                    <asp:SqlDataSource ID="SDS_10Artciles_And_More" runat="server"
+                                        ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
+                                        SelectCommand="SELECT a.*, cat.[name] catName, (SELECT [dbo].[MiladiTOShamsi] (GETDATE(), 0)) shamsidate FROM ( SELECT id, date_time FROM [tbl_articles] WHERE [visible] = 1 AND [date_time] <= GETDATE() ORDER BY date_time DESC OFFSET 1 ROWS FETCH NEXT 10 ROWS ONLY ) t INNER JOIN [tbl_articles] a ON t.id = a.id INNER JOIN [dbo].[tbl_articleCategory] cat ON a.CateCode = cat.ID ORDER BY a.date_time DESC"></asp:SqlDataSource>
+                                </div>
+                            </div>
+                            <div class="pagination-area mb-30">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination justify-content-start">
+                                        <li class="page-item"><a class="page-link" href="#"><i class="ti-angle-right"></i></a></li>
+                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                        <li class="page-item"><a class="page-link" href="#"><i class="ti-angle-left"></i></a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="sidebar-widget widget-ads mb-30 text-center">
+                                <a href="https://iranfilmport.com/%D8%A7%D8%B1%D8%B3%D8%A7%D9%84-%D8%AE%D8%A8%D8%B1-%D9%88-%D8%AA%D8%A8%D9%84%DB%8C%D8%BA%D8%A7%D8%AA">
+                                    <img class="border-radius-10" src="files/kingMaterials/imgs/ads-3.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 sidebar-right">
+                            <!--Post aside style 1-->
+                            <uc3:KingLastAccolades ID="KingLastAccolades1" runat="server" />
+                            <!--Newsletter-->
+                            <uc6:KingNewsletter ID="KingNewsletter" runat="server" />
+                            <!--Popular News-->
+                            <uc4:KingPopularNews ID="KingPopularNews1" runat="server" />
+                            <!--Last Comments-->
+                            <uc5:KingLastComments ID="KingLastComments1" runat="server" />
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-            </div>
-            <div class="col-md-6 col-sm-12 col-xs-12">
-                <div class="contact-area">
-    <div class="section-title">
-        <h3>Request
-            <span>Appointment</span>
-        </h3>
-    </div>
-    <form name="contact_form" class="default-form contact-form" action="sendmail.php" method="post">
-        <div class="row">
-            <div class="col-md-6 col-sm-12 col-xs-12">
-                <div class="form-group">
-                    <input type="text" name="Name" placeholder="Name" required="">
-                </div>
-                <div class="form-group">
-                    <input type="email" name="Email" placeholder="Email" required="">
-                </div>
-                <div class="form-group">
-                    <select name="subject">
-                        <option>Departments</option>
-                        <option>Diagnostic</option>
-                        <option>Psychological</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-12 col-xs-12">
-                <div class="form-group">
-                    <input type="text" name="Phone" placeholder="Phone" required="">
-                </div>
-                <div class="form-group">
-                    <input type="text" name="Date" placeholder="Date" required="" id="datepicker">
-                    <i class="fa fa-calendar" aria-hidden="true"></i>
-                </div>
-                <div class="form-group">
-                    <select name="subject">
-                        <option>Doctor</option>
-                        <option>Diagnostic</option>
-                        <option>Psychological</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="form-group">
-                    <textarea name="form_message" placeholder="Your Message" required=""></textarea>
-                </div>
-                <div class="form-group text-center">
-                    <button type="submit" class="btn-style-one">submit now</button>
-                </div>
-            </div>
-        </div>
-    </form>
-</div>                        
-            </div>
-        </div>                    
-    </div>
-</section>--%>
-    <!--End team section-->
-    <!--testimonial-section-->
-    <%--<section class="testimonial-section" style="background: url(images/testimonials/1.jpg);">
-    <div class="container">
-        <div class="section-title text-center">
-            <h3>What Our
-                <span>Patients Says</span>
-            </h3>
-        </div>
-        <div class="testimonial-carousel">
-            <!--Slide Item-->
-            <div class="slide-item">
-                <div class="inner-box text-center">
-                    <div class="image-box">
-                        <figure>
-                            <img src="images/testimonials/1.png" alt="">
-                        </figure>
-                    </div>
-                    <h6>Adam Rose</h6>
-                    <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
-                </div>
-            </div>
-            <!--Slide Item-->
-            <div class="slide-item">
-                <div class="inner-box text-center">
-                    <div class="image-box">
-                        <figure>
-                            <img src="images/testimonials/2.png" alt="">
-                        </figure>
-                    </div>
-                    <h6>David Warner</h6>
-                    <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
-                </div>
-            </div>
-            <!--Slide Item-->
-            <div class="slide-item">
-                <div class="inner-box text-center">
-                    <div class="image-box">
-                        <figure>
-                            <img src="images/testimonials/3.png" alt="">
-                        </figure>
-                    </div>
-                    <h6>Amy Adams</h6>
-                    <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
-                </div>
-            </div>
-            <!--Slide Item-->
-            <div class="slide-item">
-                <div class="inner-box text-center">
-                    <div class="image-box">
-                        <figure>
-                            <img src="images/testimonials/1.png" alt="">
-                        </figure>
-                    </div>
-                    <h6>Adam Rose</h6>
-                    <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
-                </div>
-            </div>
-            <!--Slide Item-->
-            <div class="slide-item">
-                <div class="inner-box text-center">
-                    <div class="image-box">
-                        <figure>
-                            <img src="images/testimonials/2.png" alt="">
-                        </figure>
-                    </div>
-                    <h6>David Warner</h6>
-                    <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
-                </div>
-            </div>
-            <!--Slide Item-->
-            <div class="slide-item">
-                <div class="inner-box text-center">
-                    <div class="image-box">
-                        <figure>
-                            <img src="images/testimonials/3.png" alt="">
-                        </figure>
-                    </div>
-                    <h6>Amy Adams</h6>
-                    <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
-                </div>
-            </div>
-            <!--Slide Item-->
-            <div class="slide-item">
-                <div class="inner-box text-center">
-                    <div class="image-box">
-                        <figure>
-                            <img src="images/testimonials/1.png" alt="">
-                        </figure>
-                    </div>
-                    <h6>Adam Rose</h6>
-                    <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
-                </div>
-            </div>
-            <!--Slide Item-->
-            <div class="slide-item">
-                <div class="inner-box text-center">
-                    <div class="image-box">
-                        <figure>
-                            <img src="images/testimonials/2.png" alt="">
-                        </figure>
-                    </div>
-                    <h6>David Warner</h6>
-                    <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
-                </div>
-            </div>
-            <!--Slide Item-->
-            <div class="slide-item">
-                <div class="inner-box text-center">
-                    <div class="image-box">
-                        <figure>
-                            <img src="images/testimonials/3.png" alt="">
-                        </figure>
-                    </div>
-                    <h6>Amy Adams</h6>
-                    <p>Neque porro quisquam est, qui dolorem ipsum quia consectetur, dolor sit amet, consectetur, numquam Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, at?</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>--%>
-    <!--End testimonial-section-->
+    </main>
 </asp:Content>
+
+
+

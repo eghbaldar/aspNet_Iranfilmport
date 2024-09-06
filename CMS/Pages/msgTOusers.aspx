@@ -5,6 +5,39 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+<div class="TITLE">
+ارسال ایمیل بصورت آزاد
+</div>
+
+            <div>
+            <asp:TextBox ID="txtSignleEmail" placeholder="eamil address ..." CssClass="txtEn"   runat="server"
+            Width="633px"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" 
+            ControlToValidate="txtSignleEmail" ErrorMessage="*" ForeColor="Red" 
+            ValidationGroup="8"></asp:RequiredFieldValidator>
+            </div>
+            <div>
+            <asp:TextBox ID="txtSingleSubject"  placeholder="موضوع ..."  CssClass="txtFa"  runat="server" Width="399px"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
+            ControlToValidate="txtSingleSubject" ErrorMessage="*" ForeColor="Red" 
+            ValidationGroup="8"></asp:RequiredFieldValidator>
+            </div>
+            <div>
+            <asp:TextBox ID="txtSingleText"  CssClass="txtFa"  placeholder="متن ..."   runat="server" Height="121px" TextMode="MultiLine" 
+            Width="633px"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" 
+            ControlToValidate="txtSingleText" ErrorMessage="*" ForeColor="Red" 
+            ValidationGroup="8"></asp:RequiredFieldValidator>
+            </div>
+            <div>
+            <asp:TextBox ID="txtSingleLink" CssClass="txtEn"   placeholder="link ..."  runat="server" Width="360px"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" 
+            ControlToValidate="txtSingleLink" ErrorMessage="*" ForeColor="Red" 
+            ValidationGroup="8"></asp:RequiredFieldValidator>
+            </div>
+            <asp:Button ID="btnSingleSend" CssClass="tabBtn" runat="server"  Text="ارسال ایمیل" ValidationGroup="8" />
+
+
     <div class="TITLE">
         ارسال ایمیل انفرادی
     </div>
