@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="VB" MasterPageFile="~/KingMaster.master" AutoEventWireup="false" CodeFile="Default2.aspx.vb" Inherits="Default2" %>
+﻿<%@ Page Title="" Language="VB" MasterPageFile="~/KingMaster.master" AutoEventWireup="false" CodeFile="Default.aspx.vb" Inherits="_Default" %>
 
 <%@ Register Src="usercontrols/KingPostCategories.ascx" TagName="KingPostCategories" TagPrefix="uc1" %>
 <%@ Register Src="usercontrols/KingMoviePosterCarausel.ascx" TagName="KingMoviePosterCarausel" TagPrefix="uc2" %>
@@ -394,6 +394,3 @@ ORDER BY newid()"></asp:SqlDataSource>
         </div>
     </main>
 </asp:Content>
-
-
-

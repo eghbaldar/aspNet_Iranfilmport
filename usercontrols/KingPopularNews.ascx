@@ -9,10 +9,11 @@
                 <ItemTemplate>
                     <li class="mb-30 wow fadeIn animated">
                         <div class="d-flex">
-                            <div class="post-thumb d-flex ml-15 border-radius-5 img-hover-scale">
+                            <div class=" d-flex ml-15 border-radius-5 img-hover-scale">
                                 <a class="color-white" href='<%# String.Format("/{0}", Eval("id")) %>' >
-                                    <asp:Image ID="Image2" CssClass="border-radius-10" AlternateText='<%# Eval("title") %>'
-                                    ImageUrl='<%# String.Format("~\convertToUnscale.aspx?photo=files\uploadFiles\PosterOfCustomers\{0}&w=452&h=640", Eval("photo")) %>'
+                                    <asp:Image ID="Image2" CssClass="img-crop-square" AlternateText='<%# Eval("title") %>'
+                                        Width="100px"
+                                    ImageUrl='<%# Eval("photo", "/convertToUnscale.aspx?photo=files\uploadFiles\article\{0}&w=640&h=452") %>'
                                     runat="server" />
                                 </a>
                             </div>

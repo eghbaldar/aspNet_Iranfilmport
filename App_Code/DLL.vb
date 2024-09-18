@@ -320,4 +320,32 @@ Public Class DLL
         End Try
     End Function
 
+    Public Function InsertNewsletter(email As String) As Long
+        Try
+
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+
+            Dim sqlcom1 As New SqlCommand("select count(*) from tbl_newsletter where email=@Email", sqlconn)
+            sqlcom1.Parameters.AddWithValue("@Email", email)
+            If sqlcom1.ExecuteScalar() <> 0 Then
+                Return 0
+            End If
+
+            Dim sqlcom2 As New SqlCommand("INSERT INTO tbl_newsletter (email) VALUES (@Email)", sqlconn)
+            sqlcom2.Parameters.AddWithValue("@Email", email)
+            sqlcom2.ExecuteScalar()
+            Return 1
+
+
+            sqlconn.Close()
+
+        Catch ex As Exception
+            ' Handle exceptions if necessary
+        Finally
+            sqlconn.Close()
+        End Try
+    End Function
+
+
 End Class

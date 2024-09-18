@@ -103,7 +103,7 @@
             <div class="container" style="transform: none;">
                 <!--end entry header-->
                 <div class="row mb-50" style="transform: none;">
-                    <div class="col-lg-8 col-md-12">
+                    <div class="col-lg-8 col-md-12 p-10">
                         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                         </asp:ContentPlaceHolder>
                     </div>

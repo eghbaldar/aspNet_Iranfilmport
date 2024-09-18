@@ -1,16 +1,37 @@
 ﻿/*======== site button ===========*/
-@media (max-width:610px) {
-    .button{
-       padding:5px;
+@media (max-widthscroll-progress610px) {
+    .button {
+        padding: 5px;
     }
 }
 /*========= circle image ==========*/
 .circular--img {
     border-radius: 50%;
-
 }
 
 /*===================*/
+.img-crop-square {
+    object-fit: cover !important;
+    aspect-ratio: 1/1 !important;
+}
+
+.entry-main-content a {
+    color: #FDB931;
+}
+
+    .entry-main-content a:hover {
+        color: #F1A124;
+    }
+
+.entry-main-content {
+    direction: ltr;
+}
+
+.entry-header-1 h1 {
+    max-width: 100% !important;
+    line-height: 70px !important;
+}
+
 .img-fluid {
     max-width: 100% !important;
     height: auto !important;
@@ -26,18 +47,20 @@
     align-content: center;
     text-align: center;
     color: black !important;
-    line-height:14px;
-    font-size:16px;
+    line-height: 14px;
+    font-size: 16px;
 }
 
-.dotYellow:hover {
-    background-color: #bababa;
-    color:white !important;
-    cursor:pointer;
-}
-.left-side  a {
+    .dotYellow:hover {
+        background-color: #bababa;
+        color: white !important;
+        cursor: pointer;
+    }
+
+.left-side a {
     color: #cdae2c !important;
 }
+
 .changeAcnhorTag a {
     color: #cdae2c !important;
 }
@@ -207,7 +230,7 @@ input:autofill:active {
 .scroll-progress {
     height: 3px;
     width: 0px;
-    z-index: 9999999;
+    z-index: -9999;
     position: absolute;
     bottom: -10px;
 }
@@ -372,8 +395,32 @@ input:autofill:active {
         font-family: IranYekan;
     }
 
-@media (max-width:992px) {
+@media (max-width:1243px) {
+    .headerIcons svg {
+        height: 40px !important;
+        width: 40px !important;
+    }
 
+    .headerMainText {
+        display: none;
+    }
+}
+.row {
+    margin-right: 0px !important;
+}
+.collapse .container .row {
+    margin-right: 0px !important;
+}
+@media (max-width:1369px) {
+    .socialnetIcons {
+        display: none;
+    }
+}
+
+@media (max-width:992px) {
+    .row {
+        margin: 10px !important;
+    }
 
 
     .afterCollapse {

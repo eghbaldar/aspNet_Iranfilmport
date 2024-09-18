@@ -7,6 +7,7 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <asp:PlaceHolder runat="server" ID="pc"></asp:PlaceHolder>
     <%-- Change Font Size --%>
     <script src='<%= ResolveUrl("~/files/kingMaterials/js/fontsize/jquery-1.12.4.min.js")%>'></script>
     <script src='<%= ResolveUrl("~/files/kingMaterials/js/fontsize/fontsize.js")%>'></script>
@@ -25,6 +26,16 @@
             cursor: pointer;
             color: #8D8D8D;
         }
+        .entry-main-content{
+            padding:15px !important;
+        }
+        .entry-main-content img{
+            height:unset !important;
+        }
+        .entry-bottom .tags a {
+            background-color:#EBCD01 !important;
+            color:white !important;
+        }
     </style>
     <%-- End of Change Font Size--%>
 </asp:Content>
@@ -39,13 +50,11 @@
                         <asp:Label ID="lblGetPostTitle" Text='<%# Eval("title").Replace("ي", "ی") %>' runat="server"></asp:Label>
                     </h1>
                     <div class="entry-meta meta-1 font-x-small color-grey text-uppercase">
-                        <span class="post-by">توسط <a href="author.html">
-                            <asp:Label ID="Label3" runat="server" Text='<%# Eval("authors").Replace("ي", "ی") %>'></asp:Label></a></span>
-                        <span class="post-on">
-                            <asp:Label ID="Label4" runat="server" Text='<%# getDate(Eval("date_time")) %>'></asp:Label></span>
-                        <p class="font-x-small mt-10">
+                        <span>توسط
+                            <asp:Label ID="Label3" runat="server" Text='<%# Eval("authors").Replace("ي", "ی") %>'></asp:Label>             
+                            <asp:Label ID="Label4" runat="server" Text='<%# getDate(Eval("date_time")) %>'></asp:Label>
                             <span class="hit-count"><i class="ti-comment ml-5"></i>نظرات <%# getTotalComment() %></span>
-                        </p>
+                        </span>
                     </div>
                 </div>
                 <div>
@@ -72,13 +81,13 @@
                     <div class="font-weight-500 entry-meta meta-1 font-x-small color-grey">
                         <span class="update-on"><i class="ti ti-reload ml-5"></i>به روز شده 18/9/1400 10:28</span>
                         <span class="hit-count"><i class="ti-comment"></i>نظرات <%# getTotalComment() %></span>
-                    </div>
-                    <div class="mt-2 mb-2 shortenlink entry-meta font-x-small">
-                        <asp:Label ID="Label1" runat="server" Text='<%# getShortLink(Eval("id")) %>'></asp:Label>
+                        <span class="hit-count"></i><asp:Label ID="Label1" runat="server" Text='<%# getShortLink(Eval("id")) %>'></asp:Label></span>
                     </div>
                     <div class="overflow-hidden mt-30">
                         <div class="tags float-right text-muted mb-md-30">
-                            <span class="font-small ml-10"><i class="fa fa-tag ml-5"></i>برچسب ها: </span>
+                            <span class="font-small ml-10 mb-3"><i class="fa fa-tag ml-5"></i>برچسب ها: </span>
+                            <br />
+                            <br />
                             <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SDS_Tags">
                                 <ItemTemplate>
                                     <a href='<%# Page.ResolveUrl(String.Format("~/tag/{0}", Eval("value").ToString.Trim.Replace(" ", "-").Replace("ي", "ی"))) %>' rel="tag"><%# Eval("value").Replace("ي", "ی").Replace("_", " ") %></a>
@@ -90,9 +99,8 @@
                                     <asp:RouteParameter Name="ID" RouteKey="id" />
                                 </SelectParameters>
                             </asp:SqlDataSource>
-
                         </div>
-                        <div class="single-social-share float-left">
+                        <div class="single-social-share float-left mt-10">
                             <ul class="d-inline-block list-inline">
                                 <li class="list-inline-item"><span class="font-small text-muted"><i class="ti-sharethis ml-5"></i>اشتراک: </span></li>
                                 <li class="list-inline-item"><a class="social-icon facebook-icon text-xs-center" target="_blank" href='<%# getFB(Eval("id"), Eval("title")) %>'><i class="ti-facebook"></i></a></li>

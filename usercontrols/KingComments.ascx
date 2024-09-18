@@ -1,11 +1,17 @@
 ﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="KingComments.ascx.vb" Inherits="usercontrols_KingComments" %>
 <style>
+    .modal-header .close {
+        margin:-1rem 0 -1rem 0 !important;
+    }
+    .comments-area{
+        margin-top:0px !important;
+    }
     .input-validation-error {
         border: 2px solid red !important;
     }
-</style>
-
-<style>
+    .commentBox{
+        padding:15px !important;
+    }
     .modal {
         z-index: 999999999;
     }
@@ -174,12 +180,10 @@
         }
     }
 </style>
-
-<%-----------------------------------------------------%>
-<%-----------------------------------------------------%>
 <asp:Label ID="lblSection" runat="server" Visible="false"></asp:Label>
 <asp:Label ID="lblId" runat="server" Visible="false"></asp:Label>
 <asp:HiddenField ID="HiddenFieldSubCommentId" runat="server" />
+<div class="commentBox">
 <asp:UpdatePanel runat="server" UpdateMode="Conditional">
     <ContentTemplate>
         <div runat="server" visible="true" id="Div_comment">
@@ -380,14 +384,14 @@
         <asp:PostBackTrigger ControlID="txtCaptcha" />
     </Triggers>
 </asp:UpdatePanel>
-
+</div>
 
 <!-- Modal - SubComment -->
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
+        <div class="modal-content p-10">
             <div class="row modal-header">
                 <div class="col-6">
                     <h5 class="modal-title" id="exampleModalLabel">نظر شما</h5>

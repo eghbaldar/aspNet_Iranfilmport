@@ -1,7 +1,6 @@
 ﻿
 Partial Class _Default
     Inherits System.Web.UI.Page
-
     Public Function EnFa(input As String) As Boolean
         Dim Result As Boolean
         If Not String.IsNullOrEmpty(Request.QueryString("lang")) Then
@@ -51,5 +50,4 @@ Partial Class _Default
         End If
 
     End Function
-
 End Class

@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="KingLoginModal.ascx.vb" Inherits="usercontrols_KingLoginModal" %>
 <div class="modal fade" style="z-index: 99999;" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content p-10">
             <div class="row modal-header">
                 <div class="col-6">
                     <h5 class="modal-title" id="exampleModalLabel">پنل‌های ورودی</h5>
