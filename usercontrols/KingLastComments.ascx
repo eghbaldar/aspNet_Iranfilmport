@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="KingLastComments.ascx.vb" Inherits="usercontrols_KingLastComments" %>
-<div class="sidebar-widget p-20 border-radius-15 bg-white widget-latest-comments wow fadeIn animated">
+<div class="sidebar-widget p-20 border-radius-15 bg-white widget-latest-comments wow fadeIn animated mb-2">
     <div class="widget-header mb-30">
         <h5 class="widget-title">آخرین <span>نظرات</span></h5>
     </div>

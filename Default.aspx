@@ -8,6 +8,7 @@
 <%@ Register Src="usercontrols/KingNewsletter.ascx" TagName="KingNewsletter" TagPrefix="uc6" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <link href="/files/kingMaterials/css/pagging.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="container">
@@ -55,7 +56,7 @@
                                                 <a href='<%# String.Format("{0}", Eval("link")) %>' target="_blank">
                                                     <img src='<%# String.Format("\files\uploadFiles\sliders\{0}", Eval("photo")) %>' alt="post-slider">
                                                 </a>
-                                            </div>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
                                             <div class="pr-10 pl-10">
                                                 <h4 class="post-title full-width mb-20">
                                                     <a href='<%# String.Format("{0}", Eval("link")) %>' target="_blank">
@@ -140,6 +141,16 @@
                             <h5 class="widget-title"><strong>باید از ما بدانید ...</strong></h5>
                         </div>
                         <ul class="font-small text-muted">
+                                                        <li class="cat-item cat-item-6">
+                                <a target="_blank" href="https://iranfilmport.com/accolades">
+                                    <span class="ml-10">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-layers-fill" viewBox="0 0 16 16">
+                                            <path d="M7.765 1.559a.5.5 0 0 1 .47 0l7.5 4a.5.5 0 0 1 0 .882l-7.5 4a.5.5 0 0 1-.47 0l-7.5-4a.5.5 0 0 1 0-.882z" />
+                                            <path d="m2.125 8.567-1.86.992a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882l-1.86-.992-5.17 2.756a1.5 1.5 0 0 1-1.41 0z" />
+                                        </svg>
+                                    </span>کارنامه پر افتخار و <a style="color:#ECCE01 !important;" href="/tag/اسکار" target="_blank">اسکاری</a> «درگاه»
+                                </a>
+                            </li>
                             <li class="cat-item cat-item-2 ">
                                 <a target="_blank" href="https://iranfilmport.com/%D9%BE%D8%AE%D8%B4-%D9%88-%D8%A7%D8%B1%D8%B3%D8%A7%D9%84-%D9%81%DB%8C%D9%84%D9%85">
                                     <span class="ml-10">
@@ -180,16 +191,6 @@
                                             <path d="M9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
                                         </svg>
                                     </span>فروش فیلمنامه کوتاه و بلند
-                                </a>
-                            </li>
-                            <li class="cat-item cat-item-6">
-                                <a target="_blank" href="https://iranfilmport.com/accolades">
-                                    <span class="ml-10">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-layers-fill" viewBox="0 0 16 16">
-                                            <path d="M7.765 1.559a.5.5 0 0 1 .47 0l7.5 4a.5.5 0 0 1 0 .882l-7.5 4a.5.5 0 0 1-.47 0l-7.5-4a.5.5 0 0 1 0-.882z" />
-                                            <path d="m2.125 8.567-1.86.992a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882l-1.86-.992-5.17 2.756a1.5 1.5 0 0 1-1.41 0z" />
-                                        </svg>
-                                    </span>کارنامه پر افتخار و اسکاری «درگاه»
                                 </a>
                             </li>
                             <li class="cat-item cat-item-2">
@@ -319,7 +320,14 @@ ORDER BY newid()"></asp:SqlDataSource>
                                         ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
                                         SelectCommand="SELECT TOP 1 a.*, cat.[name] catName, (select [dbo].[MiladiTOShamsi] (getdate(),0)) shamsidate FROM [tbl_articles] a, [dbo].[tbl_articleCategory] cat WHERE a.[visible] = 1 AND a.[date_time] <= GETDATE() AND a.id IN (SELECT TOP 20 [id] FROM [tbl_articles] ORDER BY [date_time] DESC) ORDER BY a.[date_time] DESC"></asp:SqlDataSource>
                                     <%--10 articles--%>
-                                    <asp:GridView ID="GridView1" runat="server" DataSourceID="SDS_10Artciles_And_More" AutoGenerateColumns="False" GridLines="None" ShowHeader="False">
+                                    <asp:GridView ID="GridView1"
+                                        runat="server"
+                                        PageSize="10"
+                                        DataSourceID="SDS_10Artciles_And_More"
+                                        AutoGenerateColumns="False"
+                                        AllowPaging="true"
+                                        GridLines="None"
+                                        ShowHeader="False">
                                         <Columns>
                                             <asp:TemplateField>
                                                 <ItemTemplate>
@@ -354,23 +362,20 @@ ORDER BY newid()"></asp:SqlDataSource>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                         </Columns>
+                                        <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
+                                        <HeaderStyle BackColor="#CCCCCC" Font-Bold="True" ForeColor="#848484" />
+                                        <PagerStyle HorizontalAlign="Center" CssClass="GridPager" />
+                                        <RowStyle BackColor="White" ForeColor="#330099" />
+                                        <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
+                                        <SortedAscendingCellStyle BackColor="#FEFCEB" />
+                                        <SortedAscendingHeaderStyle BackColor="#AF0101" />
+                                        <SortedDescendingCellStyle BackColor="#F6F0C0" />
+                                        <SortedDescendingHeaderStyle BackColor="#7E0000" />
                                     </asp:GridView>
                                     <asp:SqlDataSource ID="SDS_10Artciles_And_More" runat="server"
                                         ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
-                                        SelectCommand="SELECT a.*, cat.[name] catName, (SELECT [dbo].[MiladiTOShamsi] (GETDATE(), 0)) shamsidate FROM ( SELECT id, date_time FROM [tbl_articles] WHERE [visible] = 1 AND [date_time] <= GETDATE() ORDER BY date_time DESC OFFSET 1 ROWS FETCH NEXT 10 ROWS ONLY ) t INNER JOIN [tbl_articles] a ON t.id = a.id INNER JOIN [dbo].[tbl_articleCategory] cat ON a.CateCode = cat.ID ORDER BY a.date_time DESC"></asp:SqlDataSource>
+                                        SelectCommand="SELECT a.*, cat.[name] catName, (SELECT [dbo].[MiladiTOShamsi] (GETDATE(), 0)) shamsidate FROM ( SELECT id, date_time FROM [tbl_articles] WHERE [visible] = 1 AND [date_time] <= GETDATE() ORDER BY date_time DESC OFFSET 1 ROWS FETCH NEXT 100 ROWS ONLY ) t INNER JOIN [tbl_articles] a ON t.id = a.id INNER JOIN [dbo].[tbl_articleCategory] cat ON a.CateCode = cat.ID ORDER BY a.date_time DESC"></asp:SqlDataSource>
                                 </div>
-                            </div>
-                            <div class="pagination-area mb-30">
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination justify-content-start">
-                                        <li class="page-item"><a class="page-link" href="#"><i class="ti-angle-right"></i></a></li>
-                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                        <li class="page-item"><a class="page-link" href="#"><i class="ti-angle-left"></i></a></li>
-                                    </ul>
-                                </nav>
                             </div>
                             <div class="sidebar-widget widget-ads mb-30 text-center">
                                 <a href="https://iranfilmport.com/%D8%A7%D8%B1%D8%B3%D8%A7%D9%84-%D8%AE%D8%A8%D8%B1-%D9%88-%D8%AA%D8%A8%D9%84%DB%8C%D8%BA%D8%A7%D8%AA">

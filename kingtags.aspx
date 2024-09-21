@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <asp:PlaceHolder runat="server" ID="pc"></asp:PlaceHolder>
+    <link href="/files/kingMaterials/css/pagging.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="title-text mb-3">

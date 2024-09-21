@@ -22,8 +22,8 @@
                         </span>
                         <a target="_blank" href='<%# Eval("id", "/{0}") %>'><%# Eval("Title") %> </a></h5>
                     <div class="entry-meta meta-1 font-x-small color-grey float-right text-uppercase mb-10">
-                        <span class="post-by">توسط <a href="author.html">الناز روستایی</a></span>
-                        <span class="post-on">8 دقیقه پیش</span>
+                        <span class="post-by">توسط <%# Eval("Authors", "{0}") %></span>
+                        <span class="post-on"><%# getDate(Eval("date_time", "{0}")) %></span>
                     </div>
                 </div>
             </div>

@@ -2,49 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <asp:PlaceHolder runat="server" ID="pc"></asp:PlaceHolder>
-    <style>
-        .gridview {
-            background-color: #fff;
-        }
-
-        .GridPager a, .GridPager span {
-            margin-top: 10px;
-            display: block;
-            height: 50px;
-            width: 50px;
-            font-weight: bold;
-            text-align: center;
-            font-size: 20px;
-            text-decoration: none;
-        }
-
-        @media only screen and (max-width: 600px) {
-            .GridPager a, .GridPager span {
-                height: 30px;
-                width: 30px;
-                font-size: 14px;
-            }
-        }
-
-        .GridPager a, .GridPager span {
-            background-color: #f5f5f5;
-            color: #969696;
-            border: 1px solid #969696;
-            border-radius: 50%;
-            align-content: center;
-            align-items: center;
-        }
-
-            .GridPager a:hover {
-                background-color: #ECCE01;
-            }
-
-        .GridPager span {
-            background-color: #ECCE01;
-            color: #000;
-            border-radius: 50%;
-        }
-    </style>
+    <link href="/files/kingMaterials/css/pagging.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="title-text mb-3">

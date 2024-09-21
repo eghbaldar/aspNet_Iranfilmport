@@ -9,8 +9,8 @@
 <%@ Register Src="usercontrols/KingPreLoader.ascx" TagName="KingPreLoader" TagPrefix="uc7" %>
 <%@ Register Src="usercontrols/KingAdvertisementSinglePage.ascx" TagName="KingAdvertisementSinglePage" TagPrefix="uc8" %>
 <%@ Register Src="usercontrols/KingNewsletter.ascx" TagName="KingNewsletter" TagPrefix="uc9" %>
-<%@ Register Src="~/usercontrols/KingPopularNews.ascx" TagPrefix="uc1" TagName="KingPopularNews" %>
-<%@ Register Src="~/usercontrols/KingLastAccolades.ascx" TagPrefix="uc1" TagName="KingLastAccolades" %>
+<%@ Register Src="usercontrols/KingPopularNews.ascx" TagPrefix="uc1" TagName="KingPopularNews" %>
+<%@ Register Src="usercontrols/KingLastAccolades.ascx" TagPrefix="uc1" TagName="KingLastAccolades" %>
 
 
 <!DOCTYPE html>
@@ -83,25 +83,28 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <!-- Login - Modal content -->
         <uc4:KingLoginModal ID="Login1" runat="server" />
-        <!-- Top Search -->
+        <!-- Top Search -->        
         <uc3:KingFlowingControls ID="KingFlowingControls1" runat="server" />
-        <!-- Top Search -->
+        <!-- Top Search -->        
         <uc5:KingTopSearch ID="KingTopSearch1" runat="server" />
-        <!-- Advertisement Modal -->
+        <!-- Advertisement Modal -->        
         <uc6:KingAdvertiseModal ID="KingAdvertiseModal1" runat="server" />
-        <!-- Preloader Start -->
+        <!-- Preloader Start -->        
         <uc7:KingPreLoader ID="KingPreLoader1" runat="server" />
         <aside id="sidebar-wrapper" class="custom-scrollbar offcanvas-sidebar position-right">
         </aside>
-        <!-- Main Header -->
+        
+        <!-- Main Header -->        
         <uc1:KingTopHeader ID="KingTopHeader1" runat="server" />
         <!-- Main Wrap Start -->
         <main class="position-relative kingMasterMain" style="transform: none;">
             <div class="container" style="transform: none;">
                 <!--end entry header-->
+                
                 <div class="row mb-50" style="transform: none;">
                     <div class="col-lg-8 col-md-12 p-10">
                         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
@@ -115,7 +118,7 @@
                                 <uc8:KingAdvertisementSinglePage ID="KingAdvertisementSinglePage1" runat="server" />
                                 <!--10 Accoaldes-->
                                 <uc1:KingLastAccolades runat="server" ID="KingLastAccolades" />
-                                <!--Newsletter-->
+                                <!--Newsletter-->                                
                                 <uc9:KingNewsletter ID="KingNewsletter" runat="server" />
                                 <!--The Most Populars-->
                                 <uc1:KingPopularNews runat="server" ID="KingPopularNews" />

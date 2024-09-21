@@ -2049,18 +2049,18 @@ pre {
     display: flex;
     align-items: center;
 }
-.bar::before,
-.bar::after {
-    content: "";
-    position: absolute;
-    display: block;
-    width: 10px;
-    height: 10px;
-    background: #3fa9f5;
-    opacity: 0;
-    border-radius: 10px;
-    animation: slideleft 3s ease-in-out infinite;
-}
+    .bar::before,
+    .bar::after {
+        content: "";
+        position: absolute;
+        display: block;
+        width: 10px;
+        height: 10px;
+        background: #ECCE01;
+        opacity: 0;
+        border-radius: 10px;
+        animation: slideleft 3s ease-in-out infinite;
+    }
 .bar1::before {
     animation-delay: 0s;
 }
@@ -2211,5 +2211,5 @@ pre {
 }
 .jump {
     transform-origin: 0;
-    animation: jump 0.5s linear alternate infinite;
+    /*animation: jump 0.5s linear alternate infinite;*/
 }
