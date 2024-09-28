@@ -48,8 +48,12 @@ Partial Class kingSendPreInformation
     Private Sub cmdHow_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmdHow.SelectedIndexChanged
         If (cmdHow.SelectedIndex = 1) Then
             DivLink.Visible = True
+            RequiredFieldValidator4.ValidationGroup = 1
+            RegularExpressionValidator1.ValidationGroup = 1
         Else
             DivLink.Visible = False
+            RequiredFieldValidator4.ValidationGroup = 0
+            RegularExpressionValidator1.ValidationGroup = 0
         End If
     End Sub
 End Class

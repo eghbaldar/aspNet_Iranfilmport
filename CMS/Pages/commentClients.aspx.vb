@@ -1,4 +1,6 @@
 ﻿
+Imports System.Data
+Imports System.Data.SqlClient
 Imports System.IO
 Imports System.Net
 
@@ -83,15 +85,7 @@ Partial Class CMS_Pages_commentClients
                 lblStatus.Text = "بسته شده"
         End Select
     End Sub
-    Private Sub CMS_Pages_commentClients_Load(sender As Object, e As EventArgs) Handles Me.Load
-        If Page.Request.QueryString("id") <> "" And (Not IsPostBack) Then
-            MultiView1.ActiveViewIndex = 1
-            If Page.Request.QueryString("Status") = "1" Then DL_Panel.UpdateCommentClient(Val(Page.Request.QueryString("id")), True, 1)
-            GetFlag()
-            HiddenFieldToken.Value = Page.Request.QueryString("id")
-            HiddenFieldClientID.Value = Page.Request.QueryString("id_client")
-        End If
-    End Sub
+
     Private Sub SendSMS(PaternId As String, customerid As Long)
         sms.SendSms(DL_Panel.GetPhoneCustomer(customerid), PaternId, "name", DL_Panel.GetNameCustomer(customerid))
     End Sub
@@ -178,14 +172,65 @@ Partial Class CMS_Pages_commentClients
     Public Function convertNumFatoEn(ByVal T As String) As String
         Return T.Replace("۰", "0").Replace("۱", "1").Replace("۲", "2").Replace("۳", "3").Replace("۴", "4").Replace("۵", "5").Replace("۶", "6").Replace("۷", "7").Replace("۸", "8").Replace("۹", "9").Replace("٫", "/")
     End Function
+    Private Sub CMS_Pages_commentClients_Load(sender As Object, e As EventArgs) Handles Me.Load
+        If Page.Request.QueryString("id") <> "" And (Not IsPostBack) Then
+            MultiView1.ActiveViewIndex = 1
+            If Page.Request.QueryString("Status") = "1" Then DL_Panel.UpdateCommentClient(Val(Page.Request.QueryString("id")), True, 1)
+            GetFlag()
+            HiddenFieldToken.Value = Page.Request.QueryString("id")
+            HiddenFieldClientID.Value = Page.Request.QueryString("id_client")
+        End If
+        'If Not IsPostBack Then
+        '    BindData()
+        '    dgComments.DataBind()
+        'End If
+    End Sub
+    'Private Sub BindData()
+    '    ' Set the SelectCommand for the SqlDataSource
+    '    SDS_Comments.SelectCommand = "SELECT * FROM [tbl_Comment_clients] WHERE id_client<>0 and id_parent=0 ORDER BY flag asc,[date] DESC"
 
-    Private Sub btnFilterAll_Click(sender As Object, e As EventArgs) Handles btnFilterAll.Click
-        SDS_Comments.SelectCommand = "SELECT * FROM [tbl_Comment_clients] WHERE id_client<>0 and id_parent=0 ORDER BY flag asc,[date] DESC"
-        dgComments.DataBind()
+    '    ' Bind data to the DataGrid
+    '    dgComments.DataSource = SDS_Comments
+    '    dgComments.DataBind()
+    'End Sub
+
+    'Private Sub btnFilterAll_Click(sender As Object, e As EventArgs) Handles btnFilterAll.Click
+    '    BindData()
+    '    dgComments.DataBind()
+    '    MultiView1.ActiveViewIndex = 0
+    '    'Response.Redirect("commentClients?type=all")
+    'End Sub
+    Protected Sub dgComments_PageIndexChanging(source As Object, e As GridViewPageEventArgs)
+        dgComments.PageIndex = e.NewPageIndex
+        BindData()
     End Sub
-    Private Sub btnFilterunRead_Click(sender As Object, e As EventArgs) Handles btnFilterunRead.Click
-        SDS_Comments.SelectCommand = "SELECT * FROM [tbl_Comment_clients] WHERE id_client<>0 and flag=1 and id_parent=0 ORDER BY flag asc,[date] DESC"
-        dgComments.DataBind()
+    Public Sub BindData()
+        'Try
+        Dim sqlconn As New SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings("iranfilmportConnectionString").ConnectionString)
+            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+            sqlconn.Open()
+        Dim sqlcom As New SqlCommand("Select * FROM [tbl_Comment_clients] WHERE id_client<>0 And id_parent=0 ORDER BY flag asc, [date] DESC", sqlconn)
+        Dim sqlda As New SqlDataAdapter(sqlcom)
+            Dim ds As New DataSet
+            sqlda.Fill(ds)
+            dgComments.DataSource = ds.Tables(0)
+            dgComments.DataBind()
+            sqlconn.Close()
+        'Catch ex As Exception
+        'Finally
+        'End Try
     End Sub
+    ''Private Sub btnFilterunRead_Click(sender As Object, e As EventArgs) Handles btnFilterunRead.Click
+    ''    Dim sqlconn As New SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings("iranfilmportConnectionString").ConnectionString)
+    ''    If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+    ''    sqlconn.Open()
+    ''    Dim sqlcom As New SqlCommand("SELECT * FROM [tbl_Comment_clients] WHERE id_client<>0 and flag=1 and id_parent=0 ORDER BY flag asc,[date] DESC", sqlconn)
+    ''    Dim sqlda As New SqlDataAdapter(sqlcom)
+    ''    Dim ds As New DataSet
+    ''    sqlda.Fill(ds)
+    ''    dgComments.DataSource = ds.Tables(0)
+    ''    dgComments.DataBind()
+    ''    sqlconn.Close()
+    ''End Sub
 
 End Class

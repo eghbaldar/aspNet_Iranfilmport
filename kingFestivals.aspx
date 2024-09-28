@@ -2,6 +2,10 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style>
+        .btnDetail a {
+            color:white !important;
+            text-align:center !important;
+        }
         #searchFest {
             border: 1px solid #ccc;
             padding: 30px;
@@ -37,6 +41,7 @@
             padding-right: 10px;
             color: White;
             width: 100%;
+            cursor: pointer;
         }
 
             .btnSearchFest:hover {
@@ -156,7 +161,17 @@
     </style>
     <style>
         @media (max-width: 600px) {
-
+            .button{
+                width:100px !important;
+                color:white !important;
+                text-align:center !important;
+                padding:5px !important;
+                padding-right:15px !important;
+                padding-left:15px !important;
+            }
+            .smallImg{
+                display:none;
+            }
             .searchItemBox {
                 display: flex;
                 font-size: 12px;
@@ -355,29 +370,26 @@
                     CssClass="DL_LastFestival" RepeatDirection="Horizontal">
                     <ItemTemplate>
                         <a href='<%# String.Format("festival/{0}/{1}/{2}", Eval("id"),Eval("title_en").Replace(" ","-"),getLink(Eval("title_fa")).Replace(" ","-").Replace("ي", "ی")) %>'>
-                            <table style="width: 100%; text-align: center;">
-                                <tr>
-                                    <td>
-                                        <asp:Image CssClass="img-fluid" ID="Image1" AlternateText='<%# Eval("title_fa") %>'
-                                            ImageUrl='<%# String.Format("~/files/uploadFiles/festival/{0}", Eval("logo")) %>'
-                                            runat="server" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <asp:Label ID="title_faLabel" CssClass="TitleFestivalFa" runat="server" Text='<%# Eval("title_fa").Replace("ي", "ی") %>' />
-                                    </td>
-                                </tr>
-                                <td>
+                            <div style="text-align: center;">
+                                <div style="height:200px;">
+                                    <asp:Image CssClass="img-fluid circular--img"
+                                        Style="width: 200px !important" ID="Image1" AlternateText='<%# Eval("title_fa") %>'
+                                        ImageUrl='<%# String.Format("~/files/uploadFiles/festival/{0}", Eval("logo")) %>'
+                                        runat="server" />
+                                </div>
+                                <div style="height:40px;">
+                                    <asp:Label ID="title_faLabel" CssClass="TitleFestivalFa" runat="server" Text='<%# Eval("title_fa").Replace("ي", "ی") %>' />
+
+                                </div>
+                                <div style="height:30px;">
                                     <asp:Label ID="title_enLabel" CssClass="TitleFestivalEn" runat="server" Text='<%# Eval("title_en") %>' />
-                                </td>
-                                <tr>
-                                    <td>
-                                        <asp:Label ToolTip="تعداد روز باقی ماننده به آخرین ددلاین" ID="Label1" Style="font-size: 12px;"
-                                            runat="server" Text='<%# getDeadlineStatus(Eval("sign"), Eval("RemainDays")) %>'></asp:Label>
-                                    </td>
-                                </tr>
-                            </table>
+
+                                </div>
+                                <div style="height:30px;">
+                                    <asp:Label ToolTip="تعداد روز باقی ماننده به آخرین ددلاین" ID="Label1" Style="font-size: 12px;"
+                                        runat="server" Text='<%# getDeadlineStatus(Eval("sign"), Eval("RemainDays")) %>'></asp:Label>
+                                </div>
+                            </div>
                         </a>
                     </ItemTemplate>
                 </asp:DataList>
@@ -394,13 +406,12 @@ order by ID desc"></asp:SqlDataSource>
             لیست فستیوال‌ها براساس آخرین تاریخ پذیرش
         </div>
         <div>
-
-            <asp:Repeater ID="dgLastDeadlineFestival" runat="server" >
+            <asp:Repeater ID="dgLastDeadlineFestival" runat="server">
                 <ItemTemplate>
                     <div class="row  p-5">
-                        <div class="col-1 pr-2" style="border-right: 5px solid #ECCE01">
+                        <div class="col-1 pr-2 smallImg" style="border-right: 5px solid #ECCE01">
                             <a href='<%# String.Format("festival/{0}/{1}/{2}", Eval("id"), Eval("title_en").Replace(" ", "-"), getLink(Eval("title_fa")).Replace(" ", "-").Replace("ي", "ی")) %>'>
-                                <asp:Image CssClass="img-fluid" ID="Image1" ImageUrl='<%# String.Format("~/files/uploadFiles/festival/{0}", Eval("logo")) %>'
+                                <asp:Image CssClass="img-fluid circular--img" ID="Image1" ImageUrl='<%# String.Format("~/files/uploadFiles/festival/{0}", Eval("logo")) %>'
                                     runat="server" />
                             </a>
                         </div>
@@ -410,13 +421,12 @@ order by ID desc"></asp:SqlDataSource>
                                 <asp:Label ID="Label2" runat="server" Text='<%# Eval("title_fa").Replace("ي", "ی") %>'></asp:Label>
                                 <br />
                                 <asp:Label ID="Label1" runat="server" Style="color: #daa000; font-style: italic;" Text='<%# Bind("title_en") %>'></asp:Label>
+                                <br />
+                                <asp:Label ToolTip="تعداد روز باقی ماننده به آخرین ددلاین" ID="Label3" Style="font-size: 12px;"
+                                runat="server" Text='<%# getDeadlineStatus(Eval("sign"), Eval("RemainDays")) %>'></asp:Label>
                             </a>
                         </div>
-                        <div class="col-1" style="text-align: center;">
-                            <asp:Label ToolTip="تعداد روز باقی ماننده به آخرین ددلاین" ID="Label3" Style="font-size: 12px;"
-                                runat="server" Text='<%# getDeadlineStatus(Eval("sign"), Eval("RemainDays")) %>'></asp:Label>
-                        </div>
-                        <div class="col-2">
+                        <div class="col-3 btnDetail">
                             <a class="button"
                                 target="_blank"
                                 href='<%# String.Format("/festival/{0}/{1}/{2}", Eval("id"), Eval("title_en").Replace(" ", "-"), getLink(Eval("title_fa")).Replace(" ", "-").Replace("ي", "ی")) %>'>جزییات</a>
@@ -424,7 +434,7 @@ order by ID desc"></asp:SqlDataSource>
                     </div>
                 </ItemTemplate>
             </asp:Repeater>
-            <div style="text-align:center;">
+            <div style="text-align: center;">
                 <asp:LinkButton ID="btnPrev" runat="server" Text="<< قبلی" CssClass="dotYellow" OnClick="btnPrev_Click" />
                 <asp:LinkButton ID="btnNext" runat="server" Text=">> بعدی" CssClass="dotYellow" OnClick="btnNext_Click" />
             </div>

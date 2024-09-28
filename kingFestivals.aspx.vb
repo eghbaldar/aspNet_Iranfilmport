@@ -7,7 +7,7 @@ Partial Class kingFestivals
     Public Function getDeadlineStatus(sign As Object, remaindays As Object) As String
         Select Case Val(sign)
             Case 1
-                Return "<small style='color:gray;'>مهلت</small><span style='color:green;font-weight:bold'>" + "<br/>" + remaindays.ToString + " روز</span>"
+                Return "<small style='color:gray;'>مهلت: </small><span style='color:green;font-weight:bold'>" + remaindays.ToString + " روز</span>"
             Case 0
                 Return "<span style='color:gray;font-style:italic'>" + "ددلاینی وارد نشده است" + "</span>"
             Case -1

@@ -98,11 +98,13 @@
                                             </a>
                                             <div class="sub-mega-menu">
                                                 <div class="nav flex-column nav-pills" role="tablist">
-                                                    <a class="nav-link active pointer" data-toggle="pill" role="tab">همه فستیوال‌ها</a>
+                                                    <a class="nav-link active pointer"
+                                                        href="https://iranfilmport.com/%D8%AC%D8%B4%D9%86%D9%88%D8%A7%D8%B1%D9%87-%D9%87%D8%A7%DB%8C-%D9%81%DB%8C%D9%84%D9%85-%DA%A9%D9%88%D8%AA%D8%A7%D9%87-%D8%A8%D9%84%D9%86%D8%AF"
+                                                       >همه فستیوال‌ها</a>
                                                     <a class="nav-link pointer" data-toggle="pill" href="#news-1" role="tab">فستیوال‌های ای‌پلاس</a>
                                                     <a class="nav-link pointer" data-toggle="pill" href="#news-2" role="tab">فستیوال‌های معتبر</a>
-                                                    <a class="nav-link pointer" data-toggle="pill" href="#news-3" role="tab">فستیوال‌های بی‌اعتبار</a>
-                                                    <a class="nav-link pointer" data-toggle="pill" href="#news-4" role="tab">فستیوال‌های ایرانی</a>
+                                                    <a class="nav-link pointer" data-toggle="pill" href="#news-4" role="tab">فستیوال‌های بی‌اعتبار</a>
+                                                    <a class="nav-link pointer" data-toggle="pill" href="#news-3" role="tab">فستیوال‌های ایرانی</a>
                                                 </div>
                                                 <div class="tab-content">
                                                     <div class="tab-pane show active" id="news-0" role="tabpanel">

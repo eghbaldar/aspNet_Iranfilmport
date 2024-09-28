@@ -52,13 +52,13 @@
                                 <asp:Repeater ID="R_Slider" runat="server" DataSourceID="SDS_Slider">
                                     <ItemTemplate>
                                         <div class="slider-single p-10 kingLightGray">
-                                            <div class="img-hover-slide border-radius-15 mb-30 position-relative overflow-hidden">
+                                            <div class="img-hover-slide border-radius-15 position-relative overflow-hidden">
                                                 <a href='<%# String.Format("{0}", Eval("link")) %>' target="_blank">
                                                     <img src='<%# String.Format("\files\uploadFiles\sliders\{0}", Eval("photo")) %>' alt="post-slider">
                                                 </a>
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
                                             <div class="pr-10 pl-10">
-                                                <h4 class="post-title full-width mb-20">
+                                                <h4 class="post-title full-width mb-5   ">
                                                     <a href='<%# String.Format("{0}", Eval("link")) %>' target="_blank">
                                                         <h1 class="SliderUp">
                                                             <asp:Label Visible='<%# EnFa("FA") %>' ID="Label4" runat="server" CssClass="SliderUp"

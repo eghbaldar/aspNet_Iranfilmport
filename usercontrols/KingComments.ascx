@@ -150,6 +150,9 @@
         .TXT_FA {
             width: 100%;
         }
+        .C_Sub_Content {
+            margin-right:0px;
+        }
     }
 </style>
 <style>

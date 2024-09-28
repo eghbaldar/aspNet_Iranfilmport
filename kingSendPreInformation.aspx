@@ -131,7 +131,8 @@
                                 <br />
                                 <span style="color: red; font-weight: normal; font-size: 12px;">توجه (2): اگر از طریق
                                                     ارسال پستی فیلم خود را ارسال کرده اید لطفا تصویر برگه‌ی پستی را از طریق شماره‌های
-                                                    شرکت ارسال کنید. </span></br>
+                                                    شرکت ارسال کنید. </span>
+                            <br>
                         </div>
                         <div class="Bg">
                             <table class="tbSend">
@@ -177,7 +178,7 @@
                                                     <table class="style1">
                                                         <tr>
                                                             <td style="font-size: 12px; color: Red;">
-                                                                (Google Drive - Mega - Mediafire) و یا فیلمنامه خود را در کادر زیر وارد کنید:
+                                                                لینک (Google Drive - Mega - Mediafire) فیلم و یا لینک فیلمنامه خود را در کادر زیر وارد کنید:
                                                                 <ul>
                                                                     <li><a href="https://drive.google.com" target="_blank">لینک گوگل درایو: Google Drive</a></li>
                                                                     <li><a href="https://mediafire.com" target="_blank">لینک مدیافایر: MediaFire</a></li>
@@ -189,6 +190,12 @@
                                                             <td>
                                                                 <asp:TextBox CssClass="form-control" placeholder="لینک اثرتان در صورت وجود ..." ID="txtLink" runat="server"></asp:TextBox>
                                                                 <asp:Label ID="lblWrongLink" runat="server" ForeColor="Red"></asp:Label>
+                                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ValidationGroup="0" ForeColor="Red"
+                                                    runat="server" ErrorMessage="(اجباری)" ControlToValidate="txtLink" ></asp:RequiredFieldValidator>
+                                                                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" 
+                                                                    ErrorMessage="(لینک اینترنتی اثرتان را صحیح وارد کنید)" ValidationGroup="0" ForeColor="Red"
+                                                                     ControlToValidate="txtLink" 
+                                                                    ValidationExpression="http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&amp;=]*)?"></asp:RegularExpressionValidator>
                                                             </td>
                                                         </tr>
                                                         <tr>

@@ -4,6 +4,20 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <asp:PlaceHolder runat="server" ID="pc"></asp:PlaceHolder>
     <style>
+        .kingPanel ul{
+            padding-right:0px !important;
+        }
+        .kingPanel ul li{
+            list-style-type:none !important;
+        }
+        .button-open {
+            background-color: #41c838 !important;
+        }
+
+        .button-close {
+            background-color: #9c9c9c !important;
+            cursor: not-allowed !important;
+        }
 
         .DivOpenClosed {
             padding: 5px;
@@ -113,64 +127,7 @@
                 }
         }
     </style>
-    <style>
-        /* Style the buttons that are used to open and close the accordion panel */
-        .accordion {
-            -moz-border-radius: 5px;
-            -webkit-border-radius: 5px;
-            border-radius: 5px;
-            color: #444;
-            cursor: pointer;
-            padding: 18px;
-            text-align: right;
-            border: none;
-            outline: none;
-            transition: 0.4s;
-            border: 1px solid #ccc;
-            width: 100%; /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+1,f9f9f9+100 */
-            background: rgb(255,255,255); /* Old browsers */
-            background: -moz-linear-gradient(top, rgba(255,255,255,1) 1%, rgba(249,249,249,1) 100%); /* FF3.6-15 */
-            background: -webkit-linear-gradient(top, rgba(255,255,255,1) 1%,rgba(249,249,249,1) 100%); /* Chrome10-25,Safari5.1-6 */
-            background: linear-gradient(to bottom, rgba(255,255,255,1) 1%,rgba(249,249,249,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f9f9f9',GradientType=0 ); /* IE6-9 */
-        }
-
-            /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-            .accordion:hover {
-                /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,edf9ff+100 */
-                background: rgb(255,255,255); /* Old browsers */
-                background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(237,249,255,1) 100%); /* FF3.6-15 */
-                background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(237,249,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
-                background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(237,249,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#edf9ff',GradientType=0 ); /* IE6-9 */
-                color: #000;
-            }
-
-        /* Style the accordion panel. Note: hidden by default */
-        .accordionpanel {
-            padding: 0 18px;
-            background-color: white;
-            border: 1px solid #ccc;
-            width: 100%;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.2s ease-out; /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+1,f9f9f9+100 */
-            background: rgb(255,255,255); /* Old browsers */
-            background: -moz-linear-gradient(top, rgba(255,255,255,1) 1%, rgba(249,249,249,1) 100%); /* FF3.6-15 */
-            background: -webkit-linear-gradient(top, rgba(255,255,255,1) 1%,rgba(249,249,249,1) 100%); /* Chrome10-25,Safari5.1-6 */
-            background: linear-gradient(to bottom, rgba(255,255,255,1) 1%,rgba(249,249,249,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f9f9f9',GradientType=0 ); /* IE6-9 */
-        }
-
-        .accordion:after {
-            content: '+'; /* Unicode character for "plus" sign (+) */
-            font-size: 13px;
-            color: #848484;
-            float: right;
-            margin-left: 5px;
-        }
-
-    </style>
+    <link href="/files/kingMaterials/js/accordian/css.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="title-text mb-3">
@@ -212,7 +169,7 @@
                                                     <%# Eval("title_fa").Replace("ي", "ی") %>
                                                 </h3>
                                                 <div style="direction: ltr; text-align: left;">
-                                                    <h5 style="font-weight: bold;color: lightgray;font-style:italic;">
+                                                    <h5 style="font-weight: bold; color: lightgray; font-style: italic;">
                                                         <%# Eval("title_en") %>
                                                     </h5>
                                                 </div>
@@ -241,8 +198,9 @@
                                                     <asp:UpdatePanel ID="UpdatePanel12" runat="server">
                                                         <ContentTemplate>
                                                             <asp:Button ID="Button1" runat="server" CommandArgument='<%# Eval("id", "{0}") %>'
-                                                                OnCommand="send" CssClass="button" Enabled='<%# iif(Eval("sign") = 1, "True", "False") %>'
-                                                                Text='<%# iif(Eval("sign")=1,"میخواهم فیلمم را به این فستیوال بفرستم","فستیوال بسته شده است") %>' />
+                                                                OnCommand="send" Enabled='<%# iif(Eval("sign") = 1, "True", "False") %>'
+                                                                CssClass='<%# iif(Eval("sign") = 1, "button button-open", "button button-close") %>'
+                                                                Text='<%# iif(Eval("sign") = 1, "میخواهم فیلمم را به این فستیوال بفرستم", "فستیوال بسته شده است") %>' />
                                                             <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel12">
                                                                 <ProgressTemplate>
                                                                     <asp:Image ID="Image3" ImageUrl="~/files/images/icons/preloader.gif" runat="server" />
@@ -331,47 +289,49 @@ WHERE ([ID] = @id)">
                                 <h5 style="color: Black;">بخش‌ها و هزینه‌ها</h5>
                             </div>
                             <div class="DivLeft">
-                                <asp:GridView Width="100%" ID="dgSection" runat="server" AutoGenerateColumns="False"
-                                    DataSourceID="SDS_Section" GridLines="None" ShowHeader="False">
-                                    <Columns>
-                                        <asp:TemplateField HeaderText="deadline" InsertVisible="False" SortExpression="deadline">
-                                            <ItemTemplate>
-                                                <!-- اگر به جای تگ انچور از دایو استفاده کنی شکل تب می شود -->
-                                                <a class="accordion">
-                                                    <asp:Label ID="Label6" runat="server" Text='<%# Eval("section").Replace("ي", "ی") %>'></asp:Label>
-                                                </a>
-                                                <div class="accordionpanel">
-                                                    <p>
-                                                        <asp:Label ID="lblIDsection" runat="server" Text='<%# Eval("id") %>' Visible="false"></asp:Label>
-                                                        <asp:GridView ID="dgFee" runat="server" AutoGenerateColumns="False" DataSourceID="SDS_Fee"
-                                                            GridLines="None" ShowHeader="False">
-                                                            <Columns>
-                                                                <asp:TemplateField HeaderText="deadline" InsertVisible="False" SortExpression="deadline">
-                                                                    <ItemTemplate>
-                                                                        <div style="width: 100%; line-height: 30px;">
-                                                                            <div>
-                                                                                <asp:Label ID="Label7" runat="server" Text='<%# Eval("row") %>'></asp:Label>
-                                                                            </div>
-                                                                            <div>
-                                                                                تاریخ:
+                                <div id="kingAccordian">
+                                    <asp:GridView Width="100%" ID="dgSection" runat="server" AutoGenerateColumns="False"
+                                        DataSourceID="SDS_Section" GridLines="None" ShowHeader="False">
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="deadline" InsertVisible="False" SortExpression="deadline">
+                                                <ItemTemplate>
+                                                    <!-- اگر به جای تگ انچور از دایو استفاده کنی شکل تب می شود -->
+                                                    <div class="kingAccordion">
+                                                        <asp:Label ID="Label6" runat="server" Text='<%# Eval("section").Replace("ي", "ی") %>'></asp:Label>
+                                                    </div>
+                                                    <div class="kingPanel">
+                                                        <ul>
+                                                            <li>
+                                                                <asp:Label ID="lblIDsection" runat="server" Text='<%# Eval("id") %>' Visible="false"></asp:Label>
+                                                                <asp:GridView ID="dgFee" Width="100%" runat="server" AutoGenerateColumns="False" DataSourceID="SDS_Fee"
+                                                                    GridLines="None" ShowHeader="False">
+                                                                    <Columns>
+                                                                        <asp:TemplateField HeaderText="deadline" InsertVisible="False" SortExpression="deadline">
+                                                                            <ItemTemplate>
+                                                                                <div style="width: 100%; line-height: 30px;">
+                                                                                    <div>
+                                                                                        <asp:Label ID="Label7" runat="server" Text='<%# Eval("row") %>'></asp:Label>
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        تاریخ:
                                                                                         <asp:Label ID="Label1" Style="color: Red; font-weight: bold;" runat="server" Text='<%# getDate(Eval("deadline")) %>'></asp:Label>
-                                                                            </div>
-                                                                            <div>
-                                                                                مقدار ورودی:
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        مقدار ورودی:
                                                                                         <asp:Label ID="Label5" Style="color: Red; font-weight: bold;" runat="server" Text='<%# Eval("fee") %>'></asp:Label>
-                                                                                دلار
-                                                                            </div>
-                                                                            <div>
-                                                                                <asp:Label ID="Label10" ForeColor='<%# iif(Eval("sign")=1, Drawing.color.green, Drawing.color.red) %>'
-                                                                                    CssClass="divGenre" runat="server" Text='<%# Eval("DeadlineStatus") %>'></asp:Label>
-                                                                            </div>
-                                                                        </div>
-                                                                    </ItemTemplate>
-                                                                </asp:TemplateField>
-                                                            </Columns>
-                                                        </asp:GridView>
-                                                        <asp:SqlDataSource ID="SDS_Fee" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
-                                                            SelectCommand="
+                                                                                        دلار
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <asp:Label ID="Label10" ForeColor='<%# iif(Eval("sign")=1, Drawing.color.green, Drawing.color.red) %>'
+                                                                                            CssClass="divGenre" runat="server" Text='<%# Eval("DeadlineStatus") %>'></asp:Label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </ItemTemplate>
+                                                                        </asp:TemplateField>
+                                                                    </Columns>
+                                                                </asp:GridView>
+                                                                <asp:SqlDataSource ID="SDS_Fee" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
+                                                                    SelectCommand="
                                                     select
                                                     id
                                                     ,festivalID
@@ -388,18 +348,20 @@ WHERE ([ID] = @id)">
                                                     WHERE ([festivalID] = @ID) and ([sectionID] =@sectionID)
                                                     order by deadline asc
                                                     ">
-                                                            <SelectParameters>
-                                                                <asp:RouteParameter Name="ID" RouteKey="ID" Type="Int64" />
-                                                                <asp:ControlParameter ControlID="lblIDsection" Name="sectionID" PropertyName="Text"
-                                                                    Type="String" />
-                                                            </SelectParameters>
-                                                        </asp:SqlDataSource>
-                                                    </p>
-                                                </div>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                    </Columns>
-                                </asp:GridView>
+                                                                    <SelectParameters>
+                                                                        <asp:RouteParameter Name="ID" RouteKey="ID" Type="Int64" />
+                                                                        <asp:ControlParameter ControlID="lblIDsection" Name="sectionID" PropertyName="Text"
+                                                                            Type="String" />
+                                                                    </SelectParameters>
+                                                                </asp:SqlDataSource>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </asp:GridView>
+                                </div>
                                 <asp:SqlDataSource ID="SDS_Section" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
                                     SelectCommand="
                                                     select
@@ -425,26 +387,10 @@ WHERE ([ID] = @id)">
         </asp:SqlDataSource>
         <uc1:KingComments runat="server" ID="KingComments" />
     </div>
-    <script>
-        var acc = document.getElementsByClassName("accordion");
-        var i;
-
-        for (i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function () {
-                this.classList.toggle("active");
-                var panel = this.nextElementSibling;
-                if (panel.style.maxHeight) {
-                    panel.style.maxHeight = null;
-                } else {
-                    panel.style.maxHeight = panel.scrollHeight + "px";
-                }
-            });
-        }
-    </script>
+    <script src="/files/kingMaterials/js/accordian/js.js"></script>
     <!-- The Modal -->
-  <style>
-        .modal1
-        {
+    <style>
+        .modal1 {
             display: none; /* Hidden by default */
             position: fixed; /* Stay in place */
             z-index: 999; /* Sit on top */
@@ -457,8 +403,7 @@ WHERE ([ID] = @id)">
             background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
         }
         /* Modal Content/Box */
-        .modal-content1
-        {
+        .modal-content1 {
             -moz-border-radius: 5px;
             -webkit-border-radius: 5px;
             border-radius: 5px;
@@ -470,18 +415,18 @@ WHERE ([ID] = @id)">
             direction: rtl;
             font-size: 14px;
         }
-        .modalDistributionTitr
-        {
+
+        .modalDistributionTitr {
             font-size: 25px;
             color: #0096bf;
         }
-        .modalDistributionTitr2
-        {
+
+        .modalDistributionTitr2 {
             font-size: 18px;
             color: #32a2a8;
         }
-        .modalDistributionCell
-        {
+
+        .modalDistributionCell {
             font-size: 20px;
             color: black;
             padding: 5px;
@@ -496,28 +441,29 @@ WHERE ([ID] = @id)">
             background: linear-gradient(to bottom, rgba(254,252,234,1) 0%,rgba(241,218,54,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
             filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', endColorstr='#f1da36',GradientType=0 ); /* IE6-9 */
         }
-        .modalDistributionCell:hover
-        {
-            /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#fefcea+0,70b9f4+100 */
-            background: rgb(254,252,234); /* Old browsers */
-            background: -moz-linear-gradient(top, rgba(254,252,234,1) 0%, rgba(112,185,244,1) 100%); /* FF3.6-15 */
-            background: -webkit-linear-gradient(top, rgba(254,252,234,1) 0%,rgba(112,185,244,1) 100%); /* Chrome10-25,Safari5.1-6 */
-            background: linear-gradient(to bottom, rgba(254,252,234,1) 0%,rgba(112,185,244,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', endColorstr='#70b9f4',GradientType=0 ); /* IE6-9 */
-        }
-        .close1
-        {
+
+            .modalDistributionCell:hover {
+                /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#fefcea+0,70b9f4+100 */
+                background: rgb(254,252,234); /* Old browsers */
+                background: -moz-linear-gradient(top, rgba(254,252,234,1) 0%, rgba(112,185,244,1) 100%); /* FF3.6-15 */
+                background: -webkit-linear-gradient(top, rgba(254,252,234,1) 0%,rgba(112,185,244,1) 100%); /* Chrome10-25,Safari5.1-6 */
+                background: linear-gradient(to bottom, rgba(254,252,234,1) 0%,rgba(112,185,244,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', endColorstr='#70b9f4',GradientType=0 ); /* IE6-9 */
+            }
+
+        .close1 {
             font-size: 20px;
             cursor: pointer;
             color: Black;
         }
-        .modalDistributionTClickCell
-        {
+
+        .modalDistributionTClickCell {
             color: #c2c2c2;
             font-size: 14px;
         }
-        .modal-content1{
-            margin-top:10%;
+
+        .modal-content1 {
+            margin-top: 10%;
         }
     </style>
     <div id="myModalDistribution" class="modal1">
