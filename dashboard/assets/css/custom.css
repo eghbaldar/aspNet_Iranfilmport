@@ -1,0 +1,150 @@
+﻿li {
+    font-family: Samim;
+    font-size: 12px;
+}
+.content-title{
+    font-family:Samim;
+    font-size:20px;
+    font-weight:bold;
+    padding-bottom:15px;
+}
+@media (max-width: 767px) {
+    .navbar {
+        text-align:center;
+        justify-content:center;
+        margin-bottom:50px;
+        width:100%;
+        align-items:center;
+    }
+
+    .left-div {
+        display: none;
+    }
+}
+.enDirection{
+    direction:ltr;
+    text-align:left;
+}
+.control-marging input, .control-marging select, .control-marging textarea {
+    margin-bottom: 10px;
+}
+@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+
+    .left-div {
+        display: none;
+    }
+}
+.mnu {
+    display: flex;
+    align-content:center;
+    justify-content:center;
+}
+.mnu img{
+    width:50px;
+}
+.ProfileHeaderTable {
+    width: 100%;
+}
+.menu-section-item{
+    padding:5px;    
+}
+    .menu-section-item:hover {
+        background-color: #EEEEEE;
+    }
+@media (max-width: 767px) {
+    .ProfileHeaderTable .fr {
+        text-align: right;
+        font-family: Samim;
+        direction: rtl;
+        color: Black;
+    }
+    .navbar-toggle{
+        display:none;
+    }
+    .ProfileHeaderTable {
+        width: 100%;
+    }
+        /* Zebra striping */
+        .ProfileHeaderTable tr:nth-of-type(odd) {
+            background: #eee;
+            color: Black;
+        }
+
+        .ProfileHeaderTable th {
+            background: #333;
+            color: white;
+            font-weight: bold;
+        }
+
+        .ProfileHeaderTable td, th {
+            padding: 6px;
+            border: 1px solid #ccc;
+            text-align: right;
+            font-family: irsans;
+        }
+
+        .ProfileHeaderTable td {
+            text-align: right;
+            direction: rtl;
+        }
+}
+
+@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+    /* Force table to not be like tables anymore */
+    .ProfileHeaderTable, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+        /* Hide table headers (but not display: none;, for accessibility) */
+        .ProfileHeaderTable thead tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+
+        .ProfileHeaderTable tr {
+            border: 1px solid #ccc;
+        }
+
+        .ProfileHeaderTable td {
+            /* Behave  like a "row" */
+            border: none;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            font-family: irsans;
+        }
+}
+.button {
+    display: inline-block;
+    border: 1px solid transparent;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 12px 54px;
+    border-radius: 4px;
+    color: #fff;
+    border: 1px solid #ECCE01;
+    text-transform: uppercase;
+    background: #ECCE01;
+    cursor: pointer;
+    transition: all 300ms linear 0s;
+}
+.button {
+    -webkit-transition: all 0.2s ease-out 0s;
+    -moz-transition: all 0.2s ease-out 0s;
+    -ms-transition: all 0.2s ease-out 0s;
+    -o-transition: all 0.2s ease-out 0s;
+    transition: all 0.2s ease-out 0s;
+}
+.button:hover {
+    background-color:black;
+    color:white;
+    border-color:unset;
+}
+.content-wrapper {
+    margin-top:5px !important;
+}
+.kingFarsiDirection {
+    direction: ltr !important;
+    text-align: right !important;
+    font-family:Samim !important;
+}

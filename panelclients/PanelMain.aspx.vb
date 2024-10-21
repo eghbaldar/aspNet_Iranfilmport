@@ -7,7 +7,7 @@ Imports System.Security.Cryptography.X509Certificates
 Partial Class PanelMain
     Inherits System.Web.UI.Page
     Dim Dll As New DLL_Panel
-    Private DollarMsg As String = "مجموع ورودی های اعتباری صفر شده توسط «درگاه فیلم ایران» برای تمامی فیلم‌های شما، تا این لحظه به دلار میانیگن روز <span style='background-color:black;color:white;padding:2px;width:70px'>(59.000 تومان)</span>، برابر است با:"
+    Private DollarMsg As String = "مجموع ورودی های اعتباری صفر شده توسط «درگاه فیلم ایران» برای تمامی فیلم‌های شما، تا این لحظه به دلار میانیگن روز <span style='background-color:black;color:white;padding:2px;width:70px'>(" + GeneralConstants.Dollar.ToString("N0") + " تومان)</span>، برابر است با:"
 
     Public Sub ShowSubmissions(sender As Object, e As CommandEventArgs)
 
@@ -115,9 +115,13 @@ Partial Class PanelMain
 
     Private Sub PanelMain_Load(sender As Object, e As EventArgs) Handles Me.Load
 
-        If Not IsPostBack And String.IsNullOrEmpty(Dll.GetEmailClient(Val(Page.RouteData.Values("id")))) Then
-            ClientEmailModal.Visible = True
+        If Not IsPostBack Then
+            Dim email As String = Dll.GetEmailClient(Val(Page.RouteData.Values("id")))
+            If String.IsNullOrEmpty(email) Or email.Trim = "iranfilmportdistributor@gmail.com" Then
+                ClientEmailModal.Visible = True
+            End If
         End If
+
         FillFeeValue()
     End Sub
 

@@ -25,30 +25,69 @@
                 <ContentTemplate>
                     <h4>طراحی پوستر</h4>
                     <div>
-                        <asp:CheckBox ID="CheckBox1" Text="دو بعدی" runat="server" />
-                        <asp:CheckBox ID="CheckB1ox1" Text="سه بعدی" runat="server" />
+                        <asp:RadioButton ID="rbDimenation2D" Checked="true"  GroupName="1" Text="&nbspدو بعدی" runat="server" />
+                        <asp:RadioButton ID="rbDimenation3D" GroupName="1"  Text="&nbspسه بعدی" runat="server" />
                     </div>
                     <div>
-                        <asp:CheckBox ID="Check2Box1" Text="فول دیجیال-پینت" runat="server" />
-                        <asp:CheckBox ID="Ch3eckBox1" Text="اسکرچ (دستی)" runat="server" />
-                        <asp:CheckBox ID="Chec4kBox1" Text="کولاژ دیجیتالی" runat="server" />
-                        <asp:CheckBox ID="Che5ckBox1" Text="تلفیقی" runat="server" />
+                        <asp:RadioButton ID="rbStyleFullPaint" GroupName="2"  Text="&nbspفول دیجیال-پینت" runat="server" />
+                        <asp:RadioButton ID="rbStyleHandCollage" GroupName="2"  Text="&nbspکولاژ دستی" runat="server" />
+                        <asp:RadioButton ID="rbStyleDigitalCollage" GroupName="2"  Text="&nbspکولاژ دیجیتالی" runat="server" />
+                        <asp:RadioButton ID="rbStyleStill" GroupName="2"  Checked="true"  Text="&nbspاستفاده از عکس صحنه" runat="server" />
                     </div>
                     <div>
-                        <asp:CheckBox ID="Chec12kBox1" Text=" با لوگوتایپ سفارشی" runat="server" />
-                        <asp:CheckBox ID="Check12Box1" Text="بدون لوگوتایپ" runat="server" />
+                        <asp:CheckBox ID="chkLogoType" Text="&nbspلوگوتایپ سفارشی" runat="server" />
                     </div>
                     <div>
-                        <asp:CheckBox ID="Chec2kBox1" Text="فقط فارسی" runat="server" />
-                        <asp:CheckBox ID="Chec3kBox1" Text="فقط انگلیسی" runat="server" />
-                        <asp:CheckBox ID="Che12ckBox1" Text="هم فارسی و هم انگلیسی (دونسخه)" runat="server" />
+                        <asp:RadioButton ID="rbLangFa"  Checked="true"  GroupName="4" Text="&nbspفقط فارسی" runat="server" />
+                        <asp:RadioButton ID="rbLangEn"  GroupName="4" Text="&nbspفقط انگلیسی" runat="server" />
+                        <asp:RadioButton ID="rbLangBoth"  GroupName="4" Text="&nbspهم فارسی و هم انگلیسی (دونسخه)" runat="server" />
                     </div>
                     <div>
-                        <asp:CheckBox ID="CheckBox2" Text="پوستر به همراه لوگوموشن" runat="server" />
+                        <asp:CheckBox ID="chkLogoMotion" Text="&nbspپوستر به همراه لوگوموشن" runat="server" />
                     </div>
+                    <div>
+                        <asp:CheckBox ID="chkClient" Text="&nbspمشتری درگاه فیلم ایران" runat="server" />
+                    </div>
+                    <div class="mt-5">
+                                <asp:Button ID="btnPoster" runat="server"
+                                Text="استعلام"
+                                class="button"
+                                ValidationGroup="1" />
+                            </div>
+                    <br /><br />
+                    <h4>حک و اس آر تی برای فیلم</h4>
+                    <div>
+                        <asp:RadioButton ID="rbBurnt"  Checked="true"  GroupName="11" Text="&nbspزیرنویس چسبیده - حک روی فیلم - SubHard - Burnt " runat="server" />
+                        <br />
+                        <asp:RadioButton ID="rbSrt"  GroupName="11" Text="&nbspزیرنویس نچسبیده - SRT" runat="server" />
+                        <br />
+                        <asp:RadioButton ID="rbBurntSrt"  GroupName="11" Text="&nbspهر دو" runat="server" />
+                        <br />
+                        <asp:TextBox ID="txtWordsCount" runat="server" CssClass="form-control" placeholder="تعداد کلمات دیالوگ‌‌های فارسی را وارد کنید ..."></asp:TextBox>
+                    </div>
+                    <div>
+                        <asp:CheckBox ID="chkSrtClient" Text="&nbspمشتری درگاه فیلم ایران" runat="server" />
+                    </div>
+                      <div class="mt-5">
+                                <asp:Button ID="btnSubtitle" runat="server"
+                                Text="استعلام"
+                                class="button"
+                                ValidationGroup="1" />
+                            </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
     </div>  
+    <script>
+        function showCost(cost) {
+            Swal.fire({
+                title: 'استعلام هزینه!',
+                text: cost,
+                icon: 'info',
+                confirmButtonColor: '#ff9100',
+                confirmButtonText: 'متوجه شدم'
+            });
+        }
+    </script>
 </asp:Content>
 

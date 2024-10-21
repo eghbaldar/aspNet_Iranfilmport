@@ -290,7 +290,7 @@
                         <EditRowStyle BackColor="#999999" />                        
                         <PagerStyle CssClass="gridview" />
                         <FooterStyle BackColor="#B5C7DE" ForeColor="#539FA0" />
-                        <HeaderStyle BackColor="#539FA0" Font-Bold="True" HorizontalAlign="Right" ForeColor="#000"
+                        <HeaderStyle BackColor="#ECCE01" Font-Bold="True" HorizontalAlign="Right" ForeColor="#000"
                             Font-Names="irsans" Font-Size="10px" />
                         <PagerStyle BackColor="#E7E7FF" HorizontalAlign="Right" />
                         <SelectedRowStyle BackColor="#738A9C" Font-Bold="True" ForeColor="#F7F7F7" />

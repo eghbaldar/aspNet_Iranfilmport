@@ -21,11 +21,11 @@
         @media (max-width: 767px)
         {
             .Header{display:none;}
-            .TXT_En
+            .form-control
             {
                 width: 100%;
             }
-            .TXT_Fa
+            .form-control
             {
                 width: 100%;
             }
@@ -103,16 +103,14 @@
         <asp:HiddenField ID="HiddenEmail" runat="server" />
         <div class="row">
             <div class="col-md-12">
-                <h4 class="page-head-line" style="font-family: Titr;">
-                    ایجاد صفحه فیلم و فیلمنامه</h4>
+                <div class="content-title">ایجاد صفحه فیلم و فیلمنامه</div>
             </div>
         </div>
         <div class="row" style="font-family: Samim;">
 
             <div class="col-md-12">
                 <div class="frame">
-                    <p style="font-family: Titr; font-size: 17px;">
-                        ایجاد پروژه</p>
+                    <div class="content-title">ایجاد پروژه</div>
                     <div>
                         <table class="ProfileHeaderTable">
                             <tr>
@@ -120,7 +118,7 @@
                                     نوع پروژه:
                                 </td>
                                 <td style="width:90%;">
-                                    <asp:DropDownList ID="cmd_type" CssClass="TXT_Fa" Style="padding: 10px; width: 100%;"
+                                    <asp:DropDownList ID="cmd_type" CssClass="form-control" Style="width: 100%;"
                                         runat="server" AutoPostBack="True">
                                         <asp:ListItem Value="0">- نوع پروژه را انتخاب کنید - </asp:ListItem>
                                         <asp:ListItem Value="1">فیلم و ویدیو</asp:ListItem>
@@ -130,50 +128,48 @@
                             </tr>
                         </table>
                     </div>
+                    <br/>
                     <asp:MultiView ID="MultiView" runat="server" ActiveViewIndex="-1">
                         <asp:View ID="V_Film" runat="server">
                             <div>
-                                <table class="ProfileHeaderTable">
+                                <table class="ProfileHeaderTable control-marging">
                                     <tr>
                                         <td class="tdd">
-                                            نام فیلم - فارسی:
+                                            نام فیلم - فارسی: <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txt_Film_NameF"
+                                                ErrorMessage="*" ForeColor="Red" ValidationGroup="1"></asp:RequiredFieldValidator>
                                         </td>
                                         <td>
-                                            <asp:TextBox CssClass="TXT_Fa" ID="txt_Film_NameF" runat="server"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txt_Film_NameF"
-                                                ErrorMessage="*" ForeColor="Red" ValidationGroup="1"></asp:RequiredFieldValidator>
+                                            <asp:TextBox CssClass="form-control" ID="txt_Film_NameF" runat="server"></asp:TextBox>
+                                            
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            نام فیلم - انگلیسی:
+                                          Film English Title: <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txt_Film_NameEn"
+                                                ErrorMessage="*" ForeColor="Red" ValidationGroup="1"></asp:RequiredFieldValidator>
                                         </td>
                                         <td>
-                                            <asp:TextBox CssClass="TXT_En" ID="txt_Film_NameEn" runat="server"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txt_Film_NameEn"
-                                                ErrorMessage="*" ForeColor="Red" ValidationGroup="1"></asp:RequiredFieldValidator>
+                                            <asp:TextBox CssClass="form-control enDirection" ID="txt_Film_NameEn" runat="server"></asp:TextBox>                                            
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            خلاصه داستان - فارسی:
+                                            خلاصه داستان - فارسی: <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txt_Film_summaryF"
+                                                ErrorMessage="*" ForeColor="Red" ValidationGroup="1"></asp:RequiredFieldValidator>
                                         </td>
                                         <td>
-                                            <asp:TextBox CssClass="TXT_Fa" Width="100%" ID="txt_Film_summaryF" runat="server"
+                                            <asp:TextBox CssClass="form-control" Width="100%" ID="txt_Film_summaryF" runat="server"
+                                                TextMode="MultiLine"></asp:TextBox>                                           
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                           Film English Summary:                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txt_Film_summaryEn"
+                                                ErrorMessage="*" ForeColor="Red" ValidationGroup="1"></asp:RequiredFieldValidator>
+                                        </td>
+                                        <td>
+                                            <asp:TextBox CssClass="form-control enDirection" Width="100%" ID="txt_Film_summaryEn" runat="server"
                                                 TextMode="MultiLine"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txt_Film_summaryF"
-                                                ErrorMessage="*" ForeColor="Red" ValidationGroup="1"></asp:RequiredFieldValidator>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            خلاصه داستان - انگلیسی:
-                                        </td>
-                                        <td>
-                                            <asp:TextBox CssClass="TXT_En" Width="100%" ID="txt_Film_summaryEn" runat="server"
-                                                TextMode="MultiLine"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txt_Film_summaryEn"
-                                                ErrorMessage="*" ForeColor="Red" ValidationGroup="1"></asp:RequiredFieldValidator>
                                         </td>
                                     </tr>
                                     <tr>
@@ -181,7 +177,7 @@
                                             تاریخ تولید:
                                         </td>
                                         <td>
-                                            <asp:DropDownList ID="cmd_Day" CssClass="TXT_En" runat="server">
+                                            <asp:DropDownList ID="cmd_Day" CssClass="form-control" runat="server">
                                                 <asp:ListItem>1</asp:ListItem>
                                                 <asp:ListItem>2</asp:ListItem>
                                                 <asp:ListItem>3</asp:ListItem>
@@ -214,7 +210,7 @@
                                                 <asp:ListItem>31</asp:ListItem>
                                                 <asp:ListItem></asp:ListItem>
                                             </asp:DropDownList>
-                                            <asp:DropDownList ID="cmd_Month" CssClass="TXT_Fa" runat="server">
+                                            <asp:DropDownList ID="cmd_Month" CssClass="form-control" runat="server">
                                                 <asp:ListItem Value="1">Jan</asp:ListItem>
                                                 <asp:ListItem Value="2">Feb</asp:ListItem>
                                                 <asp:ListItem Value="3">Mar</asp:ListItem>
@@ -228,7 +224,7 @@
                                                 <asp:ListItem Value="11">Nov</asp:ListItem>
                                                 <asp:ListItem Value="12">Dec</asp:ListItem>
                                             </asp:DropDownList>
-                                            <asp:DropDownList ID="cmd_Year" CssClass="TXT_Fa" runat="server">
+                                            <asp:DropDownList ID="cmd_Year" CssClass="form-control" runat="server">
                                                 <asp:ListItem>1940</asp:ListItem>
                                                 <asp:ListItem>1941</asp:ListItem>
                                                 <asp:ListItem>1942</asp:ListItem>
@@ -325,43 +321,43 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            لینک مرتبط:
-                                        </td>
-                                        <td>
-                                            <asp:TextBox CssClass="TXT_En" Width="214px" ID="txt_Film_PageLink" runat="server"></asp:TextBox>
-                                            <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="txt_Film_PageLink"
+                                            لینک مرتبط:   <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="txt_Film_PageLink"
                                                 ErrorMessage="بصورت http://site.site وارد شود." Font-Size="X-Small" ForeColor="Red"
                                                 ValidationExpression="http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&amp;=]*)?" ValidationGroup="1"></asp:RegularExpressionValidator>
                                         </td>
-                                    </tr>
-                                    <tr>
                                         <td>
-                                            کارگردان:
-                                        </td>
-                                        <td>
-                                            <asp:TextBox CssClass="TXT_Fa" ID="txt_Film_Director" runat="server"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txt_Film_Director"
-                                                ErrorMessage="*" ForeColor="Red" ValidationGroup="1"></asp:RequiredFieldValidator>
+                                            <asp:TextBox CssClass="form-control" Width="214px" ID="txt_Film_PageLink" runat="server"></asp:TextBox>
+                                          
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            نویسنده:
+                                            کارگردان: <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txt_Film_Director"
+                                                ErrorMessage="*" ForeColor="Red" ValidationGroup="1"></asp:RequiredFieldValidator>
                                         </td>
                                         <td>
-                                            <asp:TextBox CssClass="TXT_Fa" ID="txt_Film_writer" runat="server"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txt_Film_writer"
-                                                ErrorMessage="*" ForeColor="Red" ValidationGroup="1"></asp:RequiredFieldValidator>
+                                            <asp:TextBox CssClass="form-control" ID="txt_Film_Director" runat="server"></asp:TextBox>
+                                            
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            تهیه کننده:
+                                            نویسنده:  <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txt_Film_writer"
+                                                ErrorMessage="*" ForeColor="Red" ValidationGroup="1"></asp:RequiredFieldValidator>
                                         </td>
                                         <td>
-                                            <asp:TextBox CssClass="TXT_Fa" ID="txt_Film_producer" runat="server"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="txt_Film_producer"
+                                            <asp:TextBox CssClass="form-control" ID="txt_Film_writer" runat="server"></asp:TextBox>
+                                           
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            تهیه کننده: <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="txt_Film_producer"
                                                 ErrorMessage="*" ForeColor="Red" ValidationGroup="1"></asp:RequiredFieldValidator>
+                                        </td>
+                                        <td>
+                                            <asp:TextBox CssClass="form-control" ID="txt_Film_producer" runat="server"></asp:TextBox>
+                                            
                                         </td>
                                     </tr>
                                     <tr>
@@ -369,7 +365,7 @@
                                             توضیحات و یا سایر عوامل:
                                         </td>
                                         <td>
-                                            <asp:TextBox CssClass="TXT_Fa" Width="100%" ID="txt_Film_castcrew" runat="server"
+                                            <asp:TextBox CssClass="form-control" Width="100%" ID="txt_Film_castcrew" runat="server"
                                                 TextMode="MultiLine"></asp:TextBox>
                                         </td>
                                     </tr>
@@ -383,63 +379,61 @@
                                     </tr>
                                 </table>
                             </div>
-                            <div style="text-align: left;">
-                                <asp:Button ID="btnInsertFilm" CssClass="BTN" runat="server" Text="ایجاد پروژه" ValidationGroup="1" />
+                            <div>
+                                <asp:Button ID="btnInsertFilm" CssClass="button" runat="server" Text="ایجاد پروژه" ValidationGroup="1" />
                             </div>
                         </asp:View>
                         <asp:View ID="V_Screenplay" runat="server">
                             <div>
-                                <table class="ProfileHeaderTable">
+                                <table class="ProfileHeaderTable control-marging">
                                     <tr>
                                         <td class="tdd">
-                                            نام فیلمنامه - فارسی:
+                                            نام فیلمنامه - فارسی:  <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="txt_Screenplay_NameF"
+                                                ErrorMessage="*" ForeColor="Red" ValidationGroup="2"></asp:RequiredFieldValidator>
                                         </td>
                                         <td>
-                                            <asp:TextBox CssClass="TXT_Fa" ID="txt_Screenplay_NameF" runat="server"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="txt_Screenplay_NameF"
-                                                ErrorMessage="*" ForeColor="Red" ValidationGroup="2"></asp:RequiredFieldValidator>
+                                            <asp:TextBox CssClass="form-control" ID="txt_Screenplay_NameF" runat="server"></asp:TextBox>
+                                           
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            نام فیلمنامه - انگلیسی:
+                                           Script English Title: <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="txt_Screenplay_NameEn"
+                                                ErrorMessage="*" ForeColor="Red" ValidationGroup="2"></asp:RequiredFieldValidator>
                                         </td>
                                         <td>
-                                            <asp:TextBox CssClass="TXT_En" ID="txt_Screenplay_NameEn"  runat="server"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="txt_Screenplay_NameEn"
-                                                ErrorMessage="*" ForeColor="Red" ValidationGroup="2"></asp:RequiredFieldValidator>
+                                            <asp:TextBox CssClass="form-control enDirection" ID="txt_Screenplay_NameEn"  runat="server"></asp:TextBox>                                            
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            خلاصه فیلمنامه - فارسی:
+                                            خلاصه فیلمنامه - فارسی: <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="txt_Screenplay_summaryF"
+                                                ErrorMessage="*" ForeColor="Red" ValidationGroup="2"></asp:RequiredFieldValidator>
                                         </td>
                                         <td>
-                                            <asp:TextBox CssClass="TXT_Fa" Width="100%" ID="txt_Screenplay_summaryF" runat="server"
+                                            <asp:TextBox CssClass="form-control" Width="100%" ID="txt_Screenplay_summaryF" runat="server"
                                                 TextMode="MultiLine"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="txt_Screenplay_summaryF"
-                                                ErrorMessage="*" ForeColor="Red" ValidationGroup="2"></asp:RequiredFieldValidator>
+                                            
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            خلاصه فیلمنامه - انگلیسی:
+                                        Script English Summary: <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ControlToValidate="txt_Screenplay_summaryEn"
+                                                ErrorMessage="*" ForeColor="Red" ValidationGroup="2"></asp:RequiredFieldValidator>
                                         </td>
                                         <td>
-                                            <asp:TextBox CssClass="TXT_En" Width="100%" ID="txt_Screenplay_summaryEn" runat="server"
-                                                TextMode="MultiLine"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ControlToValidate="txt_Screenplay_summaryEn"
-                                                ErrorMessage="*" ForeColor="Red" ValidationGroup="2"></asp:RequiredFieldValidator>
+                                            <asp:TextBox CssClass="form-control enDirection" Width="100%" ID="txt_Screenplay_summaryEn" runat="server"
+                                                TextMode="MultiLine"></asp:TextBox>                                            
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            نویسنده:
+                                            نویسنده:   <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ControlToValidate="txt_Screenplay_writer"
+                                                ErrorMessage="*" ForeColor="Red" ValidationGroup="2"></asp:RequiredFieldValidator>
                                         </td>
                                         <td>
-                                            <asp:TextBox CssClass="TXT_Fa"  ID="txt_Screenplay_writer" runat="server"></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ControlToValidate="txt_Screenplay_writer"
-                                                ErrorMessage="*" ForeColor="Red" ValidationGroup="2"></asp:RequiredFieldValidator>
+                                            <asp:TextBox CssClass="form-control"  ID="txt_Screenplay_writer" runat="server"></asp:TextBox>
+                                          
                                         </td>
                                     </tr>
                                     <tr>
@@ -447,7 +441,7 @@
                                             توضیحات:
                                         </td>
                                         <td>
-                                            <asp:TextBox CssClass="TXT_Fa" Width="100%" ID="txt_Screenplay_detail" runat="server"
+                                            <asp:TextBox CssClass="form-control" Width="100%" ID="txt_Screenplay_detail" runat="server"
                                                 TextMode="MultiLine"></asp:TextBox>
                                         </td>
                                     </tr>
@@ -461,8 +455,8 @@
                                     </tr>
                                 </table>
                             </div>
-                            <div style="text-align: left;">
-                                <asp:Button ID="btnInsertScreenplay" CssClass="BTN" runat="server" Text="ایجاد پروژه"
+                            <div>
+                                <asp:Button ID="btnInsertScreenplay" CssClass="button" runat="server" Text="ایجاد پروژه"
                                     ValidationGroup="2" />
                             </div>
                         </asp:View>
@@ -485,7 +479,8 @@
                                     <HeaderStyle CssClass="ddd"></HeaderStyle>
                                     <ItemStyle HorizontalAlign="center" />
                                 </asp:BoundField>
-                                <asp:BoundField DataField="type" HeaderText="نوع پروژه" ReadOnly="True" HeaderStyle-CssClass="ddd"
+                                <asp:BoundField DataField="type" HeaderText="نوع پروژه" ReadOnly="True" 
+                                    HeaderStyle-CssClass="ddd"
                                     SortExpression="type" HeaderStyle-HorizontalAlign="right">
                                     <HeaderStyle HorizontalAlign="Right" CssClass="ddd"></HeaderStyle>
                                     <ItemStyle Width="80px" HorizontalAlign="center" />
@@ -525,7 +520,7 @@
                                 پروژه ای وجود ندارد.
                             </EmptyDataTemplate>
                             <FooterStyle BackColor="#CCCC99" />
-                            <HeaderStyle BackColor="#539FA0" Font-Bold="True" ForeColor="Black" HorizontalAlign="Right"
+                            <HeaderStyle BackColor="#ECCE01" Font-Bold="True" ForeColor="Black" HorizontalAlign="Right"
                                 VerticalAlign="Middle" Font-Names="irsans" Wrap="True" />
                             <PagerStyle BackColor="#F7F7DE" ForeColor="Black" HorizontalAlign="Right" />
                             <RowStyle BackColor="#F7F7DE" />

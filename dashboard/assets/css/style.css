@@ -83,7 +83,7 @@ margin-bottom: 20px;
 color: #fff;
 text-align: center;
 cursor:pointer;
-background-color:#48BDC5;
+background-color:#818181;
 -webkit-border-radius:50%;
     -moz-border-radius:50%;
 }
@@ -91,7 +91,7 @@ background-color:#48BDC5;
    HEADER SECTION STYLES
  ============================================================ */
 header {
-    background-color: #48BDC5;
+    background-color: #818181;
     color: #fff;
     padding: 10px;
     text-align: right;
@@ -107,11 +107,6 @@ header {
     margin-bottom: 30px;
 }
 
-.navbar-brand {
-    width: 250px;
-    padding-top: 30px;
-}
-
 /* USER SETTINGS DIV */
 .user-settings-wrapper .nav > li > a {
     position: relative;
@@ -122,7 +117,7 @@ header {
     -moz-border-radius: 50%;
     height: 60px;
     width: 60px;
-    background-color: #48BDC5;
+    background-color: #818181;
     color: #fff;
 }
 
@@ -141,7 +136,7 @@ header {
 
     .user-settings-wrapper .nav > li > a:hover,.user-settings-wrapper .nav > li > a:focus {
         text-decoration: none;
-        background-color: #bab000!important;
+        background-color: #ECCE01!important;
     }
 
     .user-settings-wrapper img {
@@ -169,10 +164,10 @@ header {
 
 /* MENU LINKS SECTION*/
 
-.menu-section {
-    background-color: #3D3D3D;
+.menu-section *{
+    color: black !important;
+    text-align: right;
 }
-
 #menu-top a {
     color: #FFF;
     text-decoration: none;
@@ -182,24 +177,24 @@ header {
 }
 
 .menu-top-active {
-    background-color: #bab000;
+    background-color: #ECCE01;
 }
 
-.menu-section .nav > li > a:hover,.menu-section .nav > li > a:focus {
-    background-color: #48BDC5!important;
+.menu-section .nav > li > a:hover, .menu-section .nav > li > a:focus {
+    background-color: #F9F9F9 !important;
 }
 
 .menu-section .dropdown-menu > li > a:hover,.menu-section .dropdown-menu > li > a:focus {
-    background-color: #48BDC5!important;
+    background-color: #818181!important;
 }
 
 .navbar-inverse {
-    background-color: #bab000;
     border-color: transparent;
+    background-color:unset;
 }
 
 .navbar-toggle {
-    background-color: #48BDC5;
+    background-color: #818181;
     border: 1px solid #fff;
 }
 
@@ -213,7 +208,7 @@ footer {
     padding: 10px;
     color: #fff;
     font-size: 12px;
-    background-color: #bab000;
+    background-color: #ECCE01;
 }
 
     footer a, footer a:hover {
@@ -361,20 +356,20 @@ footer {
         }
         .BTN
         {
-            border:1px solid #BAB000;
+            border:1px solid #ECCE01;
             background-color:#E5DA00;
             width:200px;
             -moz-border-radius: 5px;	-webkit-border-radius: 5px;	 border-radius:5px;
         }
         .BTN:hover
         {
-            background-color:#48BDC5;
+            background-color:#818181;
             cursor:pointer;
             border-color:Blue;
         }  
         .frame
         {
-            border:1px solid #BAB000;
+            border:1px solid #ECCE01;
             -moz-border-radius: 5px;	-webkit-border-radius: 5px;	 border-radius:5px;
             padding:10px;
             margin-bottom:10px;
