@@ -94,7 +94,7 @@
                             <ItemTemplate>
                                 <div class="col-md-6">
                                     <div class="slider-single mb-30 bg-white p-10 border-radius-15 kingYellow">
-                                        <div class="img-hover-scale border-radius-10">
+                                        <div class="img-hover-scale border-radius-10 pointer">
                                             <a href='<%# String.Format("/{0}", Eval("id")) %>'>
                                                 <asp:Image AlternateText='<%# Eval("title").Replace("ي", "ی") %>' Width="100%" Style="-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;"
                                                     ID="Image1" runat="server" ImageUrl='<%# "~\convertToUnscale\?photo=" + String.Format("files\uploadFiles\article\{0}", Eval("photo")) + "&w=400&h=236" %>' />

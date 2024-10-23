@@ -8,7 +8,7 @@
             <div class="col">
                 <div class="slider-single bg-white p-10 border-radius-15">
 
-                    <div class="post-thumb position-relative">
+                    <div class="post-thumb position-relative pointer">
 
 
                         <div class="img-hover-scale border-radius-10">

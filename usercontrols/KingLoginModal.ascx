@@ -52,13 +52,15 @@
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text"><i class="fa fa-envelope"></i></span>
                                                         </div>
-                                                        <asp:TextBox ID="txtEmail" Width="300" CssClass="form-control kingTextEn" placeholder="Email" runat="server"></asp:TextBox>
+                                                        <asp:TextBox ID="txtEmail" Width="300" CssClass="form-control kingTextEn"
+                                                            placeholder="Email" runat="server"></asp:TextBox>
                                                     </div>
                                                     <div class="input-group mb-3">
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text"><i class="fa fa-lock"></i></span>
                                                         </div>
-                                                        <asp:TextBox ID="txtPass" Width="300" CssClass="form-control kingTextEn" type="password" placeholder="Password" runat="server" TextMode="Password"></asp:TextBox>
+                                                        <asp:TextBox ID="txtPass" Width="300" CssClass="form-control kingTextEn"
+                                                            type="password" placeholder="Password" runat="server" TextMode="Password"></asp:TextBox>
                                                     </div>
 
 
@@ -75,7 +77,7 @@
 
                                                     <div style="text-align: center;">
                                                         <asp:Button ID="btnLogin" runat="server" CssClass="button" Text="ورود" ValidationGroup="20"></asp:Button>
-                                                        <asp:Button ID="btnRegister" runat="server" CssClass="button" Text="ثبت نام" ValidationGroup="20"></asp:Button>
+                                                        <asp:Button ID="btnRegister" runat="server" CssClass="button" Text="ثبت نام" ValidationGroup="40"></asp:Button>
                                                         <br />
                                                         <asp:LinkButton ID="LinkForgotPassword" CssClass="forgot-password" Style="font-size: 11px;"
                                                             runat="server">
@@ -102,7 +104,8 @@
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text"><i class="fa fa-envelope"></i></span>
                                                         </div>
-                                                        <asp:TextBox ID="txtEmailReg" Width="300" CssClass="form-control kingTextEn" placeholder="Email" runat="server"></asp:TextBox>
+                                                        <asp:TextBox ID="txtEmailReg" Width="300" CssClass="form-control kingTextEn"
+                                                            placeholder="Email" runat="server"></asp:TextBox>
                                                     </div>
 
 
@@ -151,7 +154,7 @@
                                     </asp:MultiView>
                                     <asp:UpdateProgress runat="server">
                                         <ProgressTemplate>
-                                            loading...
+                                            منتظر بمانید ...
                                         </ProgressTemplate>
                                     </asp:UpdateProgress>
                                 </div>

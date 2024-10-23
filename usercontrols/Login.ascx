@@ -135,7 +135,7 @@
                                 </asp:MultiView>
                                 <asp:UpdateProgress runat="server">
                                     <ProgressTemplate>
-                                        loading...
+                                        منتظر بمانید ...
                                     </ProgressTemplate>
                                 </asp:UpdateProgress>
                             </div>

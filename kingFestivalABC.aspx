@@ -180,7 +180,7 @@
                                         <asp:Label ID="Label3" runat="server" Text='<%# Bind("LevelName") %>'></asp:Label>
                                     </td>
                                     <td class="p-2">
-                                        <a class="button" onclick="return Open('<%# Eval("id")%>','<%# Eval("title_fa").ToString().Replace(" ", "-") + ".html" %>' );">جزییات</a>
+                                        <a class="button" href="/festival/<%# Eval("id")%>">جزییات</a>
                                     </td>
                                 </tr>
                             </ItemTemplate>

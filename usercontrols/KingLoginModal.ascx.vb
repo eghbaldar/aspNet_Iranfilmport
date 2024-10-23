@@ -73,8 +73,8 @@ Partial Class usercontrols_KingLoginModal
         If Not Request.Cookies("IFP") Is Nothing And DLL_Dash.EnableCheckCookie Then Response.Redirect("~\dashboard\")
         ''''''''''''''''''''
         If Not String.IsNullOrEmpty(Page.RouteData.Values("veriC")) And Not String.IsNullOrEmpty(Page.RouteData.Values("email")) Then
-            MultiView.ActiveViewIndex = 1
-            If DLL_Dash.CheckVeriC(Page.RouteData.Values("email"), Page.RouteData.Values("veriC")) Then
+			MultiView.ActiveViewIndex = 1
+			If DLL_Dash.CheckVeriC(Page.RouteData.Values("email"), Page.RouteData.Values("veriC")) Then
                 Pnl_Veri_ok.Visible = True
                 lblEmail.Text = Page.RouteData.Values("email")
             Else
