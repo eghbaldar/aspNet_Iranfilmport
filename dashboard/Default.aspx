@@ -33,14 +33,9 @@
                             <tr>
                                 <td style="font-size: 12px; text-align: center;">
                                     <asp:FileUpload ID="File_Pic_Profile" runat="server" />
-
-                                    <div class="alert alert-warning" role="alert">
-                                        <span style="color: Red;">ابعداد تصویر حداکثر 250 در 250 پیکسل و حجم
-                                        زیر 50 کلیوبایت باشد</span>
-                                    </div>
                                     <br />
                                     <asp:Button ID="btnUpdatePicProfile" OnClientClick="return confirm('پس از بروزرسانی این قسمت، پروفایل شما به حالت تعلیق در آمده و تا تائید پشتیبان درگاه فیلم ایران در دسترس نخواهد بود. آیا مطمئن هستید؟');"
-                                        CssClass="button" runat="server" Text="بروزرسانی پروفایل" />
+                                        CssClass="button" runat="server" Text="بروزرسانی" />
                                 </td>
                             </tr>
                             <tr style="text-align: center;">
@@ -54,6 +49,9 @@
                     <br />
                     <div class="alert alert-warning" role="alert">
                         پس از ارسال تصاویر پروفایل شما تا تایید کارشناسان معلق خواهد شد.
+                    </div>
+                    <div class="alert alert-warning" role="alert">
+                        حجم زیر 250 کلیوبایت باشد                                        
                     </div>
                     <asp:Label ID="lblWarningSize" runat="server"></asp:Label>
                 </div>
@@ -80,12 +78,12 @@
                         <table style="width: 100%;">
                             <tr style="text-align: center;">
                                 <td>تصویر کارت ملی<br />
-                                    <span style="color: Red; font-size: 8px;">ابعداد تصویر حداکثر 250 در 250 پیکسل و حجم
-                                        زیر 150 کلیوبایت باشد</span>
+                                    <span style="color: Red; font-size: 8px;">حجم
+                                        زیر 200 کلیوبایت باشد</span>
                                 </td>
                                 <td>تصویر شناسنامه<br />
-                                    <span style="color: Red; font-size: 8px;">ابعداد تصویر حداکثر 250 در 1050 پیکسل و حجم
-                                        زیر 150 کلیوبایت باشد</span>
+                                    <span style="color: Red; font-size: 8px;">حجم
+                                        زیر 200 کلیوبایت باشد</span>
                                 </td>
                             </tr>
                             <tr style="text-align: center;">

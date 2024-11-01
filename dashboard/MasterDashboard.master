@@ -7,10 +7,12 @@
     <meta charset="utf-8" />
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <link rel="shortcut icon" href="<%= ResolveUrl("~/files/images/icons/icon.png")%>" />
+    <link rel="shortcut icon" type="image/x-icon" href="<%= ResolveUrl("~/files/kingMaterials/imgs/logos/iconScreen.png")%>">
     <link href="<%= ResolveUrl("~/dashboard/assets/css/bootstrap.css")%>" rel="stylesheet" />
     <link href="<%= ResolveUrl("~/dashboard/assets/css/style.css")%>" rel="stylesheet" />
     <link href="<%= ResolveUrl("~/dashboard/assets/css/custom.css")%>" rel="stylesheet" />
+    <!-- SweetAlert-->
+    <link href="/files/sweetalert/sweetalert2.min.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-118348858-1"></script>
@@ -117,7 +119,10 @@
                 <div class="alert alert-info" role="alert" style="direction: rtl; text-align: right; font-family: Samim;">
                     <asp:Label ID="lblInfoUsername" runat="server" Text="Label"></asp:Label>
                 </div>
-                <div class="alert alert-danger" role="alert" runat="server" id="warning" visible="false">
+                <div class="alert alert-success" role="alert" style="direction: rtl; text-align: right; font-family: Samim;">
+جهت دیدن شدن بیشتر پروفایل و نیز لیست شدن نام‌تان و نیز عناوین فیلم و فیلمنامه‌هایتان در سرچ گوگل، آدرس پروفایل‌تان را در شبکه‌های مجازی مانند اینستاگرام شر کنید.
+</div>
+                <div class="alert alert-danger" role="alert" runat="server" id="warning" visible="false" style="font-family:Samim;text-align:right;direction:rtl;">
                     پروفایل شما معلق شده است، اطلاعات ارسالی شما بزودی توسط تیم کارشناسی درگاه بررسی
                 شده و نتیجه به اطلاع شما خواهد رسید. همچنین تا اطلاع ثانوی دسترسی عمومی به پروفایل
                 شما نیز معلق گردیده است.
@@ -141,6 +146,20 @@
     </footer>
         <script src="<%= ResolveUrl("~/dashboard/assets/js/jquery-1.11.1.js")%>"></script>
         <script src="<%= ResolveUrl("~/dashboard/assets/js/bootstrap.js")%>"></script>
+            <!-- SweetAlert-->
+    <script src="/files/sweetalert/sweetalert2.all.min.js"></script>
+    <script src="/files/sweetalert/sweetalert2.min.js"></script>
+        <script>
+            function showSweetAlert(title, text) {
+                Swal.fire({
+                    title: title,
+                    html: text,
+                    icon: "info",
+                    confirmButtonText : "متوجه شدم",
+                    confirmButtonColor: "#ECCE2F",
+                });
+            }
+        </script>
     </form>
 </body>
 </html>

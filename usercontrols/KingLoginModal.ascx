@@ -4,7 +4,13 @@
         <div class="modal-content p-10">
             <div class="row modal-header">
                 <div class="col-6">
-                    <h5 class="modal-title" id="exampleModalLabel">پنل‌های ورودی</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        <asp:UpdatePanel runat="server" UpdateMode="Always">
+                            <ContentTemplate>
+                                <asp:Label ID="lblTitle" runat="server"></asp:Label>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </h5>
                 </div>
                 <div class="col-6 align-items-left close"><span data-dismiss="modal" aria-hidden="true">&times;</span></div>
             </div>
@@ -46,7 +52,10 @@
                                         <asp:View ID="SpecialUsers" runat="server">
                                             <form method="post" action="" class="login-form">
                                                 <asp:Panel ID="P_Login" runat="server" Style="direction: ltr;">
-
+                                                    <div class="alert alert-success" style="direction: rtl; text-align: center;" role="alert">
+                                                        «صفحه اختصاصی» خود را رایگان بسازید
+                                                        و با ایجاد صفحه برای هر فیلم و یا فیلمنامه خود، در سرچ گوگل دیده شوید.
+                                                    </div>
 
                                                     <div class="input-group mb-3">
                                                         <div class="input-group-prepend">
@@ -79,23 +88,20 @@
                                                         <asp:Button ID="btnLogin" runat="server" CssClass="button" Text="ورود" ValidationGroup="20"></asp:Button>
                                                         <asp:Button ID="btnRegister" runat="server" CssClass="button" Text="ثبت نام" ValidationGroup="40"></asp:Button>
                                                         <br />
-                                                        <asp:LinkButton ID="LinkForgotPassword" CssClass="forgot-password" Style="font-size: 11px;"
+                                                        <br />
+                                                        <asp:LinkButton ID="LinkForgotPassword" CssClass="register"
                                                             runat="server">
                 کلمه عبور را فراموش کرده‌اید؟</asp:LinkButton>
                                                     </div>
-
-
                                                     <div runat="server" id="StatusOfRegister" style="direction: rtl; text-align: justify; color: Red; font-size: 10px;">
                                                         <hr />
                                                         به دلیل تکمیل ظرفیت، تا اطلاع ثانوی ثبت نام مقدور نیست.
-                                        <br />
+                                                        <br />
                                                         لطفا با شماره <span style="color: Blue; font-size: 13px;">09216343320</span> تماس
                                         گرفته و در خصوص ارسال و پخش فیلم مشاوره بگیرید. همچنین میتوانید اطلاعات خود به ایمیل
                                         <a style="color: Blue; font-size: 12px;" href="mailto:support@iranfilmport.com">support@iranfilmport.com</a>
                                                         جهت بررسی ارسال کنید.
                                                     </div>
-
-
                                                 </asp:Panel>
                                                 <asp:Panel ID="P_Register" runat="server" Visible="false" Style="direction: ltr;">
 
@@ -133,19 +139,24 @@
                                                     </div>
                                                 </asp:Panel>
                                                 <asp:Panel ID="P_password" runat="server" Visible="false" Style="direction: ltr;">
-                                                    <div class="input-container">
-                                                        <i class="fa fa-envelope"></i>
-                                                        <asp:TextBox ID="txtForgotPasword" Width="300" Style="text-align: left;" CssClass="input"
-                                                            placeholder="Email" runat="server"></asp:TextBox>
-                                                        <div style="direction: rtl; text-align: right; text-justify: inter-word; text-align: justify; font-size: 12px;">
-                                                            <asp:Label ID="lblForgotPasword" runat="server"></asp:Label>
+
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fa fa-envelope"></i></span>
                                                         </div>
+                                                        <asp:TextBox ID="txtForgotPasword" Width="300" CssClass="form-control kingTextEn"
+                                                            type="password" placeholder="Email" runat="server"></asp:TextBox>
                                                     </div>
-                                                    <div>
+                                                    <div style="direction: rtl">
+                                                        <asp:Label ID="lblForgotPasword" runat="server"></asp:Label>
+                                                    </div>
+                                                    <br />
+                                                    <div style="text-align: center;">
                                                         <asp:Button ID="btnSendPassToMail" runat="server" CssClass="button" Text="ارسال پسورد به ایمیل"
                                                             ValidationGroup="20"></asp:Button>
                                                     </div>
-                                                    <div>
+                                                    <br />
+                                                    <div style="text-align: center;">
                                                         <asp:LinkButton ID="btnBacktoLogin2" CssClass="register" runat="server">بازگشت به صحفه ورود</asp:LinkButton>
                                                     </div>
                                                 </asp:Panel>
@@ -169,19 +180,22 @@
                             <div class="login-form-header">
                                 <div class="logo">
                                     <a href="../">
-                                        <img alt="درگاه فیلم ایران Iran Film Port" src='<%= Page.ResolveUrl("~/files/images/logos/logo_3.png") %>'
-                                            width="200" />
+                                        <img alt="درگاه فیلم ایران Iran Film Port" src='<%= Page.ResolveUrl("~/files/KingMaterials/imgs/logos/iranfilmport_movibeta_2.png") %>'
+                                            width="300" />
                                     </a>
                                 </div>
-                                <div>
-                                    <h7>تایید لینک کد ارسال</h7>
+                                <div class="alert alert-warning mt-20 mb-20" role="alert">
+                                    جهت تکمیل فرآیند، اطلاعات زیر را به دقت پر کرده و سپس روی دکمه «ادامه» کلیک کنید.
                                 </div>
                             </div>
                             <asp:Panel ID="Pnl_Veri_not" runat="server" Visible="false">
                                 <div style="text-justify: inter-word; text-align: justify; direction: rtl;">
                                     <asp:Label ID="Label1" runat="server" ForeColor="Red" Text="لینک کد فعالسازی شما صحیح نمی باشد. در صورت بررسی دوباره و عدم فعالسازی موضوع را با بخش پشتیبانی فنی درگاه در میان بگذارید."></asp:Label>
                                     <br />
-                                    <a style="font-family: Samim;" href='<%= Page.ResolveUrl("~/تماس-با-درگاه-فیلم-ایران") %>'>تماس با واحدهای پشتیبانی</a>
+                                    <br />
+                                    <a class="button"
+                                        href='<%= Page.ResolveUrl("~/تماس-با-درگاه-فیلم-ایران") %>'>تماس با واحدهای پشتیبانی</a>
+                                </div>
                             </asp:Panel>
                             <asp:Panel ID="Pnl_Veri_ok" runat="server" Visible="false">
                                 <div style="text-justify: inter-word; text-align: justify; text-align: right; direction: rtl;">
@@ -198,7 +212,7 @@
                                             <td>نام:
                                             </td>
                                             <td>
-                                                <asp:TextBox CssClass="TXT" ID="txtName" runat="server"></asp:TextBox>
+                                                <asp:TextBox CssClass="form-control" ID="txtName" runat="server"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtName"
                                                     ErrorMessage="*" ForeColor="Red" ValidationGroup="12"></asp:RequiredFieldValidator>
                                             </td>
@@ -207,7 +221,7 @@
                                             <td>نام خانوادگی:
                                             </td>
                                             <td>
-                                                <asp:TextBox CssClass="TXT" ID="txtLastName" runat="server"></asp:TextBox>
+                                                <asp:TextBox CssClass="form-control" ID="txtLastName" runat="server"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtLastName"
                                                     ErrorMessage="*" ForeColor="Red" ValidationGroup="12"></asp:RequiredFieldValidator>
                                             </td>
@@ -216,7 +230,7 @@
                                             <td>سمت:
                                             </td>
                                             <td>
-                                                <asp:DropDownList CssClass="TXT" ID="cmdType" runat="server">
+                                                <asp:DropDownList CssClass="form-control" ID="cmdType" runat="server">
                                                     <asp:ListItem Value="1">کارگردان</asp:ListItem>
                                                     <asp:ListItem Value="2">تهیه کننده</asp:ListItem>
                                                     <asp:ListItem Value="3">پخش کننده</asp:ListItem>
@@ -226,10 +240,16 @@
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td></td>
+                                            <td>
+                                                <br />
+                                            </td>
+                                        </tr>
+                                        <tr>
                                             <td>نام کاربری:
                                             </td>
                                             <td>
-                                                <asp:TextBox CssClass="TXT" Style="direction: ltr; text-align: left;" ID="txtUsername"
+                                                <asp:TextBox CssClass="form-control kingTextEn" Style="direction: ltr; text-align: left;" ID="txtUsername"
                                                     runat="server"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtUsername"
                                                     ErrorMessage="*" ForeColor="Red" ValidationGroup="12"></asp:RequiredFieldValidator>
@@ -239,7 +259,7 @@
                                             <td>شماره موبایل:
                                             </td>
                                             <td>
-                                                <asp:TextBox ID="txtPhone" runat="server" CssClass="TXT" Style="direction: ltr; text-align: left;"></asp:TextBox>
+                                                <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control kingTextEn" Style="direction: ltr; text-align: left;"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtPhone"
                                                     ErrorMessage="*" ForeColor="Red" ValidationGroup="12"></asp:RequiredFieldValidator>
                                             </td>
@@ -248,7 +268,7 @@
                                             <td>کلمه عبور:
                                             </td>
                                             <td>
-                                                <asp:TextBox CssClass="TXT" Style="direction: ltr; text-align: left;" ID="txtPass1"
+                                                <asp:TextBox CssClass="form-control kingTextEn" Style="direction: ltr; text-align: left;" ID="txtPass1"
                                                     runat="server" TextMode="Password"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtPass1"
                                                     ErrorMessage="*" ForeColor="Red" ValidationGroup="12"></asp:RequiredFieldValidator>
@@ -258,7 +278,7 @@
                                             <td>تکرار کلمه عبور:
                                             </td>
                                             <td>
-                                                <asp:TextBox CssClass="TXT" Style="direction: ltr; text-align: left;" ID="txtPass2"
+                                                <asp:TextBox CssClass="form-control kingTextEn" Style="direction: ltr; text-align: left;" ID="txtPass2"
                                                     runat="server" TextMode="Password"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtPass2"
                                                     ErrorMessage="*" ForeColor="Red" ValidationGroup="12"></asp:RequiredFieldValidator>
@@ -287,25 +307,31 @@
                                     </table>
                                 </div>
                                 <div>
-                                    <asp:Button ID="btnUpdateVerification" runat="server" CssClass="button" Text="OK | ثبت"
+                                    <asp:Button ID="btnUpdateVerification" Style="width: 100% !important;" runat="server"
+                                        CssClass="button" Text="ادامه"
                                         ValidationGroup="12"></asp:Button>
                                 </div>
                             </asp:Panel>
                         </div>
                     </asp:View>
                     <asp:View ID="YouAreLogon" runat="server">
+                                                            <div class="login-form-header">
+                                        <div class="logo mb-3">
+                                            <a href="../">
+                                                <img alt="درگاه فیلم ایران Iran Film Port" src='<%= Page.ResolveUrl("~/files/KingMaterials/imgs/logos/iranfilmport_movibeta_2.png") %>'
+                                                    width="300" />
+                                            </a>
+                                        </div>
+                                    </div>
                         <div class="login-form-content">
-                            <div style="direction: rtl; text-align: right;">
+                            <div style="direction: rtl; text-align: center;">
                                 <p>
-                                    شما قبلا وارد شده اید، از لینک زیر وارد حساب کاربری خود شوید.
-                                </p>
-                                <p>
-                                    <a href="<%= ResolveUrl("~/dashboard") %>" style="text-decoration: none;">ورود به حساب
+                                    <a href="<%= ResolveUrl("~/dashboard") %>" class="button" style="width: 100% !important;">ورود به حساب
                             کاربری</a>
                                 </p>
                                 <p>
-                                    <asp:LinkButton Style="font-family: IranYekan; font-size: 12px; font-weight: bold; color: Red;"
-                                        ID="btnSignOut" runat="server">خروج از حساب کاربری</asp:LinkButton>
+                                    <asp:Button ID="btnSignOut" Style="width: 100% !important;" runat="server"
+                                        CssClass="button" Text="خروج از حساب کاربری"></asp:Button>
                                 </p>
                             </div>
                         </div>

@@ -22,8 +22,9 @@ Partial Class MasterProfile
                     imgAvatar.ImageUrl = "~\files\uploadFiles\PhotoHeaderUsers\" + .Rows(0)("Personalphoto").ToString()
                 End If
 
-                lblName.Text = DLL_Profile.GetNameByUsername(Page.RouteData.Values("username")).Replace("ي", "ی")
-                lblNameEn.Text = .Rows(0)("EngName").ToString() & " " & .Rows(0)("EngLastName").ToString()
+				lblName.Text = DLL_Profile.GetNameByUsername(Page.RouteData.Values("username")).Replace("ي", "ی")
+				lblBigName.Text = lblName.Text
+				lblNameEn.Text = .Rows(0)("EngName").ToString() & " " & .Rows(0)("EngLastName").ToString()
 
                 Select Case .Rows(0)("type").ToString()
                     Case 1

@@ -76,14 +76,13 @@
         data-data=""><span class="text">مشاوره تخصصی پخش فیلم</span>
         <img src='<%= ResolveUrl("~/files/images/icons/whatsapp.svg") %>' />
     </a></li>
-    <li><a class="link_item theme_background _btnFloating" data-cid=""
-        href='<%= ResolveUrl("~/تماس-با-درگاه-فیلم-ایران?modal=true") %>' target="_blank" data-type="defaultPhone"
+    <li>
+         <%--href='<%= ResolveUrl("~/تماس-با-درگاه-فیلم-ایران?modal=true") %>'--%>
+        <a class="link_item theme_background _btnFloating" data-cid=""
+       onclick="OpenModalFlowingContact();" data-type="defaultPhone"
         data-data=""><span class="text">تماس با کارشناسان شرکت</span>
         <img src='<%= ResolveUrl("~/files/images/icons/phone.svg") %>' />
     </a></li>
-    <%--    <li><a href="https://apivff.modoo.at/?link=bmtbmrvu#" class="link_item theme_background _btnFloating"
-        data-cid="9033mxso" data-type="address" data-data="" data-name="오시는길"><span class="icon icon5">
-        </span><span class="text">Taha</span> </a></li>--%>
     <li id="TOPTOP" style="display: none;">
 
         <a onclick='window.scrollTo({top: 0, behavior: "smooth"});' class="link_item top_item _btnFloating">
@@ -93,7 +92,39 @@
 
     </li>
 </ul>
+<!-- Modal -->
+<div class="modal fade" id="ModalFlowingContact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">مشاوره تلفنی</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                اساس شرکت «درگاه فیلم ایران» بر مشاوره و آگاهسازی قبل از قرارداد متمرکز است.
+                <br/>
+                روی یکی از شماره‌های زیر کلیک و یا تاچ کرده 
+                و در خصوص پخش، ارسال، فروش فیلم و فیلمنامه‌تان، مشاوره رایگان بگیرد.
+                <br />
+                باافتخار منتظریم ...
+            </div>
+            <div class="modal-footer">
+                <a href="tel:09216343320" class="btn btn-primary">کارشناس پخش 1</a>
+                <a href="tel:09020763947" class="btn btn-primary">کارشناس پخش 2</a>
+                <a href="tel:09359300460" class="btn btn-primary">کارشناس پخش 3</a>
+                <a href="tel:09332300598" class="btn btn-primary">روابط عمومی</a>
+            </div>
+            <hr />
+            <a href="/تماس-با-درگاه-فیلم-ایران" class="btn btn-gray">قرار دادن پیام نوشتاری</a>
+        </div>
+    </div>
+</div>
 <script>
+    function OpenModalFlowingContact() {
+        $("#ModalFlowingContact").modal("show");
+    }
     window.addEventListener("scroll", (event) => {
         let scrollY = this.scrollY;
         //let scrollX = this.scrollX;

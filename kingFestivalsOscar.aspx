@@ -1,9 +1,8 @@
 ﻿<%@ Page Title="" Language="VB" MasterPageFile="~/KingMasterSingle.master" AutoEventWireup="false" CodeFile="kingFestivalsOscar.aspx.vb" Inherits="kingFestivalsOscar" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-       <style>
-        .txtSearch
-        {
+    <style>
+        .txtSearch {
             background-color: White;
             border: 4px solid #ccc;
             width: 100%;
@@ -13,8 +12,8 @@
             -webkit-border-radius: 0px 5px 5px 0px;
             border-radius: 0px 5px 5px 0px;
         }
-        .btnSearch
-        {
+
+        .btnSearch {
             background-color: #48BDC5;
             border: 4px solid #ccc;
             -moz-border-radius: 5px 0px 0px 5px;
@@ -25,17 +24,17 @@
             padding-right: 10px;
             color: White;
         }
-        .btnSearch:hover
-        {
-            background-color: #000;
-            color: #fff;
-        }
-        .Titr
-        {
+
+            .btnSearch:hover {
+                background-color: #000;
+                color: #fff;
+            }
+
+        .Titr {
             color: Black;
         }
-        .cmdStatus
-        {
+
+        .cmdStatus {
             padding: 5px;
             background-color: #48BDC5;
             -moz-border-radius: 5px;
@@ -43,8 +42,8 @@
             border-radius: 5px;
             color: White;
         }
-        .cmdGenre
-        {
+
+        .cmdGenre {
             background-color: #48BDC5;
             -moz-border-radius: 5px;
             -webkit-border-radius: 5px;
@@ -53,8 +52,8 @@
             text-align: left;
             direction: ltr;
         }
-        .Post
-        {
+
+        .Post {
             background-color: #f4f4f4;
             padding: 10px;
             -moz-border-radius: 5px;
@@ -64,14 +63,14 @@
             margin: 4px;
             height: 300px;
         }
-        .Post:hover
-        {
-            background-color: #e5e5e5;
-            border-color: #48BDC5;
-            cursor: pointer;
-        }
-        .IMG_Big
-        {
+
+            .Post:hover {
+                background-color: #e5e5e5;
+                border-color: #48BDC5;
+                cursor: pointer;
+            }
+
+        .IMG_Big {
             border: 1px solid #ccc;
             -moz-border-radius: 5px;
             -webkit-border-radius: 5px;
@@ -79,8 +78,8 @@
             width: 150px;
             height: 150px;
         }
-        .Detail
-        {
+
+        .Detail {
             background-color: #E5DA00;
             color: Black;
             padding: 5px;
@@ -90,110 +89,102 @@
             border-radius: 5px;
             margin: 4px;
         }
-        .Detail:hover
-        {
-            background-color: #FFFFFF;
-            border-color: #848484;
-        }
-        
-        @media (max-width: 600px)
-        {
-            .Post
-            {
+
+            .Detail:hover {
+                background-color: #FFFFFF;
+                border-color: #848484;
+            }
+
+        @media (max-width: 600px) {
+            .Post {
                 width: 100%;
                 height: 100%;
             }
-            #TableOfSearchRight
-            {
+
+            #TableOfSearchRight {
                 width: 100%;
             }
-            #TableOfSearchLeft
-            {
+
+            #TableOfSearchLeft {
                 width: 100%;
             }
-            .IMG_Big
-            {
+
+            .IMG_Big {
                 width: 100%;
                 height: 100%;
             }
-            .DLoscar tr:hover td
-            {
+
+            .DLoscar tr:hover td {
                 /*background-color: #F7F6F3;*/
                 color: Black;
             }
-            .THeader
-            {
+
+            .THeader {
                 display: none;
             }
-            .DLoscar .fr
-            {
+
+            .DLoscar .fr {
                 text-align: center;
                 direction: rtl;
                 color: Black;
             }
-            .DLoscar
-            {
+
+            .DLoscar {
                 width: 100%;
                 border-collapse: collapse;
                 direction: rtl;
                 text-align: center;
                 color: Black;
             }
-            /* Zebra striping */
-            .DLoscar tr:nth-of-type(odd)
-            {
-                background: #eee;
-                color: Black;
-            }
-            .DLoscar th
-            {
-                background: #333;
-                color: white;
-                font-weight: bold;
-            }
-            .DLoscar td,.DLoscar th
-            {
-                padding: 6px;
-                border: 1px solid #ccc;
-                text-align: center;
-            }
-            .DLoscar td
-            {
-                text-align: center;
-                direction: rtl;
-            }
+                /* Zebra striping */
+                .DLoscar tr:nth-of-type(odd) {
+                    background: #eee;
+                    color: Black;
+                }
+
+                .DLoscar th {
+                    background: #333;
+                    color: white;
+                    font-weight: bold;
+                }
+
+                .DLoscar td, .DLoscar th {
+                    padding: 6px;
+                    border: 1px solid #ccc;
+                    text-align: center;
+                }
+
+                .DLoscar td {
+                    text-align: center;
+                    direction: rtl;
+                }
         }
-        @media only screen and (max-width: 600px)
-        {
+
+        @media only screen and (max-width: 600px) {
             /* Force table to not be like tables anymore */
-            .DLoscar,.DLoscar thead,.DLoscar tbody,.DLoscar th,.DLoscar td,.DLoscar tr
-            {
+            .DLoscar, .DLoscar thead, .DLoscar tbody, .DLoscar th, .DLoscar td, .DLoscar tr {
                 display: block;
                 text-align: center;
             }
-        
-            /* Hide table headers (but not display: none;, for accessibility) */
-            .DLoscar thead tr
-            {
-                position: absolute;
-                top: -9999px;
-                left: -9999px;
-            }
-        
-            .DLoscar tr
-            {
-                border-bottom: 1px solid #ccc;
-            }
-        
-            .DLoscar td
-            {
-                /* Behave  like a "row" */
-                border: none;
-                border-bottom: 1px solid #eee;
-                position: relative;
-                text-align: center;
-            }
-        
+
+                /* Hide table headers (but not display: none;, for accessibility) */
+                .DLoscar thead tr {
+                    position: absolute;
+                    top: -9999px;
+                    left: -9999px;
+                }
+
+                .DLoscar tr {
+                    border-bottom: 1px solid #ccc;
+                }
+
+                .DLoscar td {
+                    /* Behave  like a "row" */
+                    border: none;
+                    border-bottom: 1px solid #eee;
+                    position: relative;
+                    text-align: center;
+                }
         }
     </style>
     <script>
@@ -206,7 +197,7 @@
             var v1 = 'festival\\'
             var v2 = '\\'
             window.open(v1 + id + v2 + name, '', 'width=500');
-        }     
+        }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -257,9 +248,11 @@
                                     <tr>
                                         <td style="text-align: center;">
                                             <div style="padding-bottom: 5px;">
-                                                <asp:Image AlternateText='<%# Eval("title_fa").Replace("ي", "ی") %>' CssClass="IMG_Big"
-                                                    ID="Image1" ImageUrl='<%# String.Format("~/files/uploadFiles/festival/{0}", Eval("logo")) %>'
-                                                    runat="server" />
+                                                <a target="_blank" href='<%# String.Format("festival/{0}/", Eval("id")) %>'>
+                                                    <asp:Image AlternateText='<%# Eval("title_fa").Replace("ي", "ی") %>' CssClass="IMG_Big"
+                                                        ID="Image1" ImageUrl='<%# String.Format("~/files/uploadFiles/festival/{0}", Eval("logo")) %>'
+                                                        runat="server" />
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>

@@ -10,6 +10,11 @@
         .kingPanel ul li{
             list-style-type:none !important;
         }
+        .button{
+            font-size:unset !important;
+            width:100% !important;
+            padding:10px!important;
+        }
         .button-open {
             background-color: #41c838 !important;
         }

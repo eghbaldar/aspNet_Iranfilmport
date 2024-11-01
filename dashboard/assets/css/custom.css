@@ -1,4 +1,12 @@
-﻿li {
+﻿.swal2-html-container, .swal2-title, .swal2-actions * {
+    direction: rtl !important;
+    font-family: Samim !important;
+}
+.swal2-actions *{
+    outline:0 !important;
+    color:black !important;
+}
+li {
     font-family: Samim;
     font-size: 12px;
 }

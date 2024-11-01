@@ -168,45 +168,62 @@ Partial Class dashboard_Default
         LoadData()
     End Sub
 
-    Protected Sub btnUpdateMeli_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUpdateMeli.Click
-        Dim DLL As New DLL_Dashboard
-        If File_Meli.HasFile Then
-            If CheckFileExtension(File_Meli.FileName) Then
-                If Val(File_Meli.PostedFile.ContentLength) < 150000 Then
-                    Dim FN_P As String = Guid.NewGuid.ToString + Path.GetExtension(File_Meli.FileName)
-                    Dim H As String = DLL.ShowInformation(DLLd._Email_).Tables(0).Rows(0)("BirthCertificatePic").ToString
-                    DLL.Update_MeliCard(DLLd._Email_, FN_P, H)
-                    File_Meli.SaveAs(MapPath("~/files/UploadFiles/MeliCard/" + FN_P))
-                    Response.Redirect("~/dashboard/user/me")
-                Else
-                    lblwarningMeli.Text = "<div style='padding:10px;color:red;text-align:center;font-family:tahoma;font-size:12px'>" + "ابعداد و یا حجم تصویر کارت ملی   مناسب نیست" + "</div>"
-                End If
-            Else
-                lblWarningSize.Text = "<div style='padding:10px;color:red;text-align:center;font-family:tahoma;font-size:12px'>" + "فرمت تصویر باید JPEG باشد" + "</div>"
-            End If
-        End If
-    End Sub
+	Protected Sub btnUpdateMeli_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUpdateMeli.Click
 
-    Protected Sub btnUpdateShSh_Click(sender As Object, e As System.EventArgs) Handles btnUpdateShSh.Click
+		Dim DLL As New DLL_Dashboard
+		If File_Meli.HasFile Then
+			If CheckFileExtension(File_Meli.FileName) Then
+				If Val(File_Meli.PostedFile.ContentLength) < 210000 Then
+					Dim FN_P As String = Guid.NewGuid.ToString + Path.GetExtension(File_Meli.FileName)
+					Dim H As String = DLL.ShowInformation(DLLd._Email_).Tables(0).Rows(0)("BirthCertificatePic").ToString
+					File_Meli.SaveAs(MapPath("~/files/UploadFiles/MeliCard/" + FN_P))
+					If IsValidImageSignature(MapPath("~/files/UploadFiles/MeliCard/" + FN_P)) Then
+						DLL.Update_MeliCard(DLLd._Email_, FN_P, H)
+						Response.Redirect("~/dashboard/user/me")
+					Else
+						IO.File.Delete(MapPath("~/files/UploadFiles/MeliCard/" + FN_P))
+					End If
+				Else
+					Dim title_text As String = "خطای اندازه فایل"
+					Dim error_text As String = "حجم تصویر کارت ملی مناسب نیست"
+					ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myJsFn", "showSweetAlert('" & title_text & "','" & error_text & "');", True)
+				End If
+			Else
+				Dim title_text As String = "خطای فرمت فایل"
+				Dim error_text As String = "پسوند فایل باید jpg و png باشد."
+				ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myJsFn", "showSweetAlert('" & title_text & "','" & error_text & "');", True)
+			End If
+		End If
+	End Sub
+
+	Protected Sub btnUpdateShSh_Click(sender As Object, e As System.EventArgs) Handles btnUpdateShSh.Click
         Dim DLL As New DLL_Dashboard
         If File_ShSh.HasFile Then
             If CheckFileExtension(File_ShSh.FileName) Then
-                If Val(File_ShSh.PostedFile.ContentLength) < 150000 Then
-                    Dim FN_H As String = Guid.NewGuid.ToString + Path.GetExtension(File_ShSh.FileName)
-                    Dim P As String = DLL.ShowInformation(DLLd._Email_).Tables(0).Rows(0)("MeliCardPic").ToString
-                    DLL.Update_MeliCard(DLLd._Email_, P, FN_H)
-                    File_ShSh.SaveAs(MapPath("~/files/UploadFiles/MeliCard/" + FN_H))
-                    Response.Redirect("~/dashboard/user/me")
-                Else
-                    lblwarningMeli.Text = "<div style='padding:10px;color:red;text-align:center;font-family:tahoma;font-size:12px'>" + "ابعداد و یا حجم تصویر شناسنامه مناسب نیست" + "</div>"
-                End If
-            Else
-                lblWarningSize.Text = "<div style='padding:10px;color:red;text-align:center;font-family:tahoma;font-size:12px'>" + "فرمت تصویر باید JPEG باشد" + "</div>"
-            End If
-        End If
-    End Sub
+				If Val(File_ShSh.PostedFile.ContentLength) < 150000 Then
+					Dim FN_H As String = Guid.NewGuid.ToString + Path.GetExtension(File_ShSh.FileName)
+					Dim P As String = DLL.ShowInformation(DLLd._Email_).Tables(0).Rows(0)("MeliCardPic").ToString
+					File_ShSh.SaveAs(MapPath("~/files/UploadFiles/MeliCard/" + FN_H))
+					If IsValidImageSignature(MapPath("~/files/UploadFiles/MeliCard/" + FN_H)) Then
+						DLL.Update_MeliCard(DLLd._Email_, P, FN_H)
+						Response.Redirect("~/dashboard/user/me")
+					Else
+						IO.File.Delete(MapPath("~/files/UploadFiles/MeliCard/" + FN_H))
+					End If
+				Else
+					Dim title_text As String = "خطای اندازه فایل"
+					Dim error_text As String = "حجم تصویر کارت ملی مناسب نیست"
+					ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myJsFn", "showSweetAlert('" & title_text & "','" & error_text & "');", True)
+				End If
+			Else
+				Dim title_text As String = "خطای فرمت فایل"
+				Dim error_text As String = "پسوند فایل باید jpg و png باشد."
+				ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myJsFn", "showSweetAlert('" & title_text & "','" & error_text & "');", True)
+			End If
+		End If
+	End Sub
 
-    Protected Sub btnUsernamePassword_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUsernamePassword.Click
+	Protected Sub btnUsernamePassword_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUsernamePassword.Click
 
         Dim DLL As New DLL_Dashboard
 
@@ -272,50 +289,70 @@ Partial Class dashboard_Default
         End If
     End Sub
 
-    Protected Sub btnUpdatePicProfile_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUpdatePicProfile.Click
-        Dim DLL As New DLL_Dashboard
-        If File_Pic_Profile.HasFile Then
-            If CheckFileExtension(File_Pic_Profile.FileName) Then
-                If Val(File_Pic_Profile.PostedFile.ContentLength) < 150000 Then
-                    Dim FN_P As String = Guid.NewGuid.ToString + Path.GetExtension(File_Pic_Profile.FileName)
-                    DLL.Update_PictureProfileHeader(DLLd._Email_, FN_P, False)
-                    File_Pic_Profile.SaveAs(MapPath("~/files/UploadFiles/PhotoHeaderUsers/" + FN_P))
-                    Response.Redirect("~/dashboard/user/me")
-                Else
-                    lblWarningSize.Text = "<div style='padding:10px;color:red;text-align:center;font-family:tahoma;font-size:12px'>" + "ابعداد و یا حجم تصویر پروفایل مناسب نیست" + "</div>"
-                End If
-            Else
-                lblWarningSize.Text = "<div style='padding:10px;color:red;text-align:center;font-family:tahoma;font-size:12px'>" + "فرمت تصویر باید JPEG باشد" + "</div>"
-            End If
-        End If
-    End Sub
+	Protected Sub btnUpdatePicProfile_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUpdatePicProfile.Click
+		Dim DLL As New DLL_Dashboard
+		If File_Pic_Profile.HasFile Then
+			If CheckFileExtension(File_Pic_Profile.FileName) Then
+				If Val(File_Pic_Profile.PostedFile.ContentLength) < 250000 Then
+					Dim FN_P As String = Guid.NewGuid.ToString + Path.GetExtension(File_Pic_Profile.FileName)
 
-    'Protected Sub btnUpdatePicProfileHeader_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUpdatePicProfileHeader.Click
+					File_Pic_Profile.SaveAs(MapPath("~/files/UploadFiles/PhotoHeaderUsers/" + FN_P))
 
-    '    Dim DLL As New DLL_Dashboard
+					If IsValidImageSignature(MapPath("~/files/UploadFiles/PhotoHeaderUsers/" + FN_P)) Then
+						DLL.Update_PictureProfileHeader(DLLd._Email_, FN_P, False)
+						Response.Redirect("~/dashboard/user/me")
+					Else
+						IO.File.Delete(MapPath("~/files/UploadFiles/PhotoHeaderUsers/" + FN_P))
+						lblWarningSize.Text = "فایل شما تصویر نیست! هکر هستید؟."
+					End If
 
-    '    If File_Pic_Header.HasFile Then
-    '        If Val(File_Pic_Header.PostedFile.ContentLength) < 150000 Then
-    '            Dim FN_H As String = Guid.NewGuid.ToString + Path.GetExtension(File_Pic_Header.FileName)
-    '            DLL.Update_PictureProfileHeader(DLLd._Email_, FN_H, True)
-    '            File_Pic_Header.SaveAs(MapPath("~/files/UploadFiles/PhotoHeaderUsers/" + FN_H))
-    '            Response.Redirect("~/dashboard/user/me")
-    '        End If
-    '    Else
-    '        lblWarningSize.Text = "<div style='padding:10px;color:red;text-align:center;font-family:tahoma;font-size:12px'>" + "ابعداد و یا حجم تصویر هدِر مناسب نیست" + "</div>"
-    '    End If
-    'End Sub
+				Else
+					lblWarningSize.Text = "<div style='padding:10px;color:red;text-align:center;font-family:tahoma;font-size:12px'>" + "ابعداد و یا حجم تصویر پروفایل مناسب نیست" + "</div>"
+				End If
+			Else
+				lblWarningSize.Text = "<div style='padding:10px;color:red;text-align:center;font-family:tahoma;font-size:12px'>" + "فرمت تصویر باید JPEG باشد" + "</div>"
+			End If
+		End If
+	End Sub
 
-    Private Function CheckFileExtension(filename As String) As Boolean
-        Select Case Path.GetExtension(filename).ToLower.Replace(".", Nothing)
-            Case "jpeg"
-                Return True
-            Case "jpg"
-                Return True
-            Case Else
-                Return False
-        End Select
-        Return False
-    End Function
+	Private Function CheckFileExtension(filename As String) As Boolean
+		Select Case Path.GetExtension(filename).ToLower.Replace(".", Nothing)
+			Case "jpeg"
+				Return True
+			Case "jpg"
+				Return True
+			Case "png"
+				Return True
+			Case Else
+				Return False
+		End Select
+		Return False
+	End Function
+
+	Public Function IsValidImageSignature(filePath As String) As Boolean
+		Dim validExtensions As String() = {".jpg", ".jpeg", ".png", ".bmp"}
+
+		Dim validImageSignatures As New Dictionary(Of String, Byte()) From
+			{
+				{"jpg", New Byte() {&HFF, &HD8}},
+				{"jpeg", New Byte() {&HFF, &HD8}},
+				{"png", New Byte() {&H89, &H50, &H4E, &H47}},
+				{"bmp", New Byte() {&H42, &H4D}}
+			}
+
+		Dim extension As String = Path.GetExtension(filePath).ToLower()
+		If Not validExtensions.Contains(extension) Then
+			Return False
+		End If
+
+		Dim expectedSignature As Byte() = validImageSignatures(extension.TrimStart("."c))
+		Dim fileSignature As Byte() = New Byte(expectedSignature.Length - 1) {}
+
+		Using fs As New FileStream(filePath, FileMode.Open, FileAccess.Read)
+			fs.Read(fileSignature, 0, fileSignature.Length)
+		End Using
+
+		Return fileSignature.SequenceEqual(expectedSignature)
+	End Function
 
 End Class

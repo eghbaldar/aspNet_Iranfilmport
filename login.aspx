@@ -8,20 +8,39 @@
 <head runat="server">
     <title>ورود به درگاه فیلم ایران</title>
     <meta name="robots" content="noindex, nofollow">
-    <meta charset="utf-8">
-    <link rel="shortcut icon" href="<%= ResolveUrl("~/files/images/icons/icon.png")%>" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%--==================================================--%>
+    <style>
+        body{
+            background-color:#E6DD44 !important;
+        }
+    </style>
+        <!-- NewsViral CSS  -->
+    <link rel="stylesheet" href="files/kingMaterials/css/style.css">
+    <link rel="stylesheet" href="files/kingMaterials/css/widgets.css">
+    <link rel="stylesheet" href="files/kingMaterials/css/color.css">
+    <link rel="stylesheet" href="files/kingMaterials/css/responsive.css">
+    <link rel="stylesheet" href="files/kingMaterials/css/custome.css" />
+    <!-- General Modal -->
+    <link href="files/kingMaterials/plugins/modal/modal.css" rel="stylesheet" />
+    <!-- Login Modal -->
+    <link href="files/kingMaterials/pagecssjs/loginModal/css.css" rel="stylesheet" />
 </head>
 <body style="direction: rtl;">
     <form id="form1" runat="server">
         <asp:ScriptManager runat="server">
         </asp:ScriptManager>
 
-        <div class="background">
-        </div>
-        <div class="backdrop">
-        </div>
         <uc1:KingLoginModal runat="server" ID="KingLoginModal" />
     </form>
+
+    <script src="/files/kingMaterials/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="/files/kingMaterials/js/vendor/bootstrap.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#loginModal').modal("show");
+            });
+            $(function () {
+            });
+    </script>
 </body>
 </html>

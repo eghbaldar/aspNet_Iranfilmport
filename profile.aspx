@@ -6,26 +6,20 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <asp:HiddenField ID="HiddenFieldEmail" runat="server" />
     <section class="intro-section">
-        <%--<h2 class="section-title">Hello, Daisy Murphy!</h2>--%>
         <div style="text-align: justify;" runat="server" id="contextBioFa">
             <asp:Label ID="lblBioFa" runat="server" Text="Label"></asp:Label>
                     <hr />
         </div>
-
         <div style="text-align: justify; direction: ltr;" runat="server" id="contextBioEn">
             <asp:Label ID="lblBioEn" runat="server" Text="Label"></asp:Label>
                     <hr />
         </div>
-
-        <%--<a href="#!" class="btn btn-primary btn-hire-me">HIRE ME</a>--%>
     </section>
     <section class="portfolio-section">
-        <%--<h2 class="section-title">
-            پوستر</h2>--%>
-        <div class="portfolio-wrapper">
+        <div class="portfolio-wrapper"  style="justify-content:flex-start;">
             <asp:Repeater ID="RepeaterPoster" runat="server" DataSourceID="SDS_Poster">
                 <ItemTemplate>
-                    <figure class="portfolio-item hover-box">
+                    <figure class="portfolio-item hover-box" style="margin:2px;">
                         <asp:LinkButton PostBackUrl='<%# GetProjectLink(Eval("projectid","{0}") & "|" & Eval("namef","{0}") & "|" & Eval("type","{0}")) %>' ID="LinkButton1" runat="server">
                         <div style="float: left; margin: 10px; position: relative;">
                             <div class="topright">
@@ -80,17 +74,10 @@
                     <p class="testimonial-name">
                     </p>
                 </div>
-                <%--<div class="carousel-item">
-                            <p class="testimonial-content">Mauris magna sapien, pharetra consectetur fringilla vitae,
-                                interdum sed tortor.</p>
-                            <img src="assets/images/Profile.png" alt="profile" class="testimonial-img">
-                            <p class="testimonial-name">Nout Golstein</p>
-                        </div>--%>
             </div>
             <ol class="carousel-indicators">
                 <li data-target="#testimonialCarousel" data-slide-to="0" class="active"></li>
                 <li data-target="#testimonialCarousel" data-slide-to="1"></li>
-                <%--<li data-target="#testimonialCarousel" data-slide-to="2"></li>--%>
             </ol>
         </div>
     </section>

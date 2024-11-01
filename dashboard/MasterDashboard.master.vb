@@ -46,9 +46,9 @@ Partial Class dashboard_MasterDashboard
 						lblStatus.Text = "<span style='color:#818181;font-weight:bold;'>پروفایل معلق شده است</span>"
 				End Select
 
-                lblInfoUsername.Text = String.Format("شما از طریق لینک {0} می توانید وارد پروفایل خود شوید و لینک آن را  شبکه‌های مجازی به اشتراک بگذارید.", "<a target='_blank' href='http:\\iranfilmport.com\filmmaker\" + .Rows(0)("username").ToString().Trim + "'>iranfilmport.com\filmmaker\" + .Rows(0)("username").ToString() + "</a>")
+				lblInfoUsername.Text = String.Format("شما از طریق لینک اختصاصی صفحه‌تان {0} می توانید به پروفایل‌تان دسترسی داشته باشید.", "<a target='_blank' href='http:\\iranfilmport.com\filmmaker\" + .Rows(0)("username").ToString().Trim + "'>iranfilmport.com\filmmaker\" + .Rows(0)("username").ToString() + "</a>")
 
-            End With
+			End With
         End If
 
 

@@ -8,21 +8,25 @@ Partial Class usercontrols_KingLoginModal
 
     Protected Sub btnRegister_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnRegister.Click
         P_Login.Visible = False
-        P_Register.Visible = True
-    End Sub
+		P_Register.Visible = True
+		lblTitle.Text = "ثبت نام"
+	End Sub
     Protected Sub btnBackToLoginPanel_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnBackToLoginPanel.Click
         P_Login.Visible = True
-        P_Register.Visible = False
-    End Sub
+		P_Register.Visible = False
+		lblTitle.Text = "پنل‌های ورودی"
+	End Sub
     Protected Sub LinkForgotPassword_Click(sender As Object, e As System.EventArgs) Handles LinkForgotPassword.Click
         P_password.Visible = True
         P_Login.Visible = False
-        P_Register.Visible = False
-    End Sub
+		P_Register.Visible = False
+		lblTitle.Text = "فراموشی کلمه عبور"
+	End Sub
     Protected Sub btnBacktoLogin2_Click(sender As Object, e As System.EventArgs) Handles btnBacktoLogin2.Click
         P_password.Visible = False
-        P_Login.Visible = True
-    End Sub
+		P_Login.Visible = True
+		lblTitle.Text = "پنل‌های ورودی"
+	End Sub
     Protected Sub btnSendMail_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnSendMail.Click
         Dim DLL As New DLL_Dashboard
         If txtEmailReg.Text.Trim <> "" Then 'آیا فیلد پر شده است؟
@@ -67,22 +71,28 @@ Partial Class usercontrols_KingLoginModal
     End Sub
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-        ''''''''''''''''' vaghti login kardi pas nabayad field haye login dobare neshan dade shavad
-        If Not Request.Cookies("IFP") Is Nothing Then MultiView.ActiveViewIndex = 2
-        '''''''''''''''''''' Check cookie
-        If Not Request.Cookies("IFP") Is Nothing And DLL_Dash.EnableCheckCookie Then Response.Redirect("~\dashboard\")
-        ''''''''''''''''''''
-        If Not String.IsNullOrEmpty(Page.RouteData.Values("veriC")) And Not String.IsNullOrEmpty(Page.RouteData.Values("email")) Then
+		If Not IsPostBack Then lblTitle.Text = "پنل‌های ورودی"
+		''''''''''''''''' vaghti login kardi pas nabayad field haye login dobare neshan dade shavad
+		If Not Request.Cookies("IFP") Is Nothing Then
+			MultiView.ActiveViewIndex = 2
+			lblTitle.Text = "وضعیت شما: ورود کرده"
+		End If
+		'''''''''''''''''''' Check cookie
+		If Not Request.Cookies("IFP") Is Nothing And DLL_Dash.EnableCheckCookie Then Response.Redirect("~\dashboard\")
+		''''''''''''''''''''
+		If Not String.IsNullOrEmpty(Page.RouteData.Values("veriC")) And Not String.IsNullOrEmpty(Page.RouteData.Values("email")) Then
 			MultiView.ActiveViewIndex = 1
+			lblTitle.Text = "ادامه روند ثبت نام"
 			If DLL_Dash.CheckVeriC(Page.RouteData.Values("email"), Page.RouteData.Values("veriC")) Then
-                Pnl_Veri_ok.Visible = True
-                lblEmail.Text = Page.RouteData.Values("email")
-            Else
-                Pnl_Veri_not.Visible = True
-            End If
-        End If
-        '''''''''''''''''''''' Status of Register
-        Dim DLl_CMS As New DLL_CMS
+				Pnl_Veri_ok.Visible = True
+				lblEmail.Text = Page.RouteData.Values("email")
+			Else
+				Pnl_Veri_not.Visible = True
+				lblTitle.Text = "ادامه روند ثبت نام"
+			End If
+		End If
+		'''''''''''''''''''''' Status of Register
+		Dim DLl_CMS As New DLL_CMS
         Select Case DLl_CMS.GetStatusOfRegsiter
             Case True
                 btnRegister.Visible = True
@@ -160,18 +170,23 @@ Partial Class usercontrols_KingLoginModal
             Response.Redirect("~\")
         End If
     End Sub
-    Protected Sub btnSendPassToMail_Click(sender As Object, e As System.EventArgs) Handles btnSendPassToMail.Click
-        If DLL_Dash.SendForgotPassword(txtForgotPasword.Text.Trim) Then
-            lblForgotPasword.Text = "کلمه عبور شما به ایمیل وارد شده ارسال گردید."
-            txtForgotPasword.Enabled = False
-            lblForgotPasword.ForeColor = Drawing.Color.Green
-        Else
-            lblForgotPasword.Text = "این ایمیل وجود ندارد."
-            txtForgotPasword.Text = ""
-            lblForgotPasword.ForeColor = Drawing.Color.Red
-        End If
-    End Sub
-    Protected Sub btnSpecialUsers_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnSpecialUsers.Click
+	Protected Sub btnSendPassToMail_Click(sender As Object, e As System.EventArgs) Handles btnSendPassToMail.Click
+		If (String.IsNullOrEmpty(txtForgotPasword.Text.Trim)) Then
+			lblForgotPasword.Text = "ایمیل را وارد کنید."
+			lblForgotPasword.ForeColor = Drawing.Color.Red
+			Exit Sub
+		End If
+		If DLL_Dash.SendForgotPassword(txtForgotPasword.Text.Trim) Then
+			lblForgotPasword.Text = "کلمه عبور شما به ایمیل وارد شده ارسال گردید."
+			txtForgotPasword.Enabled = False
+			lblForgotPasword.ForeColor = Drawing.Color.Green
+		Else
+			lblForgotPasword.Text = "این ایمیل وجود ندارد."
+			txtForgotPasword.Text = ""
+			lblForgotPasword.ForeColor = Drawing.Color.Red
+		End If
+	End Sub
+	Protected Sub btnSpecialUsers_Click(sender As Object, e As System.Web.UI.ImageClickEventArgs) Handles btnSpecialUsers.Click
         MultiView_Logins.ActiveViewIndex = 1
     End Sub
 

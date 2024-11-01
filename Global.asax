@@ -74,8 +74,8 @@
         routes.MapPageRoute("profileband", "پروفایل-خارج-از-دسترس", "~/outProfile.aspx")
         routes.MapPageRoute("resume", "کارنامه-پخش-فیلم-درگاه-فیلم-ایران", "~/KingAccolades.aspx") 'CV.aspx
         routes.MapPageRoute("resume2", "accolades", "~/KingAccolades.aspx") 'CV.aspx
-        routes.MapPageRoute("login", "ورود-و-ثبت-نام", "~/login.aspx") '****
-        routes.MapPageRoute("me", "me", "~/login.aspx") '****
+        routes.MapPageRoute("login", "ورود-و-ثبت-نام", "~/kinglogin.aspx") 'login.aspx
+        routes.MapPageRoute("me", "me", "~/kinglogin.aspx") 'login.aspx
         routes.MapPageRoute("namad", "نماد-اعتماد-درگاه-فیلم-ایران", "~/kingNamad.aspx") 'namad.aspx
         routes.MapPageRoute("strategy", "برنامه-استراتژیک-پخش-فیلم-به-جشنواره-های-خارجی", "~/kingStrategy.aspx") 'strategy.aspx
         routes.MapPageRoute("exhibition", "picks", "~/kingExhibition.aspx") 'exhibition.aspx
@@ -121,7 +121,7 @@
         'routes.MapPageRoute("dynamicLink", "link/d/{randomString}", "~/files/images/background/banner_1.jpg")
         '----------------------------------------------------------------------------------------
         '---------------- Verification Code
-        routes.MapPageRoute("VerificationCode", "login/{veriC}/{email}", "~/login.aspx")
+        routes.MapPageRoute("VerificationCode", "login/{veriC}/{email}", "~/kinglogin.aspx") ' login.aspx
         routes.MapPageRoute("convertToUnscale", "convertToUnscale", "~/convertToUnscale.aspx")
         '----------------------------------------------------------------------------------------
         '----------------------------------------------------------------------------------------

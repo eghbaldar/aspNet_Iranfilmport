@@ -15,7 +15,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="apple-touch-icon" sizes="128x128" href="<%= ResolveUrl("~/files/images/icons/iconScreen.png")%>">
     <!-- -->
-    <link rel="shortcut icon" href="<%= ResolveUrl("~/files/images/icons/icon.png")%>" />
+    <link rel="shortcut icon" type="image/x-icon" href="<%= ResolveUrl("~/files/kingMaterials/imgs/logos/iconScreen.png")%>">
     <link href="<%= ResolveUrl("~/files/profileAssets/css/live-resume.css")%>" rel="stylesheet"
         type="text/css" />
     <link href="<%= ResolveUrl("~/files/profileAssets/vendors/@fortawesome/fontawesome-free/css/all.min.css")%>"
@@ -31,8 +31,7 @@
         gtag('config', 'UA-118348858-1');
     </script>
     <style>
-        .BlurBody
-        {
+        .BlurBody {
             -webkit-filter: blur(5px);
             -moz-filter: blur(5px);
             -ms-filter: blur(5px);
@@ -41,8 +40,7 @@
         }
     </style>
     <style>
-        .outer-div
-        {
+        .outer-div {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -62,8 +60,7 @@
 <body>
     <div class="outer-div" runat="server" id="prohibitProfile" visible="false">
         <img src="http://iranfilmport.com/files/images/icons/userband.png" />
-        <div style="background-color: #fcec03; padding: 10px; border: 2px dotted #ccc; -moz-border-radius: 5px;
-            -webkit-border-radius: 5px; border-radius: 5px;">
+        <div style="background-color: #fcec03; padding: 10px; border: 2px dotted #ccc; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;">
             این پروفایل تا بررسی و تائید کارشناسان «درگاه فیلم ایران» موقتا در تعلیق می‌باشد.
             <br />
             <a href="http://iranfilmport.com" style="text-decoration: none; font-size: 14px;">W
@@ -85,8 +82,8 @@
             <img src="<%= ResolveUrl("~/files/profileAssets/images/menuToggle.png")%>" />
     </header>
     <form id="form1" runat="server">
-    <div class="content-wrapper">
-        <aside class="asideRight">
+        <div class="content-wrapper">
+            <aside class="asideRight">
             <div class="profile-img-wrapper">
                 <asp:LinkButton ID="btnBackToPage" runat="server">
                     <asp:Image ID="imgAvatar" runat="server" />
@@ -113,13 +110,13 @@
                 </span>
             </div>
             <h1 class="profile-label">
-                <asp:Label ID="lblMajor" runat="server" Text="Label"></asp:Label>
+                <asp:Label ID="lblMajor" runat="server"></asp:Label>
             </h1>
             <h1 class="profile-label">
-                <asp:Label ID="lblField" runat="server" Text="Label"></asp:Label>
+                <asp:Label ID="lblField" runat="server"></asp:Label>
             </h1>
             <h1 class="profile-label">
-                <asp:Label ID="lblAge" runat="server" Text="Label"></asp:Label>
+                <asp:Label ID="lblAge" runat="server"></asp:Label>
             </h1>
             <nav class="social-links">
                 <asp:Literal ID="linkFace" runat="server"></asp:Literal>
@@ -143,50 +140,18 @@
                     <p>
                         آدرس :
                         <asp:Label ID="lbladdress" runat="server" Text="Label"></asp:Label></p>
-                    <%--                    <button class="btn btn-download-cv btn-primary rounded-pill">
-                        <img src="../../files/profileAssets/images/download.svg" alt="download" class="btn-img">DOWNLOAD
-                        CV
-                    </button>--%>
                 </div>
             </div>
-            <%--            <div class="widget card">
-                <div class="card-body">
-                    <div class="widget-content">
-                        <h5 class="widget-title card-title">
-                            LANGUAGES</h5>
-                        <p>
-                            English : native</p>
-                        <p>
-                            Spanish : fluent</p>
-                        <p>
-                            Italian : fluent</p>
-                    </div>
-                </div>
-            </div>
-            <div class="widget card">
-                <div class="card-body">
-                    <div class="widget-content">
-                        <h5 class="widget-title card-title">
-                            INTERESTS</h5>
-                        <p>
-                            Video games</p>
-                        <p>
-                            Finance</p>
-                        <p>
-                            Basketball</p>
-                        <p>
-                            Theatre</p>
-                    </div>
-                </div>
-            </div>--%>
         </aside>
-        <main>
-        
+            <main>
+        <h1>
+                <asp:Label ID="lblBigName" runat="server" style="font-family:Samim;"></asp:Label>
+            </h1>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         </asp:ContentPlaceHolder>	
          
         </main>
-        <aside>
+            <aside>
             <asp:Repeater ID="gv_master" runat="server" DataSourceID="SDS_Master">
                 <ItemTemplate>
                     <div style="text-align: center;">
@@ -199,11 +164,6 @@
                                 <h6 style="font-size: 12px;">
                                     <asp:Label CssClass="TitleL" ID="Label2" runat="server" Text='<%# Eval("title").Replace("ي", "ی") %>'></asp:Label>
                                 </h6>
-                                <h6 style="text-align: center;">
-                                    <asp:Label Style="font-family: traffic; font-size: 13px; color: Gray;" ID="Label3"
-                                        runat="server" Text='<%# Server.HtmlDecode(Regex.Replace(Eval("lid"), "<(.|\\n)*?>", string.Empty)) %>'>
-                                    </asp:Label>
-                                </h6>
                             </div>
                         </a>
                     </div>
@@ -211,17 +171,13 @@
             </asp:Repeater>
             <asp:SqlDataSource ID="SDS_Master" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
                 SelectCommand="SELECT top 4 * FROM [tbl_articles] WHERE [visible] = 1 and id in (SELECT top 20 [id] FROM [tbl_articles] order by [date_time] desc) order by date_time desc">
-                <%--With Random--%>
-                <%--SELECT top 4 * FROM [tbl_articles] WHERE id in (
-            SELECT top 20 [id] FROM [tbl_articles] order by id desc
-            ) AND [visible] = 1 ORDER BY newid()--%>
             </asp:SqlDataSource>
         </aside>
-    </div>
-    <script src="<%= ResolveUrl("~/files/profileAssets/vendors/jquery/dist/jquery.min.js")%>"></script>
-    <script src="<%= ResolveUrl("~/files/profileAssets/vendors/@popperjs/core/dist/umd/popper-base.min.js")%>"></script>
-    <script src="<%= ResolveUrl("~/files/profileAssets/vendors/bootstrap/dist/js/bootstrap.min.js")%>"></script>
-    <script src="<%= ResolveUrl("~/files/profileAssets/js/live-resume.js")%>"></script>
+        </div>
+        <script src="<%= ResolveUrl("~/files/profileAssets/vendors/jquery/dist/jquery.min.js")%>"></script>
+        <script src="<%= ResolveUrl("~/files/profileAssets/vendors/@popperjs/core/dist/umd/popper-base.min.js")%>"></script>
+        <script src="<%= ResolveUrl("~/files/profileAssets/vendors/bootstrap/dist/js/bootstrap.min.js")%>"></script>
+        <script src="<%= ResolveUrl("~/files/profileAssets/js/live-resume.js")%>"></script>
     </form>
 </body>
 </html>

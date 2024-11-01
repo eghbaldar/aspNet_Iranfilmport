@@ -6,6 +6,12 @@
                 <img class="logo-img d-inline" src="/files/KingMaterials/imgs/logos/iranfilmport_movibeta_small.png" alt="">
             </div>
             <div class="col rowToggle">
+                <span onclick="OpenModalFlowingContact();" style="display: none;" class="navMobile pointer">
+                    <img src="/files/images/icons/phone.svg" width="40">
+                </span>
+                <span onclick="$('#loginModal').modal();" style="display: none;" class="navMobile pointer">
+                    <img src="/files/images/icons/yellow-profile.jpg" width="40" style="border-radius:5px;">
+                </span>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -99,8 +105,7 @@
                                             <div class="sub-mega-menu">
                                                 <div class="nav flex-column nav-pills" role="tablist">
                                                     <a class="nav-link active pointer"
-                                                        href="https://iranfilmport.com/%D8%AC%D8%B4%D9%86%D9%88%D8%A7%D8%B1%D9%87-%D9%87%D8%A7%DB%8C-%D9%81%DB%8C%D9%84%D9%85-%DA%A9%D9%88%D8%AA%D8%A7%D9%87-%D8%A8%D9%84%D9%86%D8%AF"
-                                                       >همه فستیوال‌ها</a>
+                                                        href="https://iranfilmport.com/%D8%AC%D8%B4%D9%86%D9%88%D8%A7%D8%B1%D9%87-%D9%87%D8%A7%DB%8C-%D9%81%DB%8C%D9%84%D9%85-%DA%A9%D9%88%D8%AA%D8%A7%D9%87-%D8%A8%D9%84%D9%86%D8%AF">همه فستیوال‌ها</a>
                                                     <a class="nav-link pointer" data-toggle="pill" href="#news-1" role="tab">فستیوال‌های ای‌پلاس</a>
                                                     <a class="nav-link pointer" data-toggle="pill" href="#news-2" role="tab">فستیوال‌های معتبر</a>
                                                     <a class="nav-link pointer" data-toggle="pill" href="#news-4" role="tab">فستیوال‌های بی‌اعتبار</a>
@@ -481,6 +486,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="scroll-progress gradient-bg-1"></div>
             </div>
         </div>
@@ -488,7 +494,12 @@
     <div class="afterCollapse" hidden>
         <div class="list-type1">
             <ol>
-                <li><a href="#">صفحه نخست</a></li>
+                <li>
+                    <span class="ml-5">
+                        <input type="text" onclick="openSearch()" class="search_field" placeholder="جستجو ..." value="" name="s">
+                    </span>
+                </li>
+                <li><a href="/">صفحه نخست</a></li>
                 <li><a href="#">پخش و ارسال فیلم</a></li>
                 <li>
                     <ol>
