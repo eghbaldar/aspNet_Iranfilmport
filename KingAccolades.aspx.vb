@@ -42,15 +42,11 @@ Partial Class KingAccolades
 
     End Sub
 
-    'Public Function rep(txt As String) As String
-    '    Return txt.Replace("ي", "ی").Replace("Tahoma,Geneva,sans-serif", "irsans").Replace("Tahoma,Gene7a,sans-serif", "irsans").Replace("<p>", "").Replace("</p>", "")
-
-    'End Function
-
-    Public Function GetFilmName(Id_film As Object, Language As Object)
+	Public Function GetFilmName(Id_film As Object, Language As Object)
         If Language.ToString().ToUpper = "FA" Then
-            Return DL_CMS.GetFilmNameWithId(Val(Id_film))
-        End If
+			Return DL_CMS.GetFilmNameWithIdFarsi(Val(Id_film))
+			'DL_CMS.GetFilmNameWithId => برای انگلیسی
+		End If
     End Function
 
     Public Function GetAccolade(Id_film As Object, Language As Object)

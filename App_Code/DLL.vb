@@ -347,5 +347,16 @@ Public Class DLL
         End Try
     End Function
 
-
+	Public Function InsertEmployment(ByVal Name As String, ByVal Phone As String, ByVal Category As Integer, ByVal CV As String, ByVal Email As String) As Integer
+		Try
+			If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+			sqlconn.Open()
+			Dim sqlcom As New SqlCommand("insert into tbl_employment (Name,Phone,Category,Resume,Email) values ('" + Name + "','" + Phone + "'," + Category.ToString + ",'" + CV + "','" + Email + "')", sqlconn)
+			Return sqlcom.ExecuteNonQuery()
+			sqlconn.Close()
+		Catch ex As Exception
+		Finally
+			sqlconn.Close()
+		End Try
+	End Function
 End Class

@@ -1119,33 +1119,46 @@ Public Class DLL_CMS
             sqlconnDesktop.Close()
         End Try
     End Function
-    Public Function DeleteCalendar(id As Long)
-        Try
-            If sqlconnDesktop.State = ConnectionState.Open Then sqlconnDesktop.Close()
-            sqlconnDesktop.Open()
-            Dim sqlcom As New SqlCommand("delete from [tbCalendar] where id=" + id.ToString, sqlconnDesktop)
-            sqlcom.ExecuteNonQuery()
-            sqlconnDesktop.Close()
-        Catch ex As Exception
-        Finally
-            sqlconnDesktop.Close()
-        End Try
-    End Function
+	Public Function DeleteCalendar(id As Long)
+		Try
+			If sqlconnDesktop.State = ConnectionState.Open Then sqlconnDesktop.Close()
+			sqlconnDesktop.Open()
+			Dim sqlcom As New SqlCommand("delete from [tbCalendar] where id=" + id.ToString, sqlconnDesktop)
+			sqlcom.ExecuteNonQuery()
+			sqlconnDesktop.Close()
+		Catch ex As Exception
+		Finally
+			sqlconnDesktop.Close()
+		End Try
+	End Function
 
-    Public Function GetFilmNameWithId(id As Long) As String
-        Try
-            If sqlconnDesktop.State = ConnectionState.Open Then sqlconn.Close()
-            sqlconnDesktop.Open()
-            Dim sqlcom As New SqlCommand("select [film] from tbFilms where id=" & id.ToString, sqlconnDesktop)
-            Return sqlcom.ExecuteScalar()
-            sqlconnDesktop.Close()
-        Catch ex As Exception
-        Finally
-            sqlconnDesktop.Close()
-        End Try
-    End Function
+	Public Function GetFilmNameWithId(id As Long) As String
+		Try
+			If sqlconnDesktop.State = ConnectionState.Open Then sqlconn.Close()
+			sqlconnDesktop.Open()
+			Dim sqlcom As New SqlCommand("select [film] from tbFilms where id=" & id.ToString, sqlconnDesktop)
+			Return sqlcom.ExecuteScalar()
+			sqlconnDesktop.Close()
+		Catch ex As Exception
+		Finally
+			sqlconnDesktop.Close()
+		End Try
+	End Function
 
-    Public Function GetAccoladeFilmId(id As Long, language As String) As String
+	Public Function GetFilmNameWithIdFarsi(id As Long) As String
+		Try
+			If sqlconnDesktop.State = ConnectionState.Open Then sqlconn.Close()
+			sqlconnDesktop.Open()
+			Dim sqlcom As New SqlCommand("select [FilmFa] from tbFilms where id=" & id.ToString, sqlconnDesktop)
+			Return sqlcom.ExecuteScalar()
+			sqlconnDesktop.Close()
+		Catch ex As Exception
+		Finally
+			sqlconnDesktop.Close()
+		End Try
+	End Function
+
+	Public Function GetAccoladeFilmId(id As Long, language As String) As String
         Try
             If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
             sqlconn.Open()

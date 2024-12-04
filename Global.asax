@@ -30,7 +30,7 @@
     End Sub
 
     Sub Application_Error(ByVal sender As Object, ByVal e As EventArgs)
-        'Response.Redirect("~/عدم-دسترسی")
+        Response.Redirect("~/عدم-دسترسی")
     End Sub
 
     Sub Session_Start(ByVal sender As Object, ByVal e As EventArgs)
@@ -98,6 +98,8 @@
         routes.MapPageRoute("advertiseModalInterface", "advertiseModalInterface", "~/advertiseModalInterface.aspx") '****
         routes.MapPageRoute("onlinecourses", "courses/{title}", "~/kingcourses.aspx") 'courses.aspx
         routes.MapPageRoute("costinquiry", "استعلام-هزینه-طراحی-پوستر-زیرنویس-ترجمه-فیلم", "~/kingCostInquiry.aspx") 'kingCostInquiry
+        routes.MapPageRoute("employment", "موقعیت-شغلی-استخدام-در-درگاه-فیلم-ایران", "~/kingEmployment.aspx") '***
+        routes.MapPageRoute("employment2", "jobs", "~/kingEmployment.aspx") '***
         '----------------------------------------------------------------------------------------
         routes.MapPageRoute("panel", "panel/", "~/panelclients/panel.aspx")
         routes.MapPageRoute("panelClient", "panel/client/{id}", "~/panelclients/PanelMain.aspx")
@@ -228,6 +230,7 @@
         routes.MapPageRoute("requestedfestivalsclient", "cms/pages/requestedfestivalsclient", "~/cms/pages/requestedfestivalsclient.aspx")
         routes.MapPageRoute("errorLogs", "cms/pages/errorLogs", "~/cms/pages/errorLogs.aspx")
         routes.MapPageRoute("cmsfeatures", "cms/pages/features", "~/cms/pages/features.aspx")
+        routes.MapPageRoute("employments", "cms/pages/employments", "~/cms/pages/employments.aspx")
 
     End Sub
 

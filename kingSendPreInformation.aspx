@@ -116,6 +116,14 @@
                 <ContentTemplate>
                     <div runat="server" id="div_form">
                         <div style="padding: 5px; text-align: justify;">
+                            <div style="display:flex;text-align:center;width:100%;justify-content:center;margin-bottom:10px;margin-top:10px;">
+                                <a href="https://t.me/Iranfilmportsupport" target="_blank">
+                                    <img src="files/images/resource/send-via-telegram.jpg" width="300"/>
+                                </a>
+                                <a href="mailto:support@iranfilmport.com" target="_blank">
+                                <img src="files/images/resource/send-via-email.jpg" width="300"/>
+                                    </a>
+                            </div>
                             <span style="color: Black; font-weight: normal;">کارگردان
                                                 تهیه کننده، نویسنده و یا نماینده محترم اثر، در صورت تمایل 
                                 می‌توانید از طریق فرم زیر نسخه بازبینی فیلم و یا فیلمنامه خود
@@ -125,11 +133,12 @@
                                 پس از ارسال فرم، کارشناسان شرکت در اسرع وقت با شما در تماس خواهند بود.
 
                             </span>
-                            <br><span style="color: red; font-weight: normal; font-size: 12px;">توجه (1): اگر پس
+                            <br>
+                            <span style="color: red; font-weight: normal; font-size: 12px;">توجه (1): اگر پس
                                                 از ارسال لینک فیلم یا فیلمنامه از طریق شبکه های مجازی مانند تلگرام، واتس‌اپ و یا
                                                 ایمیل فرم را پر نکرده باشید، اثر شما بررسی نخواهد شد. </span>
-                                <br />
-                                <span style="color: red; font-weight: normal; font-size: 12px;">توجه (2): اگر از طریق
+                            <br />
+                            <span style="color: red; font-weight: normal; font-size: 12px;">توجه (2): اگر از طریق
                                                     ارسال پستی فیلم خود را ارسال کرده اید لطفا تصویر برگه‌ی پستی را از طریق شماره‌های
                                                     شرکت ارسال کنید. </span>
                             <br>
@@ -149,7 +158,7 @@
                                     <td>
                                         <asp:TextBox ID="txtNum" runat="server"
                                             placeholder="شماره تماس فعال ..."
-                                            CssClass="form-control"></asp:TextBox>
+                                            CssClass="form-control" style="direction:ltr;text-align:left"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="(اجباری)"
                                             ForeColor="Red" ValidationGroup="1" ControlToValidate="txtNum"></asp:RequiredFieldValidator>
                                     </td>
@@ -177,8 +186,7 @@
                                                 <div runat="server" id="DivLink" visible="false">
                                                     <table class="style1">
                                                         <tr>
-                                                            <td style="font-size: 12px; color: Red;">
-                                                                لینک (Google Drive - Mega - Mediafire) فیلم و یا لینک فیلمنامه خود را در کادر زیر وارد کنید:
+                                                            <td style="font-size: 12px; color: Red;">لینک (Google Drive - Mega - Mediafire) فیلم و یا لینک فیلمنامه خود را در کادر زیر وارد کنید:
                                                                 <ul>
                                                                     <li><a href="https://drive.google.com" target="_blank">لینک گوگل درایو: Google Drive</a></li>
                                                                     <li><a href="https://mediafire.com" target="_blank">لینک مدیافایر: MediaFire</a></li>
@@ -190,11 +198,11 @@
                                                             <td>
                                                                 <asp:TextBox CssClass="form-control" placeholder="لینک اثرتان در صورت وجود ..." ID="txtLink" runat="server"></asp:TextBox>
                                                                 <asp:Label ID="lblWrongLink" runat="server" ForeColor="Red"></asp:Label>
-                                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ValidationGroup="0" ForeColor="Red"
-                                                    runat="server" ErrorMessage="(اجباری)" ControlToValidate="txtLink" ></asp:RequiredFieldValidator>
-                                                                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" 
+                                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ValidationGroup="0" ForeColor="Red"
+                                                                    runat="server" ErrorMessage="(اجباری)" ControlToValidate="txtLink"></asp:RequiredFieldValidator>
+                                                                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
                                                                     ErrorMessage="(لینک اینترنتی اثرتان را صحیح وارد کنید)" ValidationGroup="0" ForeColor="Red"
-                                                                     ControlToValidate="txtLink" 
+                                                                    ControlToValidate="txtLink"
                                                                     ValidationExpression="http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&amp;=]*)?"></asp:RegularExpressionValidator>
                                                             </td>
                                                         </tr>
@@ -239,7 +247,7 @@
                             </table>
                         </div>
                     </div>
-                    <div runat="server" visible="false" id="Div_success" style="direction: rtl; background-color: #AAC967; color: Green; padding: 10px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; margin-top: 60px;">
+                    <div class="alert alert-warning" role="alert" runat="server" visible="false" id="Div_success">
                         اطلاعات اثر شما با موفقیت ارسال گردید، در اسرع وقت، کارشناسان پخش درگاه فیلم ایران
                                         با شما تماس خواهند گرفت.
                     </div>
@@ -247,5 +255,16 @@
             </asp:UpdatePanel>
         </div>
     </div>
+    <script>
+        function showAlert(title, msg) {
+            Swal.fire({
+                title: title,
+                text: msg,
+                icon: 'info',
+                confirmButtonColor: '#ff9100',
+                confirmButtonText: 'متوجه شدم'
+            });
+        }
+    </script>
 </asp:Content>
 

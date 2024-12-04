@@ -54,8 +54,10 @@ Partial Class CMS_Pages_Default2
             Case "7"
                 Return "MOVIBETA" + "<br/><a target='_blank' style='color:green' href='../../movibeta'>movibeta</a>"
             Case "8"
-                Return "قسمت فستیوال‌ها" + "<br/><a target='_blank' style='color:green' href='../../festival/" + id_post.ToString + "'>مشاهده</a>"
-        End Select
+				Return "قسمت فستیوال‌ها" + "<br/><a target='_blank' style='color:green' href='../../festival/" + id_post.ToString + "'>مشاهده</a>"
+			Case "9"
+				Return "قسمت استخدامی" + "<br/><a target='_blank' style='color:green' href='../../موقعیت-شغلی-استخدام-در-درگاه-فیلم-ایران/'>مشاهده</a>"
+		End Select
     End Function
 
     Protected Sub btnList_Click(sender As Object, e As System.EventArgs) Handles btnList.Click

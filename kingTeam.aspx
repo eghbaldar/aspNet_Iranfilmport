@@ -121,7 +121,10 @@
                             <li>
                                 <ul>
                                     <li style="font-weight: bolder;">1. جشنواره بین المللی Muslim Film Festival استرالیا
-                                                                2020</li>
+                                                                2020</li>  
+                                    <li style="font-weight: bolder;">1. جشنواره بین المللی 
+                                        The International Film Festival’ of Srinagar (TIFFS)  هند
+                                                                2021</li>
                                     <li style="font-weight: bolder;">2. جشنواره بین المللی Short Counter یونان 2021</li>
                                     <li style="font-weight: bolder;">3. جشنواره بین المللی Zilant Film روسیه 2021</li>
                                     <li style="font-weight: bolder;">4. جشنواره بین المللی Aravali International Film هند
@@ -194,7 +197,7 @@
 
 
 
-            <tr class="trPerson">
+<%--            <tr class="trPerson">
                 <td style="vertical-align: top; text-align: center;">
                     <img src="files/images/team/abbasEghbaldar.png" style="-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;"
                         width="200px" />
@@ -214,7 +217,7 @@
                         </div>
                     </div>
                 </td>
-            </tr>
+            </tr>--%>
 
 
 
@@ -234,7 +237,7 @@
                             <span style="color: #e3cc00; font-family: Tahoma; font-size: 30px; font-weight: bolder;">TAHERE PEYVASTE </span>
                             <div style="line-height: 40px; font-family: Tahoma; font-weight: bolder; font-size: 20px; direction: ltr;">
                                 <br />
-                                A Member of the Board of Directors
+                                 President of Directors
                                                             <br />
                                 +
                                                             
@@ -433,6 +436,23 @@
             <tr>
                 <td></td>
                 <td></td>
+            </tr>
+            <tr class="trPerson">
+                <td style="vertical-align: top; text-align: center;">
+                    <img src="files/images/team/staffMan.png" style="-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;"
+                        width="100px" />
+                </td>
+                <td>
+                    <div class="Person">
+                        <div>
+                            <span style="color: #e3cc00; font-family: Tahoma; font-size: 30px; font-weight: bolder;">ARASH BABAKI</span><span style="line-height: 40px; font-family: Tahoma; font-weight: bolder; font-size: 20px;">
+                                <br />
+                                Tehran Branch Memeber
+                                                            <br />
+                            </span>
+                        </div>
+                    </div>
+                </td>
             </tr>
             <tr class="trPerson">
                 <td style="vertical-align: top; text-align: center;">

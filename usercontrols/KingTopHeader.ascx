@@ -445,6 +445,7 @@
                                                 <li><a href="https://iranfilmport.com/%D8%A7%D8%B1%D8%B3%D8%A7%D9%84-%D8%AE%D8%A8%D8%B1-%D9%88-%D8%AA%D8%A8%D9%84%DB%8C%D8%BA%D8%A7%D8%AA">ارسال خبر و تعرفه تبلیغات</a></li>
                                                 <li><a style="color: red !important;" href="https://iranfilmport.com/%D8%AA%D8%B5%D8%AF%DB%8C%D9%82-%D9%86%D8%A7%D9%85%D9%87-%D9%81%DB%8C%D9%84%D9%85%D8%B3%D8%A7%D8%B2%D8%A7%D9%86">تصدیق نامه فیلمسازان ما</a></li>
                                                 <li><a href="https://iranfilmport.com/%D8%AA%D9%85%D8%A7%D8%B3-%D8%A8%D8%A7-%D8%AF%D8%B1%DA%AF%D8%A7%D9%87-%D9%81%DB%8C%D9%84%D9%85-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86">تماس با ما</a></li>
+                                                <li><a href="/موقعیت-شغلی-استخدام-در-درگاه-فیلم-ایران">موقعیت شغلی در درگاه</a></li>
                                             </ul>
                                         </li>
                                         <li>

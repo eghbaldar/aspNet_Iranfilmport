@@ -28,7 +28,7 @@
             </p>
 
             <p class="sentence">
-                 تنها پخش کننده با ارائه استراتژی و <b>پنل اختصاصی</b> فول امکانات برای فیلمساز
+                تنها پخش کننده با ارائه استراتژی و <b>پنل اختصاصی</b> فول امکانات برای فیلمساز
             </p>
 
             <p class="sentence">
@@ -54,7 +54,8 @@
                                                 <a href='<%# String.Format("{0}", Eval("link")) %>' target="_blank">
                                                     <img src='<%# String.Format("\files\uploadFiles\sliders\{0}", Eval("photo")) %>' alt="post-slider">
                                                 </a>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            </div>
                                             <div class="pr-10 pl-10">
                                                 <h4 class="post-title full-width mb-5   ">
                                                     <a href='<%# String.Format("{0}", Eval("link")) %>' target="_blank">
@@ -124,8 +125,9 @@
             <!--Ads-->
             <div class="row">
                 <div class="col-12 text-center mb-20">
-                    <a href="https://iranfilmport.com/%D8%A7%D8%B1%D8%B3%D8%A7%D9%84-%D8%AE%D8%A8%D8%B1-%D9%88-%D8%AA%D8%A8%D9%84%DB%8C%D8%BA%D8%A7%D8%AA">
-                        <img class="border-radius-10 d-inline" src="files/kingMaterials/imgs/ads.jpg" alt="post-slider">
+                    <a href="http://filmnamenevisan.ir/" target="_blank">
+                        <%--https://iranfilmport.com/%D8%A7%D8%B1%D8%B3%D8%A7%D9%84-%D8%AE%D8%A8%D8%B1-%D9%88-%D8%AA%D8%A8%D9%84%DB%8C%D8%BA%D8%A7%D8%AA--%>
+                        <img class="border-radius-10 d-inline" src="files/kingMaterials/imgs/advertisements/filmnamenevisan.gif" alt="post-slider">
                     </a>
                 </div>
             </div>
@@ -139,14 +141,14 @@
                             <h5 class="widget-title"><strong>باید از ما بدانید ...</strong></h5>
                         </div>
                         <ul class="font-small text-muted">
-                                                        <li class="cat-item cat-item-6">
+                            <li class="cat-item cat-item-6">
                                 <a target="_blank" href="https://iranfilmport.com/accolades">
                                     <span class="ml-10">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-layers-fill" viewBox="0 0 16 16">
                                             <path d="M7.765 1.559a.5.5 0 0 1 .47 0l7.5 4a.5.5 0 0 1 0 .882l-7.5 4a.5.5 0 0 1-.47 0l-7.5-4a.5.5 0 0 1 0-.882z" />
                                             <path d="m2.125 8.567-1.86.992a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882l-1.86-.992-5.17 2.756a1.5 1.5 0 0 1-1.41 0z" />
                                         </svg>
-                                    </span>کارنامه پر افتخار و <a style="color:#ECCE01 !important;" href="/tag/اسکار" target="_blank">اسکاری</a> «درگاه»
+                                    </span>کارنامه پر افتخار و <a style="color: #ECCE01 !important;" href="/tag/اسکار" target="_blank">اسکاری</a> «درگاه»
                                 </a>
                             </li>
                             <li class="cat-item cat-item-2 ">
@@ -376,8 +378,9 @@ ORDER BY newid()"></asp:SqlDataSource>
                                 </div>
                             </div>
                             <div class="sidebar-widget widget-ads mb-30 text-center">
-                                <a href="https://iranfilmport.com/%D8%A7%D8%B1%D8%B3%D8%A7%D9%84-%D8%AE%D8%A8%D8%B1-%D9%88-%D8%AA%D8%A8%D9%84%DB%8C%D8%BA%D8%A7%D8%AA">
-                                    <img class="border-radius-10" src="files/kingMaterials/imgs/ads-3.jpg" alt="">
+                                <a href="http://filmnamenevisan.ir/" target="_blank">
+                                    <%--https://iranfilmport.com/%D8%A7%D8%B1%D8%B3%D8%A7%D9%84-%D8%AE%D8%A8%D8%B1-%D9%88-%D8%AA%D8%A8%D9%84%DB%8C%D8%BA%D8%A7%D8%AA--%>
+                                    <img class="border-radius-10 d-inline" src="files/kingMaterials/imgs/advertisements/filmnamenevisan.gif" alt="post-slider">
                                 </a>
                             </div>
                         </div>
