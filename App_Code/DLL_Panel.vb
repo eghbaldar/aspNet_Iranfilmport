@@ -433,20 +433,33 @@ Public Class DLL_Panel
 
     End Function
 
-    Public Sub UpdateCommentClient(ByVal id As Long, which As Boolean, readflag As Byte)
-        Try
-            If sqlconn_Site.State = ConnectionState.Open Then sqlconn_Site.Close()
-            sqlconn_Site.Open()
-            Dim sqlcom As New SqlCommand("exec [sp_UpdateCommentClient] " & id.ToString & "," & which.ToString & "," & readflag.ToString, sqlconn_Site)
-            sqlcom.ExecuteNonQuery()
-            sqlconn_Site.Close()
-        Catch ex As Exception
-        Finally
-            sqlconn_Site.Close()
-        End Try
-    End Sub
+	Public Sub UpdateCommentClient(ByVal id As Long, which As Boolean, readflag As Byte)
+		Try
+			If sqlconn_Site.State = ConnectionState.Open Then sqlconn_Site.Close()
+			sqlconn_Site.Open()
+			Dim sqlcom As New SqlCommand("exec [sp_UpdateCommentClient] " & id.ToString & "," & which.ToString & "," & readflag.ToString, sqlconn_Site)
+			sqlcom.ExecuteNonQuery()
+			sqlconn_Site.Close()
+		Catch ex As Exception
+		Finally
+			sqlconn_Site.Close()
+		End Try
+	End Sub
 
-    Public Function GetUnreadComment(ByVal idClient As Long) As String
+	Public Sub UpdateAllCommentsToClosed()
+		Try
+			If sqlconn_Site.State = ConnectionState.Open Then sqlconn_Site.Close()
+			sqlconn_Site.Open()
+			Dim sqlcom As New SqlCommand("update tbl_Comment_clients set flag=3 where id_client<>0 And id_parent=0 and [read]=1 and flag=2", sqlconn_Site)
+			sqlcom.ExecuteNonQuery()
+			sqlconn_Site.Close()
+		Catch ex As Exception
+		Finally
+			sqlconn_Site.Close()
+		End Try
+	End Sub
+
+	Public Function GetUnreadComment(ByVal idClient As Long) As String
         Try
             If sqlconn_Site.State = ConnectionState.Open Then sqlconn_Site.Close()
             sqlconn_Site.Open()

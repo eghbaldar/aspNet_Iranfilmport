@@ -351,8 +351,11 @@
                         <h4>تیکت پاسخ داده
                         </h4>
                     </div>
+                    <asp:Button ID="btnChangeToClose" CssClass="tabBtn" runat="server" Text="تغییر همه به بسته شده" />
+                    <br />
+                    <br />
                     <asp:GridView ID="dgComments" runat="server"
-                        DataSourceID="SDS_Comments"
+                         DataSourceID="SDS_Comments_Responed"
                         Font-Size="13px"
                         AutoGenerateColumns="False" AllowPaging="True" BackColor="White" BorderColor="#DEDFDE"
                         BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal"
@@ -457,9 +460,9 @@
                         <SortedDescendingCellStyle BackColor="#EAEAD3" />
                         <SortedDescendingHeaderStyle BackColor="#575357" />
                     </asp:GridView>
-                    <asp:SqlDataSource ID="SDS_Comments" runat="server"
+                    <asp:SqlDataSource ID="SDS_Comments_Responed" runat="server"
                         ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
-                        SelectCommand="Select * FROM [tbl_Comment_clients] WHERE id_client<>0 And id_parent=0 ORDER BY flag asc, [date] DESC"></asp:SqlDataSource>
+                        SelectCommand="Select * FROM [tbl_Comment_clients] WHERE id_client<>0 And id_parent=0 and (flag=2 or flag=3) ORDER BY flag asc, [date] DESC"></asp:SqlDataSource>
                 </asp:View>
                 <asp:View ID="View2" runat="server">
                     <div id="PnlWarning" class="warning" runat="server" visible="false" style="text-align: center;">
@@ -496,7 +499,7 @@
                                     </div>
                                     <script type="module">
 
-                                        import WaveSurfer from 'https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js'
+                                        import WaveSurfer from '/files/js/recordvoice/wavesurfer.esm.js'
 
                                         var file = '../../files/clientsStaff/ticketVoices/' + '<%#String.Format("{0}", Eval("voicefile")) %>';
 
@@ -864,6 +867,26 @@
 
     </script>
 
+        <script type="text/javascript">
+            function checkMicrophoneAccess() {
+                return new Promise((resolve, reject) => {
+                    navigator.mediaDevices.getUserMedia({ audio: true })
+                        .then((stream) => {
+                            // If access is granted, stop the stream immediately
+                            stream.getTracks().forEach(track => track.stop());
+
+                            console.log("Microphone access granted. Recording is enabled.");
+                            resolve(true); // Access is granted
+                        })
+                        .catch((error) => {
+                            console.error("Microphone access denied:", error);
+                            resolve(false); // Access is denied
+                        });
+                });
+            }
+    </script>
+
+
     <script type="text/javascript">
         class VoiceRecorder {
             constructor() {
@@ -926,6 +949,18 @@
             }
 
             startRecording() {
+                checkMicrophoneAccess().then(isEnabled => {
+                    if (!isEnabled) {
+                        Swal.fire({
+                            title: 'هشدار',
+                            icon: 'warning',
+                            text: 'اجازه ضبط صدا را به مرورگر خود بدهید',
+                            showCancelButton: false,
+                            showConfirmButton: false
+                        })
+                    }
+                });
+
                 if (this.isRecording) return
                 this.isRecording = true
                 this.startRef.innerHTML = 'Recording...'

@@ -145,11 +145,18 @@ Partial Class CMS_Pages_commentClients
         End Select
     End Function
 
-    Public Sub UpdateReadFlag(sender As Object, e As CommandEventArgs)
+
+	Private Sub btnChangeToClose_Click(sender As Object, e As EventArgs) Handles btnChangeToClose.Click
+		DL_Panel.UpdateAllCommentsToClosed()
+		SDS_Comments_Responed.SelectCommand = "SELECT * FROM [tbl_Comment_clients] WHERE id_client<>0 And id_parent=0 and (flag=2 or flag=3) ORDER BY flag asc,[date] DESC"
+		dgComments.DataBind()
+	End Sub
+
+	Public Sub UpdateReadFlag(sender As Object, e As CommandEventArgs)
         Dim s() As String = e.CommandArgument.ToString.Split("|")
         DL_Panel.UpdateCommentClient(Val(s(0)), s(1), Val(s(2)))
-        SDS_Comments.SelectCommand = "SELECT * FROM [tbl_Comment_clients] WHERE id_client<>0 and id_parent=0 ORDER BY flag asc,[date] DESC"
-        dgComments.DataBind()
+		SDS_Comments_Responed.SelectCommand = "SELECT * FROM [tbl_Comment_clients] WHERE id_client<>0 And id_parent=0 and (flag=2 or flag=3) ORDER BY flag asc,[date] DESC"
+		dgComments.DataBind()
     End Sub
 
     Public Sub DeleteComment(sender As Object, e As CommandEventArgs)
@@ -166,41 +173,24 @@ Partial Class CMS_Pages_commentClients
 
     End Sub
 
-    Private Sub btnSendSmsAgain_Click(sender As Object, e As EventArgs) Handles btnSendSmsAgain.Click
-        SendSMS("d4hbplkt4pgeceq", Val(Page.Request.QueryString("id_client")))
-    End Sub
-    Public Function convertNumFatoEn(ByVal T As String) As String
+	Private Sub btnSendSmsAgain_Click(sender As Object, e As EventArgs) Handles btnSendSmsAgain.Click
+		SendSMS("d4hbplkt4pgeceq", Val(Page.Request.QueryString("id_client")))
+	End Sub
+
+	Public Function convertNumFatoEn(ByVal T As String) As String
         Return T.Replace("۰", "0").Replace("۱", "1").Replace("۲", "2").Replace("۳", "3").Replace("۴", "4").Replace("۵", "5").Replace("۶", "6").Replace("۷", "7").Replace("۸", "8").Replace("۹", "9").Replace("٫", "/")
     End Function
     Private Sub CMS_Pages_commentClients_Load(sender As Object, e As EventArgs) Handles Me.Load
-        If Page.Request.QueryString("id") <> "" And (Not IsPostBack) Then
-            MultiView1.ActiveViewIndex = 1
-            If Page.Request.QueryString("Status") = "1" Then DL_Panel.UpdateCommentClient(Val(Page.Request.QueryString("id")), True, 1)
-            GetFlag()
-            HiddenFieldToken.Value = Page.Request.QueryString("id")
-            HiddenFieldClientID.Value = Page.Request.QueryString("id_client")
-        End If
-        'If Not IsPostBack Then
-        '    BindData()
-        '    dgComments.DataBind()
-        'End If
-    End Sub
-    'Private Sub BindData()
-    '    ' Set the SelectCommand for the SqlDataSource
-    '    SDS_Comments.SelectCommand = "SELECT * FROM [tbl_Comment_clients] WHERE id_client<>0 and id_parent=0 ORDER BY flag asc,[date] DESC"
+		If Page.Request.QueryString("id") <> "" And (Not IsPostBack) Then
+			MultiView1.ActiveViewIndex = 1
+			If Page.Request.QueryString("Status") = "1" Then DL_Panel.UpdateCommentClient(Val(Page.Request.QueryString("id")), True, 1)
+			GetFlag()
+			HiddenFieldToken.Value = Page.Request.QueryString("id")
+			HiddenFieldClientID.Value = Page.Request.QueryString("id_client")
+		End If
+	End Sub
 
-    '    ' Bind data to the DataGrid
-    '    dgComments.DataSource = SDS_Comments
-    '    dgComments.DataBind()
-    'End Sub
-
-    'Private Sub btnFilterAll_Click(sender As Object, e As EventArgs) Handles btnFilterAll.Click
-    '    BindData()
-    '    dgComments.DataBind()
-    '    MultiView1.ActiveViewIndex = 0
-    '    'Response.Redirect("commentClients?type=all")
-    'End Sub
-    Protected Sub dgComments_PageIndexChanging(source As Object, e As GridViewPageEventArgs)
+	Protected Sub dgComments_PageIndexChanging(source As Object, e As GridViewPageEventArgs)
         dgComments.PageIndex = e.NewPageIndex
         BindData()
     End Sub
@@ -220,17 +210,18 @@ Partial Class CMS_Pages_commentClients
         'Finally
         'End Try
     End Sub
-    ''Private Sub btnFilterunRead_Click(sender As Object, e As EventArgs) Handles btnFilterunRead.Click
-    ''    Dim sqlconn As New SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings("iranfilmportConnectionString").ConnectionString)
-    ''    If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
-    ''    sqlconn.Open()
-    ''    Dim sqlcom As New SqlCommand("SELECT * FROM [tbl_Comment_clients] WHERE id_client<>0 and flag=1 and id_parent=0 ORDER BY flag asc,[date] DESC", sqlconn)
-    ''    Dim sqlda As New SqlDataAdapter(sqlcom)
-    ''    Dim ds As New DataSet
-    ''    sqlda.Fill(ds)
-    ''    dgComments.DataSource = ds.Tables(0)
-    ''    dgComments.DataBind()
-    ''    sqlconn.Close()
-    ''End Sub
+
+	''Private Sub btnFilterunRead_Click(sender As Object, e As EventArgs) Handles btnFilterunRead.Click
+	''    Dim sqlconn As New SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings("iranfilmportConnectionString").ConnectionString)
+	''    If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+	''    sqlconn.Open()
+	''    Dim sqlcom As New SqlCommand("SELECT * FROM [tbl_Comment_clients] WHERE id_client<>0 and flag=1 and id_parent=0 ORDER BY flag asc,[date] DESC", sqlconn)
+	''    Dim sqlda As New SqlDataAdapter(sqlcom)
+	''    Dim ds As New DataSet
+	''    sqlda.Fill(ds)
+	''    dgComments.DataSource = ds.Tables(0)
+	''    dgComments.DataBind()
+	''    sqlconn.Close()
+	''End Sub
 
 End Class

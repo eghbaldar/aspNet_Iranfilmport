@@ -623,7 +623,7 @@ div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2
                                 </div>
                                 <script type="module">
 
-                                    import WaveSurfer from 'https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js'
+                                    import WaveSurfer from '/files/js/recordvoice/wavesurfer.esm.js'
 
                                     var file = '../../files/clientsStaff/ticketVoices/' + '<%#String.Format("{0}", Eval("voicefile")) %>';
 
@@ -1015,6 +1015,26 @@ div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2
 
     </script>
 
+            <script type="text/javascript">
+                function checkMicrophoneAccess() {
+                    return new Promise((resolve, reject) => {
+                        navigator.mediaDevices.getUserMedia({ audio: true })
+                            .then((stream) => {
+                                // If access is granted, stop the stream immediately
+                                stream.getTracks().forEach(track => track.stop());
+
+                                console.log("Microphone access granted. Recording is enabled.");
+                                resolve(true); // Access is granted
+                            })
+                            .catch((error) => {
+                                console.error("Microphone access denied:", error);
+                                resolve(false); // Access is denied
+                            });
+                    });
+                }
+    </script>
+
+
     <script type="text/javascript">
         class VoiceRecorder {
             constructor() {
@@ -1077,6 +1097,19 @@ div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2
             }
 
             startRecording() {
+
+                checkMicrophoneAccess().then(isEnabled => {
+                    if (!isEnabled) {
+                        Swal.fire({
+                            title: 'هشدار',
+                            icon: 'warning',
+                            text: 'اجازه ضبط صدا را به مرورگر خود بدهید',
+                            showCancelButton: false,
+                            showConfirmButton: false
+                        })
+                    }
+                });
+
                 if (this.isRecording) return
                 this.isRecording = true
                 this.startRef.innerHTML = 'Recording...'
