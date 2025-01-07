@@ -52,6 +52,7 @@
         routes.Ignore("{file}.png")
         routes.Ignore("{file}.apk")
         '---------------------------------------------
+        routes.MapPageRoute("eghbaldar", "eghbaldar", "~/kingEghbaldar.aspx")
         routes.MapPageRoute("rss", "rss", "~/rss.aspx")
         routes.MapPageRoute("rule", "قوانین-و-مقررات", "~/kingrules.aspx") 'rules.aspx
         routes.MapPageRoute("howitworks", "پخش-و-ارسال-فیلم", "~/kingHowitworks.aspx") 'howitworks.aspx

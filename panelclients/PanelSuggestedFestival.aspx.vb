@@ -2,8 +2,8 @@
 Partial Class panelclients_PanelSuggestedFestival
     Inherits System.Web.UI.Page
 
-    Dim DL_Panel As New DLL_Panel
-    Public userID As Long
+	Dim DL_Panel As New DLL_Panel
+	Public userID As Long
     Public ClosedStyle As String
 
     Private Sub PanelMoney_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -48,8 +48,9 @@ Partial Class panelclients_PanelSuggestedFestival
     End Function
     Public Sub Bank(sender As Object, e As CommandEventArgs)
         Dim pars() As String = e.CommandArgument.ToString().Split("|")
-        Dim amount = (Val(pars(1)) * 66000).ToString("N0") & " تومان"
-        Dim agree = pars(2)
+		'Dim amount = (Val(pars(1)) * 66000).ToString("N0") & " تومان"
+		Dim amount = (Val(pars(1)) * DL_Panel.GetDollar()).ToString("N0") & " تومان"
+		Dim agree = pars(2)
         Dim festivalId = pars(0)
 
         If agree = 0 Then

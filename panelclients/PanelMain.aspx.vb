@@ -5,11 +5,10 @@ Imports System.Net.Security
 Imports System.Security.Cryptography.X509Certificates
 
 Partial Class PanelMain
-    Inherits System.Web.UI.Page
-    Dim Dll As New DLL_Panel
-    Private DollarMsg As String = "مجموع ورودی های اعتباری صفر شده توسط «درگاه فیلم ایران» برای تمامی فیلم‌های شما، تا این لحظه به دلار میانیگن روز <span style='background-color:black;color:white;padding:2px;width:70px'>(" + GeneralConstants.Dollar.ToString("N0") + " تومان)</span>، برابر است با:"
-
-    Public Sub ShowSubmissions(sender As Object, e As CommandEventArgs)
+	Inherits System.Web.UI.Page
+	Dim Dll As New DLL_Panel
+	Private DollarMsg As String = "مجموع ورودی های اعتباری صفر شده توسط «درگاه فیلم ایران» برای تمامی فیلم‌های شما، تا این لحظه به دلار میانیگن روز <span style='background-color:black;color:white;padding:2px;width:70px'>({0} تومان)</span>، برابر است با:"
+	Public Sub ShowSubmissions(sender As Object, e As CommandEventArgs)
 
         HiddenField_FilmID.Value = e.CommandArgument.ToString
         MultiView.ActiveViewIndex = 1
@@ -20,10 +19,10 @@ Partial Class PanelMain
             btnNewUpdated.Visible = False
         End If
 
-        lblSumFeeTitle.Text = DollarMsg
-        lblSumFee.Text = "<span style='font-size:50px'>" + (Val(Dll.GetSumFeeValue(HiddenField_FilmID.Value)) * GeneralConstants.Dollar).ToString("N0") + " تومان" + "</span>"
+		lblSumFeeTitle.Text = String.Format(DollarMsg, Val(Dll.GetDollar()).ToString("N0"))
+		lblSumFee.Text = "<span style='font-size:50px'>" + (Val(Dll.GetSumFeeValue(HiddenField_FilmID.Value)) * Dll.GetDollar()).ToString("N0") + " تومان" + "</span>"
 
-        dgNewUpdated.DataBind()
+		dgNewUpdated.DataBind()
 
     End Sub
     Public Function GetAccept(e As Object) As String
@@ -72,10 +71,10 @@ Partial Class PanelMain
     Public Function GetNotification(e As Object) As String
         Return Convert.ToDateTime(e)
     End Function
-    Public Function GetDateShamsi(e As Object) As String
-        Return ShamsiDate.Miladi2Shamsi(e, ShamsiDate.ShowType.ShortDate)
-    End Function
-    Public Function GetFeeValueBackground(e As Object) As Boolean
+	Public Function GetDateShamsi(e As Object) As String
+		Return ShamsiDate.Miladi2Shamsi(e, ShamsiDate.ShowType.ShortDate)
+	End Function
+	Public Function GetFeeValueBackground(e As Object) As Boolean
         Select Case e.ToString
             Case "1"
                 Return False
@@ -115,20 +114,19 @@ Partial Class PanelMain
 
     Private Sub PanelMain_Load(sender As Object, e As EventArgs) Handles Me.Load
 
-        If Not IsPostBack Then
-            Dim email As String = Dll.GetEmailClient(Val(Page.RouteData.Values("id")))
-            If String.IsNullOrEmpty(email) Or email.Trim = "iranfilmportdistributor@gmail.com" Then
-                ClientEmailModal.Visible = True
-            End If
-        End If
-
-        FillFeeValue()
+		If Not IsPostBack Then
+			Dim email As String = Dll.GetEmailClient(Val(Page.RouteData.Values("id")))
+			If String.IsNullOrEmpty(email) Or email.Trim = "iranfilmportdistributor@gmail.com" Then
+				ClientEmailModal.Visible = True
+			End If
+		End If
+		FillFeeValue()
     End Sub
 
     Private Sub FillFeeValue()
-        lblSumFeeTitle.Text = DollarMsg
-        lblSumFee.Text = "<span style='font-size:50px'>" + (Dll.GetSumFeeValueAllFilm(Val(Page.RouteData.Values("id"))) * GeneralConstants.Dollar).ToString("N0") + " تومان" + "</span>"
-    End Sub
+		lblSumFeeTitle.Text = String.Format(DollarMsg, Val(Dll.GetDollar()).ToString("N0"))
+		lblSumFee.Text = "<span style='font-size:50px'>" + (Dll.GetSumFeeValueAllFilm(Val(Page.RouteData.Values("id"))) * Dll.GetDollar()).ToString("N0") + " تومان" + "</span>"
+	End Sub
 
     Public Sub PublicSetClick(sender As Object, e As CommandEventArgs)
 
@@ -250,8 +248,8 @@ Partial Class PanelMain
         Response.Redirect("~/panel/panelReports/" & Page.RouteData.Values("id") & "/" & e.CommandArgument.ToString())
     End Sub
 
-    Public Function GetSumFee(idFilm As Integer) As String
-        Return (Val(Dll.GetSumFeeValue(idFilm)) * GeneralConstants.Dollar).ToString("N0")
-    End Function
+	Public Function GetSumFee(idFilm As Integer) As String
+		Return (Val(Dll.GetSumFeeValue(idFilm)) * Dll.GetDollar()).ToString("N0")
+	End Function
 
 End Class

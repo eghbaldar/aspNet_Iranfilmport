@@ -10,13 +10,13 @@
         <AlternatingRowStyle BackColor="#F7F7F7" />
         <Columns>
             <asp:BoundField DataField="DollarToRial" 
-                HeaderText="دلار به تومان" SortExpression="DollarToRial" />
-            <asp:BoundField DataField="CommissionForFree" 
+                HeaderText="دلار به ریال" SortExpression="DollarToRial" />
+<%--            <asp:BoundField DataField="CommissionForFree" 
                 HeaderText="کارمزد برای فستیوال های رایگان به تومان" 
                 SortExpression="CommissionForFree" />
             <asp:BoundField DataField="CommissionForFee" 
                 HeaderText="کارمزد ارسال فیلم به فستیوال های پولی به تومان" 
-                SortExpression="CommissionForFee" />
+                SortExpression="CommissionForFee" />--%>
             <asp:CommandField ShowEditButton="True" />
         </Columns>
         <FooterStyle BackColor="#B5C7DE" ForeColor="#4A3C8C" />

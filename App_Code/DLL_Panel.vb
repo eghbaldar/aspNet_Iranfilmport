@@ -582,22 +582,36 @@ Public Class DLL_Panel
 
     End Function
 
-    Public Function UpdateFestivalSuggestionReceipt(ByVal festivalSuggestionId As Long, filename As String) As Integer
-        Try
-            If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
-            sqlconn.Open()
-            ' agree = 0 nothing
-            ' agree = 1 regquested
-            ' agree = 2 receitp is uploaded
-            ' agree = 3 festival is sent
-            ' agree = 4 rejected and money is back
-            Dim sqlcom As New SqlCommand("update tbFestivalSuggestion set receiptfilename='" + filename + "' where  id=" + festivalSuggestionId.ToString(), sqlconn)
-            Return sqlcom.ExecuteNonQuery()
-            sqlconn.Close()
-        Catch ex As Exception
-        Finally
-            sqlconn.Close()
-        End Try
+	Public Function UpdateFestivalSuggestionReceipt(ByVal festivalSuggestionId As Long, filename As String) As Integer
+		Try
+			If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+			sqlconn.Open()
+			' agree = 0 nothing
+			' agree = 1 regquested
+			' agree = 2 receitp is uploaded
+			' agree = 3 festival is sent
+			' agree = 4 rejected and money is back
+			Dim sqlcom As New SqlCommand("update tbFestivalSuggestion set receiptfilename='" + filename + "' where  id=" + festivalSuggestionId.ToString(), sqlconn)
+			Return sqlcom.ExecuteNonQuery()
+			sqlconn.Close()
+		Catch ex As Exception
+		Finally
+			sqlconn.Close()
+		End Try
 
-    End Function
+	End Function
+
+	Public Function GetDollar() As String
+		Try
+			If sqlconn_Site.State = ConnectionState.Open Then sqlconn_Site.Close()
+			sqlconn_Site.Open()
+			Dim sqlcom As New SqlCommand("select [DollarToRial] from tbl_setting", sqlconn_Site)
+			Return sqlcom.ExecuteScalar
+			sqlconn_Site.Close()
+		Catch ex As Exception
+		Finally
+			sqlconn_Site.Close()
+		End Try
+	End Function
+
 End Class
