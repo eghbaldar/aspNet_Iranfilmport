@@ -614,4 +614,20 @@ Public Class DLL_Panel
 		End Try
 	End Function
 
+	Public Function GetClientUserPassByPhone(phone As String) As DataTable
+		Try
+			If sqlconn.State = ConnectionState.Open Then sqlconn.Close()
+			sqlconn.Open()
+			Dim sqlcom As New SqlCommand("select [username],[password] from [tbCustomers] where phone='" + phone + "'", sqlconn)
+			Dim sqlda As New SqlDataAdapter(sqlcom)
+			Dim tb As New DataTable
+			sqlda.Fill(tb)
+			Return tb
+			sqlconn.Close()
+		Catch ex As Exception
+		Finally
+			sqlconn.Close()
+		End Try
+	End Function
+
 End Class

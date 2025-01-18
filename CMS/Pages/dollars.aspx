@@ -31,8 +31,7 @@
     </asp:GridView>
     <asp:SqlDataSource ID="SDS_Dollars" runat="server" 
         ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>" 
-        SelectCommand="SELECT * FROM [tbl_setting]" UpdateCommand="update tbl_setting
-set DollarToRial=@DollarToRial,CommissionForFree=@CommissionForFree,CommissionForFee=@CommissionForFee">
+        SelectCommand="SELECT * FROM [tbl_setting]" UpdateCommand="update tbl_setting set DollarToRial=@DollarToRial">
         <UpdateParameters>
             <asp:Parameter Name="DollarToRial" />
         </UpdateParameters>

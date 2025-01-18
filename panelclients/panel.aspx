@@ -22,7 +22,9 @@
     <link href="../files/sweetalert/sweetalert2.min.css" />
     <script type="text/javascript" src="../files/sweetalert/sweetalert2.all.min.js"></script>
     <script type="text/javascript" src="../files/sweetalert/sweetalert2.min.js"></script>
-
+        <!-- Google Captcha - Crips -->
+  <script src="https://www.google.com/recaptcha/enterprise.js?render=6LdLz7sqAAAAAJ12WGGew7wgXK_nsxCYxQ3F-GDb"></script>
+    <!-- End of Google Captcha - Crips -->
     <style>
         @font-face {
             font-family: 'NazaninB';
@@ -147,6 +149,24 @@
                 box-shadow: 0 5px #666;
                 transform: translateY(4px);
             }
+
+        .alert-context {
+            align-content: center;
+            width: 100%;
+            justify-content: center;
+            display: flex;
+        }
+
+        .alert {
+            color: red;
+            font-size: 13px;
+            background-color: #F8D7DA;
+            color: red;
+            padding: 10px;
+            border-radius: 5px;
+            max-width: 500px;
+            margin-top: 10px;
+        }
     </style>
     <style>
         /* The Modal (background) */
@@ -190,18 +210,14 @@
     </style>
 
     <script type="text/javascript">
-
-        function myAlert(text) {
-            Swal.fire({
-                title: 'پیام سیستمی!',
-                text: text,
-                icon: 'error',
-                confirmButtonColor: '#ffa200',
-                confirmButtonText: 'متوجه شدم!',
-            });
+        function error(text) {
+            let timerInterval; Swal.fire({ icon: 'error', title: 'خطا', html: text, timer: 5000, timerProgressBar: true, didOpen: () => { Swal.showLoading(); const timer = Swal.getPopup().querySelector('b'); timerInterval = setInterval(() => { timer.textContent = `${Swal.getTimerLeft()}`; }, 100); }, willClose: () => { clearInterval(timerInterval);  } });
+        }
+        function success(text) {
+            let timerInterval; Swal.fire({ icon: 'success', title: 'خطا', html: text, timer: 5000, timerProgressBar: true, didOpen: () => { Swal.showLoading(); const timer = Swal.getPopup().querySelector('b'); timerInterval = setInterval(() => { timer.textContent = `${Swal.getTimerLeft()}`; }, 100); }, willClose: () => { clearInterval(timerInterval); window.location = '/panel' } });
         }
     </script>
-    
+
 
 </head>
 <body>
@@ -287,76 +303,45 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*"
                                             ControlToValidate="txtPass" ForeColor="Red" ValidationGroup="1"></asp:RequiredFieldValidator>
                                     </div>
-                                    <div>
-                                        <div>
-                                            <asp:Image ID="ImageCaptacha" runat="server" />
-                                        </div>
-                                        <div>
-                                            <asp:TextBox ID="txtCaptcha" placeholder="عدد 7 رقمی امنیتی" CssClass="txtLogin"
-                                                runat="server" Style="direction: ltr;"></asp:TextBox>
-                                        </div>
-                                    </div>
                                     <br />
                                     <asp:Button CssClass="buttonEnter" ID="btnLogin" runat="server"
                                         Text="ورود با نام کاربری" ValidationGroup="1" />
                                     <br />
                                     <br />
                                     <asp:Button CssClass="buttonPhone" ID="btnChangeToPhone" runat="server"
-                                        Text="ارسال نام کاربری و کلمه عبور" ValidationGroup="1" />
+                                        Text="ارسال نام کاربری و کلمه عبور" />
                                     <br />
                                 </div>
                             </asp:View>
                             <asp:View ID="View2" runat="server">
                                 <div style="text-align: center; direction: ltr;">
-                                    <a onclick="get()">asd</a>
                                     <div>
-                                        <asp:TextBox ID="txtPhone1" Style="direction: ltr; background-color: #f8f8f8;"
-                                            Text="0"
-                                            ReadOnly="true"
-                                            CssClass="txtPhone" runat="server"></asp:TextBox>
-                                        <asp:TextBox ID="txtPhone2" Style="direction: ltr; background-color: #f8f8f8;"
-                                            Text="9"
-                                            ReadOnly="true"
-                                            CssClass="txtPhone" runat="server"></asp:TextBox>
-                                            <asp:TextBox ID="txtPhone3" name="txtPhone3" Style="direction: ltr;"
-                                                CssClass="txtPhone" runat="server"></asp:TextBox>
-                                            <asp:TextBox ID="txtPhone4" Style="direction: ltr;"
-                                                CssClass="txtPhone" runat="server"></asp:TextBox>
-                                            <asp:TextBox ID="txtPhone5" Style="direction: ltr;"
-                                                CssClass="txtPhone" runat="server"></asp:TextBox>
-                                        <asp:TextBox ID="txtPhone6" Style="direction: ltr;"
-                                            CssClass="txtPhone" runat="server"></asp:TextBox>
-                                        <asp:TextBox ID="txtPhone7" Style="direction: ltr;"
-                                            CssClass="txtPhone" runat="server"></asp:TextBox>
-                                        <asp:TextBox ID="txtPhone8" Style="direction: ltr;"
-                                            CssClass="txtPhone" runat="server"></asp:TextBox>
-                                        <asp:TextBox ID="txtPhone9" Style="direction: ltr;"
-                                            CssClass="txtPhone" runat="server"></asp:TextBox>
-                                        <asp:TextBox ID="txtPhone10" Style="direction: ltr;"
-                                            CssClass="txtPhone" runat="server"></asp:TextBox>
-                                        <asp:TextBox ID="txtPhone11" Style="direction: ltr;"
-                                            CssClass="txtPhone" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txtPhone1" Style="direction: ltr; background-color: #f8f8f8;" Text="0" ReadOnly="true" CssClass="txtPhone" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txtPhone2" Style="direction: ltr; background-color: #f8f8f8;" Text="9" ReadOnly="true" CssClass="txtPhone" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txtPhone3" name="txtPhone3" MaxLength="1" Style="direction: ltr;" CssClass="txtPhone" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txtPhone4" name="txtPhone4" MaxLength="1" Style="direction: ltr;" CssClass="txtPhone" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txtPhone5" name="txtPhone5" MaxLength="1" Style="direction: ltr;" CssClass="txtPhone" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txtPhone6" name="txtPhone6" MaxLength="1" Style="direction: ltr;" CssClass="txtPhone" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txtPhone7" name="txtPhone7" MaxLength="1" Style="direction: ltr;" CssClass="txtPhone" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txtPhone8" name="txtPhone8" MaxLength="1" Style="direction: ltr;" CssClass="txtPhone" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txtPhone9" name="txtPhone9" MaxLength="1" Style="direction: ltr;" CssClass="txtPhone" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txtPhone10" name="txtPhone10" MaxLength="1" Style="direction: ltr;" CssClass="txtPhone" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txtPhone11" name="txtPhone11" MaxLength="1" Style="direction: ltr;" CssClass="txtPhone" runat="server"></asp:TextBox>
 
-                                        <div style="color: red; font-size: 15px;">
-                                            توجه فرمائید: اطلاعات تنها به شماره ای ارسال میگردد که در سامانه ثبت و شخص به عنوان نماینده رسمی اثر معرفی شده باشد.
+                                        <div class="alert-context">
+                                            <div class="alert">
+                                                توجه فرمائید: اطلاعات تنها به شماره ای ارسال میگردد که در سامانه ثبت و شخص به عنوان نماینده رسمی اثر معرفی شده باشد.
+                                            </div>
                                         </div>
+
                                         <br />
                                     </div>
-                                    <div>
-                                        <div>
-                                            <asp:Image ID="ImageCaptchaPhone" runat="server" />
-                                        </div>
-                                        <div>
-                                            <asp:TextBox ID="TextBox3" placeholder="عدد 7 رقمی امنیتی" CssClass="txtLogin"
-                                                runat="server" Style="direction: ltr;"></asp:TextBox>
-                                        </div>
-                                    </div>
                                     <br />
-                                    <asp:Button CssClass="buttonEnter" ID="Button1" runat="server"
+                                    <asp:Button CssClass="buttonEnter" ID="btnSendInfoBySms" runat="server"
                                         Text="دریافت" ValidationGroup="1" />
                                     <br />
                                     <br />
-                                    <asp:Button CssClass="buttonPhone" ID="Button2" runat="server"
+                                    <asp:Button CssClass="buttonPhone" ID="btnBackToLogin" runat="server"
                                         Text="بازگشت به بخش ورود" ValidationGroup="1" />
                                     <br />
                                 </div>
@@ -389,10 +374,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
             <img src="..\files\images\logos\logoSquare.png" width="50" />
         </div>
 
-                    <script type="text/javascript">
-                        function txtInputChanged(inputValue) {
-                            alert(inputValue);
-                        }
+        <script type="text/javascript">
+            function txtInputChanged(e, nextTextboxName) {
+                if (e.value.length == 1) document.getElementsByName(nextTextboxName)[0].focus();
+            }
         </script>
     </form>
 </body>

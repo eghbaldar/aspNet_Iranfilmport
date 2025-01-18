@@ -33,4 +33,30 @@ Public Class SMS
 
     End Function
 
+	Public Function SendSms(to_ As String,
+							pattern As String,
+							par1 As String, val1 As String,
+							par2 As String, val2 As String) As Boolean
+
+		Try
+			Dim client = New RestClient("http://188.0.240.110/api/select")
+			Dim request = New RestRequest(Method.POST)
+			request.AddHeader("cache-control", "no-cache")
+			request.AddHeader("Content-Type", "application/json")
+			request.AddParameter("undefined", "{""op"" : ""pattern""" _
+								 & ",""user"" : """ + SMS.USERNAME + """" _
+								 & ",""pass"":  """ + SMS.PASSWORD + """" _
+								 & ",""fromNum"" : """ + SMS.numberHamkaran + """" _
+								 & ",""toNum"": """ + to_.Trim() + """" _
+								 & ",""patternCode"": """ + pattern.Trim() + """" _
+								 & ",""inputData"" : [{""" + par1.Trim() + """: """ + val1.Trim() + """,""" + par2.Trim() + """: """ + val2.Trim() + """}]}", ParameterType.RequestBody)
+
+			Dim response As IRestResponse = client.Execute(request)
+			Return response.Content
+		Catch ex As Exception
+			Dim DLL_CMS As New DLL_CMS
+			DLL_CMS.InsertErrorLogs("", "SMS", Err.Number, ex.Message)
+		End Try
+
+	End Function
 End Class

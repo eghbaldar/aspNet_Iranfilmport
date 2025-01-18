@@ -20,8 +20,12 @@
     <link rel="apple-touch-icon" sizes="128x128" href="<%= ResolveUrl("~/files/images/icons/iconScreen.png")%>">
     <link href="<%= ResolveUrl("~/files/css/stylePanel.css")%>" rel="stylesheet" type="text/css" />
     <link href="<%= ResolveUrl("~/files/css/button/style1/style1.css")%>" rel="stylesheet" />
-    <!-- -->
-    <link rel="shortcut icon" href="<%= ResolveUrl("~/files/images/icons/icon.png")%>" />
+    <!--Online Chatting - Crips -->
+<script type="text/javascript"> !function () { var i = "21DkyT", a = window, d = document; function g() { var g = d.createElement("script"), s = "https://www.goftino.com/widget/" + i, l = localStorage.getItem("goftino_" + i); g.async = !0, g.src = l ? s + "?o=" + l : s; d.getElementsByTagName("head")[0].appendChild(g); } "complete" === d.readyState ? g() : a.attachEvent ? a.attachEvent("onload", g) : a.addEventListener("load", g, !1); }(); </script>    <link rel="shortcut icon" href="<%= ResolveUrl("~/files/images/icons/icon.png")%>" />
+    <!-- End of Online Chatting - Crips -->
+    <!-- Google Captcha - Crips -->
+  <script src="https://www.google.com/recaptcha/enterprise.js?render=6LdLz7sqAAAAAJ12WGGew7wgXK_nsxCYxQ3F-GDb"></script>
+    <!-- End of Google Captcha - Crips -->
     <title>درگاه فیلم ایران - پنل گزارش وضعیت فستیوال ها</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>

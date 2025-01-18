@@ -40,6 +40,9 @@
     <link href="files/kingMaterials/plugins/modal/modal.css" rel="stylesheet" />
     <!-- Login Modal -->
     <link href="files/kingMaterials/pagecssjs/loginModal/css.css" rel="stylesheet" />
+        <!-- Google Captcha - Crips -->
+      <script src="https://www.google.com/recaptcha/enterprise.js?render=6LdLz7sqAAAAAJ12WGGew7wgXK_nsxCYxQ3F-GDb"></script>
+    <!-- End of Google Captcha - Crips -->
     <%--Google Section--%>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-118348858-1"></script>
     <script>
