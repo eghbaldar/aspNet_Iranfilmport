@@ -16,14 +16,14 @@
             <asp:Image ID="Image1" Width="100px" runat="server" ImageUrl="~/files/images/icons/contracticon.png"></asp:Image>
         </div>
         <div style="margin: 5px;">
-            <div id="NOK" class="alert alert-danger" role="alert" visible="false" runat="server">
+            <div id="NotRegistered" role="alert" visible="false" runat="server">
                 <asp:Label ID="lblwarning" runat="server"></asp:Label>
                 <br />
                 جهت کسب اطلاعات بیشتر با واحد مالی و قراردادهای شرکت در تماس باشید.
                             <br />
                 <a href="../contactus/">تماس با ما</a>
             </div>
-            <div id="OK" class="alert alert-success" role="alert" visible="false" runat="server">
+            <div id="RegisteredDraft" role="alert" visible="false" runat="server">
                 قرارداد/نامه رسمی با مشخصات زیر در سیستم ثبت شده است:
                             <br />
                 تاریخ ثبت:
