@@ -120,9 +120,9 @@
                     <asp:Label ID="lblInfoUsername" runat="server" Text="Label"></asp:Label>
                 </div>
                 <div class="alert alert-success" role="alert" style="direction: rtl; text-align: right; font-family: Samim;">
-جهت دیدن شدن بیشتر پروفایل و نیز لیست شدن نام‌تان و نیز عناوین فیلم و فیلمنامه‌هایتان در سرچ گوگل، آدرس پروفایل‌تان را در شبکه‌های مجازی مانند اینستاگرام شر کنید.
-</div>
-                <div class="alert alert-danger" role="alert" runat="server" id="warning" visible="false" style="font-family:Samim;text-align:right;direction:rtl;">
+                    جهت دیدن شدن بیشتر پروفایل و نیز لیست شدن نام‌تان و نیز عناوین فیلم و فیلمنامه‌هایتان در سرچ گوگل، آدرس پروفایل‌تان را در شبکه‌های مجازی مانند اینستاگرام شر کنید.
+                </div>
+                <div class="alert alert-danger" role="alert" runat="server" id="warning" visible="false" style="font-family: Samim; text-align: right; direction: rtl;">
                     پروفایل شما معلق شده است، اطلاعات ارسالی شما بزودی توسط تیم کارشناسی درگاه بررسی
                 شده و نتیجه به اطلاع شما خواهد رسید. همچنین تا اطلاع ثانوی دسترسی عمومی به پروفایل
                 شما نیز معلق گردیده است.
@@ -146,20 +146,21 @@
     </footer>
         <script src="<%= ResolveUrl("~/dashboard/assets/js/jquery-1.11.1.js")%>"></script>
         <script src="<%= ResolveUrl("~/dashboard/assets/js/bootstrap.js")%>"></script>
-            <!-- SweetAlert-->
-    <script src="/files/sweetalert/sweetalert2.all.min.js"></script>
-    <script src="/files/sweetalert/sweetalert2.min.js"></script>
+        <!-- SweetAlert-->
+        <script src="/files/sweetalert/sweetalert2.all.min.js"></script>
+        <script src="/files/sweetalert/sweetalert2.min.js"></script>
         <script>
             function showSweetAlert(title, text) {
                 Swal.fire({
                     title: title,
                     html: text,
                     icon: "info",
-                    confirmButtonText : "متوجه شدم",
+                    confirmButtonText: "متوجه شدم",
                     confirmButtonColor: "#ECCE2F",
                 });
             }
         </script>
+
     </form>
 </body>
 </html>

@@ -133,8 +133,10 @@ Partial Class usercontrols_KingLoginModal
                 Case 3
                     lblStatus.Text = "در نام کاربری نباید فاصله وجود داشته باشد."
                 Case 4
-                    lblStatus.Text = "طول نام کاربری شما باید بالای 6 کاراکتر باشد."
-            End Select
+					lblStatus.Text = "طول نام کاربری شما باید بالای 6 کاراکتر باشد."
+				Case 5
+					lblStatus.Text = "نام کاربری تنها باید شامل حروف انگلیسی باشد."
+			End Select
         Else
             lblStatus.Text = "کلمه عبور باید بیش از 6 کارکتر باشد."
         End If

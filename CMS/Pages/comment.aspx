@@ -42,31 +42,12 @@
                         <asp:Label ID="La97979bel2" runat="server" Text='<%# getSection(Eval("Sections"), Eval("id_post")) %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <%--  <asp:TemplateField HeaderText="flag" SortExpression="flag">
-                        <ItemTemplate>
-
-                            <asp:Panel ID="Pan543534el2" runat="server" Style="padding: 5px;" BackColor='<%# IIF(Eval("flag") = "True", System.Drawing.Color.Green, System.Drawing.Color.Red) %>'>
-
-
-                                <asp:CheckBox ID="Che22ckBox1" runat="server" Checked='<%# Bind("flag") %>' Enabled="false" />
-                                <asp:Button ID="But5to3n1" runat="server" CommandArgument='<%# Eval("id") %>' OnCommand="SetEnable"
-                                    Text="E" ForeColor="Green" />
-                                <asp:Button ID="Bu2tton22" runat="server" CommandArgument='<%# Eval("id") %>' OnCommand="SetDsiable"
-                                    Text="D" ForeColor="Red" />
-
-                            </asp:Panel>
-
-                        </ItemTemplate>
-                    </asp:TemplateField>--%>
 
 
                 <asp:TemplateField ShowHeader="False">
                     <ItemTemplate>
                         <asp:Panel ID="Panel3" runat="server">
-                            <%--Visible='<%# IIF(Eval("id_parent")<>"0","False","True") %>'--%>
-                            <a
-                                href='<%# String.Format("comments?type=comment&id={0}&idPost={1}&Sections={2}&Email={3}&id_parent={4}", Eval("id"), Eval("Id_post"), Eval("sections"), Eval("email"), Eval("id_parent")) %>'>نمایش و پاسخ ادمین </a>
-
+                            <a href='<%# String.Format("comments?type=comment&id={0}&idPost={1}&Sections={2}&Email={3}&id_parent={4}", Eval("id"), Eval("Id_post"), Eval("sections"), Eval("email"), Eval("id_parent")) %>'>نمایش و پاسخ ادمین </a>
                         </asp:Panel>
                     </ItemTemplate>
                 </asp:TemplateField>
@@ -78,7 +59,7 @@
                     <ItemTemplate>
 
                         <asp:Panel ID="Panel1112" runat="server" Style="padding: 5px;"
-                            BackColor='<%# ReadUnread(Eval("id"), Eval("id_post")) %>'>
+                            BackColor='<%# ReadUnread(Eval("unread_count")) %>'>
                             <span style="color: white">STATUS</span>
 
                         </asp:Panel>
@@ -109,7 +90,7 @@
             <SortedDescendingHeaderStyle BackColor="#3E3277" />
         </asp:GridView>
         <asp:SqlDataSource ID="SDS" runat="server" ConnectionString="<%$ ConnectionStrings:iranfilmportConnectionString %>"
-            SelectCommand="SELECT * FROM [tbl_Comment] where id_parent=0 ORDER BY [read] asc,[date] desc"
+            SelectCommand="SELECT c.Id, c.Id_parent, c.id_post, c.[read], c.[date], c.[admin], c.[name], c.[email], COUNT(sub.Id_parent) AS unread_count, c.Sections FROM dbo.tbl_Comment c LEFT JOIN dbo.tbl_Comment sub ON c.Id = sub.Id_parent AND sub.[read] = 0 WHERE c.Id_parent = 0 AND c.id_post != -1 GROUP BY c.Id, c.Id_parent, c.id_post, c.[read], c.[date], c.Sections, c.[admin], c.[name], c.[email] ORDER BY c.[read] ASC, c.[date] DESC;"
             DeleteCommand="delete from tbl_Comment where id=@id">
             <DeleteParameters>
                 <asp:Parameter Name="id" />

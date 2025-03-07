@@ -113,13 +113,13 @@ Partial Class CMS_Pages_Default2
         DataListSubComment.DataBind()
     End Sub
 
-    Public Function ReadUnread(id As Object, idPost As Object) As System.Drawing.Color
-        If (DL_CMS.GetReadUnReadComments(id, idPost)) Then
-            Return System.Drawing.Color.Red
-        Else
-            Return System.Drawing.Color.Green
-        End If
+	Public Function ReadUnread(count As Object) As System.Drawing.Color
+		If Val(count) > 0 Then
+			Return System.Drawing.Color.Red
+		Else
+			Return System.Drawing.Color.Green
+		End If
 
-    End Function
+	End Function
 
 End Class

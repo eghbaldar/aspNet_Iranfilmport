@@ -164,8 +164,9 @@ Partial Class dashboard_Default
 
     Protected Sub btnUpdateMobile_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUpdateMobile.Click
         Dim DLL As New DLL_Dashboard
-        DLL.Update_Mobile(DLLd._Email_, txtMobile.Text.Trim)
-        LoadData()
+		DLL.Update_Mobile(DLLd._Email_, txtMobile.Text.Trim)
+		ShowSweetAlert("اتمام فرآیند", "شماره همراه جدید ثبت شد.")
+		LoadData()
     End Sub
 
 	Protected Sub btnUpdateMeli_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnUpdateMeli.Click
@@ -234,25 +235,30 @@ Partial Class dashboard_Default
                         '''''''''
                         If DLL.Update_Password(txtPass1.Text.Trim, DLLd._Email_) = 0 Then
                             lblUserPassStatus.ForeColor = Drawing.Color.Red
-                            lblUserPassStatus.Text = "کلمه عبور فعلی مطابقت ندارد، دوباره تلاش کنید."
-                        Else
+							lblUserPassStatus.Text = "کلمه عبور فعلی مطابقت ندارد، دوباره تلاش کنید."
+							ShowSweetAlert("نقض فرآیند", "کلمه عبور فعلی مطابقت ندارد، دوباره تلاش کنید.")
+						Else
                             lblUserPassStatus.ForeColor = Drawing.Color.Green
-                            lblUserPassStatus.Text = "تغییرات اعمال شده است."
-                            LoadData()
+							lblUserPassStatus.Text = "تغییرات اعمال شده است."
+							ShowSweetAlert("اتمام فرآیند", "تغییرات اعمال شده است.")
+							LoadData()
                         End If
                         '''''''''
                     Else
                         lblUserPassStatus.ForeColor = Drawing.Color.Red
-                        lblUserPassStatus.Text = "به منظور تغییر کلمه عبور باید دو فیلد کلمه عبور جدید را پر کنید."
-                    End If
+						lblUserPassStatus.Text = "به منظور تغییر کلمه عبور باید دو فیلد کلمه عبور جدید را پر کنید."
+						ShowSweetAlert("نقض فرآیند", "به منظور تغییر کلمه عبور باید دو فیلد کلمه عبور جدید را پر کنید.")
+					End If
                 Else
                     lblUserPassStatus.ForeColor = Drawing.Color.Red
-                    lblUserPassStatus.Text = "کلمه عبور اشتباه می باشد."
-                End If
+					lblUserPassStatus.Text = "کلمه عبور اشتباه می باشد."
+					ShowSweetAlert("نقض فرآیند", "کلمه عبور اشتباه می باشد.")
+				End If
             Else
                 lblUserPassStatus.ForeColor = Drawing.Color.Red
-                lblUserPassStatus.Text = "کلمه عبور باید بیش از 6 کاراکتر باشد"
-            End If
+				lblUserPassStatus.Text = "کلمه عبور باید بیش از 6 کاراکتر باشد"
+				ShowSweetAlert("نقض فرآیند", "کلمه عبور باید بیش از 6 کاراکتر باشد")
+			End If
         Else 'تغییر نام کاربری
             If txtUsername.Text.Trim <> "" Then
                 If DLL.CheckLogin(DLLd._Email_, txtCurrentPass.Text.Trim) Then 'آیا کلمه عبور فعلی درست وارد شده است
@@ -262,30 +268,41 @@ Partial Class dashboard_Default
                             If DLL.CheckDuplicateUsername(txtUsername.Text.Trim) Then
                                 DLL.Update_Username(txtUsername.Text.Trim, txtCurrentPass.Text.Trim, DLLd._Email_)
                                 lblUserPassStatus.ForeColor = Drawing.Color.Green
-                                lblUserPassStatus.Text = "تغییرات اعمال شده است."
-                                LoadData()
+								lblUserPassStatus.Text = "تغییرات اعمال شده است."
+								ShowSweetAlert("اتمام فرآیند", "تغییرات اعمال شده است.")
+								LoadData()
                             Else
                                 lblUserPassStatus.ForeColor = Drawing.Color.Red
-                                lblUserPassStatus.Text = "نام کاربری تکراری است."
-                            End If
+								lblUserPassStatus.Text = "نام کاربری تکراری است."
+								ShowSweetAlert("نقض فرآیند", "نام کاربری تکراری است.")
+							End If
                         Case 2
                             lblUserPassStatus.ForeColor = Drawing.Color.Red
-                            lblUserPassStatus.Text = "کارکتر ابتدایی نام کاربری نباید عدد باشد."
-                        Case 3
+							lblUserPassStatus.Text = "کارکتر ابتدایی نام کاربری نباید عدد باشد."
+							ShowSweetAlert("نقض فرآیند", "کارکتر ابتدایی نام کاربری نباید عدد باشد.")
+						Case 3
                             lblUserPassStatus.ForeColor = Drawing.Color.Red
-                            lblUserPassStatus.Text = "در نام کاربری نباید فاصله وجود داشته باشد."
-                        Case 4
+							lblUserPassStatus.Text = "در نام کاربری نباید فاصله وجود داشته باشد."
+							ShowSweetAlert("نقض فرآیند", "در نام کاربری نباید فاصله وجود داشته باشد.")
+						Case 4
                             lblUserPassStatus.ForeColor = Drawing.Color.Red
-                            lblUserPassStatus.Text = "طول نام کاربری شما باید بالای 6 کاراکتر باشد."
-                    End Select
+							lblUserPassStatus.Text = "طول نام کاربری شما باید بالای 6 کاراکتر باشد."
+							ShowSweetAlert("نقض فرآیند", "طول نام کاربری شما باید بالای 6 کاراکتر باشد.")
+						Case 5
+							lblUserPassStatus.ForeColor = Drawing.Color.Red
+							lblUserPassStatus.Text = "نام کاربری تنها باید شامل حروف انگلیسی باشد."
+							ShowSweetAlert("نقض فرآیند", "نام کاربری تنها باید شامل حروف انگلیسی باشد.")
+					End Select
                 Else
                     lblUserPassStatus.ForeColor = Drawing.Color.Red
-                    lblUserPassStatus.Text = "کلمه عبور اشتباه می باشد."
-                End If
+					lblUserPassStatus.Text = "کلمه عبور اشتباه می باشد."
+					ShowSweetAlert("نقض فرآیند", "کلمه عبور اشتباه می باشد.")
+				End If
             Else
                 lblUserPassStatus.ForeColor = Drawing.Color.Red
-                lblUserPassStatus.Text = "وارد کردن نام کاربری الزامی است."
-            End If
+				lblUserPassStatus.Text = "وارد کردن نام کاربری الزامی است."
+				ShowSweetAlert("نقض فرآیند", "وارد کردن نام کاربری الزامی است.")
+			End If
         End If
     End Sub
 
@@ -354,5 +371,10 @@ Partial Class dashboard_Default
 
 		Return fileSignature.SequenceEqual(expectedSignature)
 	End Function
+
+	Private Sub ShowSweetAlert(title As String, msg As String)
+		Dim jsFunction As String = "showSweetAlert('" + title + "','" + msg + "')"
+		ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myJsFn", "showSweetAlert('" & title & "','" & msg & "');", True)
+	End Sub
 
 End Class

@@ -4,6 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="container" style="direction: rtl; text-align: right;">
         <div class="row">
             <div class="col-md-12">
@@ -56,19 +57,23 @@
                     <asp:Label ID="lblWarningSize" runat="server"></asp:Label>
                 </div>
                 <div class="frame" style="text-align: center;">
-                    <p style="font-family: Titr; font-size: 17px; text-align: right;">
-                        شماره همراه
-                    </p>
-                    <div style="text-align: center;">
-                        <asp:TextBox CssClass="form-control" Style="text-align: center;" ID="txtMobile" runat="server"></asp:TextBox>
-                    </div>
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ControlToValidate="txtMobile"
-                        ErrorMessage="فرمت صحیح: 09111111111" Font-Names="Samim" Font-Size="10px" ForeColor="Red"
-                        ValidationExpression="09(0[0-9]|1[0-9]|3[0-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}" ValidationGroup="400"></asp:RegularExpressionValidator>
-                    <br />
-                    <div style="text-align: center;">
-                        <asp:Button ID="btnUpdateMobile" CssClass="button" runat="server" Text="بروزرسانی" ValidationGroup="400" />
-                    </div>
+                    <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                        <ContentTemplate>
+                            <p style="font-family: Titr; font-size: 17px; text-align: right;">
+                                شماره همراه
+                            </p>
+                            <div style="text-align: center;">
+                                <asp:TextBox CssClass="form-control" Style="text-align: center;" ID="txtMobile" runat="server"></asp:TextBox>
+                            </div>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ControlToValidate="txtMobile"
+                                ErrorMessage="فرمت صحیح: 09111111111" Font-Names="Samim" Font-Size="10px" ForeColor="Red"
+                                ValidationExpression="09(0[0-9]|1[0-9]|3[0-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}" ValidationGroup="400"></asp:RegularExpressionValidator>
+                            <br />
+                            <div style="text-align: center;">
+                                <asp:Button ID="btnUpdateMobile" CssClass="button" runat="server" Text="بروزرسانی" ValidationGroup="400" />
+                            </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
                 </div>
                 <div class="frame" runat="server" id="PaneMadrak">
                     <p style="font-family: Titr; font-size: 17px;">
@@ -135,69 +140,73 @@
                     </div>
                 </div>
                 <div class="frame">
-                    <p style="font-family: Titr; font-size: 17px;">
-                        نام کاربری و کلمه عبور
-                    </p>
-                    <div>
-                        <table style="width: 100%;">
-                            <tr>
-                                <td>نام کاربری:
-                                </td>
-                                <td>
-                                    <asp:TextBox CssClass="form-control" ID="txtUsername" runat="server"></asp:TextBox>
-                                    <asp:Label ID="lblCurrentUsername" runat="server" Font-Size="X-Small"></asp:Label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>کلمه عبور فعلی:
-                                </td>
-                                <td>
-                                    <asp:TextBox CssClass="form-control" ID="txtCurrentPass" runat="server" TextMode="Password"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtCurrentPass"
-                                        ErrorMessage="*" ForeColor="Red" ValidationGroup="30"></asp:RequiredFieldValidator>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;
-                                </td>
-                                <td>
-                                    <asp:CheckBox ID="chkAllowPass" runat="server" Font-Bold="False" Font-Names="Samim"
-                                        Font-Size="X-Small" Text="فقط تغییر کلمه عبور" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>کلمه عبور جدید:
-                                </td>
-                                <td>
-                                    <asp:TextBox CssClass="form-control" ID="txtPass1" runat="server" TextMode="Password"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>تکرار کلمه عبور جدید:
-                                </td>
-                                <td>
-                                    <asp:TextBox CssClass="form-control" ID="txtPass2" runat="server" TextMode="Password"></asp:TextBox>
-                                    <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtPass1"
-                                        ControlToValidate="txtPass2" ErrorMessage="کلمه عبور یکسان نیست" Font-Size="X-Small"
-                                        ForeColor="Red" ValidationGroup="30"></asp:CompareValidator>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;
-                                </td>
-                                <td>
-                                    <asp:Label ID="lblUserPassStatus" runat="server" Font-Size="X-Small" ForeColor="Red"></asp:Label>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="alert alert-info" role="alert">
-                        <asp:Label ID="lblProfileLink" runat="server"></asp:Label>
-                    </div>
-                    <div style="text-align: center;">
-                        <asp:Button ID="btnUsernamePassword" CssClass="button" runat="server" Text="بروزرسانی"
-                            ValidationGroup="30" />
-                    </div>
+                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                        <ContentTemplate>
+                            <p style="font-family: Titr; font-size: 17px;">
+                                نام کاربری و کلمه عبور
+                            </p>
+                            <div>
+                                <table style="width: 100%;">
+                                    <tr>
+                                        <td>نام کاربری:
+                                        </td>
+                                        <td>
+                                            <asp:TextBox CssClass="form-control" ID="txtUsername" runat="server"></asp:TextBox>
+                                            <asp:Label ID="lblCurrentUsername" runat="server" Font-Size="X-Small"></asp:Label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>کلمه عبور فعلی:
+                                        </td>
+                                        <td>
+                                            <asp:TextBox CssClass="form-control" ID="txtCurrentPass" runat="server" TextMode="Password"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtCurrentPass"
+                                                ErrorMessage="*" ForeColor="Red" ValidationGroup="30"></asp:RequiredFieldValidator>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;
+                                        </td>
+                                        <td>
+                                            <asp:CheckBox ID="chkAllowPass" runat="server" Font-Bold="False" Font-Names="Samim"
+                                                Font-Size="X-Small" Text="فقط تغییر کلمه عبور" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>کلمه عبور جدید:
+                                        </td>
+                                        <td>
+                                            <asp:TextBox CssClass="form-control" ID="txtPass1" runat="server" TextMode="Password"></asp:TextBox>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>تکرار کلمه عبور جدید:
+                                        </td>
+                                        <td>
+                                            <asp:TextBox CssClass="form-control" ID="txtPass2" runat="server" TextMode="Password"></asp:TextBox>
+                                            <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtPass1"
+                                                ControlToValidate="txtPass2" ErrorMessage="کلمه عبور یکسان نیست" Font-Size="X-Small"
+                                                ForeColor="Red" ValidationGroup="30"></asp:CompareValidator>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;
+                                        </td>
+                                        <td>
+                                            <asp:Label ID="lblUserPassStatus" runat="server" Font-Size="X-Small" ForeColor="Red"></asp:Label>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="alert alert-info" role="alert">
+                                <asp:Label ID="lblProfileLink" runat="server"></asp:Label>
+                            </div>
+                            <div style="text-align: center;">
+                                <asp:Button ID="btnUsernamePassword" CssClass="button" runat="server" Text="بروزرسانی"
+                                    ValidationGroup="30" />
+                            </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
                 </div>
             </div>
             <div class="col-md-6">
